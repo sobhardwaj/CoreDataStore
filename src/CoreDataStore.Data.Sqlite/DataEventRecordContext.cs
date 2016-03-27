@@ -26,7 +26,8 @@ namespace CoreDataStore.Data.Sqlite
         {
             var builder = new ConfigurationBuilder()
                .AddJsonFile("config.json")
-               .AddEnvironmentVariables();
+             //  .AddEnvironmentVariables()
+               ;
 
             // var config = new Configuration()
             // .AddJsonFile("config.json")
