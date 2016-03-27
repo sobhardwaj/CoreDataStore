@@ -1,8 +1,6 @@
 using CoreDataStore.Data.Sqlite;
 using CoreDataStore.Data.Sqlite.Repositories;
 using CoreDataStore.Domain.Interfaces;
-using CoreDataStore.Web.Repositories;
-
 using Microsoft.AspNet.Builder;
 
 using Microsoft.AspNet.Hosting;

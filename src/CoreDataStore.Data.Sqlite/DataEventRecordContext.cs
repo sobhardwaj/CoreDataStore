@@ -16,7 +16,7 @@ namespace CoreDataStore.Data.Sqlite
         {
             //  var connString = Config["SqliteConnectionString"];
 
-            var connString = "Data Source=D:\\Documents\\GitHub\\CoreDataStore\\data\\coredatastore.sqlite";
+            var connString = "Data Source=..\\..\\..\\CoreDataStore\\data\\coredatastore.sqlite";
             optionsBuilder.UseSqlite(connString);
         }
 
