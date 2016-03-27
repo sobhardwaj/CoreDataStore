@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Entity;
+﻿using CoreDataStore.Domain.Entities;
+using Microsoft.Data.Entity;
 
 namespace CoreDataStore.Web.Model
 {

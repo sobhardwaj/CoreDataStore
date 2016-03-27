@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-
+using CoreDataStore.Domain.Entities;
+using CoreDataStore.Domain.Interfaces;
 using CoreDataStore.Web.Model;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CoreDataStore.Web.Repositories
 {
-    public class DataEventRecordRepository : IDataEventRecordRepository
+    public class DataEventRecordRepository : IDataAccessProvider
     {
         private readonly DataEventRecordContext _context;
 

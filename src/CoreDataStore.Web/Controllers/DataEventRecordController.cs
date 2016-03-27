@@ -1,5 +1,5 @@
-using CoreDataStore.Web.Model;
-using CoreDataStore.Web.Repositories;
+using CoreDataStore.Domain.Entities;
+using CoreDataStore.Domain.Interfaces;
 
 namespace CoreDataStore.Web.Controllers
 {
@@ -9,9 +9,9 @@ namespace CoreDataStore.Web.Controllers
     [Route("api/[controller]")]
     public class DataEventRecordsController : Controller
     {
-        private readonly IDataEventRecordRepository _dataEventRecordRepository;
+        private readonly IDataAccessProvider _dataEventRecordRepository;
 
-        public DataEventRecordsController(IDataEventRecordRepository dataEventRecordRepository)
+        public DataEventRecordsController(IDataAccessProvider dataEventRecordRepository)
         {
             _dataEventRecordRepository = dataEventRecordRepository;
         }

@@ -1,3 +1,4 @@
+using CoreDataStore.Domain.Interfaces;
 using CoreDataStore.Web.Model;
 using CoreDataStore.Web.Repositories;
 
@@ -49,7 +50,7 @@ namespace CoreDataStore.Web
                     .AddDbContext<DataEventRecordContext>(options => options.UseSqlite(connection));
 
             services.AddMvc();
-            services.AddScoped<IDataEventRecordRepository, DataEventRecordRepository>();
+            services.AddScoped<IDataAccessProvider, DataEventRecordRepository>();
 
         }
 

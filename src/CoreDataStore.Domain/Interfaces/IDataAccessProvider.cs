@@ -5,16 +5,14 @@ namespace CoreDataStore.Domain.Interfaces
 {
     public interface IDataAccessProvider
     {
-        void AddDataEventRecord(DataEventRecord dataEventRecord);
+        void Delete(long id);
 
-        void UpdateDataEventRecord(long dataEventRecordId, DataEventRecord dataEventRecord);
+        DataEventRecord Get(long id);
 
-        void DeleteDataEventRecord(long dataEventRecordId);
+        List<DataEventRecord> GetAll();
 
-        DataEventRecord GetDataEventRecord(long dataEventRecordId);
+        void Post(DataEventRecord dataEventRecord);
 
-        List<DataEventRecord> GetDataEventRecords();
-
-        List<SourceInfo> GetSourceInfos(bool withChildren);
+        void Put(long id, DataEventRecord dataEventRecord);
     }
 }
