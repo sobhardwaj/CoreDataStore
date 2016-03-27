@@ -2,13 +2,11 @@
 using System.Linq;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Domain.Interfaces;
-using CoreDataStore.Web.Model;
-using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
 
-
-namespace CoreDataStore.Web.Repositories
+namespace CoreDataStore.Data.Sqlite.Repositories
 {
+
     public class DataEventRecordRepository : IDataAccessProvider
     {
         private readonly DataEventRecordContext _context;
@@ -32,14 +30,13 @@ namespace CoreDataStore.Web.Repositories
             return _context.DataEventRecords.First(t => t.Id == id);
         }
 
-        [HttpPost]
         public void Post(DataEventRecord dataEventRecord)
         {
             _context.DataEventRecords.Add(dataEventRecord);
             _context.SaveChanges();
         }
 
-        public void Put(long id, [FromBody]DataEventRecord dataEventRecord)
+        public void Put(long id, DataEventRecord dataEventRecord)
         {
             _context.DataEventRecords.Update(dataEventRecord);
             _context.SaveChanges();

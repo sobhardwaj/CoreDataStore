@@ -26,7 +26,8 @@
     "Swashbuckle": "6.0.0-rc1-final",
     "Swashbuckle.SwaggerUi": "6.0.0-rc1-final",
 
-    "CoreDataStore.Domain": "1.0.0-*"
+    "CoreDataStore.Domain": "1.0.0-*",
+    "CoreDataStore.Data.Sqlite": "1.0.0-*"
   },
 
     "commands": {

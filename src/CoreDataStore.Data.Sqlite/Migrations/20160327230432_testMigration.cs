@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Migrations;
 
-namespace CoreDataStore.Web.Migrations
+namespace CoreDataStore.Data.Sqlite.Migrations
 {
     public partial class testMigration : Migration
     {
@@ -16,6 +16,7 @@ namespace CoreDataStore.Web.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
+                    ShortName = table.Column<string>(nullable: true),
                     Timestamp = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>

@@ -3,20 +3,19 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
-using CoreDataStore.Web.Model;
+using CoreDataStore.Data.Sqlite;
 
-namespace CoreDataStore.Web.Migrations
+namespace CoreDataStore.Data.Sqlite.Migrations
 {
     [DbContext(typeof(DataEventRecordContext))]
-    [Migration("20160327184802_testMigration1")]
-    partial class testMigration1
+    partial class DataEventRecordContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348");
 
-            modelBuilder.Entity("CoreDataStore.Web.Model.DataEventRecord", b =>
+            modelBuilder.Entity("CoreDataStore.Domain.Entities.DataEventRecord", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -24,6 +23,8 @@ namespace CoreDataStore.Web.Migrations
                     b.Property<string>("Description");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("ShortName");
 
                     b.Property<DateTime>("Timestamp");
 
