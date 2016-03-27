@@ -8,9 +8,10 @@ using CoreDataStore.Web.Model;
 namespace CoreDataStore.Web.Migrations
 {
     [DbContext(typeof(DataEventRecordContext))]
-    partial class DataEventRecordContextModelSnapshot : ModelSnapshot
+    [Migration("20160327202659_testMigration2")]
+    partial class testMigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348");
