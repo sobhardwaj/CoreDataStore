@@ -21,7 +21,8 @@ namespace CoreDataStore.Web
             var builder = new ConfigurationBuilder()
                 .SetBasePath(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
-                .AddEnvironmentVariables();
+              //  .AddEnvironmentVariables()
+              ;
             Configuration = builder.Build();
         }
 
