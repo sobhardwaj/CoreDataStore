@@ -22,3 +22,17 @@ dnu build
 
 dnx web
 ```
+
+##Entity Framework
+
+
+```bash
+cd CoreDataStore/CoreDataStore.Data.Sqlite
+
+dnx ef migration add <MigrationName>
+dnx ef database update
+```
+
+
+
+
