@@ -1,5 +1,7 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
+using System.IO;
+using Microsoft.EntityFrameworkCore;
 
 namespace SimpleBloggingApp
 {
@@ -21,12 +23,24 @@ namespace SimpleBloggingApp
 
                 db.SaveChanges();
 
-                var blogs = db.Blogs.ToList();
-
-                foreach (var blog in blogs)
+                Console.WriteLine();
+                Console.WriteLine("All blogs in database:");
+                foreach (var blog in db.Blogs)
                 {
-                    Console.WriteLine($"Blog: {blog.Title}");
+                    Console.WriteLine(" - {0}", blog.Url);
                 }
+
+
+
+
+
+
+                //var blogs = db.Blogs.ToList();
+
+                //foreach (var blog in blogs)
+                //{
+                //  Console.WriteLine($"Blog: {blog.Title}");
+                //}
             }
         }
     }
