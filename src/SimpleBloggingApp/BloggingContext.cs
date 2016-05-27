@@ -22,11 +22,11 @@ namespace SimpleBloggingApp
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Blog>(entity =>
-            {
-                entity.Property(e => e.Title).HasColumnType("varchar(128)");
-                entity.Property(e => e.Url).HasColumnType("varchar(128)");
-            });
+            //modelBuilder.Entity<Blog>(entity =>
+            //{
+            //    entity.Property(e => e.Title).HasColumnType("varchar(128)");
+            //    entity.Property(e => e.Url).HasColumnType("varchar(128)");
+            //});
 
         }
 
