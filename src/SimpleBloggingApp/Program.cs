@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using SimpleBloggingApp.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace SimpleBloggingApp
 {
@@ -13,10 +15,11 @@ namespace SimpleBloggingApp
             using (var db = new BloggingContext())
             {
                 db.Database.EnsureCreated();
+                db.Database.Migrate();
 
                 db.Blogs.Add(new Blog
                 {
-                    Title = "VS Code Tips and Tricks",
+                    Title = "Hello SPS",
                     Url = "http://myblog.com"
                 });
 

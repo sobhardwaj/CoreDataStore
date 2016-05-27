@@ -1,4 +1,4 @@
-﻿namespace SimpleBloggingApp
+﻿namespace SimpleBloggingApp.Entities
 {
     public class Blog
     {

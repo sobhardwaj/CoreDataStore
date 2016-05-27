@@ -12,9 +12,7 @@
     "Microsoft.EntityFrameworkCore.Tools": {
       "version": "1.0.0-preview1-*",
       "type": "build"
-    },
-    "CoreDataStore.Data.Sqlite": "1.0.0-*",
-    "CoreDataStore.Domain": "1.0.0-*"
+    }
   },
   "frameworks": {
     "netcoreapp1.0": {
