@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace SimpleBloggingApp
 {
+
+    //https://github.com/natemcmaster/docker-ef-talk
+
     public class Program
     {
         public static void Main(string[] args)

@@ -9,7 +9,6 @@
       "type": "platform",
       "version": "1.0.0-rc2-3002702"
     },
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-rc2-final",
     "Microsoft.EntityFrameworkCore.Sqlite": "1.0.0-rc2-final"
   },
 
