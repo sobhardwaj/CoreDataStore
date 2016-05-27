@@ -1,44 +1,29 @@
-﻿{
+{
   "version": "1.0.0-*",
-  "description": "Core DataStore Sqlite",
-  "authors": [ "Stuart Shay" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
 
   "dependencies": {
     "CoreDataStore.Domain": "1.0.0-*",
 
-    "EntityFramework.Commands": "7.0.0-rc1-final",
-    "EntityFramework.SQLite": "7.0.0-rc1-final",
-
-    "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-rc1-final",
-    "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc1-*",
-
-    "Microsoft.Extensions.Configuration": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Configuration.CommandLine": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Configuration.EnvironmentVariables" :  "1.0.0-rc1-final",
-    "Microsoft.Extensions.Configuration.FileExtensions" :  "1.0.0-rc1-final", 
-    "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Configuration.FileProviderExtensions": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
-
-
-    "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final"
-
-  },
-
-  "commands": {
-    "ef": "EntityFramework.Commands"
+    "Microsoft.EntityFrameworkCore": "1.0.0-rc2-final",
+    "Microsoft.EntityFrameworkCore.Sqlite": "1.0.0-rc2-final",
+    "Microsoft.EntityFrameworkCore.Tools.Core": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Configuration": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc2-final",
+    "NETStandard.Library": "1.5.0-rc2-24027"
   },
 
   "frameworks": {
-    "dnx451": { },
-    "dnxcore50": { }
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "dnxcore50",
+        "portable-net45+win8"
+      ]
+    }
+  },
+  "tooling": {
+    "defaultNamespace": "CoreDataStore.Data.Sqlite"
   }
-
-
 }
-

@@ -1,0 +1,32 @@
+{
+  "name": "bower",
+  "license": "Apache-2.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3.3.5",
+    "jquery": "2.1.4",
+    "angular": "1.4.6",
+    "angular-ui-router": "0.2.13"
+  },
+  "exportsOverride": {
+    "bootstrap": {
+      "js": "dist/js/*.*",
+      "css": "dist/css/*.*",
+      "fonts": "dist/fonts/*.*"
+    },
+    "jquery": {
+      "js": "jquery.{js,min.js,min.map}"
+    },
+    "angular": {
+      "": "angular{.js,.min.js,.min.js.map, .min.js.gzip}",
+      "css": "angular-csp.css"
+    },
+    "angular-ui-router": {
+      "": "release/angular-ui-router.{js,min.js,min.js.map}"
+    }
+  },
+  "resolutions": {
+    "jquery": ">= 1.9.1",
+    "angular": ">= 1.0.8"
+  }
+}

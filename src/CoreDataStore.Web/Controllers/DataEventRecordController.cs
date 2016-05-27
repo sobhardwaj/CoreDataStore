@@ -1,10 +1,10 @@
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Domain.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDataStore.Web.Controllers
 {
     using System.Collections.Generic;
-    using Microsoft.AspNet.Mvc;
 
     [Route("api/[controller]")]
     public class DataEventRecordsController : Controller
