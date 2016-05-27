@@ -25,18 +25,16 @@ namespace SimpleBloggingApp
 
                 Console.WriteLine();
                 Console.WriteLine("All blogs in database:");
-                foreach (var blog in db.Blogs)
-                {
-                    Console.WriteLine("{0} - {1}", blog.Title, blog.Url);
-                }
-
-
                 var blogs = db.Blogs.ToList();
 
                 foreach (var blog in blogs)
                 {
                     Console.WriteLine($"Blog: {blog.Title}");
                 }
+
+
+
+
             }
         }
     }
