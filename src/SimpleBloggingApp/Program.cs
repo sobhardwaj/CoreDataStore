@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace SimpleBloggingApp
 {
@@ -30,16 +31,12 @@ namespace SimpleBloggingApp
                 }
 
 
+                var blogs = db.Blogs.ToList();
 
-
-
-
-                //var blogs = db.Blogs.ToList();
-
-                //foreach (var blog in blogs)
-                //{
-                //  Console.WriteLine($"Blog: {blog.Title}");
-                //}
+                foreach (var blog in blogs)
+                {
+                    Console.WriteLine($"Blog: {blog.Title}");
+                }
             }
         }
     }
