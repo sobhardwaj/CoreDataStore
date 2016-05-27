@@ -15,7 +15,7 @@ namespace SimpleBloggingApp
             using (var db = new BloggingContext())
             {
                 db.Database.EnsureCreated();
-                db.Database.Migrate();
+                //db.Database.Migrate();
 
                 db.Blogs.Add(new Blog
                 {
