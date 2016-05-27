@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using Microsoft.EntityFrameworkCore;
 
 namespace SimpleBloggingApp
 {
@@ -18,16 +15,18 @@ namespace SimpleBloggingApp
 
                 db.Blogs.Add(new Blog
                 {
-                    Title = "VS Code Tips and Tricks"
+                    Title = "VS Code Tips and Tricks",
+                    Url = "http://myblog.com"
                 });
 
+           
                 db.SaveChanges();
 
                 Console.WriteLine();
                 Console.WriteLine("All blogs in database:");
                 foreach (var blog in db.Blogs)
                 {
-                    Console.WriteLine(" - {0}", blog.Url);
+                    Console.WriteLine("{0} - {1}", blog.Title, blog.Url);
                 }
 
 
