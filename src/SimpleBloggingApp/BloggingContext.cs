@@ -5,17 +5,24 @@ namespace SimpleBloggingApp
 {
     public class BloggingContext : DbContext
     {
+        private readonly string sqlLiteConnection; 
+
         public BloggingContext(DbContextOptions<BloggingContext> options) : base(options) { }
 
         public BloggingContext()
         {
-
+            sqlLiteConnection = "Filename=./coredatastore.sqlite";
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Filename=./coredatastore.sqlite");
+            optionsBuilder.UseSqlite(sqlLiteConnection);
         }
+
+
+
+
+
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{

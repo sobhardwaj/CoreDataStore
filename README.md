@@ -17,10 +17,9 @@ git clone https://github.com/stuartshay/CoreDataStore.git
 ##Run
 
 ```bash
-dnu restore
-dnu build
+dotnet restore
 
-dnx web
+dotnet run
 ```
 
 ##Entity Framework
