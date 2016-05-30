@@ -33,9 +33,8 @@ namespace CoreDataStore.Web
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration["Production:SqliteConnectionString"];
-
             services.AddDbContext<BloggingContext>(options =>
-                options.UseSqlite("Filename=./../../../../../data/coredatastore.sqlite")
+                options.UseSqlite(connection)
             );
 
             services.AddMvc();
