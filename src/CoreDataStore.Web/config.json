@@ -1,14 +1,5 @@
 ﻿{
   "Production": {
-    //"SqliteConnectionString": "Data Source=D:\\Documents\\GitHub\\CoreDataStore\\data\\coredatastore.sqlite"
     "SqliteConnectionString": "Filename=./../../../../../data/coredatastore.sqlite"
-  },
-  "Logging": {
-    "IncludeScopes": false,
-    "LogLevel": {
-      "Default": "Verbose",
-      "System": "Information",
-      "Microsoft": "Information"
-    }
   }
 }

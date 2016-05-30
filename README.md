@@ -23,18 +23,13 @@ dotnet build
 dotnet run
 ```
 
-
-
-
-
 ##Entity Framework
-
 
 ```bash
 cd CoreDataStore/CoreDataStore.Data.Sqlite
 
-dnx ef migration add <MigrationName>
-dnx ef database update
+dotnet ef migration add <MigrationName>
+dotnet ef database update
 ```
 
 

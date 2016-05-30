@@ -1,6 +1,6 @@
-﻿using CoreDataStore.Domain.Entities;
+﻿using CoreDataStore.Data.Sqlite.Conventions;
+using CoreDataStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace CoreDataStore.Data.Sqlite
 {
@@ -9,13 +9,22 @@ namespace CoreDataStore.Data.Sqlite
         public DataEventRecordContext(DbContextOptions<DataEventRecordContext> options) : base(options)
         { }
 
-        public DbSet<DataEventRecord> DataEventRecords { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.RemovePluralizingTableNameConvention();
+
             builder.Entity<DataEventRecord>().HasKey(m => m.Id);
+
             base.OnModelCreating(builder);
         }
+
+
+        public DbSet<DataEventRecord> DataEventRecords { get; set; }
 
     }
 }

@@ -15,6 +15,7 @@ namespace CoreDataStore.Web.Controllers
             _dataEventRecordRepository = dataEventRecordRepository;
         }
 
+
         [HttpGet]
         public IEnumerable<DataEventRecord> Get()
         {

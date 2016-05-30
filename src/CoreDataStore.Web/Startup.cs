@@ -3,13 +3,15 @@ using CoreDataStore.Data.Sqlite.Repositories;
 using CoreDataStore.Domain.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Swashbuckle.SwaggerGen.Generator;
-
 
 namespace CoreDataStore.Web
 {
@@ -19,9 +21,9 @@ namespace CoreDataStore.Web
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                //.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddJsonFile("config.json");
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                 //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("config.json", optional: true, reloadOnChange: true);
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -33,11 +35,29 @@ namespace CoreDataStore.Web
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration["Production:SqliteConnectionString"];
-            services.AddDbContext<BloggingContext>(options =>
-                options.UseSqlite(connection)
+            services.AddDbContext<DataEventRecordContext>(options =>
+                options.UseSqlite(connection,
+                 b => b.MigrationsAssembly("CoreDataStore.Web")
+                )
             );
 
-            services.AddMvc();
+            JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter
+            {
+                SerializerSettings = new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                }
+            };
+
+
+            services.AddMvc(
+                 options =>
+                 {
+                     options.OutputFormatters.Clear();
+                     options.OutputFormatters.Insert(0, jsonOutputFormatter);
+                 }
+             );
 
             services.AddSwaggerGen();
 
@@ -57,8 +77,8 @@ namespace CoreDataStore.Web
                 options.DescribeAllEnumsAsStrings();  
             });
 
-            // services.AddScoped<IDataAccessProvider, DataEventRecordRepository>();
-            services.AddScoped<IBlogRepository, BlogRepository>();
+            services.AddScoped<IDataAccessProvider, DataEventRecordRepository>();
+           // services.AddScoped<IBlogRepository, BlogRepository>();
         }
 
 
