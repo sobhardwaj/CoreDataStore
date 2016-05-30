@@ -14,13 +14,17 @@ npm install -g grunt-cli
 git clone https://github.com/stuartshay/CoreDataStore.git
 ```
 
-##Run
+##Launch Website
 
 ```bash
 dotnet restore
 
 dotnet run
 ```
+
+
+
+
 
 ##Entity Framework
 

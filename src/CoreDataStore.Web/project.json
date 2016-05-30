@@ -21,12 +21,9 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc2-final",
     "CoreDataStore.Data.Sqlite": "1.0.0-*",
     "CoreDataStore.Domain": "1.0.0-*",
-
-    "Microsoft.EntityFrameworkCore": "1.0.0-rc2-final",
-    "Microsoft.EntityFrameworkCore.Sqlite": "1.0.0-rc2-final",
-    "Microsoft.EntityFrameworkCore.Tools.Core": "1.0.0-rc2-final"
-
+    "Swashbuckle": "6.0.0-beta9"
   },
+
   "tools": {
     "Microsoft.AspNetCore.Razor.Tools": {
       "version": "1.0.0-preview1-final",
@@ -37,6 +34,7 @@
       "imports": "portable-net45+win8+dnxcore50"
     }
   },
+
   "frameworks": {
     "netcoreapp1.0": {
       "imports": [
@@ -46,33 +44,27 @@
       ]
     }
   },
+
   "buildOptions": {
     "emitEntryPoint": true,
-    "preserveCompilationContext": true,
-    "debugType": "portable"
+    "preserveCompilationContext": true
   },
+
   "runtimeOptions": {
     "gcServer": true
   },
+
   "publishOptions": {
     "include": [
       "wwwroot",
       "Views",
       "appsettings.json",
-      "web.config",
-      "Docker",
-      ".dockerignore"
+      "web.config"
     ]
   },
+
   "scripts": {
-    "prepublish": [
-      "npm install",
-      "bower install",
-      "gulp clean",
-      "gulp min"
-    ],
-    "postpublish": [
-      "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
-    ]
+    "prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ],
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }
