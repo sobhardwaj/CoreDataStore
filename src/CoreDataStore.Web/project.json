@@ -21,7 +21,9 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc2-final",
     "CoreDataStore.Data.Sqlite": "1.0.0-*",
     "CoreDataStore.Domain": "1.0.0-*",
-    "Swashbuckle": "6.0.0-beta9"
+    "Swashbuckle": "6.0.0-beta9",
+    "Microsoft.EntityFrameworkCore.Sqlite": "1.0.0-rc2-final",
+    "Microsoft.EntityFrameworkCore.Sqlite.Design": "1.0.0-rc2-final"
   },
 
   "tools": {

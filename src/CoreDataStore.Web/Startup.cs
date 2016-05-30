@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using CoreDataStore.Data.Sqlite;
+using CoreDataStore.Data.Sqlite.Repositories;
+using CoreDataStore.Domain.Interfaces;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -29,7 +33,12 @@ namespace CoreDataStore.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = Configuration["Production:SqliteConnectionString"];
             services.AddMvc();
+            //services.AddEntityFramework()
+            //       .AddSqlite()
+            //       .AddDbContext<DataEventRecordContext>(options => options.UseSqlite(connection));
+
             services.AddSwaggerGen();
 
             //services.ConfigureSwaggerDocument(options =>
@@ -51,12 +60,9 @@ namespace CoreDataStore.Web
             //    // options.ModelFilter(new Swashbuckle.SwaggerGen.XmlComments.ApplyXmlTypeComments(pathToDoc));
             //});
 
+            services.AddScoped<IDataAccessProvider, DataEventRecordRepository>();
+
         }
-
-
-
-
-
 
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -76,20 +82,20 @@ namespace CoreDataStore.Web
 
             app.UseStaticFiles();
 
+
+            app.UseMvc(ConfigureRoutes);
+
             app.UseSwaggerGen();
             app.UseSwaggerUi();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
         }
 
-
-
-
+        private void ConfigureRoutes(IRouteBuilder routeBuilder)
+        {
+            routeBuilder.MapRoute(
+                name: "default",
+                template: "{controller=Home}/{action=Index}/{id?}");
+        }
 
     }
 }

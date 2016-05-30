@@ -18,6 +18,7 @@ git clone https://github.com/stuartshay/CoreDataStore.git
 
 ```bash
 dotnet restore
+dotnet build
 
 dotnet run
 ```
