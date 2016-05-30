@@ -33,8 +33,9 @@ namespace CoreDataStore.Web
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration["Production:SqliteConnectionString"];
-            services.AddDbContext<DataEventRecordContext>(options =>
-                options.UseSqlite(connection)
+
+            services.AddDbContext<BloggingContext>(options =>
+                options.UseSqlite("Filename=./../../../../../data/coredatastore.sqlite")
             );
 
             services.AddMvc();
@@ -57,8 +58,10 @@ namespace CoreDataStore.Web
                 options.DescribeAllEnumsAsStrings();  
             });
 
-            services.AddScoped<IDataAccessProvider, DataEventRecordRepository>();
+            // services.AddScoped<IDataAccessProvider, DataEventRecordRepository>();
+            services.AddScoped<IBlogRepository, BlogRepository>();
         }
+
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
