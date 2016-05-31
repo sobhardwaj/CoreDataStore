@@ -1,9 +1,0 @@
-version: '2'
-
-services:
-  coredatastore.web:
-    build:
-      context: ../..
-      dockerfile: app/Docker/Dockerfile.release
-    ports:
-      - "80:80"

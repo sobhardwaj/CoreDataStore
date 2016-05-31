@@ -1,5 +1,0 @@
-﻿{
-  "Production": {
-    "SqliteConnectionString": "Data Source=D:\\Documents\\GitHub\\AspNet5MultipleProject\\src\\DataAccessSqliteProvider\\dataeventrecords.sqlite"
-  }
-}

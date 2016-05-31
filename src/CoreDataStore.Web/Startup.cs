@@ -77,8 +77,10 @@ namespace CoreDataStore.Web
                 options.DescribeAllEnumsAsStrings();  
             });
 
-            services.AddScoped<IDataAccessProvider, DataEventRecordRepository>();
-           // services.AddScoped<IBlogRepository, BlogRepository>();
+             services.AddScoped<IDataAccessProvider, DataEventRecordRepository>();
+            // services.AddScoped<IBlogRepository, BlogRepository>();
+            //services.AddScoped<ILPCReportRepository, LPCReportRepository>();
+
         }
 
 
