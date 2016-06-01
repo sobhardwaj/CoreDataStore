@@ -6,7 +6,7 @@ namespace CoreDataStore.Data.Sqlite
 {
     public class NYCLandmarkContext : DbContext
     {
-        public NYCLandmarkContext(DbContextOptions<DataEventRecordContext> options) : base(options)
+        public NYCLandmarkContext(DbContextOptions<NYCLandmarkContext> options) : base(options)
         { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

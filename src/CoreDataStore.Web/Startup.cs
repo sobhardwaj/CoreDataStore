@@ -34,12 +34,18 @@ namespace CoreDataStore.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = Configuration["Production:SqliteConnectionString"];
+            var prodConnection = Configuration["Production:SqliteConnectionString"];
+            var devlconnection = Configuration["Development:SqliteConnectionString"];
+
+            services.AddDbContext<NYCLandmarkContext>(options =>
+               options.UseSqlite(prodConnection, b => b.MigrationsAssembly("CoreDataStore.Web")));
+
             services.AddDbContext<DataEventRecordContext>(options =>
-                options.UseSqlite(connection,
-                 b => b.MigrationsAssembly("CoreDataStore.Web")
-                )
-            );
+                options.UseSqlite(devlconnection, b => b.MigrationsAssembly("CoreDataStore.Web")));
+
+            services.AddDbContext<BloggingContext>(options =>
+                options.UseSqlite(devlconnection, b => b.MigrationsAssembly("CoreDataStore.Web")));
+
 
             JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter
             {
@@ -77,10 +83,9 @@ namespace CoreDataStore.Web
                 options.DescribeAllEnumsAsStrings();  
             });
 
-             services.AddScoped<IDataAccessProvider, DataEventRecordRepository>();
-            // services.AddScoped<IBlogRepository, BlogRepository>();
-            //services.AddScoped<ILPCReportRepository, LPCReportRepository>();
-
+            services.AddScoped<IDataAccessProvider, DataEventRecordRepository>();
+            services.AddScoped<IBlogRepository, BlogRepository>();
+            services.AddScoped<ILPCReportRepository, LPCReportRepository>();
         }
 
 
