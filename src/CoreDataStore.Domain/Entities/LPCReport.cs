@@ -1,4 +1,6 @@
-﻿namespace CoreDataStore.Domain.Entities
+﻿using System;
+
+namespace CoreDataStore.Domain.Entities
 {
     public class LPCReport
     {
@@ -6,9 +8,9 @@
 
         public string Name { get; set; }
 
-        // LPCId  { get; set; }
+        public string LPCId  { get; set; }
 
-        // LPNumber  { get; set; }
+        public string LPNumber  { get; set; }
 
         public string ObjectType  { get; set; }
 
@@ -19,11 +21,11 @@
         public string Street  { get; set; }
 
         public string Borough  { get; set; }
-        
-        // DateDesignated  { get; set; }
-        
-        //PhotoStatus  { get; set; }
 
-        //PhotoURL  { get; set; }
+        public DateTime DateDesignated  { get; set; }
+
+        public bool PhotoStatus  { get; set; }
+
+        public string PhotoURL  { get; set; }
     }
 }

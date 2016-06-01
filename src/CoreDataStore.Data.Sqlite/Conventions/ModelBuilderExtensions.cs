@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Linq;
 
 namespace CoreDataStore.Data.Sqlite.Conventions
 {
@@ -15,5 +16,23 @@ namespace CoreDataStore.Data.Sqlite.Conventions
                 entity.Relational().TableName = entity.DisplayName();
             }
         }
+
+
+       // https://github.com/rowanmiller/Demo-EFCore/blob/master/CompletedSourceCode/Conventions/Program.cs
+
+        public static void MaxLengthConvention(this ModelBuilder modelBuilder)
+        {
+            foreach (IMutableEntityType entity in modelBuilder.Model.GetEntityTypes())
+            {
+                foreach (var property in entity.GetProperties().Where(p => p.ClrType == typeof(string)))
+                {
+                    property.SetMaxLength(200);
+                }
+            }
+        }
+
+
+
+
     }
 }

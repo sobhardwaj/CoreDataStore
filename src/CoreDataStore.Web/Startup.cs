@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.SwaggerGen.Generator;
+using System.Reflection;
 
 namespace CoreDataStore.Web
 {
@@ -31,20 +32,19 @@ namespace CoreDataStore.Web
 
         public IConfigurationRoot Configuration { get; }
 
-
         public void ConfigureServices(IServiceCollection services)
         {
             var prodConnection = Configuration["Production:SqliteConnectionString"];
             var devlconnection = Configuration["Development:SqliteConnectionString"];
 
             services.AddDbContext<NYCLandmarkContext>(options =>
-               options.UseSqlite(prodConnection, b => b.MigrationsAssembly("CoreDataStore.Web")));
+               options.UseSqlite(prodConnection, b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name)));
 
             services.AddDbContext<DataEventRecordContext>(options =>
-                options.UseSqlite(devlconnection, b => b.MigrationsAssembly("CoreDataStore.Web")));
+               options.UseSqlite(devlconnection, b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name)));
 
             services.AddDbContext<BloggingContext>(options =>
-                options.UseSqlite(devlconnection, b => b.MigrationsAssembly("CoreDataStore.Web")));
+                options.UseSqlite(devlconnection, b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name)));
 
 
             JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter
@@ -88,16 +88,17 @@ namespace CoreDataStore.Web
             services.AddScoped<ILPCReportRepository, LPCReportRepository>();
         }
 
-
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            //loggerFactory.AddProvider(new SqlLoggerProvider());
             loggerFactory.AddDebug();
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
+                //app.UseDatabaseErrorPage();
             }
             else
             {
