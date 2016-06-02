@@ -86,6 +86,8 @@ namespace CoreDataStore.Web
             services.AddScoped<IDataAccessProvider, DataEventRecordRepository>();
             services.AddScoped<IBlogRepository, BlogRepository>();
             services.AddScoped<ILPCReportRepository, LPCReportRepository>();
+            services.AddScoped<IReferenceRepository, ReferenceRepository>();
+
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

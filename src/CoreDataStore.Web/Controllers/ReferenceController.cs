@@ -1,44 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using CoreDataStore.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.SwaggerGen.Annotations;
 
 namespace CoreDataStore.Web.Controllers
 {
     [Route("api/[controller]")]
     public class ReferenceController : Controller
     {
-        // GET: api/values
+        private readonly IReferenceRepository _referenceRepository;
+
+        public ReferenceController(IReferenceRepository referenceRepository)
+        {
+            this._referenceRepository = referenceRepository;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("borough")]
+        public IEnumerable<string> GetBoroughs()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "Brooklyn", "Bronx", "Mahhattan", "Queens", "Staten Island" }; 
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet]
+        [Route("objectType")]
+        public IEnumerable<string> GetReferenceTypes()
         {
-            return "value";
+            return new string[] { "Individual Landmark", "Historic District", "Scenic Landmark", "Interior Landmark" };
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
+  
+        /////// <summary>
+        ///////  Reference Types List
+        /////// </summary>
+        /////// <returns></returns>
+        //// [Route("objectType")]
+        //// [Produces(typeof(List<KeyValuePair<string, string>>))]
+        /// 
+        //[HttpGet]
+        //public IEnumerable<ReferenceType> GetReferenceTypes()
+        //{
+        //    var results = _referenceRepository.GetObjectTypes();
+        //    return results;
+        //}
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
