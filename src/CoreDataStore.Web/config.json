@@ -1,9 +1,0 @@
-﻿{
-  "Production": {
-    "SqliteConnectionString": "Filename=./../../../../../data/nyclandmarks.sqlite"
-  },
-  "Development": {
-    "SqliteConnectionString": "Filename=./../../../../../data/coredatastore.sqlite"
-  }
-}
-
