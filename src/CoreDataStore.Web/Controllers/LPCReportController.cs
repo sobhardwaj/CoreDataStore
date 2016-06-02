@@ -35,6 +35,9 @@ namespace CoreDataStore.Web.Controllers
         [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(IEnumerable<LPCReport>))]
         public IEnumerable<LPCReport> Get(LPCReportRequestModel query, int limit, int page)
         {
+            //var totalRecords = customers.Count();
+            //HttpContext.Current.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
+
             return _lpcReportRepository.GetAll();
         }
 
