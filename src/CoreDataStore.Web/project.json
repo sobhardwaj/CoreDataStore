@@ -1,4 +1,4 @@
-{
+﻿{
   "dependencies": {
     "Microsoft.NETCore.App": {
       "version": "1.0.0-rc2-3002702",
@@ -37,13 +37,6 @@
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
       "version": "1.0.0-preview1-final",
       "imports": "portable-net45+win8+dnxcore50"
-    },
-    "Microsoft.EntityFrameworkCore.Tools": {
-      "version": "1.0.0-preview1-*",
-      "imports": [
-        "dnxcore50",
-        "portable-net45+win8"
-      ]
     }
   },
 
@@ -65,7 +58,6 @@
   "runtimeOptions": {
     "gcServer": true
   },
-
 
   "publishOptions": {
     "include": [
