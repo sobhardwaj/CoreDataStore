@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Domain.Interfaces;
 using CoreDataStore.Web.Filters;
@@ -35,19 +36,12 @@ namespace CoreDataStore.Web.Controllers
         [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(IEnumerable<LPCReport>))]
         public IEnumerable<LPCReport> Get(LPCReportRequestModel query, int limit, int page)
         {
-            //var totalRecords = customers.Count();
-            //HttpContext.Current.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
-
-            return _lpcReportRepository.GetAll();
+            var results = _lpcReportRepository.GetAll().ToList();
+            var totalRecords = results.Count;
+            
+            HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
+            return results.Skip(limit * (page-1)).Take(limit); 
         }
-
-
-
-
-
-
-
-
 
     }
 }

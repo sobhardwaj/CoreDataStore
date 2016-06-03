@@ -13,6 +13,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.SwaggerGen.Generator;
 using System.Reflection;
+using CoreDataStore.Service.Interfaces;
+using CoreDataStore.Service.Services;
 
 namespace CoreDataStore.Web
 {
@@ -87,6 +89,8 @@ namespace CoreDataStore.Web
             services.AddScoped<IBlogRepository, BlogRepository>();
             services.AddScoped<ILPCReportRepository, LPCReportRepository>();
             services.AddScoped<IReferenceRepository, ReferenceRepository>();
+
+            services.AddScoped<ILPCReportService, LPCReportService>();
 
         }
 

@@ -20,7 +20,7 @@ namespace CoreDataStore.Data.Sqlite.Repositories
         public List<LPCReport> GetAll()
         {
             _logger.LogCritical("Return All Records");
-            return _context.LPCReports.ToList();
+            return _context.LPCReports.OrderBy(x => x.LPNumber).ToList();
         }
 
     }
