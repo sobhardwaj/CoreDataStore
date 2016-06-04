@@ -23,7 +23,7 @@ namespace CoreDataStore.Web.Controllers
         }
 
 
-        // [HttpGet("{id:int}/photos/{page:int=0}/{pageSize=12}")]
+        // [HttpGet("{limit:int}/{page:int}")]
 
 
         /// <summary>
@@ -33,8 +33,10 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="limit">Records per Page</param>
         /// <param name="page">Page Number</param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("{limit:int}/{page:int}")]
+        // [HttpGet]
+        // [Route("{limit:int}/{page:int}")]
+
+        [HttpGet("{limit:int}/{page:int}")]
         [Produces(typeof(IEnumerable<LPCReport>))]
         [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(IEnumerable<LPCReport>))]
         public IEnumerable<LPCReport> Get([FromQuery]LPCReportRequestModel query, int limit, int page)
