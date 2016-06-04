@@ -6,8 +6,8 @@ using CoreDataStore.Domain.Entities;
 
 namespace CoreDataStore.Domain.Interfaces
 {
-    public interface ILPCReportRepository
-    {
-        List<LPCReport> GetAll();
-    }
+    //public interface ILPCReportRepository
+    //{
+    //    List<LPCReport> GetAll();
+    //}
 }

@@ -1,4 +1,5 @@
-﻿using CoreDataStore.Data.Sqlite.Conventions;
+﻿using System.Reflection;
+using CoreDataStore.Data.Sqlite.Conventions;
 using CoreDataStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,7 @@ namespace CoreDataStore.Data.Sqlite
             builder.RemovePluralizingTableNameConvention();
 
             builder.Entity<LPCReport>().HasKey(m => m.Id);
+            //builder.AddEntityConfigurationsFromAssembly(GetType().GetTypeInfo().Assembly);
 
             base.OnModelCreating(builder);
         }

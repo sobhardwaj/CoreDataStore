@@ -2,7 +2,7 @@
 
 namespace CoreDataStore.Domain.Entities
 {
-    public class LPCReport
+    public class LPCReport : IEntityBase
     {
         public int Id { get; set; }
 

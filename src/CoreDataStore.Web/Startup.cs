@@ -13,7 +13,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.SwaggerGen.Generator;
 using System.Reflection;
+using CoreDataStore.Data.Sqlite.Repositories.Abstract;
 using CoreDataStore.Service.Interfaces;
+using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;
 
 namespace CoreDataStore.Web
@@ -85,11 +87,13 @@ namespace CoreDataStore.Web
                 options.DescribeAllEnumsAsStrings();  
             });
 
+            // Repositories
             services.AddScoped<IDataAccessProvider, DataEventRecordRepository>();
             services.AddScoped<IBlogRepository, BlogRepository>();
             services.AddScoped<ILPCReportRepository, LPCReportRepository>();
             services.AddScoped<IReferenceRepository, ReferenceRepository>();
 
+            // Services
             services.AddScoped<ILPCReportService, LPCReportService>();
 
         }
@@ -111,8 +115,9 @@ namespace CoreDataStore.Web
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+            AutoMapperConfiguration.Configure();
 
+            app.UseStaticFiles();
 
             app.UseMvc(ConfigureRoutes);
 

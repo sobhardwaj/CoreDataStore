@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CoreDataStore.Data.Sqlite.Repositories.Abstract;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Domain.Interfaces;
 using CoreDataStore.Web.Filters;

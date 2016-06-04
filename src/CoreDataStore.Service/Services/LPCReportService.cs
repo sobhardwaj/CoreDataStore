@@ -1,4 +1,5 @@
-﻿using CoreDataStore.Domain.Interfaces;
+﻿using CoreDataStore.Data.Sqlite.Repositories.Abstract;
+using CoreDataStore.Domain.Interfaces;
 using CoreDataStore.Service.Interfaces;
 
 namespace CoreDataStore.Service.Services

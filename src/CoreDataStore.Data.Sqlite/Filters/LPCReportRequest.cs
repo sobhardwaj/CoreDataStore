@@ -1,8 +1,6 @@
-﻿using CoreDataStore.Web.Filters.Base;
-
-namespace CoreDataStore.Web.Filters
+﻿namespace CoreDataStore.Data.Sqlite.Filters
 {
-    public class LPCReportRequestModel : RequestModel
+    public class LPCReportRequest
     {
         /// <summary>
         /// Object Type
