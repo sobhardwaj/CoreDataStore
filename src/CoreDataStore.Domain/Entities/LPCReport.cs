@@ -1,4 +1,5 @@
 ﻿using System;
+using CoreDataStore.Domain.Entities.Base;
 
 namespace CoreDataStore.Domain.Entities
 {

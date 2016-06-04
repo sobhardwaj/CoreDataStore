@@ -26,5 +26,9 @@ namespace CoreDataStore.Data.Sqlite
         }
 
         public DbSet<LPCReport> LPCReports { get; set; }
+
+        public DbSet<Landmark> Landmarks { get; set; }
+        
+
     }
 }
