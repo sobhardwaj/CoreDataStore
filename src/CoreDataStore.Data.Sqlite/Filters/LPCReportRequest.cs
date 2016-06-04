@@ -1,6 +1,8 @@
-﻿namespace CoreDataStore.Data.Sqlite.Filters
+﻿using CoreDataStore.Data.Sqlite.Filters.Base;
+
+namespace CoreDataStore.Data.Sqlite.Filters
 {
-    public class LPCReportRequest
+    public class LPCReportRequest : RequestBase
     {
         /// <summary>
         /// Object Type

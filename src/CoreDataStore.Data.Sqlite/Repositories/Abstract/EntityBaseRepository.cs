@@ -32,6 +32,7 @@ namespace CoreDataStore.Data.Sqlite.Repositories.Abstract
         {
             return await _context.Set<T>().ToListAsync();
         }
+
         public virtual IEnumerable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = _context.Set<T>();

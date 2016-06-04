@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using CoreDataStore.Data.Sqlite.Repositories.Abstract;
+using CoreDataStore.Data.Sqlite.Filters;
 using CoreDataStore.Domain.Entities;
-using CoreDataStore.Domain.Interfaces;
+using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.SwaggerGen.Annotations;
@@ -16,12 +15,15 @@ namespace CoreDataStore.Web.Controllers
     [Route("api/[controller]")]
     public class LPCReportController : Controller
     {
-        private readonly ILPCReportRepository _lpcReportRepository;
+        private readonly ILPCReportService _lpcReportService;
 
-        public LPCReportController(ILPCReportRepository lpcReportRepository)
+        public LPCReportController(ILPCReportService lpcReportService)
         {
-            _lpcReportRepository = lpcReportRepository;
+            _lpcReportService = lpcReportService;
         }
+
+
+        // [HttpGet("{id:int}/photos/{page:int=0}/{pageSize=12}")]
 
 
         /// <summary>
@@ -35,13 +37,22 @@ namespace CoreDataStore.Web.Controllers
         [Route("{limit:int}/{page:int}")]
         [Produces(typeof(IEnumerable<LPCReport>))]
         [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(IEnumerable<LPCReport>))]
-        public IEnumerable<LPCReport> Get(LPCReportRequestModel query, int limit, int page)
+        public IEnumerable<LPCReport> Get([FromQuery]LPCReportRequestModel query, int limit, int page)
         {
-            var results = _lpcReportRepository.GetAll().ToList();
-            var totalRecords = results.Count;
-            
+            var totalRecords = 0;
+            var request = new LPCReportRequest
+             {
+                PageSize = limit,
+                Page = page,
+                SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "name",
+                SortOrder = !string.IsNullOrEmpty(query.Order) ? query.Order : "asc",
+                Borough = query.Borough,
+                ObjectType = query.ObjectType
+            };
+
+            var results = _lpcReportService.GetLPCReports(request,out totalRecords);
             HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
-            return results.Skip(limit * (page-1)).Take(limit); 
+            return results;
         }
 
     }
