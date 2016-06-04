@@ -11,6 +11,8 @@ namespace CoreDataStore.Service.Mappings
         protected override void Configure()
         {
             CreateMap<LPCReport, LPCReportModel>();
+
+            CreateMap<LPCReportModel, LPCReport>();
         }
     }
 

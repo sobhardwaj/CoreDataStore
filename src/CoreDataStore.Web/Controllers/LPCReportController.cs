@@ -2,6 +2,7 @@
 using CoreDataStore.Data.Sqlite.Filters;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Interfaces;
+using CoreDataStore.Service.Models;
 using CoreDataStore.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.SwaggerGen.Annotations;
@@ -22,10 +23,6 @@ namespace CoreDataStore.Web.Controllers
             _lpcReportService = lpcReportService;
         }
 
-
-        // [HttpGet("{limit:int}/{page:int}")]
-
-
         /// <summary>
         /// Get Filtered Results
         /// </summary>
@@ -38,8 +35,8 @@ namespace CoreDataStore.Web.Controllers
 
         [HttpGet("{limit:int}/{page:int}")]
         [Produces(typeof(IEnumerable<LPCReport>))]
-        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(IEnumerable<LPCReport>))]
-        public IEnumerable<LPCReport> Get([FromQuery]LPCReportRequestModel query, int limit, int page)
+        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(IEnumerable<LPCReportModel>))]
+        public IEnumerable<LPCReportModel> Get([FromQuery]LPCReportRequestModel query, int limit, int page)
         {
             var totalRecords = 0;
             var request = new LPCReportRequest

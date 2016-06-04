@@ -1,5 +1,6 @@
 ﻿using CoreDataStore.Data.Sqlite.Repositories.Abstract;
 using CoreDataStore.Domain.Entities;
+using Microsoft.Extensions.Logging;
 
 namespace CoreDataStore.Data.Sqlite.Repositories
 {
@@ -18,11 +19,7 @@ namespace CoreDataStore.Data.Sqlite.Repositories
         //    _logger = loggerFactory.CreateLogger("ILPCReportRepository");
         //}
 
-        //public List<LPCReport> GetAll()
-        //{
-        //    _logger.LogCritical("Return All Records");
-        //    return _context.LPCReports.OrderBy(x => x.LPNumber).ToList();
-        //}
+
 
     }
 }

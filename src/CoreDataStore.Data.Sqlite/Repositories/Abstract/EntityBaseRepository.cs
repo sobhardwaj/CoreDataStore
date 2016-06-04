@@ -13,10 +13,10 @@ namespace CoreDataStore.Data.Sqlite.Repositories.Abstract
                 where T : class, IEntityBase, new()
     {
 
-        private NYCLandmarkContext _context;
+         private DbContext _context;
 
         #region Properties
-        public EntityBaseRepository(NYCLandmarkContext context)
+        public EntityBaseRepository(DbContext context)
         {
             _context = context;
         }

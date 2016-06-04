@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using CoreDataStore.Data.Sqlite.Filters;
 using CoreDataStore.Data.Sqlite.Repositories.Abstract;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Interfaces;
+using CoreDataStore.Service.Models;
 
 namespace CoreDataStore.Service.Services
 {
@@ -16,12 +18,13 @@ namespace CoreDataStore.Service.Services
             this._lpcReportRepository = lpcReportRepository;
         }
 
-        public List<LPCReport> GetLPCReports()
+        public List<LPCReportModel> GetLPCReports()
         {
-           return _lpcReportRepository.GetAll().ToList();
+           var results = _lpcReportRepository.GetAll().ToList();
+           return Mapper.Map<IEnumerable<LPCReport>, IEnumerable<LPCReportModel>>(results).ToList();
         }
 
-        public List<LPCReport> GetLPCReports(LPCReportRequest request, out int totalCount)
+        public List<LPCReportModel> GetLPCReports(LPCReportRequest request, out int totalCount)
         {
             var query = _lpcReportRepository.GetAll();
 
@@ -33,9 +36,9 @@ namespace CoreDataStore.Service.Services
 
             var results = query.ToList();
             totalCount = results.Count();
+            results = results.Skip(request.PageSize * (request.Page - 1)).Take(request.PageSize).ToList();
 
-            // return Mapper.Map<IEnumerable<LPCReport>, IEnumerable<LPCReportModel>>(results).ToList();
-            return results.Skip(request.PageSize * (request.Page - 1)).Take(request.PageSize).ToList(); 
+            return Mapper.Map<IEnumerable<LPCReport>, IEnumerable<LPCReportModel>>(results).ToList(); 
         }
 
     }
