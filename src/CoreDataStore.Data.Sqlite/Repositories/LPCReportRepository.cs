@@ -1,4 +1,4 @@
-﻿using CoreDataStore.Data.Sqlite.Repositories.Abstract;
+﻿using CoreDataStore.Data.Infrastructure;
 using CoreDataStore.Domain.Entities;
 using Microsoft.Extensions.Logging;
 

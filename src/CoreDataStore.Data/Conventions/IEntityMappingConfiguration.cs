@@ -5,7 +5,7 @@ using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CoreDataStore.Data.Sqlite.Conventions
+namespace CoreDataStore.Data.Conventions
 {
     public interface IEntityMappingConfiguration
     {

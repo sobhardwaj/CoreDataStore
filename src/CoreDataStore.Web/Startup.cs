@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.SwaggerGen.Generator;
 using System.Reflection;
-using CoreDataStore.Data.Sqlite.Repositories.Abstract;
+using CoreDataStore.Data.Infrastructure;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;

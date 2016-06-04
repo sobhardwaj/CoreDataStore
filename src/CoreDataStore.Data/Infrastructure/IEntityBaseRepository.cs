@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using CoreDataStore.Domain.Entities;
-namespace CoreDataStore.Data.Sqlite.Repositories.Abstract
+
+namespace CoreDataStore.Data.Infrastructure
 {
     public interface IEntityBaseRepository<T> where T : class, IEntityBase, new()
     {

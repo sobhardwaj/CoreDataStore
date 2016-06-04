@@ -7,7 +7,7 @@ using CoreDataStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace CoreDataStore.Data.Sqlite.Repositories.Abstract
+namespace CoreDataStore.Data.Infrastructure
 {
     public class EntityBaseRepository<T> : IEntityBaseRepository<T>
                 where T : class, IEntityBase, new()

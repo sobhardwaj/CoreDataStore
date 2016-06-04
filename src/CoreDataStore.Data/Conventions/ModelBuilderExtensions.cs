@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.Linq;
 
-namespace CoreDataStore.Data.Sqlite.Conventions
+namespace CoreDataStore.Data.Conventions
 {
     public static class ModelBuilderExtensions
     {

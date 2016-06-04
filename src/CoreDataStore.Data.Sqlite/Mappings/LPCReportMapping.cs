@@ -1,4 +1,4 @@
-﻿using CoreDataStore.Data.Sqlite.Conventions;
+﻿using CoreDataStore.Data.Conventions;
 using CoreDataStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

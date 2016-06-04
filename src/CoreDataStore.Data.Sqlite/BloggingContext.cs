@@ -19,8 +19,6 @@ namespace CoreDataStore.Data.Sqlite
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           // optionsBuilder.UseSqlite(sqlLiteConnection);
-          //  optionsBuilder.UseSqlite("Filename=./../../../../../data/coredatastore.sqlite");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

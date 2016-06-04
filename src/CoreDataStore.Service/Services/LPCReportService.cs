@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using CoreDataStore.Data.Infrastructure;
 using CoreDataStore.Data.Sqlite.Filters;
-using CoreDataStore.Data.Sqlite.Repositories.Abstract;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
