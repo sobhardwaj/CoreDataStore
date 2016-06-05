@@ -2,6 +2,7 @@
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
+using CoreDataStore.Service.ValidationRules;
 using CoreDataStore.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.SwaggerGen.Annotations;
@@ -37,6 +38,17 @@ namespace CoreDataStore.Web.Controllers
         {
             var results = _lpcReportService.GetLPCReport(id);
             return results;
+        }
+
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody]LPCReportModel model)
+        {
+            var validator = new LPCReportRule();
+            var results = validator.Validate(model);
+
+
+
+
         }
 
 
