@@ -1,18 +1,19 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Models;
-using System;
 
 namespace CoreDataStore.Service.Mappings
 {
-    public class LPCReportMapping : Profile
+    public class LandmarkMapping : Profile
     {
         [Obsolete]
         protected override void Configure()
         {
-            CreateMap<LPCReport, LPCReportModel>();
+            CreateMap<Landmark, LandmarkModel>();
 
-            CreateMap<LPCReportModel, LPCReport>();
+            CreateMap<LandmarkModel, Landmark>();
         }
     }
 }
+

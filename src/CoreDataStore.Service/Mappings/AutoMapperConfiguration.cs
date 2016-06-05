@@ -9,6 +9,7 @@ namespace CoreDataStore.Service.Mappings
             Mapper.Initialize(x =>
             {
                 x.AddProfile<LPCReportMapping>();
+                x.AddProfile<LandmarkMapping>();
             });
         }
     }

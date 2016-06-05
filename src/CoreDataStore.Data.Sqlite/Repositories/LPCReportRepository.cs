@@ -1,6 +1,6 @@
 ﻿using CoreDataStore.Data.Infrastructure;
+using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Domain.Entities;
-using Microsoft.Extensions.Logging;
 
 namespace CoreDataStore.Data.Sqlite.Repositories
 {

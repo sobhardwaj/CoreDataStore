@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using CoreDataStore.Domain.Entities;
 using CoreDataStore.Domain.Entities.Base;
 
 namespace CoreDataStore.Data.Infrastructure

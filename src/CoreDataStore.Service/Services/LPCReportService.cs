@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using CoreDataStore.Data.Infrastructure;
+using CoreDataStore.Data.Extensions;
+using CoreDataStore.Data.Filters;
+using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.Sqlite.Filters;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
+
 
 namespace CoreDataStore.Service.Services
 {
@@ -34,7 +37,15 @@ namespace CoreDataStore.Service.Services
             if (!string.IsNullOrEmpty(request.ObjectType))
                 query = query.Where(r => r.ObjectType == request.ObjectType);
 
-            var results = query.ToList();
+            var sortModel = new SortModel
+            {
+               SortColumn = !string.IsNullOrEmpty(request.SortColumn) ? request.SortColumn : null,
+               SortOrder = !string.IsNullOrEmpty(request.SortColumn) ? request.SortColumn : null
+            };
+
+            var results = query.ToList();  //  OrderBy(sortModel).ToList();
+
+
             totalCount = results.Count();
             results = results.Skip(request.PageSize * (request.Page - 1)).Take(request.PageSize).ToList();
 

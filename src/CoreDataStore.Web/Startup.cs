@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.SwaggerGen.Generator;
 using System.Reflection;
-using CoreDataStore.Data.Infrastructure;
+using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;
@@ -43,9 +43,6 @@ namespace CoreDataStore.Web
 
             services.AddDbContext<NYCLandmarkContext>(options =>
                options.UseSqlite(prodConnection, b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name)));
-
-            services.AddDbContext<DataEventRecordContext>(options =>
-               options.UseSqlite(devlconnection, b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name)));
 
             services.AddDbContext<BloggingContext>(options =>
                 options.UseSqlite(devlconnection, b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name)));
@@ -88,13 +85,15 @@ namespace CoreDataStore.Web
             });
 
             // Repositories
-            services.AddScoped<IDataAccessProvider, DataEventRecordRepository>();
             services.AddScoped<IBlogRepository, BlogRepository>();
+
             services.AddScoped<ILPCReportRepository, LPCReportRepository>();
+            services.AddScoped<ILandmarkRepository, LandmarkRepository>();
             services.AddScoped<IReferenceRepository, ReferenceRepository>();
 
             // Services
             services.AddScoped<ILPCReportService, LPCReportService>();
+            services.AddScoped<ILandmarkService, LandmarkService>();
 
         }
 

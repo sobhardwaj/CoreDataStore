@@ -1,6 +1,6 @@
 ﻿using CoreDataStore.Data.Sqlite.Filters.Base;
 
-namespace CoreDataStore.Data.Sqlite.Filters
+namespace CoreDataStore.Data.Filters
 {
     public class LPCReportRequest : RequestBase
     {

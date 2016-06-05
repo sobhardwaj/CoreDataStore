@@ -5,10 +5,8 @@ using CoreDataStore.Service.Models;
 
 namespace CoreDataStore.Service.Interfaces
 {
-    public interface ILPCReportService
+    public interface ILandmarkService
     {
-        List<LPCReportModel> GetLPCReports();
-
-        List<LPCReportModel> GetLPCReports(LPCReportRequest request, out int totalCount);
+        List<LandmarkModel> GetLandmarks(LandmarkRequest request, out int totalCount);
     }
 }
