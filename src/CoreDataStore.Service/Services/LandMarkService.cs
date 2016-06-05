@@ -3,7 +3,6 @@ using System.Linq;
 using AutoMapper;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
-using CoreDataStore.Data.Sqlite.Filters;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;

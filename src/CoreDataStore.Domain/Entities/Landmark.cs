@@ -12,9 +12,9 @@ namespace CoreDataStore.Domain.Entities
 
         //public string BoroughID { get; set; }
 
-        //public string BLOCK { get; set; }
+        public int BLOCK { get; set; }
 
-        //public string LOT { get; set; }
+        public int LOT { get; set; }
 
         public string LP_NUMBER { get; set; }
 
@@ -31,7 +31,7 @@ namespace CoreDataStore.Domain.Entities
 
        // public string PUBLIC_HEA { get; set; }
 
-       // public string LM_TYPE { get; set; }
+        public string LM_TYPE { get; set; }
 
        // public string HIST_DISTR { get; set; }
 

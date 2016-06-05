@@ -2,7 +2,11 @@
 {
     public class LandmarkModel
     {
-       public int Id { get; set; }
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string LPNumber { get; set; }
 
         //public string BBL { get; set; }
 
@@ -10,13 +14,12 @@
 
         //public string BoroughID { get; set; }
 
-        //public string BLOCK { get; set; }
+        public string ObjectType { get; set; }
 
-        //public string LOT { get; set; }
+        public int Block { get; set; }
 
-        public string LP_NUMBER { get; set; }
+        public int Lot { get; set; }
 
-        public string LM_NAME { get; set; }
 
         //public string PLUTO_ADDR { get; set; }
 
@@ -28,7 +31,7 @@
 
         //public string PUBLIC_HEA { get; set; }
 
-        //public string LM_TYPE { get; set; }
+
 
         //public string HIST_DISTR { get; set; }
 

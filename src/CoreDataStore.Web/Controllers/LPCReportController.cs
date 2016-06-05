@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using CoreDataStore.Data.Filters;
-using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
 using CoreDataStore.Web.Filters;
@@ -18,13 +17,28 @@ namespace CoreDataStore.Web.Controllers
     {
         private readonly ILPCReportService _lpcReportService;
         private readonly ILandmarkService _landmarkService;
-        private readonly ILandmarkRepository _landmarktRepository;
 
         public LPCReportController(ILPCReportService lpcReportService, ILandmarkService landmarkService)
         {
             _lpcReportService = lpcReportService;
             _landmarkService = landmarkService;
         }
+
+
+        /// <summary>
+        /// Get LPC Report
+        /// </summary>
+        /// <param name="id">Id</param>
+        /// <returns></returns>
+        [Produces(typeof(LPCReportModel))]
+        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(LPCReportModel))]
+        [HttpGet("{id}")]
+        public LPCReportModel Get(int id)
+        {
+            var results = _lpcReportService.GetLPCReport(id);
+            return results;
+        }
+
 
         /// <summary>
         /// Get LPC Reports Filtered Results

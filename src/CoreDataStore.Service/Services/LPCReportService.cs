@@ -4,11 +4,9 @@ using AutoMapper;
 using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
-using CoreDataStore.Data.Sqlite.Filters;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
-
 
 namespace CoreDataStore.Service.Services
 {
@@ -19,6 +17,13 @@ namespace CoreDataStore.Service.Services
         public LPCReportService(ILPCReportRepository lpcReportRepository)
         {
             this._lpcReportRepository = lpcReportRepository;
+        }
+
+        public LPCReportModel GetLPCReport(int id)
+        {
+            var query = _lpcReportRepository.GetSingle(id);
+
+            return Mapper.Map<LPCReport, LPCReportModel>(query);
         }
 
         public List<LPCReportModel> GetLPCReports()
