@@ -6,9 +6,9 @@ namespace CoreDataStore.Domain.Entities
     {
         public int Id { get; set; }
 
-        //public string BBL { get; set; }
+        public long BBL { get; set; }
 
-        //public string BIN_NUMBER { get; set; }
+        public long BIN_NUMBER { get; set; }
 
         //public string BoroughID { get; set; }
 

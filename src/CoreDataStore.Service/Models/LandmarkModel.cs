@@ -7,10 +7,10 @@
         public string Name { get; set; }
 
         public string LPNumber { get; set; }
+   
+        public long BBL { get; set; }
 
-        //public string BBL { get; set; }
-
-        //public string BIN_NUMBER { get; set; }
+        public long BinNumber { get; set; }
 
         //public string BoroughID { get; set; }
 
