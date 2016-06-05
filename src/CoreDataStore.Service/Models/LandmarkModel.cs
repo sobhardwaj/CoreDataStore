@@ -24,23 +24,15 @@
 
         public string DesignatedAddress { get; set; }
 
+        public string DesignatedDate { get; set; }
 
-
-
-
-        // public string DESIG_DATE { get; set; }
-
-        //public string CALEN_DATE { get; set; }
+        public string CalendaredDate { get; set; }
 
         public string PublicHearingDate { get; set; }
 
-
-
         public string HistoricDistrict { get; set; }
 
-
         public string OtherHearingDate { get; set; }
-
 
         public string Boundries { get; set; }
 

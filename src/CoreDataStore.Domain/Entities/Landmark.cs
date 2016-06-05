@@ -24,9 +24,9 @@ namespace CoreDataStore.Domain.Entities
 
         public string DESIG_ADDR { get; set; }
 
-       // public string DESIG_DATE { get; set; }
+        public string DESIG_DATE { get; set; }
 
-       // public string CALEN_DATE { get; set; }
+        public string CALEN_DATE { get; set; }
 
         public string PUBLIC_HEA { get; set; }
 
