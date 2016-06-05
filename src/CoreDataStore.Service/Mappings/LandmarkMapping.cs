@@ -16,6 +16,10 @@ namespace CoreDataStore.Service.Mappings
                 .ForMember(dest => dest.ObjectType, opt => opt.MapFrom(src => src.LM_TYPE))
                 .ForMember(dest => dest.Lot, opt => opt.MapFrom(src => src.LOT))
                 .ForMember(dest => dest.Block, opt => opt.MapFrom(src => src.BLOCK))
+                .ForMember(dest => dest.DesignatedAddress, opt => opt.MapFrom(src => src.DESIG_ADDR))
+                .ForMember(dest => dest.PlutoAddress, opt => opt.MapFrom(src => src.PLUTO_ADDR))
+                .ForMember(dest => dest.IsCurrent, opt => opt.MapFrom(src => src.MOST_CURRE))
+                .ForMember(dest => dest.IsVacantLot, opt => opt.MapFrom(src => src.VACANT_LOT))
             ;
 
             CreateMap<LandmarkModel, Landmark>()
@@ -24,7 +28,11 @@ namespace CoreDataStore.Service.Mappings
                 .ForMember(dest => dest.LM_TYPE, opt => opt.MapFrom(src => src.ObjectType))
                 .ForMember(dest => dest.LOT, opt => opt.MapFrom(src => src.Lot))
                 .ForMember(dest => dest.BLOCK, opt => opt.MapFrom(src => src.Block))
-                ;
+                .ForMember(dest => dest.DESIG_ADDR, opt => opt.MapFrom(src => src.DesignatedAddress))
+                .ForMember(dest => dest.PLUTO_ADDR, opt => opt.MapFrom(src => src.PlutoAddress))
+                .ForMember(dest => dest.MOST_CURRE, opt => opt.MapFrom(src => src.IsCurrent))
+                .ForMember(dest => dest.VACANT_LOT, opt => opt.MapFrom(src => src.IsVacantLot))
+            ;
         }
     }
 }

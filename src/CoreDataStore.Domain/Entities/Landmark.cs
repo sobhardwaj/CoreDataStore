@@ -20,10 +20,9 @@ namespace CoreDataStore.Domain.Entities
 
         public string LM_NAME { get; set; }
 
+        public string PLUTO_ADDR { get; set; }
 
-       // public string PLUTO_ADDR { get; set; }
-
-       // public string DESIG_ADDR { get; set; }
+        public string DESIG_ADDR { get; set; }
 
        // public string DESIG_DATE { get; set; }
 
@@ -39,9 +38,9 @@ namespace CoreDataStore.Domain.Entities
 
        // public string BOUNDARIES { get; set; }
 
-       //// public string MOST_CURRE] INT, 
+        public bool MOST_CURRE { get; set; } 
       
-       // public string STATUS { get; set; }
+        public string STATUS { get; set; }
 
        // public string LAST_ACTIO { get; set; }
 
@@ -51,7 +50,7 @@ namespace CoreDataStore.Domain.Entities
 
        // public string NON_BLDG { get; set; }
 
-       // public string VACANT_LOT { get; set; }
+        public bool VACANT_LOT { get; set; }
 
        // //public string SECND_BLDG] );
         

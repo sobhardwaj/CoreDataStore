@@ -20,12 +20,15 @@
 
         public int Lot { get; set; }
 
+        public string PlutoAddress { get; set; }
 
-        //public string PLUTO_ADDR { get; set; }
+        public string DesignatedAddress { get; set; }
 
-        //public string DESIG_ADDR { get; set; }
 
-        //public string DESIG_DATE { get; set; }
+
+
+
+       // public string DESIG_DATE { get; set; }
 
         //public string CALEN_DATE { get; set; }
 
@@ -39,9 +42,10 @@
 
         //public string BOUNDARIES { get; set; }
 
-        //// public string MOST_CURRE] INT, 
+        public bool IsCurrent { get; set; }
 
-        //public string STATUS { get; set; }
+        public string Status { get; set; }
+
 
         //public string LAST_ACTIO { get; set; }
 
@@ -51,7 +55,7 @@
 
         //public string NON_BLDG { get; set; }
 
-        //public string VACANT_LOT { get; set; }
+        public bool IsVacantLot { get; set; }
 
         ////public string SECND_BLDG] );
 
