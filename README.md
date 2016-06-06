@@ -22,6 +22,14 @@ dotnet build
 
 dotnet run
 ```
+##Docker   
+
+```bash
+cd CoreDataStore/src
+
+docker build -t coredatastore . 
+docker run -rm  --name  coredatastore -p 5000:5000 coredatastore
+```
 
 ##Entity Framework
 
