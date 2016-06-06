@@ -29,14 +29,14 @@ export class HomeComponent{}
 	directives: [ ROUTER_DIRECTIVES ],
 	template: 
 	`<a [routerLink]="['/']">home</a>
-	 <a [routerLink]="['/#/second']">Second</a>
+	 <a [routerLink]="['/second']">Second</a>
 	 <router-outlet></router-outlet>
 	`
 })
 
 @Routes([
 	{path :'/', component: HomeComponent},
-   	{path :'/#/second', component : SecondComponent}
+   	{path :'/second', component : SecondComponent}
 
 ])
 
