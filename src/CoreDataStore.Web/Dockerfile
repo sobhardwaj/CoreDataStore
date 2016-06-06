@@ -1,4 +1,6 @@
-﻿# CoreDataStore.Web Docker File
+FROM buildpack-deps:trusty-scm
+
+# CoreDataStore.Web Docker File
 # 
 #
 #
@@ -6,7 +8,6 @@
 # Reference Dockerfile
 # https://github.com/DanWahlin/AspNetCorePostgreSQLDockerApp/blob/master/aspnetcore.dockerfile
 
-FROM buildpack-deps:trusty-scm
 
 MAINTAINER Stuart Shay
 
