@@ -34,21 +34,31 @@ namespace CoreDataStore.Web.Controllers
         [Produces(typeof(LPCReportModel))]
         [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(LPCReportModel))]
         [HttpGet("{id}")]
-        public LPCReportModel Get(int id)
+        public IActionResult Get(int id)
         {
-            var results = _lpcReportService.GetLPCReport(id);
-            return results;
+            var result = _lpcReportService.GetLPCReport(id);
+            if (result == null)
+                return BadRequest();
+
+            return new ObjectResult(result);
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]LPCReportModel model)
+        public IActionResult Put(int id, [FromBody]LPCReportModel model)
         {
             var validator = new LPCReportRule();
-            var results = validator.Validate(model);
+            var validationResults = validator.Validate(model);
 
+            if (!validationResults.IsValid)
+                return Json(validationResults.Errors);
 
+            var result = _lpcReportService.GetLPCReport(id);
+            if (result == null)
+                return NotFound();
 
+            //TODO Add Update Logic
 
+            return new NoContentResult();
         }
 
 

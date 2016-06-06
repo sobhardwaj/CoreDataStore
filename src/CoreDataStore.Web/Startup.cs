@@ -44,9 +44,6 @@ namespace CoreDataStore.Web
             services.AddDbContext<NYCLandmarkContext>(options =>
                options.UseSqlite(prodConnection, b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name)));
 
-            services.AddDbContext<BloggingContext>(options =>
-                options.UseSqlite(devlconnection, b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name)));
-
 
             JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter
             {
@@ -85,8 +82,6 @@ namespace CoreDataStore.Web
             });
 
             // Repositories
-            services.AddScoped<IBlogRepository, BlogRepository>();
-
             services.AddScoped<ILPCReportRepository, LPCReportRepository>();
             services.AddScoped<ILandmarkRepository, LandmarkRepository>();
             services.AddScoped<IReferenceRepository, ReferenceRepository>();
