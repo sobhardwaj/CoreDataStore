@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Soultion Items", "Soultion Items", "{CC689212-7F5C-4CEC-BEEB-44B0B415959E}"
 	ProjectSection(SolutionItems) = preProject
 		src\config.json = src\config.json
+		src\Dockerfile = src\Dockerfile
 		global.json = global.json
 		NuGet.config = NuGet.config
 		README.md = README.md
@@ -22,6 +23,8 @@ EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Web", "src\CoreDataStore.Web\CoreDataStore.Web.xproj", "{70417AE1-918D-4D47-9028-88238093D3CE}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Service", "src\CoreDataStore.Service\CoreDataStore.Service.xproj", "{59A3B239-C840-4FFE-A81A-B1EEA0476DEC}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Data", "src\CoreDataStore.Data\CoreDataStore.Data.xproj", "{AF96400D-09DF-48C0-821F-9A9A81072F49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +52,10 @@ Global
 		{59A3B239-C840-4FFE-A81A-B1EEA0476DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59A3B239-C840-4FFE-A81A-B1EEA0476DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59A3B239-C840-4FFE-A81A-B1EEA0476DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF96400D-09DF-48C0-821F-9A9A81072F49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF96400D-09DF-48C0-821F-9A9A81072F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF96400D-09DF-48C0-821F-9A9A81072F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF96400D-09DF-48C0-821F-9A9A81072F49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,5 +66,6 @@ Global
 		{55443C67-78D7-4E42-890F-9B1E25A304AE} = {16E0E7AC-0945-45F1-8D10-F27027CCC1DE}
 		{70417AE1-918D-4D47-9028-88238093D3CE} = {16E0E7AC-0945-45F1-8D10-F27027CCC1DE}
 		{59A3B239-C840-4FFE-A81A-B1EEA0476DEC} = {16E0E7AC-0945-45F1-8D10-F27027CCC1DE}
+		{AF96400D-09DF-48C0-821F-9A9A81072F49} = {16E0E7AC-0945-45F1-8D10-F27027CCC1DE}
 	EndGlobalSection
 EndGlobal

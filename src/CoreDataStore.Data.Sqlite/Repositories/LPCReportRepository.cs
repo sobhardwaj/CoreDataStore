@@ -1,27 +1,25 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using CoreDataStore.Data.Infrastructure;
+using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Domain.Entities;
-using CoreDataStore.Domain.Interfaces;
-using Microsoft.Extensions.Logging;
 
 namespace CoreDataStore.Data.Sqlite.Repositories
 {
-    public class LPCReportRepository : ILPCReportRepository
+    public class LPCReportRepository : EntityBaseRepository<LPCReport>, ILPCReportRepository
     {
-        private readonly NYCLandmarkContext _context;
-        private readonly ILogger _logger;
+        public LPCReportRepository(NYCLandmarkContext context)
+            : base(context)
+        { }
 
-        public LPCReportRepository(NYCLandmarkContext context, ILoggerFactory loggerFactory)
-        {
-            _context = context;
-            _logger = loggerFactory.CreateLogger("ILPCReportRepository");
-        }
+        //private readonly NYCLandmarkContext _context;
+        //private readonly ILogger _logger;
 
-        public List<LPCReport> GetAll()
-        {
-            _logger.LogCritical("Return All Records");
-            return _context.LPCReports.OrderBy(x => x.LPNumber).ToList();
-        }
+        //public LPCReportRepository(NYCLandmarkContext context, ILoggerFactory loggerFactory)
+        //{
+        //    _context = context;
+        //    _logger = loggerFactory.CreateLogger("ILPCReportRepository");
+        //}
+
+
 
     }
 }

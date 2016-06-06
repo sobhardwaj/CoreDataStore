@@ -1,10 +1,11 @@
-﻿{
+{
   "version": "1.0.0-*",
 
   "dependencies": {
     "AutoMapper": "5.0.0-beta-1",
     "CoreDataStore.Data.Sqlite": "1.0.0-*",
     "CoreDataStore.Domain": "1.0.0-*",
+    "FluentValidation": "6.3.4-alpha",
     "Microsoft.Extensions.Logging": "1.0.0-rc2-final",
     "NETStandard.Library": "1.5.0-rc2-24027"
   },

@@ -13,7 +13,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.SwaggerGen.Generator;
 using System.Reflection;
+using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Service.Interfaces;
+using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;
 
 namespace CoreDataStore.Web
@@ -41,12 +43,6 @@ namespace CoreDataStore.Web
 
             services.AddDbContext<NYCLandmarkContext>(options =>
                options.UseSqlite(prodConnection, b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name)));
-
-            services.AddDbContext<DataEventRecordContext>(options =>
-               options.UseSqlite(devlconnection, b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name)));
-
-            services.AddDbContext<BloggingContext>(options =>
-                options.UseSqlite(devlconnection, b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name)));
 
 
             JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter
@@ -85,12 +81,14 @@ namespace CoreDataStore.Web
                 options.DescribeAllEnumsAsStrings();  
             });
 
-            services.AddScoped<IDataAccessProvider, DataEventRecordRepository>();
-            services.AddScoped<IBlogRepository, BlogRepository>();
+            // Repositories
             services.AddScoped<ILPCReportRepository, LPCReportRepository>();
+            services.AddScoped<ILandmarkRepository, LandmarkRepository>();
             services.AddScoped<IReferenceRepository, ReferenceRepository>();
 
+            // Services
             services.AddScoped<ILPCReportService, LPCReportService>();
+            services.AddScoped<ILandmarkService, LandmarkService>();
 
         }
 
@@ -111,8 +109,9 @@ namespace CoreDataStore.Web
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+            AutoMapperConfiguration.Configure();
 
+            app.UseStaticFiles();
 
             app.UseMvc(ConfigureRoutes);
 
