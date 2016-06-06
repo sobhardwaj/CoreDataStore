@@ -45,11 +45,11 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             directives: [router_1.ROUTER_DIRECTIVES],
-            template: "<a [routerLink]=\"['/']\">home</a>\n\t <a [routerLink]=\"['/#/second']\">Second</a>\n\t <router-outlet></router-outlet>\n\t"
+            template: "<a [routerLink]=\"['/']\">home</a>\n\t <a [routerLink]=\"['/second']\">Second</a>\n\t <router-outlet></router-outlet>\n\t"
         }),
         router_1.Routes([
             { path: '/', component: HomeComponent },
-            { path: '/#/second', component: SecondComponent }
+            { path: '/second', component: SecondComponent }
         ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
