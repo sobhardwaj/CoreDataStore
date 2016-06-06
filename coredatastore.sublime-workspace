@@ -1,0 +1,766 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sou",
+				"sourceMap"
+			],
+			[
+				"get",
+				"getQuotedString"
+			],
+			[
+				"mo",
+				"mobileFinalUrl"
+			],
+			[
+				"pa",
+				"path2"
+			],
+			[
+				"head",
+				"headline2"
+			],
+			[
+				"he",
+				"headline1"
+			],
+			[
+				"ng-c",
+				"ng-click	AngularJS"
+			],
+			[
+				"ta",
+				"text-align"
+			],
+			[
+				"in",
+				"inherit"
+			],
+			[
+				"marg",
+				"margin-bottom"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"fs",
+				"font-size"
+			],
+			[
+				"br",
+				"border-radius"
+			],
+			[
+				"mb",
+				"margin-bottom"
+			],
+			[
+				"paddin",
+				"padding-bottom"
+			],
+			[
+				"ine",
+				"inline-block"
+			],
+			[
+				"bord",
+				"border-top-color"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"padding",
+				"padding-right"
+			],
+			[
+				"border",
+				"border-left"
+			],
+			[
+				"box-s",
+				"box-shadow"
+			],
+			[
+				"no",
+				"nowrap"
+			],
+			[
+				"word-sp",
+				"word-spacing"
+			],
+			[
+				"word-",
+				"word-break"
+			],
+			[
+				"wor",
+				"word-wrap"
+			],
+			[
+				"to",
+				"toString"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
+				"chat",
+				"getChatHistory"
+			],
+			[
+				"stat",
+				"status"
+			],
+			[
+				"User",
+				"UsersList"
+			],
+			[
+				"us",
+				"user"
+			],
+			[
+				"valid",
+				"validPassword"
+			],
+			[
+				"compo",
+				"componentWillUnmount"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"user",
+				"username"
+			],
+			[
+				"Form",
+				"FormGroup"
+			],
+			[
+				"Create",
+				"CreateUser"
+			],
+			[
+				"F",
+				"FormControl"
+			],
+			[
+				"onFetchChatUs",
+				"onFetchChatUsersSuccess"
+			],
+			[
+				"cha",
+				"chatSettings"
+			],
+			[
+				"a",
+				"anonymous"
+			],
+			[
+				"save",
+				"saveEnabled"
+			],
+			[
+				"json",
+				"json_decode"
+			],
+			[
+				"ad",
+				"Administrator"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"react-input",
+				"react-input-number"
+			],
+			[
+				"class",
+				"className"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"clas",
+				"className"
+			],
+			[
+				"Che",
+				"CheckboxInput"
+			],
+			[
+				"value",
+				"valueLink"
+			],
+			[
+				"chT",
+				"chatSettings"
+			],
+			[
+				"lang",
+				"languages"
+			],
+			[
+				"onFetchChatResourcesLa",
+				"onFetchChatResourcesLanguagesSuccess"
+			],
+			[
+				"off",
+				"offlineMessage"
+			],
+			[
+				"act",
+				"activeIndex"
+			],
+			[
+				"skin",
+				"skinId"
+			],
+			[
+				"settt",
+				"SettingsActions"
+			],
+			[
+				"ski",
+				"skinId"
+			],
+			[
+				"sele",
+				"selectedIndex"
+			],
+			[
+				"onFetchChatRes",
+				"onFetchChatResourcesSuccess"
+			],
+			[
+				"access",
+				"accessToken"
+			],
+			[
+				"acce",
+				"accessToken"
+			],
+			[
+				"b",
+				"button"
+			],
+			[
+				"Pane",
+				"PanelGroup"
+			],
+			[
+				"valida",
+				"validateUpdateChatroomBtn"
+			],
+			[
+				"update",
+				"update_chatroom"
+			],
+			[
+				"upda",
+				"update_chatroom"
+			],
+			[
+				"rumb",
+				"rumbletalk_chat_code"
+			],
+			[
+				"rumbletalk_chat_to",
+				"rumbletalk_chat_token_key"
+			],
+			[
+				"ru",
+				"rumbletalk_chat_code"
+			],
+			[
+				"upd",
+				"update_chatroom"
+			],
+			[
+				"dis",
+				"display_token"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"max",
+				"maxSum"
+			],
+			[
+				"min",
+				"minSum"
+			],
+			[
+				"clie",
+				"clientInScenario"
+			],
+			[
+				"reser",
+				"reservInfo"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 1099,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/Views/Shared/_Layout.cshtml",
+			"settings":
+			{
+				"buffer_size": 3065,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 434.0,
+		"last_filter": "packa",
+		"selected_items":
+		[
+			[
+				"packa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 451.0
+	},
+	"console":
+	{
+		"height": 140.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/angular2/package.json",
+		"/D/projects/clients/2016/adwords-gen/webpack.production.config.js",
+		"/D/projects/clients/2016/adwords-gen/webpack.config.js",
+		"/G/Vajra-Big/!!!Work/!Clients/2016/Tal/html/test.html",
+		"/D/projects/clients/2016/adwords-gen/app/app.html",
+		"/D/projects/clients/2016/adwords-gen/app/app.component.js",
+		"/D/projects/clients/2016/adwords-gen/app/uib-theming.less",
+		"/D/projects/clients/2016/adwords-gen/app/app.less",
+		"/D/projects/clients/2016/adwords-gen/app/app.js",
+		"/D/projects/clients/2016/adwords-gen/index-dist.html",
+		"/D/projects/clients/2016/adwords-gen/index.html",
+		"/D/projects/clients/2016/tableau/app/index.html",
+		"/D/projects/clients/2016/tableau/server/middlewares/frontendMiddleware.js",
+		"/C/Users/Maxim/AppData/Roaming/Sublime Text 3/Packages/User/AngularJS-sublime-package.sublime-settings",
+		"/G/OpenServer/domains/rcadminpanel/public/index.php",
+		"/D/projects/clients/2016/Ryan forms/user/special-dealer-form.php",
+		"/G/OpenServer/domains/rcadminpanel/public/s3-upload.php",
+		"/C/Users/Maxim/AppData/Roaming/Sublime Text 3/Packages/AngularJS/AngularJS-sublime-package.sublime-settings",
+		"/D/projects/clients/2016/adwords-gen/app/app.component.spec.js",
+		"/G/OpenServer/domains/rcadminpanel/app/css/main.scss",
+		"/G/OpenServer/domains/rcadminpanel/app/stores/settings-store.js",
+		"/G/OpenServer/domains/rcadminpanel/app/actions/settings-actions.js",
+		"/G/OpenServer/domains/wordpress/wp-content/plugins/rumbletalk-chat-a-chat-with-themes/rumbletalk-sdk.php",
+		"/G/OpenServer/domains/rcadminpanel/app/views/sections/chat-history.jsx",
+		"/G/OpenServer/domains/rcadminpanel/app/views/sections/administrator/users.jsx",
+		"/G/OpenServer/domains/rcadminpanel/app/views/sections/administrator.jsx",
+		"/G/OpenServer/domains/rcadminpanel/app/views/sections/style.jsx",
+		"/G/OpenServer/domains/rcadminpanel/app/views/sections/multimedia.jsx",
+		"/G/OpenServer/domains/rcadminpanel/app/views/sections/settings.jsx",
+		"/G/OpenServer/domains/rcadminpanel/app/views/sections/skins.jsx",
+		"/G/OpenServer/domains/rcadminpanel/app/api-proxy.php",
+		"/G/OpenServer/domains/rcadminpanel/app/rest-api.js",
+		"/G/OpenServer/domains/rcadminpanel/app/views/sections/chat-operations.jsx",
+		"/G/OpenServer/domains/rcadminpanel/app/views/sections/first.jsx",
+		"/G/OpenServer/domains/rcadminpanel/app/main.js",
+		"/G/OpenServer/domains/rcadminpanel/app/views/app.jsx",
+		"/G/OpenServer/domains/rcadminpanel/app/index.html",
+		"/G/OpenServer/domains/rcadminpanel/package.json",
+		"/G/OpenServer/domains/rcadminpanel/gulpFile.js",
+		"/G/OpenServer/domains/rcadminpanel/bower.json",
+		"/G/OpenServer/domains/rcadminpanel/build/customer.js",
+		"/G/OpenServer/domains/rcadminpanel/app/index.php",
+		"/G/OpenServer/domains/rcadminpanel/app/views/header.jsx",
+		"/G/OpenServer/domains/rcadminpanel/app/views/sections/administrator/bans.jsx",
+		"/G/OpenServer/domains/rcadminpanel/app/components/loading-indicator.jsx",
+		"/G/OpenServer/domains/rcadminpanel/app/components/checkbox-input.jsx",
+		"/G/Vajra-Big/!!!Work/!Clients/2016/Kulberg/package.json",
+		"/G/OpenServer/domains/rcadminpanel/build/js/customer.js",
+		"/G/OpenServer/domains/wordpress/wp-content/plugins/rumbletalk-chat-a-chat-with-themes/rumbletalk-chat.php",
+		"/G/OpenServer/domains/wordpress/wp-content/plugins/rumbletalk-chat-a-chat-with-themes/rumbletalk-chat-ajax.php",
+		"/G/OpenServer/domains/rcadminpanel/app/components/react-input-color/lib/color-picker.js",
+		"/G/OpenServer/domains/rcadminpanel/app/components/react-input-color/lib/input-color.js",
+		"/G/Vajra-Big/!!!Work/!Clients/2016/Rumble/#RumbleSet-ver2/#ver2/index.html",
+		"/G/OpenServer/domains/rcadminpanel/build/api-proxy.php",
+		"/G/OpenServer/domains/rcadminpanel/app/alt-application.js",
+		"/G/OpenServer/domains/rcadminpanel/app/stores/repos-store.js",
+		"/G/OpenServer/domains/rcadminpanel/app/views/sections/chat_operations.jsx",
+		"/G/OpenServer/domains/rcadminpanel/app/views/repos.jsx",
+		"/G/OpenServer/domains/rcadminpanel/app/routes.jsx",
+		"/G/Vajra-Big/!!!Work/!Clients/2016/Rumble/rumbletalk-sdk/index.php",
+		"/G/OpenServer/domains/wordpress/wp-content/plugins/rumbletalk-chat-a-chat-with-themes/ajax-rumbletalk-chat.php",
+		"/G/OpenServer/domains/mzaim/css/style.less",
+		"/G/OpenServer/domains/mzaim/index_calc.php",
+		"/G/OpenServer/domains/mzaim/js/main.js",
+		"/G/OpenServer/domains/mzaim/bitrix/templates/main/header.php",
+		"/G/OpenServer/domains/mzaim/index_calcnew.php",
+		"/D/projects/clients/2016/alfakv_git/backend/views/reserv-info/index.php",
+		"/D/projects/clients/2016/alfakv_git/backend/models/ReservInfo.php",
+		"/D/projects/clients/2016/alfakv_git/backend/controllers/ReservInfoController.php",
+		"/D/projects/clients/2016/alfakv_git/backend/views/reserv/index.php",
+		"/D/projects/clients/2016/alfakv_git/backend/models/Reserv.php",
+		"/D/projects/clients/2016/alfakv_git/backend/controllers/ReservController.php",
+		"/D/projects/clients/2016/alfakv_git/backend/models/User.php",
+		"/D/projects/clients/2016/alfakv/frontend/controllers/HotelsController.php"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 105.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"$sce",
+			"ng-max",
+			"__dir",
+			"output",
+			"stati",
+			".nav",
+			"style",
+			"120",
+			"80",
+			"pills",
+			"todos",
+			"pills",
+			"ctrl",
+			"count",
+			"console.",
+			"$.url",
+			"fillArray",
+			"absol",
+			"g_accessToken",
+			"token",
+			"/!!",
+			".is",
+			"handleAdministratorExpanded",
+			"fillArray",
+			"10",
+			"$.",
+			"extend",
+			"apiError",
+			"user",
+			"users",
+			"chatBans.bans",
+			"createBanModel",
+			"createb",
+			"status",
+			"state.chatUsers.users",
+			"this.state.chatUsers.users",
+			"this.chatUsers.user.push",
+			".tostr",
+			"clearchat",
+			"handleAdministratorExpanded",
+			"SettingsStore",
+			"user",
+			"isClearChatHistoryProcessing",
+			"link",
+			"isSaveAllProcessing",
+			"php",
+			"$data",
+			"xxx",
+			"save-settings-btn",
+			"alertvisi",
+			"handleTextSizeChange",
+			"chatte",
+			"forea",
+			"handleClickRemove",
+			"oncli",
+			"type",
+			"reactBootstrap",
+			"_reactBootstrap",
+			"react-d",
+			"less",
+			"css",
+			"col",
+			"anonymous",
+			"offlineMessage",
+			"Binder",
+			"binder",
+			"shim",
+			"browserifyshim",
+			"trandfor",
+			"superagent",
+			"source",
+			"DEST",
+			"streamify",
+			"source(",
+			"react",
+			"watchify",
+			"browserify",
+			"main.js",
+			"jque",
+			"resource",
+			"chatResources",
+			"LinkAdvanced",
+			"offline",
+			"saveSettingsSuccess",
+			"SettingsStore",
+			"isClearChatHistoryProcessing",
+			"900",
+			"500",
+			"changeChatStatusSuccess",
+			"FetchChatSettingsSuccess",
+			"onFetchChatSettingsSuccess",
+			"settingss",
+			":",
+			"isclear",
+			"setacces",
+			"webpages",
+			"onClearChatHistory",
+			"onclearChatHistory",
+			":",
+			"append",
+			"chat_operations",
+			"heigh",
+			"styl",
+			"reactify",
+			"renderRepos",
+			"alert",
+			"moun",
+			"console.lo",
+			"//",
+			"rumbletalk_chat_token_key",
+			"id=\"rumbletalk_chat_token_key",
+			".prop",
+			".attr",
+			"_token_ke",
+			"display_token",
+			"rumbletalk_chat_code",
+			"apply_new_token",
+			"wp_ajax_apply_new_token",
+			"adminme",
+			"admin_me",
+			"<img",
+			".php",
+			".jp",
+			"hash",
+			"update_option",
+			"rumbletalk_chat_token_key",
+			"ajax",
+			".ajax"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"100"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1099,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/Views/Shared/_Layout.cshtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3065,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								219,
+								230
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 36.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "coredatastore.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 166.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
