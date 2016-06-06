@@ -1,4 +1,5 @@
-FROM microsoft/dotnet:1.0.0-rc2-core
+FROM microsoft/dotnet
+
 MAINTAINER Stuart Shay
 
 # CoreDataStore.Web Docker File
