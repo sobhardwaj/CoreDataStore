@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Soultion Items", "Soultion Items", "{CC689212-7F5C-4CEC-BEEB-44B0B415959E}"
 	ProjectSection(SolutionItems) = preProject
 		src\config.json = src\config.json
+		src\Dockerfile = src\Dockerfile
 		global.json = global.json
 		NuGet.config = NuGet.config
 		README.md = README.md

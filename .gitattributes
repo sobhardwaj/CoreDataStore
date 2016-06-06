@@ -1,7 +1,7 @@
 ###############################################################################
-# Set default behavior to automatically normalize line endings.
+# Set to Linux Line Endings
 ###############################################################################
-* text=auto
+core.autocrlf input
 
 ###############################################################################
 # Set default behavior for command prompt diff.
