@@ -3,10 +3,20 @@
 ##Prerequisites:
 
 ```bash
-npm install -g generator-aspnet
+Check NPM version
+npm -v
+
+npm install -g bower
+npm install -g gulp
 
 npm install -g grunt
 npm install -g grunt-cli
+
+npm install -g typescript
+npm install -g tsd
+npm install -g typings
+
+npm install -g generator-aspnet
 ```
 
 ##Setup
@@ -34,7 +44,7 @@ docker run --rm --name  coredatastore -p 5000:5000 coredatastore
 ##Entity Framework
 
 ```bash
-cd CoreDataStore/CoreDataStore.Data.Sqlite
+cd /test/CoreDataStore.Data.Postgre.Test
 
 dotnet ef migration add <MigrationName>
 dotnet ef database update
