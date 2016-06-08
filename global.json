@@ -1,5 +1,5 @@
 ﻿{
-  "projects": [ "src/CoreDataStore.Web" ],
+  "projects": [ "src/CoreDataStore.Web", "src" ],
   "sdk": {
     "version": "1.0.0-preview1-002702"
   }
