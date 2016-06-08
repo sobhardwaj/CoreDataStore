@@ -327,15 +327,71 @@
 			"file": "package.json",
 			"settings":
 			{
-				"buffer_size": 1099,
-				"line_ending": "Unix"
+				"buffer_size": 1118,
+				"line_ending": "Windows"
 			}
 		},
 		{
 			"file": "/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/Views/Shared/_Layout.cshtml",
 			"settings":
 			{
-				"buffer_size": 3065,
+				"buffer_size": 3684,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/app.component.ts",
+			"settings":
+			{
+				"buffer_size": 829,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/projects/js/experiments/angular2-webpack2-starter/node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+			"settings":
+			{
+				"buffer_size": 6398,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/Maxim/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 219,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "systemjs.config.js",
+			"settings":
+			{
+				"buffer_size": 2093,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/main.ts",
+			"settings":
+			{
+				"buffer_size": 481,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/Views/Home/Index.cshtml",
+			"settings":
+			{
+				"buffer_size": 71,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 1055,
 				"line_ending": "Windows"
 			}
 		}
@@ -348,15 +404,23 @@
 	"command_palette":
 	{
 		"height": 434.0,
-		"last_filter": "packa",
+		"last_filter": "pi",
 		"selected_items":
 		[
+			[
+				"pi",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
 			[
 				"packa",
 				"Package Control: Install Package"
 			]
 		],
-		"width": 451.0
+		"width": 532.0
 	},
 	"console":
 	{
@@ -377,6 +441,11 @@
 	},
 	"file_history":
 	[
+		"/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/wwwroot/app/main.js",
+		"/C/Users/Maxim/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/package.json",
+		"/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/wwwroot/app/main.ts",
+		"/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/wwwroot/app/app.component.js",
 		"/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/angular2/package.json",
 		"/D/projects/clients/2016/adwords-gen/webpack.production.config.js",
 		"/D/projects/clients/2016/adwords-gen/webpack.config.js",
@@ -615,7 +684,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 6,
 			"sheets":
 			[
 				{
@@ -624,7 +693,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1099,
+						"buffer_size": 1118,
 						"regions":
 						{
 						},
@@ -645,7 +714,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -654,15 +723,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3065,
+						"buffer_size": 3684,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								219,
-								230
+								3026,
+								3026
 							]
 						],
 						"settings":
@@ -672,10 +741,223 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+						"translation.y": 563.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/app.component.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 829,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								754,
+								754
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"extensions":
+							[
+								"ts"
+							],
+							"syntax": "Packages/ArcticTypescript/theme/Typescript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 19.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/D/projects/js/experiments/angular2-webpack2-starter/node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6398,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Users/Maxim/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 219,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								191,
+								191
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "systemjs.config.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2093,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								148,
+								148
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/main.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 481,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								177,
+								177
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"extensions":
+							[
+								"ts"
+							],
+							"syntax": "Packages/ArcticTypescript/theme/Typescript.tmLanguage"
+						},
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/Views/Home/Index.cshtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 71,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								71,
+								71
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1055,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1005,
+								1037
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
 					"type": "text"
 				}
 			]

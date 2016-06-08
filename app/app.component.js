@@ -31,7 +31,7 @@ var HomeComponent = (function () {
         core_1.Component({
             selector: 'home',
             directives: [ng2_bootstrap_1.AlertComponent],
-            template: "\n\t\t<alert type=\"info\">ng2-bootstrap hello world!</alert>\n\t\t<h1>My First Angular 2 App!</h1>\n\t"
+            template: "\n\t\t<alert type=\"info\">ng2-bootstrap hello world!</alert>\n\t\t<h1>My First Angular 2 App</h1>\n\t"
         }), 
         __metadata('design:paramtypes', [])
     ], HomeComponent);
