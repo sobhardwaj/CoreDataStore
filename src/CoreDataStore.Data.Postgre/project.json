@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "CoreDataStore.Data": "1.0.0-*",
+    "CoreDataStore.Domain": "1.0.0-*",
+    "NETStandard.Library": "1.5.0-rc2-24027",
+    "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.0-rc2-release1"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "dnxcore50",
+        "portable-net45+win8"
+      ]
+    }
+  },
+
+  "tooling": {
+    "defaultNamespace": "CoreDataStore.Data.Postgre"
+  }
+}
