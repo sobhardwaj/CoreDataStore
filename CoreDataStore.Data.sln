@@ -32,6 +32,10 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Data.Postgre"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Data.Postgre.Test", "test\CoreDataStore.Data.Postgre.Test\CoreDataStore.Data.Postgre.Test.xproj", "{530C61CC-3BD1-417C-9B53-2945A3A4D809}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Data.SqlServer", "src\CoreDataStore.Data.SqlServer\CoreDataStore.Data.SqlServer.xproj", "{8D0845B8-3A2C-4991-A4BF-29101D475313}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Data.SqlServer.Test", "test\CoreDataStore.Data.SqlServer.Test\CoreDataStore.Data.SqlServer.Test.xproj", "{1369776F-A1B0-4ED5-AEDA-48141216C0A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +74,14 @@ Global
 		{530C61CC-3BD1-417C-9B53-2945A3A4D809}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{530C61CC-3BD1-417C-9B53-2945A3A4D809}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{530C61CC-3BD1-417C-9B53-2945A3A4D809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D0845B8-3A2C-4991-A4BF-29101D475313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D0845B8-3A2C-4991-A4BF-29101D475313}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D0845B8-3A2C-4991-A4BF-29101D475313}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D0845B8-3A2C-4991-A4BF-29101D475313}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1369776F-A1B0-4ED5-AEDA-48141216C0A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1369776F-A1B0-4ED5-AEDA-48141216C0A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1369776F-A1B0-4ED5-AEDA-48141216C0A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1369776F-A1B0-4ED5-AEDA-48141216C0A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,5 +95,7 @@ Global
 		{AF96400D-09DF-48C0-821F-9A9A81072F49} = {16E0E7AC-0945-45F1-8D10-F27027CCC1DE}
 		{D276010D-7AF2-4C83-8DA8-1CE411F58480} = {16E0E7AC-0945-45F1-8D10-F27027CCC1DE}
 		{530C61CC-3BD1-417C-9B53-2945A3A4D809} = {03D6EAC4-7C2A-4737-9842-255C45C43CFC}
+		{8D0845B8-3A2C-4991-A4BF-29101D475313} = {16E0E7AC-0945-45F1-8D10-F27027CCC1DE}
+		{1369776F-A1B0-4ED5-AEDA-48141216C0A5} = {03D6EAC4-7C2A-4737-9842-255C45C43CFC}
 	EndGlobalSection
 EndGlobal
