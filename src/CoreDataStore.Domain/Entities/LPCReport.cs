@@ -3,7 +3,7 @@ using CoreDataStore.Domain.Entities.Base;
 
 namespace CoreDataStore.Domain.Entities
 {
-    public class LPCReport : IEntityBase
+    public class LPCReport : IEntityBase, IAuditableEntity
     {
         public int Id { get; set; }
 

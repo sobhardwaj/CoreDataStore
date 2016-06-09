@@ -18,7 +18,11 @@
       "version": "1.0.0-rc2-3002702",
       "type": "platform"
     },
-    "xunit": "2.1.0-rc2-*"
+    "xunit": "2.1.0-rc2-*",
+    "EntityFramework.InMemory": "7.0.0-rc1-final",
+    "GenFu": "1.1.0",
+    "xunit.runner.visualstudio": "2.2.0-beta1-build1144",
+    "FluentAssertions": "4.8.0"
   },
 
   "frameworks": {
