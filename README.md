@@ -46,7 +46,7 @@ docker run --rm --name  coredatastore -p 5000:5000 coredatastore
 ```bash
 cd /test/CoreDataStore.Data.Postgre.Test
 
-dotnet ef migration add <MigrationName>
+dotnet ef migrations add <MigrationName>
 dotnet ef database update
 ```
 
