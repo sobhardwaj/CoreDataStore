@@ -1,4 +1,5 @@
 ﻿using System;
+using CoreDataStore.Data.Helpers;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
     {
         private readonly IServiceProvider serviceProvider;
         private readonly ILPCReportRepository lpcReportRepository;
-        private readonly DbContext dbContext;
+        private readonly NYCLandmarkContext dbContext;
 
         public LPCReportRepositoryTest()
         {
@@ -51,6 +52,25 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
             dbContext.SaveChanges();
         }
+
+        [Fact]
+        public void Can_Load_LPC_Report()
+        {
+            var lpcReports = DataLoader.LoadLPCReports(@"D:\Documents\GitHub\CoreDataStore\data\LPCReport.csv");
+
+            dbContext.LPCReports.AddRange(lpcReports);
+            dbContext.SaveChanges();
+        }
+
+        [Fact]
+        public void Can_Load_Landmarks()
+        {
+            var landmakrs = DataLoader.LoadLandmarks(@"D:\Documents\GitHub\CoreDataStore\data\Landmarks.csv");
+
+            dbContext.Landmarks.AddRange(landmakrs);
+            dbContext.SaveChanges();
+        }
+
 
     }
 }

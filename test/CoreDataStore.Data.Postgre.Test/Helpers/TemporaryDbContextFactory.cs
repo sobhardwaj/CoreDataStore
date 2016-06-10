@@ -1,6 +1,11 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using CoreDataStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using System.Linq;
 
 namespace CoreDataStore.Data.Postgre.Test.Helpers
 {
@@ -13,11 +18,18 @@ namespace CoreDataStore.Data.Postgre.Test.Helpers
         public NYCLandmarkContext Create()
         {
             var builder = new DbContextOptionsBuilder<NYCLandmarkContext>();
-            builder.UseNpgsql("User ID=postgres; Password=password;  Server=localhost;Port=5432;Database=nyclandmarks;Integrated Security=true;Pooling=true;"
+            builder.UseNpgsql(
+                "User ID=postgres; Password=password;  Server=localhost;Port=5432;Database=nyclandmarks;Integrated Security=true;Pooling=true;"
                 , b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name));
 
             return new NYCLandmarkContext(builder.Options);
         }
 
+
+
+
+     
+
     }
+
 }
