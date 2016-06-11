@@ -1,11 +1,15 @@
 import { bootstrap }    from '@angular/platform-browser-dynamic';
-import {provide} from '@angular/core';
+import {enableProdMode, provide} from '@angular/core';
 import { AppComponent } from './app.component';
 import {ROUTER_PROVIDERS} from '@angular/router'
 
 import {LocationStrategy, 
         HashLocationStrategy,
         APP_BASE_HREF, } from '@angular/common'
+
+if (window['g_AngularProdMode']) {
+	enableProdMode();
+}
 
 bootstrap(AppComponent,[
      ROUTER_PROVIDERS,
