@@ -1,5 +1,4 @@
-﻿using System;
-using CoreDataStore.Data.Conventions;
+﻿using CoreDataStore.Data.Conventions;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Domain.Entities.Base;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +35,20 @@ namespace CoreDataStore.Data.SqlServer
             //builder.Entity<LPCReport>().Property<DateTime>("Modified");
 
             builder.Entity<Landmark>().HasKey(m => m.Id);
+            builder.Entity<Landmark>().Property(t => t.BoroughID).HasMaxLength(2).IsRequired();
+            builder.Entity<Landmark>().Property(t => t.BOUNDARIES).HasMaxLength(50).IsRequired();
+            builder.Entity<Landmark>().Property(t => t.DESIG_ADDR).HasMaxLength(200);
+            builder.Entity<Landmark>().Property(t => t.HIST_DISTR).HasMaxLength(200);
+            builder.Entity<Landmark>().Property(t => t.LAST_ACTIO).HasMaxLength(50);
+            builder.Entity<Landmark>().Property(t => t.LM_NAME).HasMaxLength(200);
+            builder.Entity<Landmark>().Property(t => t.LP_NUMBER).HasMaxLength(10);
+            builder.Entity<Landmark>().Property(t => t.LM_TYPE).HasMaxLength(19);
+            builder.Entity<Landmark>().Property(t => t.NON_BLDG).HasMaxLength(100);
+            builder.Entity<Landmark>().Property(t => t.OTHER_HEAR).HasMaxLength(200);
+            builder.Entity<Landmark>().Property(t => t.PLUTO_ADDR).HasMaxLength(200);
+            builder.Entity<Landmark>().Property(t => t.PUBLIC_HEA).HasMaxLength(200);
+            builder.Entity<Landmark>().Property(t => t.STATUS).HasMaxLength(50).IsRequired();
+            builder.Entity<Landmark>().Property(t => t.STATUS_NOT).HasMaxLength(200);
 
             base.OnModelCreating(builder);
         }

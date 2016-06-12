@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using CoreDataStore.Data.Helpers;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.Postgre.Repositories;
-using CoreDataStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
@@ -41,16 +38,30 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             Assert.NotNull(results);
         }
 
+
         [Fact]
         public void Can_Load_LPC_Report()
         {
-            var lpcReports = DataLoader.LoadLPCReports(@"D:\Documents\GitHub\CoreDataStore\data\LPCReport.csv");
+            var lpcReports = DataLoader.LoadLPCReports(@"./../../data/LPCReport.csv");
+
             dbContext.LPCReports.AddRange(lpcReports);
             dbContext.SaveChanges();
         }
 
+        [Fact]
+        public void Can_Load_Landmarks()
+        {
+            int batchSize = 1000;
+
+            var landmarks = DataLoader.LoadLandmarks(@"./../../data/Landmarks.csv").ToList();
+            foreach (var list in landmarks.Batch(batchSize))
+            {
+                dbContext.Landmarks.AddRange(list);
+                dbContext.SaveChanges();
+            }
 
 
 
+        }
     }
 }

@@ -56,7 +56,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         [Fact]
         public void Can_Load_LPC_Report()
         {
-            var lpcReports = DataLoader.LoadLPCReports(@"D:\Documents\GitHub\CoreDataStore\data\LPCReport.csv");
+            var lpcReports = DataLoader.LoadLPCReports(@"./../../data/LPCReport.csv");
 
             dbContext.LPCReports.AddRange(lpcReports);
             dbContext.SaveChanges();
@@ -65,7 +65,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         [Fact]
         public void Can_Load_Landmarks()
         {
-            var landmakrs = DataLoader.LoadLandmarks(@"D:\Documents\GitHub\CoreDataStore\data\Landmarks.csv");
+            var landmakrs = DataLoader.LoadLandmarks(@"./../../data/Landmarks.csv");
 
             dbContext.Landmarks.AddRange(landmakrs);
             dbContext.SaveChanges();

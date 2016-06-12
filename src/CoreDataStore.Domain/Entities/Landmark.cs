@@ -1,4 +1,5 @@
-﻿using CoreDataStore.Domain.Entities.Base;
+﻿using System;
+using CoreDataStore.Domain.Entities.Base;
 
 namespace CoreDataStore.Domain.Entities
 {
@@ -24,9 +25,9 @@ namespace CoreDataStore.Domain.Entities
 
         public string DESIG_ADDR { get; set; }
 
-        public string DESIG_DATE { get; set; }
+        public DateTime? DESIG_DATE { get; set; }
 
-        public string CALEN_DATE { get; set; }
+        public DateTime? CALEN_DATE { get; set; }
 
         public string PUBLIC_HEA { get; set; }
 

@@ -27,45 +27,62 @@ namespace CoreDataStore.Data.SqlServer.Test.Migrations
 
                     b.Property<int>("BLOCK");
 
-                    b.Property<string>("BOUNDARIES");
+                    b.Property<string>("BOUNDARIES")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 50);
 
-                    b.Property<string>("BoroughID");
+                    b.Property<string>("BoroughID")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 2);
 
-                    b.Property<string>("CALEN_DATE");
+                    b.Property<DateTime?>("CALEN_DATE");
 
                     b.Property<bool>("COUNT_BLDG");
 
-                    b.Property<string>("DESIG_ADDR");
+                    b.Property<string>("DESIG_ADDR")
+                        .HasAnnotation("MaxLength", 200);
 
-                    b.Property<string>("DESIG_DATE");
+                    b.Property<DateTime?>("DESIG_DATE");
 
-                    b.Property<string>("HIST_DISTR");
+                    b.Property<string>("HIST_DISTR")
+                        .HasAnnotation("MaxLength", 200);
 
-                    b.Property<string>("LAST_ACTIO");
+                    b.Property<string>("LAST_ACTIO")
+                        .HasAnnotation("MaxLength", 50);
 
-                    b.Property<string>("LM_NAME");
+                    b.Property<string>("LM_NAME")
+                        .HasAnnotation("MaxLength", 200);
 
-                    b.Property<string>("LM_TYPE");
+                    b.Property<string>("LM_TYPE")
+                        .HasAnnotation("MaxLength", 19);
 
                     b.Property<int>("LOT");
 
-                    b.Property<string>("LP_NUMBER");
+                    b.Property<string>("LP_NUMBER")
+                        .HasAnnotation("MaxLength", 10);
 
                     b.Property<bool>("MOST_CURRE");
 
-                    b.Property<string>("NON_BLDG");
+                    b.Property<string>("NON_BLDG")
+                        .HasAnnotation("MaxLength", 100);
 
-                    b.Property<string>("OTHER_HEAR");
+                    b.Property<string>("OTHER_HEAR")
+                        .HasAnnotation("MaxLength", 200);
 
-                    b.Property<string>("PLUTO_ADDR");
+                    b.Property<string>("PLUTO_ADDR")
+                        .HasAnnotation("MaxLength", 200);
 
-                    b.Property<string>("PUBLIC_HEA");
+                    b.Property<string>("PUBLIC_HEA")
+                        .HasAnnotation("MaxLength", 200);
 
                     b.Property<bool>("SECND_BLDG");
 
-                    b.Property<string>("STATUS");
+                    b.Property<string>("STATUS")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 50);
 
-                    b.Property<string>("STATUS_NOT");
+                    b.Property<string>("STATUS_NOT")
+                        .HasAnnotation("MaxLength", 200);
 
                     b.Property<bool>("VACANT_LOT");
 
@@ -104,11 +121,13 @@ namespace CoreDataStore.Data.SqlServer.Test.Migrations
 
                     b.Property<bool>("PhotoStatus");
 
-                    b.Property<string>("PhotoURL");
+                    b.Property<string>("PhotoURL")
+                        .HasAnnotation("MaxLength", 500);
 
                     b.Property<string>("Street");
 
-                    b.Property<string>("Style");
+                    b.Property<string>("Style")
+                        .HasAnnotation("MaxLength", 100);
 
                     b.HasKey("Id");
 
