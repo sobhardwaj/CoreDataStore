@@ -1,0 +1,26 @@
+- "git clone https://github.com/stuartshay/CoreDataStore.git"
+
+... Setup dotnet tools, as usual. 
+
+- Run "dotnet restore"
+
+
+
+Now Angular part.
+
+- Run "npm install -g npm3". Close console and reopen it.
+- Run "npm3 install -g typings". Close console and reopen it.
+- Run "typings -v". Typings version should be at least 1.0.4
+- Navigate to src/CoreDataStore.Web/wwwroot/. Run "npm3 install"
+- Run "typings install"
+
+
+*** 3rd party modules tweaks ***
+
+- delete \wwwroot\node_modules\browser-sync\modules
+- rename \wwwroot\node_modules\ng2-bootstrap\tsconfig.json to _tsconfig.json
+
+
+- Navigate to src/CoreDataStore.Web/. Run "dotnet run".
+
+
