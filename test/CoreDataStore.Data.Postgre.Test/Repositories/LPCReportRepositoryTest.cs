@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
+
 namespace CoreDataStore.Data.Postgre.Test.Repositories
 {
     public class LPCReportRepositoryTest
@@ -59,9 +60,10 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
                 dbContext.Landmarks.AddRange(list);
                 dbContext.SaveChanges();
             }
-
-
-
         }
+
+
+
+
     }
 }

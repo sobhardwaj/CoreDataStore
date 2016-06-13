@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using CoreDataStore.Data.Helpers;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Repositories;
@@ -65,10 +66,14 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         [Fact]
         public void Can_Load_Landmarks()
         {
-            var landmakrs = DataLoader.LoadLandmarks(@"./../../data/Landmarks.csv");
+            int batchSize = 10000;
 
-            dbContext.Landmarks.AddRange(landmakrs);
-            dbContext.SaveChanges();
+            var landmarks = DataLoader.LoadLandmarks(@"./../../data/Landmarks.csv").ToList();
+            foreach (var list in landmarks.Batch(batchSize))
+            {
+                dbContext.Landmarks.AddRange(list);
+                dbContext.SaveChanges();
+            }
         }
 
 

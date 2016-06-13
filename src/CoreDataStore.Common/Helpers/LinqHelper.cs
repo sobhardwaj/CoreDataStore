@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace System.Linq
+namespace CoreDataStore.Common
 {
     //public static class LinqHelper
     //{
