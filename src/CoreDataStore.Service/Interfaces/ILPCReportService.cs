@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Service.Models;
 
@@ -10,6 +11,6 @@ namespace CoreDataStore.Service.Interfaces
 
         List<LPCReportModel> GetLPCReports();
 
-        List<LPCReportModel> GetLPCReports(LPCReportRequest request, out int totalCount);
+        List<LPCReportModel>  GetLPCReports(LPCReportRequest request, out int totalCount);
     }
 }

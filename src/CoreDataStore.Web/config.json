@@ -3,7 +3,8 @@
     "SqliteConnectionString": "Filename=./../../../../../data/nyclandmarks.sqlite"
   },
   "Development": {
-    "SqliteConnectionString": "Filename=./../../../../../data/coredatastore.sqlite"
+    "SqliteConnectionString": "Filename=./../../../../../data/coredatastore.sqlite",
+    "SqlServerConnectionString": "Data Source=WINDOWS8\\SQLEXPRESS;Initial Catalog=NycLandmarks;Integrated Security=True"
   }
 }
 

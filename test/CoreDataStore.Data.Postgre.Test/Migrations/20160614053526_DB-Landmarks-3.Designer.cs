@@ -8,9 +8,10 @@ using CoreDataStore.Data.Postgre;
 namespace CoreDataStore.Data.Postgre.Test.Migrations
 {
     [DbContext(typeof(NYCLandmarkContext))]
-    partial class NYCLandmarkContextModelSnapshot : ModelSnapshot
+    [Migration("20160614053526_DB-Landmarks-3")]
+    partial class DBLandmarks3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rc2-20901");
@@ -110,33 +111,36 @@ namespace CoreDataStore.Data.Postgre.Test.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Architect")
-                        .HasColumnType("varchar");
+                        .HasAnnotation("MaxLength", 200);
 
                     b.Property<string>("Borough")
-                        .HasColumnType("varchar");
+                        .HasAnnotation("MaxLength", 20);
 
-                    b.Property<DateTime>("DateDesignated");
+                    b.Property<DateTime>("DateDesignated")
+                        .HasColumnType("NpgsqlDate");
 
                     b.Property<string>("LPCId")
-                        .HasColumnType("varchar");
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 10);
 
                     b.Property<string>("LPNumber")
-                        .HasColumnType("varchar");
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 10);
 
                     b.Property<string>("Name");
 
                     b.Property<string>("ObjectType")
-                        .HasColumnType("varchar");
+                        .HasAnnotation("MaxLength", 50);
 
                     b.Property<bool>("PhotoStatus");
 
                     b.Property<string>("PhotoURL")
-                        .HasColumnType("varchar");
+                        .HasAnnotation("MaxLength", 500);
 
                     b.Property<string>("Street");
 
                     b.Property<string>("Style")
-                        .HasColumnType("varchar");
+                        .HasAnnotation("MaxLength", 100);
 
                     b.HasKey("Id");
 

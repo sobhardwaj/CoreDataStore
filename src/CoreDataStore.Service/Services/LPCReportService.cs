@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
@@ -34,26 +35,23 @@ namespace CoreDataStore.Service.Services
 
         public List<LPCReportModel> GetLPCReports(LPCReportRequest request, out int totalCount)
         {
-            var query = _lpcReportRepository.GetAll();
+            var predicate = PredicateBuilder.True<LPCReport>();
 
             if (!string.IsNullOrEmpty(request.Borough))
-                query = query.Where(r => r.Borough == request.Borough);
+                predicate = predicate.And(x => x.Borough == request.Borough);
 
             if (!string.IsNullOrEmpty(request.ObjectType))
-                query = query.Where(r => r.ObjectType == request.ObjectType);
+                predicate = predicate.And(x => x.ObjectType == request.ObjectType);
 
             var sortModel = new SortModel
             {
-               SortColumn = !string.IsNullOrEmpty(request.SortColumn) ? request.SortColumn : null,
-               SortOrder = !string.IsNullOrEmpty(request.SortColumn) ? request.SortColumn : null
+                SortColumn = !string.IsNullOrEmpty(request.SortColumn) ? request.SortColumn : null,
+                SortOrder = !string.IsNullOrEmpty(request.SortColumn) ? request.SortColumn : null
             };
 
-            var results = query.ToList();  //  OrderBy(sortModel).ToList();
+            totalCount = _lpcReportRepository.FindBy(predicate).Count();
 
-
-            totalCount = results.Count();
-            results = results.Skip(request.PageSize * (request.Page - 1)).Take(request.PageSize).ToList();
-
+            var results = _lpcReportRepository.FindBy(predicate).Skip(request.PageSize * (request.Page - 1)).Take(request.PageSize).ToList();
             return Mapper.Map<IEnumerable<LPCReport>, IEnumerable<LPCReportModel>>(results).ToList(); 
         }
 

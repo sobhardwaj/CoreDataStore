@@ -8,9 +8,10 @@ using CoreDataStore.Data.Postgre;
 namespace CoreDataStore.Data.Postgre.Test.Migrations
 {
     [DbContext(typeof(NYCLandmarkContext))]
-    partial class NYCLandmarkContextModelSnapshot : ModelSnapshot
+    [Migration("20160615030807_DB-Landmarks-5")]
+    partial class DBLandmarks5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rc2-20901");

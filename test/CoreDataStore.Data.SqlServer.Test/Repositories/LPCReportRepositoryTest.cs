@@ -6,6 +6,7 @@ using CoreDataStore.Data.SqlServer.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
+using CoreDataStore.Common.Helpers;
 
 namespace CoreDataStore.Data.SqlServer.Test.Repositories
 {

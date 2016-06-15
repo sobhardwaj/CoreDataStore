@@ -6,6 +6,7 @@ using CoreDataStore.Data.Postgre.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
+using CoreDataStore.Common.Helpers;
 
 
 namespace CoreDataStore.Data.Postgre.Test.Repositories
@@ -61,9 +62,6 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
                 dbContext.SaveChanges();
             }
         }
-
-
-
 
     }
 }

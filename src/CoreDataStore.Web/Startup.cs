@@ -1,7 +1,4 @@
-﻿using CoreDataStore.Data.Sqlite;
-using CoreDataStore.Data.Sqlite.Repositories;
-using CoreDataStore.Domain.Interfaces;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Routing;
@@ -12,11 +9,16 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.SwaggerGen.Generator;
-using System.Reflection;
+
+using CoreDataStore.Domain.Interfaces;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;
+
+using CoreDataStore.Data.Sqlite.Repositories;
+//using CoreDataStore.Data.SqlServer.Repositories;
+
 
 namespace CoreDataStore.Web
 {
@@ -39,11 +41,10 @@ namespace CoreDataStore.Web
         public void ConfigureServices(IServiceCollection services)
         {
             var prodConnection = Configuration["Production:SqliteConnectionString"];
-            var devlconnection = Configuration["Development:SqliteConnectionString"];
+            services.AddDbContext<CoreDataStore.Data.Sqlite.NYCLandmarkContext>(options => options.UseSqlite(prodConnection));
 
-            services.AddDbContext<NYCLandmarkContext>(options =>
-               options.UseSqlite(prodConnection, b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name)));
-
+            //var devConnection = Configuration["Development:SqlServerConnectionString"];
+            //services.AddDbContext<Data.SqlServer.NYCLandmarkContext>(options => options.UseSqlServer(devConnection));
 
             JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter
             {
