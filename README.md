@@ -2,27 +2,43 @@
 
 ##Prerequisites:
 
+### .NET Core 
+.NET Core SDK 1.0.0 RC2   
+https://www.microsoft.com/net/core  
+
+###Visual Studio  
+Visual Studio 2015 Update 3 RC     
+Visual Studio 2015 Tools 1.0.0 RC2
+
+### Packages 
 ```bash
-Check NPM version
-npm -v
+$npm -v # >=2.15
+$npm install -g generator-aspnet
 
-npm install -g bower
-npm install -g gulp
-
-npm install -g grunt
-npm install -g grunt-cli
-
-npm install -g typescript
-npm install -g tsd
-npm install -g typings
-
-npm install -g generator-aspnet
+$npm install -g npm3
+$npm3 install -g typings
+$typings -v # >=1.0.4
 ```
 
-##Setup
+### Setup
+
 ```bash
 git clone https://github.com/stuartshay/CoreDataStore.git
 ```
+
+```bash
+$cd src/CoreDataStore.Web/wwwroot/
+$npm3 install
+$typings install
+```
+
+```bash
+- delete \wwwroot\node_modules\browser-sync\modules
+- rename \wwwroot\node_modules\ng2-bootstrap\tsconfig.json to _tsconfig.json
+```
+
+
+
 
 ##Launch Website
 

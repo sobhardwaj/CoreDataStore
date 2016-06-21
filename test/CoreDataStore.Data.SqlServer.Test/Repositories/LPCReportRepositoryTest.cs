@@ -27,8 +27,9 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         {
             var services = new ServiceCollection();
 
+#warning "Remove Hardcoded DB Connection String"
             services.AddDbContext<NYCLandmarkContext>(options =>
-            options.UseSqlServer(@"Data Source=WINDOWS8\SQLEXPRESS;Initial Catalog=NycLandmarks;Integrated Security=True"));
+            options.UseSqlServer(@"Data Source=DESKTOP-76B3NIJ;Initial Catalog=NycLandmarks;Integrated Security=True"));
 
             services.AddScoped<ILPCReportRepository, LPCReportRepository>();
             serviceProvider = services.BuildServiceProvider();
