@@ -1,6 +1,9 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Configuration;
+using System;
+using Microsoft.DotNet.Cli.Utils.CommandParsing;
 
 namespace CoreDataStore.Data.SqlServer.Test.Helpers
 {
@@ -16,7 +19,14 @@ namespace CoreDataStore.Data.SqlServer.Test.Helpers
         {
             var builder = new DbContextOptionsBuilder<NYCLandmarkContext>();
 
-            builder.UseSqlServer(@"Data Source=DESKTOP-76B3NIJ;Initial Catalog=NycLandmarks;Integrated Security=True"
+            Console.WriteLine(AppContext.BaseDirectory);
+            var configBuilder = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            IConfigurationRoot Configuration = configBuilder.Build();
+            
+            builder.UseSqlServer(@"Data Source=.;Initial Catalog=NycLandmarks;Integrated Security=True" //Configuration["connectionString:SqlServer"]
                 , b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name));
 
             return new NYCLandmarkContext(builder.Options);

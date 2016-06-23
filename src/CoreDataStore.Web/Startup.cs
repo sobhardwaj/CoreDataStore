@@ -17,8 +17,8 @@ using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;
 
 using CoreDataStore.Data.Sqlite.Repositories;
-//using CoreDataStore.Data.SqlServer.Repositories;
-
+using CoreDataStore.Data.SqlServer.Repositories;
+using CoreDataStore.Data.Postgre.Repositories;
 
 namespace CoreDataStore.Web
 {
@@ -29,8 +29,8 @@ namespace CoreDataStore.Web
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                 //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddJsonFile("config.json", optional: true, reloadOnChange: true);
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                //.AddJsonFile("config.json", optional: true, reloadOnChange: true);
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -38,14 +38,45 @@ namespace CoreDataStore.Web
 
         public IConfigurationRoot Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureStagingServices(IServiceCollection services)
         {
-            var prodConnection = Configuration["Production:SqliteConnectionString"];
-            services.AddDbContext<CoreDataStore.Data.Sqlite.NYCLandmarkContext>(options => options.UseSqlite(prodConnection));
+            var prodConnection = Configuration["ConnectionStrings:PostgreSQL"];
+            services.AddDbContext<Data.Postgre.NYCLandmarkContext>(options => options.UseNpgsql(prodConnection));
+            
+            // Repositories
+            services.AddScoped<ILPCReportRepository, Data.Postgre.Repositories.LPCReportRepository>();
+            services.AddScoped<ILandmarkRepository, Data.Postgre.Repositories.LandmarkRepository>();
+            services.AddScoped<IReferenceRepository, Data.Postgre.Repositories.ReferenceRepository>();
 
-            //var devConnection = Configuration["Development:SqlServerConnectionString"];
-            //services.AddDbContext<Data.SqlServer.NYCLandmarkContext>(options => options.UseSqlServer(devConnection));
+            ConfigService(services);
+        }
+        public void ConfigureDevelopmentServices(IServiceCollection services)
+        {
+            var prodConnection = Configuration["ConnectionStrings:Sqlite"];
+            services.AddDbContext<Data.Sqlite.NYCLandmarkContext>(options => options.UseSqlite(prodConnection));
 
+            // Repositories
+            services.AddScoped<ILPCReportRepository, Data.Sqlite.Repositories.LPCReportRepository>();
+            services.AddScoped<ILandmarkRepository, Data.Sqlite.Repositories.LandmarkRepository>();
+            services.AddScoped<IReferenceRepository, Data.Sqlite.Repositories.ReferenceRepository>();
+
+            ConfigService(services);
+        }
+        public void ConfigureProductionServices(IServiceCollection services)
+        {
+            var devConnection = Configuration["ConnectionStrings:SqlServer"];
+            services.AddDbContext<Data.SqlServer.NYCLandmarkContext>(options => options.UseSqlServer(devConnection));
+
+            // Repositories
+            services.AddScoped<ILPCReportRepository, Data.SqlServer.Repositories.LPCReportRepository>();
+            services.AddScoped<ILandmarkRepository, Data.SqlServer.Repositories.LandmarkRepository>();
+            services.AddScoped<IReferenceRepository, Data.SqlServer.Repositories.ReferenceRepository>();
+
+            ConfigService(services);
+        }
+
+        private void ConfigService(IServiceCollection services)
+        { 
             JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter
             {
                 SerializerSettings = new JsonSerializerSettings
@@ -82,33 +113,40 @@ namespace CoreDataStore.Web
                 options.DescribeAllEnumsAsStrings();  
             });
 
-            // Repositories
-            services.AddScoped<ILPCReportRepository, LPCReportRepository>();
-            services.AddScoped<ILandmarkRepository, LandmarkRepository>();
-            services.AddScoped<IReferenceRepository, ReferenceRepository>();
-
             // Services
             services.AddScoped<ILPCReportService, LPCReportService>();
             services.AddScoped<ILandmarkService, LandmarkService>();
 
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void ConfigureStaging(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        {
+            app.UseExceptionHandler("/Home/Error");
+
+            AppConfig(app, loggerFactory);
+        }
+
+        public void ConfigureDevelopment(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        {
+            app.UseDeveloperExceptionPage();
+            app.UseBrowserLink();
+            //app.UseDatabaseErrorPage();
+
+            AppConfig(app, loggerFactory);
+        }
+
+        public void ConfigureProduction(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        {
+            app.UseExceptionHandler("/Home/Error");
+
+            AppConfig(app, loggerFactory);
+        }
+
+        private void AppConfig(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             //loggerFactory.AddProvider(new SqlLoggerProvider());
             loggerFactory.AddDebug();
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
-                //app.UseDatabaseErrorPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
 
             AutoMapperConfiguration.Configure();
 
