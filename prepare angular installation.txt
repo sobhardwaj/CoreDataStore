@@ -13,12 +13,14 @@ Now Angular part.
 - Run "typings -v". Typings version should be at least 1.0.4
 - Navigate to src/CoreDataStore.Web/wwwroot/. Run "npm3 install"
 - Run "typings install"
+- Run "npm3 run start"
 
 
 *** 3rd party modules tweaks ***
 
 - delete \wwwroot\node_modules\browser-sync\modules
 - rename \wwwroot\node_modules\ng2-bootstrap\tsconfig.json to _tsconfig.json
+- rename \wwwroot\lib\reflect-metadata\tsconfig.json to _tsconfig.json
 
 
 - Navigate to src/CoreDataStore.Web/. Run "dotnet run".
