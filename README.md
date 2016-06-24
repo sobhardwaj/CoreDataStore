@@ -38,9 +38,14 @@ $typings install
 ```
 
 
+##Website
 
+| Environment   | Database Provider      | Port  |
+|---------------|:----------------------:|------:|
+| Development   | SQLite                 | 5000  |
+| Staging       | PostgreSQL             | 5001  |
+| Production    | SQL Server             | 5002  |
 
-##Launch Website
 
 ```bash
 dotnet restore
