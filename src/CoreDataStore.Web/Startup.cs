@@ -38,18 +38,6 @@ namespace CoreDataStore.Web
 
         public IConfigurationRoot Configuration { get; }
 
-        public void ConfigureStagingServices(IServiceCollection services)
-        {
-            var prodConnection = Configuration["ConnectionStrings:PostgreSQL"];
-            services.AddDbContext<Data.Postgre.NYCLandmarkContext>(options => options.UseNpgsql(prodConnection));
-            
-            // Repositories
-            services.AddScoped<ILPCReportRepository, Data.Postgre.Repositories.LPCReportRepository>();
-            services.AddScoped<ILandmarkRepository, Data.Postgre.Repositories.LandmarkRepository>();
-            services.AddScoped<IReferenceRepository, Data.Postgre.Repositories.ReferenceRepository>();
-
-            ConfigService(services);
-        }
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
             var prodConnection = Configuration["ConnectionStrings:Sqlite"];
@@ -62,6 +50,20 @@ namespace CoreDataStore.Web
 
             ConfigService(services);
         }
+
+        public void ConfigureStagingServices(IServiceCollection services)
+        {
+            var prodConnection = Configuration["ConnectionStrings:PostgreSQL"];
+            services.AddDbContext<Data.Postgre.NYCLandmarkContext>(options => options.UseNpgsql(prodConnection));
+            
+            // Repositories
+            services.AddScoped<ILPCReportRepository, Data.Postgre.Repositories.LPCReportRepository>();
+            services.AddScoped<ILandmarkRepository, Data.Postgre.Repositories.LandmarkRepository>();
+            services.AddScoped<IReferenceRepository, Data.Postgre.Repositories.ReferenceRepository>();
+
+            ConfigService(services);
+        }
+
         public void ConfigureProductionServices(IServiceCollection services)
         {
             var devConnection = Configuration["ConnectionStrings:SqlServer"];
@@ -74,6 +76,9 @@ namespace CoreDataStore.Web
 
             ConfigService(services);
         }
+
+
+
 
         private void ConfigService(IServiceCollection services)
         { 
@@ -119,18 +124,18 @@ namespace CoreDataStore.Web
 
         }
 
-        public void ConfigureStaging(IApplicationBuilder app, ILoggerFactory loggerFactory)
-        {
-            app.UseExceptionHandler("/Home/Error");
-
-            AppConfig(app, loggerFactory);
-        }
-
         public void ConfigureDevelopment(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseDeveloperExceptionPage();
             app.UseBrowserLink();
             //app.UseDatabaseErrorPage();
+
+            AppConfig(app, loggerFactory);
+        }
+
+        public void ConfigureStaging(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        {
+            app.UseExceptionHandler("/Home/Error");
 
             AppConfig(app, loggerFactory);
         }
@@ -141,6 +146,9 @@ namespace CoreDataStore.Web
 
             AppConfig(app, loggerFactory);
         }
+
+
+
 
         private void AppConfig(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
