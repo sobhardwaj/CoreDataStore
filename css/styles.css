@@ -12,7 +12,7 @@ body {
 }
 
 .property {
-	max-width: 800px;
+	background: #eee;
 }
 
 .property table, .property > div {
@@ -29,7 +29,23 @@ body {
 }
 
 .property > tbody > tr > td:nth-child(2) {
-    vertical-align: middle;
+    vertical-align: top;
+}
+
+.property_wrapper {
+	max-width: 800px;
+	padding: 10px;
+	background: #eee;
+	margin-bottom: 20px;
+}
+
+.property-details td:nth-child(1) {
+	width: 250px;
+	text-align: right;
+}
+
+.image_wrapper {
+	margin-left: 10px;
 }
 
  /*
