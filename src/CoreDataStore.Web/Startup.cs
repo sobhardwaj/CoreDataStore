@@ -40,6 +40,10 @@ namespace CoreDataStore.Web
 
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
+                                                                .AllowAnyMethod()
+                                                                .AllowAnyHeader()));
+
             var prodConnection = Configuration["ConnectionStrings:Sqlite"];
             services.AddDbContext<Data.Sqlite.NYCLandmarkContext>(options => options.UseSqlite(prodConnection));
 
@@ -53,6 +57,10 @@ namespace CoreDataStore.Web
 
         public void ConfigureStagingServices(IServiceCollection services)
         {
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
+                                                                .AllowAnyMethod()
+                                                                .AllowAnyHeader()));
+
             var prodConnection = Configuration["ConnectionStrings:PostgreSQL"];
             services.AddDbContext<Data.Postgre.NYCLandmarkContext>(options => options.UseNpgsql(prodConnection));
             
@@ -66,6 +74,10 @@ namespace CoreDataStore.Web
 
         public void ConfigureProductionServices(IServiceCollection services)
         {
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
+                                                    .AllowAnyMethod()
+                                                    .AllowAnyHeader()));
+
             var devConnection = Configuration["ConnectionStrings:SqlServer"];
             services.AddDbContext<Data.SqlServer.NYCLandmarkContext>(options => options.UseSqlServer(devConnection));
 
@@ -91,7 +103,7 @@ namespace CoreDataStore.Web
                 }
             };
 
-
+            services.AddCors();
             services.AddMvc(
                  options =>
                  {
@@ -100,8 +112,9 @@ namespace CoreDataStore.Web
                  }
              );
 
-            services.AddSwaggerGen();
+          
 
+            services.AddSwaggerGen();
             services.ConfigureSwaggerGen(options =>
             {
                 options.SingleApiVersion(new Info
