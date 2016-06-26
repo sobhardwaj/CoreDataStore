@@ -12,6 +12,12 @@ MAINTAINER Stuart Shay
 ENV ASPNETCORE_URLS="http://*:5000"
 ENV ASPNETCORE_ENVIRONMENT="Staging"
 
+
+RUN apt-get update && apt-get install -y \
+        npm \
+&& rm -rf /var/lib/apt/lists/*
+
+
 # Copy files to app directory
 COPY . /app
 
