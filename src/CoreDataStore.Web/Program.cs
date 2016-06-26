@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace CoreDataStore.Web
 {
@@ -7,13 +9,26 @@ namespace CoreDataStore.Web
     {
         public static void Main(string[] args)
         {
-            //http://stackoverflow.com/questions/34212765/how-do-i-get-the-kestrel-web-server-to-listen-to-non-localhost-requests
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("hosting.json", optional: true)
+                .AddEnvironmentVariables("")
+                .AddCommandLine(args)
+                .Build();
+
+            var url = config["ASPNETCORE_URLS"] ?? "http://*:5000";  //TOOD Set Default from Hosting
+            var env = config["ASPNETCORE_ENVIRONMENT"] ?? "Development";
+
+            Console.WriteLine("ASPNETCORE_URLS:{0}", url);
+            Console.WriteLine("ASPNETCORE_ENVIRONMENT:{0}", env);
 
             var host = new WebHostBuilder()
-                .UseUrls("http://0.0.0.0:5000/")  //Programatically Set the Port (Use hosting.json)
+                .UseConfiguration(config)
                 .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseUrls(url)
+                .UseEnvironment(env)
                 .UseIISIntegration()
+                .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
                 .Build();
 
