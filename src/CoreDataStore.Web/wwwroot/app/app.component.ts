@@ -64,15 +64,13 @@ export class HomeComponent{}
 	            </div>
 	            <div class="navbar-collapse collapse">
 	                <ul class="nav navbar-nav">
-	                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+	                    <li><a [routerLink]="['/']" asp-controller="Home" asp-action="Index">Home</a></li>
 	                    <li><a href="/swagger/ui/index.html">Swagger</a></li>
 	                </ul>
 	            </div>
 	        </div>
 	    </div>
 
-		<a [routerLink]="['/']">home</a>
-	 	<a [routerLink]="['/second']">Second</a>
 	 	<router-outlet></router-outlet>
 	`
 })

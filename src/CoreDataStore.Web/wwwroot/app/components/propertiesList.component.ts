@@ -4,6 +4,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 // import { SortByDirective } from '../directives/sortby.directive';
 import { CapitalizePipe } from '../pipes/capitalize.pipe';
 import { TrimPipe } from '../pipes/trim.pipe';
+
 import { Sorter } from '../utils/sorter';
 import { TrackByService } from '../services/trackby.service';
 

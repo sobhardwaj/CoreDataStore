@@ -112,7 +112,8 @@ export class DataService {
         if (!this.properties) {
             return this.http.get(this._baseUrl + 'api/LPCReport/99/1')
                 .map((res: Response) => {
-                    this.properties = res.json();
+                    this.properties = res.json()
+                        .map(p => { p.dateDesignated = Date.parse(p.dateDesignated); return p; });
                     return this.properties;
                 })
                 .catch(this.handleError);

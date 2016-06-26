@@ -115,7 +115,8 @@ var DataService = (function () {
         if (!this.properties) {
             return this.http.get(this._baseUrl + 'api/LPCReport/99/1')
                 .map(function (res) {
-                _this.properties = res.json();
+                _this.properties = res.json()
+                    .map(function (p) { p.dateDesignated = Date.parse(p.dateDesignated); return p; });
                 return _this.properties;
             })
                 .catch(this.handleError);

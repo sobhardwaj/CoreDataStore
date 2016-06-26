@@ -1,8 +1,8 @@
 <div class="">
-    <div>
-        <table *ngFor="let property of properties;trackBy:trackby.property" class="table grid-container property">
+    <div *ngFor="let property of properties;trackBy:trackby.property" class="property_wrapper">
+        <table class="table grid-container property">
         <tr>
-            <td><table class="table table-striped table-hover" style="display: inline-table">
+            <td><table class="table table-striped table-hover property-details" style="display: inline-table">
                 <tr>
                     <td>Designation Report:</td><td>{{ property.name | capitalize }}</td>
                 </tr>
@@ -16,19 +16,19 @@
                     <td>Architectural Style:</td><td>{{ property.style }}</td>
                 </tr>
                 <tr>
-                    <td>Date of Designation:</td><td>{{ property.dateDesignated }}</td>
+                    <td>Date of Designation:</td><td>{{ property.dateDesignated | date: 'ddMMyyyy' }}</td>
                 </tr>
                 <tr>
                     <td>Address:</td><td>{{ property.street }}<br />{{ property.borough }}</td>
                 </tr>
             </table></td>
-            <td style="width:100px"><div class="">
+            <td style="width:200px"><div class="image_wrapper">
                 <img src="{{property.photoURL}}" />
             </div></td>
         </tr>
         </table>
-        <div *ngIf="!properties.length">
-            No Records Found
-        </div>
+    </div>
+    <div *ngIf="!properties.length">
+        No Records Found
     </div>
 </div>
