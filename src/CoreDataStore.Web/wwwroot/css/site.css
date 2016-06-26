@@ -1,6 +1,9 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿/* In general, this should not be used. Use Angular's CSS instead! */
+
+
+body {
+/*    padding-top: 50px;
+    padding-bottom: 20px;*/
 }
 
 /* Wrapping element */

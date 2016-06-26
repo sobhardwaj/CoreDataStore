@@ -6,6 +6,7 @@ using CoreDataStore.Service.ValidationRules;
 using CoreDataStore.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.SwaggerGen.Annotations;
+using Microsoft.AspNetCore.Cors;
 
 namespace CoreDataStore.Web.Controllers
 {
@@ -14,6 +15,7 @@ namespace CoreDataStore.Web.Controllers
     /// LPC Reports API Controllers.
     /// </summary>
     [Route("api/[controller]")]
+    [EnableCors("AllowAll")]
     public class LPCReportController : Controller
     {
         private readonly ILPCReportService _lpcReportService;
