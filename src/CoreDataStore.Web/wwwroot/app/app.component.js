@@ -11,6 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var router_1 = require("@angular/router");
 var core_1 = require("@angular/core");
 var ng2_bootstrap_1 = require("ng2-bootstrap/ng2-bootstrap");
+var properties_component_1 = require('./components/properties.component');
+/* Providers */
+var http_1 = require('@angular/http');
+var common_1 = require('@angular/common');
+var sorter_1 = require('./utils/sorter');
+var data_service_1 = require('./services/data.service');
+var trackby_service_1 = require('./services/trackby.service');
+var APP_PROVIDERS = [
+    sorter_1.Sorter,
+    data_service_1.DataService,
+    trackby_service_1.TrackByService,
+    common_1.FORM_PROVIDERS,
+    http_1.HTTP_PROVIDERS,
+];
 var SecondComponent = (function () {
     function SecondComponent() {
     }
@@ -45,10 +59,11 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             directives: [router_1.ROUTER_DIRECTIVES],
-            template: "<a [routerLink]=\"['/']\">home</a>\n\t <a [routerLink]=\"['/second']\">Second</a>\n\t <router-outlet></router-outlet>\n\t"
+            providers: [APP_PROVIDERS],
+            template: "\n\t\t<div class=\"navbar navbar-inverse navbar-fixed-top\">\n\t        <div class=\"container\">\n\t            <div class=\"navbar-header\">\n\t                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n\t                    <span class=\"sr-only\">Toggle navigation</span>\n\t                    <span class=\"icon-bar\"></span>\n\t                    <span class=\"icon-bar\"></span>\n\t                    <span class=\"icon-bar\"></span>\n\t                </button>\n\t                <a asp-controller=\"Home\" asp-action=\"Index\" class=\"navbar-brand\">CoreDataStore.Web</a>\n\t            </div>\n\t            <div class=\"navbar-collapse collapse\">\n\t                <ul class=\"nav navbar-nav\">\n\t                    <li><a asp-controller=\"Home\" asp-action=\"Index\">Home</a></li>\n\t                    <li><a href=\"/swagger/ui/index.html\">Swagger</a></li>\n\t                </ul>\n\t            </div>\n\t        </div>\n\t    </div>\n\n\t\t<a [routerLink]=\"['/']\">home</a>\n\t \t<a [routerLink]=\"['/second']\">Second</a>\n\t \t<router-outlet></router-outlet>\n\t"
         }),
         router_1.Routes([
-            { path: '/', component: HomeComponent },
+            { path: '/', component: properties_component_1.PropertiesComponent },
             { path: '/second', component: SecondComponent }
         ]), 
         __metadata('design:paramtypes', [])
