@@ -40,11 +40,13 @@ $typings install
 
 ##Website
 
-| Environment   | Database Provider      | Port  |
-|---------------|:----------------------:|------:|
-| Development   | SQLite                 | 5000  |
-| Staging       | PostgreSQL             | 5001  |
-| Production    | SQL Server             | 5002  |
+TODO: Enhance cmd - Use 1 win/bash Script (run.bat/run.sh)    
+
+| Environment   | Database Provider     | Port  | Windows cmd  | Linux/Mac cmd
+|---------------| ----------------------|:-----:|--------------|--------------
+| Development   | SQLite                | 5000  | dev.cmd      | ./dev.sh   
+| Staging       | PostgreSQL            | 5001  | stage.cmd    | ./stage.sh
+| Production    | SQL Server            | 5002  | prod.cmd     | TODO
 
 
 ```bash
