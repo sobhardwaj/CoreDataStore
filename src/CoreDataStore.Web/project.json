@@ -30,7 +30,8 @@
     "Newtonsoft.Json": "8.0.4-beta1",
     "CoreDataStore.Service": "1.0.0-*",
     "CoreDataStore.Data.SqlServer": "1.0.0-*",
-    "CoreDataStore.Data.Postgre": "1.0.0-*"
+    "CoreDataStore.Data.Postgre": "1.0.0-*",
+    "System.Linq.Expressions": "4.1.0"
   },
 
   "tools": {

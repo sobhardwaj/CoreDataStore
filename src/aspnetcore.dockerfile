@@ -6,6 +6,9 @@ MAINTAINER Stuart Shay
 #
 # Reference Dockerfile
 # https://github.com/dotnet/dotnet-docker/blob/master/1.0.0-rc2/core/Dockerfile
+#
+# docker exec -it <ContainerId> /bin/bash
+#
 
 
 # Set environment variables
