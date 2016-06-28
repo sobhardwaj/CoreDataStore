@@ -1,12 +1,9 @@
 {
-  "version": "1.0.0-*",
-
   "dependencies": {
-    "NETStandard.Library": "1.5.0-rc2-24027",
-    "System.Linq.Expressions": "4.0.11-rc2-24027"
+    "NETStandard.Library": "1.6.0",
+    "System.Linq.Expressions": "4.1.0"
   },
-
-"frameworks": {
+  "frameworks": {
     "netcoreapp1.0": {
       "imports": [
         "dotnet5.6",
@@ -15,8 +12,8 @@
       ]
     }
   },
-
   "tooling": {
     "defaultNamespace": "CoreDataStore.Common"
-  }
+  },
+  "version": "1.0.0-*"
 }

@@ -43,7 +43,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         [Fact]
         public void LPC_Reports_Exist()
         {
-            var results = lpcReportRepository.GetAll();
+            var results = lpcReportRepository.GetAll().ToList();
             Assert.NotNull(results);
         }
 
@@ -77,6 +77,16 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
                 dbContext.SaveChanges();
             }
         }
+
+
+        [Fact]
+        public void Can_Get_Inclueded_Fields()
+        {
+            var results = lpcReportRepository.AllIncluding(x => x.Name).ToList();
+            Assert.NotNull(results);
+
+        }
+
 
 
     }

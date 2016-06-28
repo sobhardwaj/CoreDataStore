@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using System;
-using Microsoft.DotNet.Cli.Utils.CommandParsing;
 
 namespace CoreDataStore.Data.SqlServer.Test.Helpers
 {
@@ -14,8 +13,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Helpers
 
 #warning "Remove Hardcoded DB Connection String"
 
-
-        public NYCLandmarkContext Create()
+        public NYCLandmarkContext Create(DbContextFactoryOptions options)
         {
             var builder = new DbContextOptionsBuilder<NYCLandmarkContext>();
 
@@ -25,12 +23,11 @@ namespace CoreDataStore.Data.SqlServer.Test.Helpers
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
             IConfigurationRoot Configuration = configBuilder.Build();
-            
+
             builder.UseSqlServer(@"Data Source=.;Initial Catalog=NycLandmarks;Integrated Security=True" //Configuration["connectionString:SqlServer"]
                 , b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name));
 
             return new NYCLandmarkContext(builder.Options);
         }
-
     }
 }
