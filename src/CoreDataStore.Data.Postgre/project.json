@@ -4,8 +4,8 @@
   "dependencies": {
     "CoreDataStore.Data": "1.0.0-*",
     "CoreDataStore.Domain": "1.0.0-*",
-    "NETStandard.Library": "1.5.0-rc2-24027",
-    "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.0-rc2-release1"
+    "NETStandard.Library": "1.6.0",
+    "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.0-rc3-ci-39"
   },
 
   "frameworks": {
