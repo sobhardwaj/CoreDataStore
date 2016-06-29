@@ -1,24 +1,15 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using Swashbuckle.SwaggerGen.Generator;
-
 using CoreDataStore.Domain.Interfaces;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;
-
-using CoreDataStore.Data.Sqlite.Repositories;
-using CoreDataStore.Data.SqlServer.Repositories;
-using CoreDataStore.Data.Postgre.Repositories;
 
 namespace CoreDataStore.Web
 {
@@ -94,37 +85,20 @@ namespace CoreDataStore.Web
 
         private void ConfigService(IServiceCollection services)
         { 
-            JsonOutputFormatter jsonOutputFormatter = new JsonOutputFormatter
-            {
-                SerializerSettings = new JsonSerializerSettings
-                {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                    ContractResolver = new CamelCasePropertyNamesContractResolver()
-                }
-            };
-
             services.AddCors();
-            services.AddMvc(
-                 options =>
-                 {
-                     options.OutputFormatters.Clear();
-                     options.OutputFormatters.Insert(0, jsonOutputFormatter);
-                 }
-             );
+            services.AddMvc();
 
-          
-
-            services.AddSwaggerGen();
-            services.ConfigureSwaggerGen(options =>
-            {
-                options.SingleApiVersion(new Info
-                {
-                    Version = "v1",
-                    Title = "Core DataStore API",
-                    Description = "Core DataStore API",
-                    TermsOfService = "None"
-                });
-            });
+            //services.AddSwaggerGen();
+            //services.ConfigureSwaggerGen(options =>
+            //{
+            //    options.SingleApiVersion(new Info
+            //    {
+            //        Version = "v1",
+            //        Title = "Core DataStore API",
+            //        Description = "Core DataStore API",
+            //        TermsOfService = "None"
+            //    });
+            //});
 
             services.ConfigureSwaggerGen(options =>
             {
@@ -175,8 +149,8 @@ namespace CoreDataStore.Web
 
             app.UseMvc(ConfigureRoutes);
 
-            app.UseSwaggerGen();
-            app.UseSwaggerUi();
+            //app.UseSwaggerGen();
+            //app.UseSwaggerUi();
 
         }
 
