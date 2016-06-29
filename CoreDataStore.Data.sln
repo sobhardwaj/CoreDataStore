@@ -31,6 +31,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Data.Postgre.
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Data.Sqlite", "src\CoreDataStore.Data.Sqlite\CoreDataStore.Data.Sqlite.xproj", "{4AEA3544-5C8B-452C-9C36-0B8F2E0B1A02}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Service", "src\CoreDataStore.Service\CoreDataStore.Service.xproj", "{59A3B239-C840-4FFE-A81A-B1EEA0476DEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{4AEA3544-5C8B-452C-9C36-0B8F2E0B1A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AEA3544-5C8B-452C-9C36-0B8F2E0B1A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AEA3544-5C8B-452C-9C36-0B8F2E0B1A02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59A3B239-C840-4FFE-A81A-B1EEA0476DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A3B239-C840-4FFE-A81A-B1EEA0476DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A3B239-C840-4FFE-A81A-B1EEA0476DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A3B239-C840-4FFE-A81A-B1EEA0476DEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,5 +88,6 @@ Global
 		{D276010D-7AF2-4C83-8DA8-1CE411F58480} = {16E0E7AC-0945-45F1-8D10-F27027CCC1DE}
 		{530C61CC-3BD1-417C-9B53-2945A3A4D809} = {03D6EAC4-7C2A-4737-9842-255C45C43CFC}
 		{4AEA3544-5C8B-452C-9C36-0B8F2E0B1A02} = {16E0E7AC-0945-45F1-8D10-F27027CCC1DE}
+		{59A3B239-C840-4FFE-A81A-B1EEA0476DEC} = {16E0E7AC-0945-45F1-8D10-F27027CCC1DE}
 	EndGlobalSection
 EndGlobal

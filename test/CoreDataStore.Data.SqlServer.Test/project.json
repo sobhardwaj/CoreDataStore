@@ -18,12 +18,12 @@
       "version": "1.0.0",
       "type": "platform"
     },
-    "GenFu": "1.1.0",
     "xunit.runner.visualstudio": "2.2.0-beta1-build1144",
-    "FluentAssertions": "4.8.0",
-    "xunit": "2.2.0-beta1-build3239",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
-    "Microsoft.DotNet.Cli.Utils": "1.0.0-preview2-003121"
+    "Microsoft.DotNet.Cli.Utils": "1.0.0-preview2-003121",
+    "FluentAssertions": "4.9.1",
+    "GenFu": "1.1.1",
+    "xunit": "2.2.0-beta2-build3300"
   },
 
   "frameworks": {
