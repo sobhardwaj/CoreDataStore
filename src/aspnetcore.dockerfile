@@ -1,4 +1,5 @@
-FROM microsoft/dotnet:latest
+FROM microsoft/dotnet:1.0.0-core
+
 
 MAINTAINER Stuart Shay
 
