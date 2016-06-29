@@ -5,7 +5,7 @@
     "CoreDataStore.Data": "1.0.0-*",
     "CoreDataStore.Domain": "1.0.0-*",
     "NETStandard.Library": "1.6.0",
-    "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.0-rc3-ci-39"
+    "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.0-rc2-release1"
   },
 
   "frameworks": {
