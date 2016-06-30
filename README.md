@@ -60,7 +60,7 @@ dotnet run
 ```bash
 cd CoreDataStore/src
 
-docker build -t coredatastore . 
+docker build -f aspnetcore.dockerfile -t coredatastore . 
 docker run --rm --name  coredatastore -p 5000:5000 coredatastore
 ```
 
