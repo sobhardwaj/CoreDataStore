@@ -10,22 +10,27 @@
             <div class="col-md-10">
                 <div class="navbar">
                     <ul class="nav navbar-nav">
-                        <li class="toolbar-item">
+                        <!--li class="toolbar-item">
                             <a (click)="changeDisplayMode(displayModeEnum.Card)">
                                 <span class="glyphicon glyphicon-th-large"></span> Card View
                             </a>
-                        </li>
+                        </li-->
                         <!--li class="toolbar-item">
                             <a (click)="changeDisplayMode(displayModeEnum.Grid)" [class.active]="displayMode === displayModeEnum.Grid">
                                 <span class="glyphicon glyphicon-align-justify"></span> List View
                             </a>
                         </li-->
                     </ul>
-                    <filter-textbox class="navbar-right"
-                     (changed)="filterChanged($event)"></filter-textbox>
+                    <filter-selectbox class="navbar-left" [items]="boroughs" label="Borough"
+                     (changed)="boroughChanged($event)"></filter-selectbox>
+                    <div class="navbar-left">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    <filter-selectbox class="navbar-left" [items]="objectTypes" label="Type"
+                     (changed)="objectTypeChanged($event)"></filter-selectbox>
                 </div>
             </div>
         </div>
+
+        <pagination [totalItems]="totalItems" [(ngModel)]="page" (pageChanged)="pageChanged($event)"></pagination>
         
         <properties-list [properties]="filteredProperties"></properties-list>
         <!--customers-card 
@@ -35,6 +40,7 @@
         <customers-grid 
           [customers]="filteredCustomers" 
           [hidden]="displayMode !== displayModeEnum.Grid"></customers-grid-->
-          
+
+        <pagination [totalItems]="totalItems" [(ngModel)]="page" (pageChanged)="pageChanged($event)"></pagination>
     </div>
 </div>
