@@ -1,10 +1,7 @@
 {
-  "version": "1.0.0-*",
-
   "buildOptions": {
     "emitEntryPoint": true
   },
-
   "dependencies": {
     "CoreDataStore.Common": "1.0.0-*",
     "CoreDataStore.Data": "1.0.0-*",
@@ -23,7 +20,6 @@
     "xunit": "2.2.0-beta1-build3239",
     "xunit.runner.visualstudio": "2.2.0-beta1-build1144"
   },
-
   "frameworks": {
     "netcoreapp1.0": {
       "imports": [
@@ -33,9 +29,7 @@
       ]
     }
   },
-
   "testRunner": "xunit",
-
   "tooling": {
     "defaultNamespace": "CoreDataStore.Data.Postgre.Test"
   },
@@ -47,5 +41,6 @@
         "portable-net45+win8"
       ]
     }
-  }
+  },
+  "version": "1.0.0-*"
 }

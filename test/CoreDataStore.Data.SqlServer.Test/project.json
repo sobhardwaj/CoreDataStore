@@ -20,7 +20,6 @@
     },
     "xunit.runner.visualstudio": "2.2.0-beta1-build1144",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
-    "Microsoft.DotNet.Cli.Utils": "1.0.0-preview2-003121",
     "FluentAssertions": "4.9.1",
     "GenFu": "1.1.1",
     "xunit": "2.2.0-beta2-build3300"
