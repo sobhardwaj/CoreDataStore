@@ -6,6 +6,9 @@
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
     '@angular':                   'node_modules/@angular',
     "@angular/core/src/facade/lang": "node_modules/@angular/core/src/facade/lang.js",
+    'ng2-select': 'node_modules/ng2-select',
+    'ng2-bootstrap': 'node_modules/ng2-bootstrap',
+    'ng2-pagination': 'node_modules/ng2-pagination',
     'moment': 'node_modules/moment/moment.js'
   };
   // packages tells the System loader how to load when no filename and/or no extension
@@ -13,6 +16,9 @@
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { main: 'bundles/Rx.umd.js', defaultExtension: 'js' },
     'angular2-in-memory-web-api': { defaultExtension: 'js' },
+    'ng2-select': { main: 'ng2-select.js', defaultExtension: 'js' },
+    'ng2-bootstrap': { main: 'ng2-bootstrap.js', defaultExtension: 'js' },
+    'ng2-pagination': { main: 'index.js', defaultExtension: 'js' },
   };
   var packageNames = [
     '@angular/common',
