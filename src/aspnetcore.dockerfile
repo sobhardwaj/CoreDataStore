@@ -28,8 +28,9 @@ COPY . /app
 # Set working directory
 WORKDIR /app/CoreDataStore.Web
 
-# Restore NuGet packages
+# Restore & Build
 RUN ["dotnet", "restore"]
+RUN ["dotnet", "build"]
 
 # Open up port
 EXPOSE 5000
