@@ -10,6 +10,7 @@ using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;
+using Swashbuckle.Swagger.Model;
 
 namespace CoreDataStore.Web
 {
@@ -88,17 +89,17 @@ namespace CoreDataStore.Web
             services.AddCors();
             services.AddMvc();
 
-            //services.AddSwaggerGen();
-            //services.ConfigureSwaggerGen(options =>
-            //{
-            //    options.SingleApiVersion(new Info
-            //    {
-            //        Version = "v1",
-            //        Title = "Core DataStore API",
-            //        Description = "Core DataStore API",
-            //        TermsOfService = "None"
-            //    });
-            //});
+            services.AddSwaggerGen();
+            services.ConfigureSwaggerGen(options =>
+            {
+                options.SingleApiVersion(new Info
+                {
+                    Version = "v1",
+                    Title = "Core DataStore API",
+                    Description = "Core DataStore API",
+                    TermsOfService = "None"
+                });
+            });
 
             services.ConfigureSwaggerGen(options =>
             {
@@ -149,8 +150,8 @@ namespace CoreDataStore.Web
 
             app.UseMvc(ConfigureRoutes);
 
-            //app.UseSwaggerGen();
-            //app.UseSwaggerUi();
+            app.UseSwagger();  //UseSwaggerGen());
+            app.UseSwaggerUi();
 
         }
 

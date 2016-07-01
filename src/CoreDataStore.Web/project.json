@@ -26,8 +26,8 @@
       "type": "platform"
     },
     "Newtonsoft.Json": "9.0.1",
-    "Swashbuckle": "6.0.0-beta9",
-    "System.Linq.Expressions": "4.1.0"
+    "System.Linq.Expressions": "4.1.0",
+    "Swashbuckle": "6.0.0-beta901"
   },
 
   "tools": {
