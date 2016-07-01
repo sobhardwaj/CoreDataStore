@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using CoreDataStore.Domain.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.SwaggerGen.Annotations;
 
 namespace CoreDataStore.Web.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors("AllowAll")]
     public class ReferenceController : Controller
     {
         private readonly IReferenceRepository _referenceRepository;
