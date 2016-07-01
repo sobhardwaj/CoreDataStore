@@ -12,12 +12,11 @@ services:
       - aspnetcoreapp-network
 
   postgres:
-   build:
-      dockerfile: postgres.dockerfile
-   environment:
+    image: postgres
+    ports:
+     - "5000:5000"
+    environment:
       POSTGRES_PASSWORD: password
-   ports:
-     - "5432:5432"
     networks:
       - aspnetcoreapp-network
 
