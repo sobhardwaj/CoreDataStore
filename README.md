@@ -57,11 +57,21 @@ dotnet run
 ```
 ##Docker   
 
+Web Container
 ```bash
 cd CoreDataStore/src
 
 docker build -f aspnetcore.dockerfile -t coredatastore . 
 docker run --rm --name  coredatastore -p 5000:5000 coredatastore
+```
+
+Docker Compose Web & Postgre 
+
+```bash
+cd CoreDataStore/src
+
+docker-compose build 
+docker-compose up
 ```
 
 ##Entity Framework
