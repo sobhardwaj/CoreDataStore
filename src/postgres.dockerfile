@@ -21,8 +21,8 @@ RUN apt-get update && apt-get install -y \
 USER postgres
 
 RUN    /etc/init.d/postgresql start &&\
-    psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &&\
-    createdb -O docker docker
+    psql --command "CREATE USER nyclandmarks WITH SUPERUSER PASSWORD 'nyclandmarks2016';" &&\
+    createdb -O nyclandmarks nyclandmarks
 
 RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.conf
 

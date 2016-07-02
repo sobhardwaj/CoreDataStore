@@ -3,11 +3,12 @@
 ##Prerequisites:
 
 ### .NET Core 
-.NET Core SDK 1.0.0 RC2   
+.NET Core SDK 1.0.0 RTM  - June 27, 2016 
 https://www.microsoft.com/net/core  
 
 ###Visual Studio  
-Visual Studio 2015 Update 3 RC     
+
+Visual Studio 2015 Update 3 RTM     
 Visual Studio 2015 Tools 1.0.0 RC2
 
 ### Packages 
@@ -65,7 +66,14 @@ docker build -f aspnetcore.dockerfile -t coredatastore .
 docker run --rm --name  coredatastore -p 5000:5000 coredatastore
 ```
 
-Docker Compose Web & Postgre 
+Postgres Db
+
+```bash
+docker build -f postgres.dockerfile -t postgresdb .
+docker run --rm --name  postgresdb -p 5432:5432 postgresdb
+```
+
+Docker Compose Web & Postgre Db
 
 ```bash
 cd CoreDataStore/src
