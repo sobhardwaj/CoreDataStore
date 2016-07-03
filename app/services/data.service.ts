@@ -12,7 +12,7 @@ import { IProperty } from '../interfaces';
 export class DataService {
   
     _baseUrl: string = 'http://localhost:5000/';
-    properties: IProperty[][][][]; // cache for borough/objecttype/page
+    properties: any; //IProperty[][][][]; // cache for borough/objecttype/page
 
     boroughs: string[];
     objectTypes: string[];
@@ -164,7 +164,7 @@ export class DataService {
 
     private handleError(error: any) {
         console.error(error);
-        // return Observable.throw((error.json && error.json().error) || 'Server error');
+        return Observable.throw((error.json && error.json().error) || 'Server error');
     }
 
 

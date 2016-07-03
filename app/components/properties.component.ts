@@ -89,6 +89,7 @@ export class PropertiesComponent implements OnInit {
         this.properties = this.filteredProperties = properties;
         // console.log(properties);
       });
+  }
 }
 
 /*
