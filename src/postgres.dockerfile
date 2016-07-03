@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /scripts
-COPY  /docker/PGPlaceholder.sh  /scripts/PGPlaceholder.sh
+COPY  /docker  /scripts
 RUN chmod +x /scripts/PGPlaceholder.sh
 
 USER postgres
