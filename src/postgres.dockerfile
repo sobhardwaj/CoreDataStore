@@ -27,9 +27,9 @@ USER postgres
 
 RUN    /etc/init.d/postgresql start &&\
     psql --command "CREATE USER nyclandmarks WITH SUPERUSER PASSWORD 'nyclandmarks';" &&\
-    createdb -O nyclandmarks nyclandmarks
+    createdb -O nyclandmarks nyclandmarks &&\
+    psql -d nyclandmarks -a -f  /scripts/backup.sql
 
-RUN psql -d nyclandmarks -a -f  /scripts/backup.sql
 
 RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.conf
 
