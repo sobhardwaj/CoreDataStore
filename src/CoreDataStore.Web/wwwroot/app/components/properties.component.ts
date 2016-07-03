@@ -10,85 +10,89 @@ import { FilterSelectboxComponent } from './filterSelectbox.component';
 import { PropertiesListComponent } from './propertiesList.component'
 import { IProperty } from '../interfaces';
 
-@Component({ 
-  moduleId: module.id,
-  selector: 'properties', 
-  templateUrl: 'properties.component.html',
-  directives: [PAGINATION_DIRECTIVES, ROUTER_DIRECTIVES, PropertiesListComponent, FilterTextboxComponent, FilterSelectboxComponent
-               /*CustomersCardComponent, CustomersGridComponent*/],
+@Component({
+    moduleId: module.id,
+    selector: 'properties',
+    templateUrl: 'properties.component.html',
+    directives: [
+        PAGINATION_DIRECTIVES, ROUTER_DIRECTIVES, PropertiesListComponent, FilterTextboxComponent,
+        FilterSelectboxComponent
+        /*CustomersCardComponent, CustomersGridComponent*/
+    ],
 })
 export class PropertiesComponent implements OnInit {
-  title: string;
-  borough: string = '';
-  objectType: string = '';
-  page: number = 1;
-  boroughs: string[] = [];
-  objectTypes: string[] = [];
-  properties: IProperty[] = [];
-  filteredProperties: IProperty[] = [];
-  totalItems:number = 100;
-  // displayMode: DisplayModeEnum;
-  // displayModeEnum = DisplayModeEnum;
+    title: string;
+    borough: string = '';
+    objectType: string = '';
+    page: number = 1;
+    boroughs: string[] = [];
+    objectTypes: string[] = [];
+    properties: IProperty[] = [];
+    filteredProperties: IProperty[] = [];
+    totalItems: number = 100;
+    // displayMode: DisplayModeEnum;
+    // displayModeEnum = DisplayModeEnum;
 
-  constructor(private dataService: DataService) { }
-  
-  ngOnInit() {
-    this.title = 'Properties';
-    // this.displayMode = DisplayModeEnum.Card;
+    constructor(private dataService: DataService) {}
 
-    this.dataService.getProperties(this.borough, this.objectType, this.page)
-      .subscribe((properties: IProperty[]) => {
-        this.properties = this.filteredProperties = properties;
-        // console.log(properties);
-      });
+    ngOnInit() {
+        this.title = 'Properties';
+        // this.displayMode = DisplayModeEnum.Card;
 
-    this.dataService.getBoroughs()
-      .subscribe((boroughs: string[]) => {
-        this.boroughs = boroughs;
-        // console.log(boroughs);
-      });
+        this.dataService.getProperties(this.borough, this.objectType, this.page)
+            .subscribe((properties: IProperty[]) => {
+                this.properties = this.filteredProperties = properties;
+                // console.log(properties);
+            });
 
-    this.dataService.getObjectTypes()
-      .subscribe((objectTypes: string[]) => {
-        this.objectTypes = objectTypes;
-        // console.log(objectTypes);
-      });
-  }
+        this.dataService.getBoroughs()
+            .subscribe((boroughs: string[]) => {
+                this.boroughs = boroughs;
+                // console.log(boroughs);
+            });
 
-  /*changeDisplayMode(mode: DisplayModeEnum) {
-      this.displayMode = mode;
-  }*/
+        this.dataService.getObjectTypes()
+            .subscribe((objectTypes: string[]) => {
+                this.objectTypes = objectTypes;
+                // console.log(objectTypes);
+            });
+    }
 
-  boroughChanged(data: string) {
-    // console.log(data);
-    this.borough = data;
-    this.dataService.getProperties(this.borough, this.objectType, this.page)
-      .subscribe((properties: IProperty[]) => {
-        this.properties = this.filteredProperties = properties;
-        // console.log(properties);
-      });
-  }
+    /*changeDisplayMode(mode: DisplayModeEnum) {
+        this.displayMode = mode;
+    }*/
 
-  objectTypeChanged(data: string) {
-    // console.log(data);
-    this.objectType = data;
-    this.dataService.getProperties(this.borough, this.objectType, this.page)
-      .subscribe((properties: IProperty[]) => {
-        this.properties = this.filteredProperties = properties;
-        // console.log(properties);
-      });
-  }
+    boroughChanged(data: string) {
+        // console.log(data);
+        this.borough = data;
+        this.dataService.getProperties(this.borough, this.objectType, this.page)
+            .subscribe((properties: IProperty[]) => {
+                this.properties = this.filteredProperties = properties;
+                // console.log(properties);
+            });
+    }
 
-  pageChanged(event: any) {
-    // console.log(event);
-    // console.log('Page changed to: ' + event.page);
-    // console.log('Number items per page: ' + event.itemsPerPage);  }
-    this.page = event.page;
-    this.dataService.getProperties(this.borough, this.objectType, this.page)
-      .subscribe((properties: IProperty[]) => {
-        this.properties = this.filteredProperties = properties;
-        // console.log(properties);
-      });
+    objectTypeChanged(data: string) {
+        // console.log(data);
+        this.objectType = data;
+        this.dataService.getProperties(this.borough, this.objectType, this.page)
+            .subscribe((properties: IProperty[]) => {
+                this.properties = this.filteredProperties = properties;
+                // console.log(properties);
+            });
+    }
+
+    pageChanged(event: any) {
+        // console.log(event);
+        // console.log('Page changed to: ' + event.page);
+        // console.log('Number items per page: ' + event.itemsPerPage);  }
+        this.page = event.page;
+        this.dataService.getProperties(this.borough, this.objectType, this.page)
+            .subscribe((properties: IProperty[]) => {
+                this.properties = this.filteredProperties = properties;
+                // console.log(properties);
+            });
+    }
 }
 
 /*
