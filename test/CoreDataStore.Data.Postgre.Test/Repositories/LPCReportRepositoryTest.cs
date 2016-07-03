@@ -22,7 +22,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             var services = new ServiceCollection();
 
             services.AddDbContext<NYCLandmarkContext>(options =>
-            options.UseNpgsql(@"User ID=postgres; Password=password;  Server=localhost;Port=5432;Database=nyclandmarks;Integrated Security=true;Pooling=true;"));
+            options.UseNpgsql(@"User ID=nyclandmarks;Password=nyclandmarks;Server=192.168.1.6;Port=5432;Database=nyclandmarks;Integrated Security=true;Pooling=true;"));
 
             services.AddScoped<ILPCReportRepository, LPCReportRepository>();
             serviceProvider = services.BuildServiceProvider();
@@ -37,7 +37,10 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         public void LPC_Reports_Exist()
         {
             var results = lpcReportRepository.GetAll();
+            var count = results.Count();
+
             Assert.NotNull(results);
+            Assert.NotEqual(0, count);
         }
 
 
