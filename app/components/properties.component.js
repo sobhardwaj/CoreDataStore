@@ -91,7 +91,9 @@ var PropertiesComponent = (function () {
             moduleId: module.id,
             selector: 'properties',
             templateUrl: 'properties.component.html',
-            directives: [ng2_bootstrap_1.PAGINATION_DIRECTIVES, router_1.ROUTER_DIRECTIVES, propertiesList_component_1.PropertiesListComponent, filterTextbox_component_1.FilterTextboxComponent, filterSelectbox_component_1.FilterSelectboxComponent
+            directives: [
+                ng2_bootstrap_1.PAGINATION_DIRECTIVES, router_1.ROUTER_DIRECTIVES, propertiesList_component_1.PropertiesListComponent, filterTextbox_component_1.FilterTextboxComponent,
+                filterSelectbox_component_1.FilterSelectboxComponent
             ],
         }), 
         __metadata('design:paramtypes', [data_service_1.DataService])
