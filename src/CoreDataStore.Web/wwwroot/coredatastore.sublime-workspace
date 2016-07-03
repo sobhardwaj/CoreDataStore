@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"obje",
+				"objectType"
+			],
+			[
+				"bo",
+				"borough"
+			],
+			[
+				"obe",
+				"objectType"
+			],
+			[
 				"prop",
 				"properties"
 			],
@@ -335,15 +347,15 @@
 			"file": "package.json",
 			"settings":
 			{
-				"buffer_size": 1118,
-				"line_ending": "Windows"
+				"buffer_size": 1178,
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/project.json",
 			"settings":
 			{
-				"buffer_size": 2511,
+				"buffer_size": 2551,
 				"line_ending": "Windows"
 			}
 		},
@@ -352,6 +364,14 @@
 			"settings":
 			{
 				"buffer_size": 4473,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/Controllers/ReferenceController.cs",
+			"settings":
+			{
+				"buffer_size": 1486,
 				"line_ending": "Windows"
 			}
 		},
@@ -375,7 +395,7 @@
 			"file": "/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/Views/Shared/_Layout.cshtml",
 			"settings":
 			{
-				"buffer_size": 4222,
+				"buffer_size": 4284,
 				"line_ending": "Windows"
 			}
 		},
@@ -391,7 +411,7 @@
 			"file": "css/styles.css",
 			"settings":
 			{
-				"buffer_size": 857,
+				"buffer_size": 900,
 				"line_ending": "Windows"
 			}
 		},
@@ -415,7 +435,7 @@
 			"file": "app/services/data.service.ts",
 			"settings":
 			{
-				"buffer_size": 4869,
+				"buffer_size": 6452,
 				"line_ending": "Windows"
 			}
 		},
@@ -423,7 +443,7 @@
 			"file": "app/components/properties.component.ts",
 			"settings":
 			{
-				"buffer_size": 2247,
+				"buffer_size": 3253,
 				"line_ending": "Windows"
 			}
 		},
@@ -431,7 +451,23 @@
 			"file": "app/components/properties.component.html",
 			"settings":
 			{
-				"buffer_size": 1592,
+				"buffer_size": 2105,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/components/filterSelectbox.component.ts",
+			"settings":
+			{
+				"buffer_size": 1326,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/components/filterTextbox.component.ts",
+			"settings":
+			{
+				"buffer_size": 704,
 				"line_ending": "Windows"
 			}
 		},
@@ -479,7 +515,7 @@
 			"file": "systemjs.config.js",
 			"settings":
 			{
-				"buffer_size": 2093,
+				"buffer_size": 2454,
 				"line_ending": "Windows"
 			}
 		},
@@ -511,7 +547,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 1109,
+				"buffer_size": 1165,
 				"line_ending": "Windows"
 			}
 		},
@@ -569,6 +605,8 @@
 	},
 	"file_history":
 	[
+		"/G/OpenServer/domains/rcadminpanel/app/components/image-uploader.jsx",
+		"/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/wwwroot/app/components/filterTextbox.component.ts",
 		"/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/package.json",
 		"/D/projects/js/experiments/Angular2-JumpStart/src/app/app.component.ts",
 		"/D/projects/js/experiments/Angular2-JumpStart/src/app/app.providers.ts",
@@ -674,6 +712,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"properties",
+			"filterText",
+			"filterc",
+			"prop",
+			"css",
+			"ng2",
+			"filterText",
+			"filter-selectbox",
+			"changed",
+			"filterChanged",
+			"Filter",
+			"filter-textbox",
 			"allow",
 			"view",
 			"CustomersComponent",
@@ -789,19 +839,7 @@
 			"setacces",
 			"webpages",
 			"onClearChatHistory",
-			"onclearChatHistory",
-			":",
-			"append",
-			"chat_operations",
-			"heigh",
-			"styl",
-			"reactify",
-			"renderRepos",
-			"alert",
-			"moun",
-			"console.lo",
-			"//",
-			"rumbletalk_chat_token_key"
+			"onclearChatHistory"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -820,7 +858,7 @@
 	"groups":
 	[
 		{
-			"selected": 13,
+			"selected": 11,
 			"sheets":
 			[
 				{
@@ -829,7 +867,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1118,
+						"buffer_size": 1178,
 						"regions":
 						{
 						},
@@ -850,7 +888,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 18,
 					"type": "text"
 				},
 				{
@@ -859,7 +897,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2511,
+						"buffer_size": 2551,
 						"regions":
 						{
 						},
@@ -880,7 +918,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
@@ -896,8 +934,8 @@
 						"selection":
 						[
 							[
-								507,
-								483
+								296,
+								329
 							]
 						],
 						"settings":
@@ -915,6 +953,36 @@
 				},
 				{
 					"buffer": 3,
+					"file": "/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/Controllers/ReferenceController.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1486,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								180,
+								180
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/C#.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
 					"file": "/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/Startup.cs",
 					"semi_transient": false,
 					"settings":
@@ -940,11 +1008,11 @@
 						"translation.y": 1479.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "/D/projects/js/experiments/angular2-webpack2-starter/node_modules/webpack-dev-server/bin/webpack-dev-server.js",
 					"semi_transient": false,
 					"settings":
@@ -969,24 +1037,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 22,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 6,
 					"file": "/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/Views/Shared/_Layout.cshtml",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4222,
+						"buffer_size": 4284,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2252,
-								3187
+								313,
+								375
 							]
 						],
 						"settings":
@@ -996,14 +1064,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 714.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 7,
 					"file": "/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/bower.json",
 					"semi_transient": false,
 					"settings":
@@ -1029,24 +1097,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 22,
+					"stack_index": 25,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 8,
 					"file": "css/styles.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 857,
+						"buffer_size": 900,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								467,
-								467
+								443,
+								443
 							]
 						],
 						"settings":
@@ -1054,14 +1122,14 @@
 							"syntax": "Packages/CSS/CSS.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 189.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 9,
 					"file": "app/app.component.ts",
 					"semi_transient": false,
 					"settings":
@@ -1073,8 +1141,8 @@
 						"selection":
 						[
 							[
-								2144,
-								2144
+								180,
+								180
 							]
 						],
 						"settings":
@@ -1087,14 +1155,14 @@
 							"syntax": "Packages/ArcticTypescript/theme/Typescript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 765.0,
+						"translation.y": 1020.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 10,
 					"file": "app/interfaces.ts",
 					"semi_transient": false,
 					"settings":
@@ -1129,20 +1197,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 11,
 					"file": "app/services/data.service.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4869,
+						"buffer_size": 6452,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4197,
-								4197
+								497,
+								497
 							]
 						],
 						"settings":
@@ -1157,27 +1225,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1775.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 12,
 					"file": "app/components/properties.component.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2247,
+						"buffer_size": 3253,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1365,
-								1365
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1192,27 +1260,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 255.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 13,
 					"file": "app/components/properties.component.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1592,
+						"buffer_size": 2105,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								455,
-								455
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1229,20 +1297,55 @@
 					"type": "text"
 				},
 				{
-					"buffer": 13,
-					"file": "app/components/propertiesList.component.ts",
+					"buffer": 14,
+					"file": "app/components/filterSelectbox.component.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1183,
+						"buffer_size": 1326,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								312,
-								312
+								1293,
+								1293
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"extensions":
+							[
+								"ts"
+							],
+							"syntax": "Packages/ArcticTypescript/theme/Typescript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 53.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "app/components/filterTextbox.component.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 704,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								202,
+								202
 							]
 						],
 						"settings":
@@ -1260,11 +1363,46 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 16,
+					"file": "app/components/propertiesList.component.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1183,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								417,
+								417
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"extensions":
+							[
+								"ts"
+							],
+							"syntax": "Packages/ArcticTypescript/theme/Typescript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
 					"file": "app/components/propertiesList.component.html",
 					"semi_transient": false,
 					"settings":
@@ -1276,8 +1414,8 @@
 						"selection":
 						[
 							[
-								867,
-								881
+								58,
+								58
 							]
 						],
 						"settings":
@@ -1290,11 +1428,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 18,
 					"file": "app/services/trackby.service.ts",
 					"semi_transient": false,
 					"settings":
@@ -1323,11 +1461,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 19,
 					"file": "/D/projects/js/experiments/Angular2-JumpStart/src/app/customers/customers.component.html",
 					"semi_transient": false,
 					"settings":
@@ -1353,11 +1491,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 21,
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 20,
 					"file": "app/main.ts",
 					"semi_transient": false,
 					"settings":
@@ -1386,24 +1524,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 20,
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 21,
 					"file": "systemjs.config.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2093,
+						"buffer_size": 2454,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								148,
-								148
+								514,
+								514
 							]
 						],
 						"settings":
@@ -1416,11 +1554,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 19,
+					"buffer": 22,
 					"file": "tsconfig.json",
 					"semi_transient": false,
 					"settings":
@@ -1470,11 +1608,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 21,
+					"stack_index": 24,
 					"type": "text"
 				},
 				{
-					"buffer": 20,
+					"buffer": 23,
 					"file": "_references.js",
 					"semi_transient": false,
 					"settings":
@@ -1498,11 +1636,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 23,
+					"stack_index": 26,
 					"type": "text"
 				},
 				{
-					"buffer": 21,
+					"buffer": 24,
 					"file": "/D/projects/clients/2016/CoreDataStore/src/CoreDataStore.Web/Views/Home/Index.cshtml",
 					"semi_transient": false,
 					"settings":
@@ -1528,24 +1666,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 19,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 22,
+					"buffer": 25,
 					"file": "index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1109,
+						"buffer_size": 1165,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1009,
-								1009
+								294,
+								294
 							]
 						],
 						"settings":
@@ -1558,11 +1696,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 18,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 23,
+					"buffer": 26,
 					"file": "index-dev.html",
 					"semi_transient": false,
 					"settings":
@@ -1588,7 +1726,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 20,
+					"stack_index": 23,
 					"type": "text"
 				}
 			]
