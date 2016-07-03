@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
 
 USER postgres
 
-RUN mkdir /scripts
+RUN mkdir -p /scripts
 COPY  /docker/PGPlaceholder.sh  /scripts/PGPlaceholder.sh
 
 RUN    /etc/init.d/postgresql start &&\
