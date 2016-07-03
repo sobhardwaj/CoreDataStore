@@ -80,22 +80,7 @@ var DataService = (function () {
                 observer.complete();
             });
         }
-        
-        getStates(): Observable<IState[]> {
-            if (this.states) {
-                return Observable.create((observer: Observer<IState[]>) => {
-                    observer.next(this.states);
-                    observer.complete();
-                });
-            } else {
-                return this.http.get(this._baseUrl + 'states.json').map((response: Response) => {
-                    this.states = response.json();
-                    return this.states;
-                })
-                .catch(this.handleError);
-            }
-        }
-        
+            
         private findCustomerObservable(id: number) : Observable<ICustomer> {
             return this.createObservable(this.filterCustomers(id));
         }
@@ -110,20 +95,62 @@ var DataService = (function () {
             return (filteredStates.length) ? filteredStates[0] : null;
         }
     */
-    DataService.prototype.getProperties = function () {
+    DataService.prototype.getProperties = function (borough, objectType, pageNo) {
         var _this = this;
-        if (!this.properties) {
-            return this.http.get(this._baseUrl + 'api/LPCReport/99/1')
+        // console.log(-1);
+        if (!(this.properties && this.properties[borough] && this.properties[borough][objectType] && this.properties[borough][objectType][pageNo])) {
+            return this.http.get(this._baseUrl + 'api/LPCReport/10/' + pageNo + '/?Borough=' + borough + '&ObjectType=' + objectType)
                 .map(function (res) {
-                _this.properties = res.json()
+                // console.log(0);
+                if (!_this.properties) {
+                    _this.properties = {};
+                }
+                // console.log(1);
+                if (!_this.properties[borough])
+                    _this.properties[borough] = {};
+                // console.log(2);
+                if (!_this.properties[borough][objectType])
+                    _this.properties[borough][objectType] = {};
+                _this.properties[borough][objectType] = _this.properties[borough][objectType] ? _this.properties[borough][objectType] : { pageNo: [] };
+                _this.properties[borough][objectType][pageNo] = res.json()
                     .map(function (p) { p.dateDesignated = Date.parse(p.dateDesignated); return p; });
-                return _this.properties;
+                return _this.properties[borough][objectType][pageNo];
             })
                 .catch(this.handleError);
         }
         else {
             //return cached data
-            return this.createObservable(this.properties);
+            return this.createObservable(this.properties[borough][objectType][pageNo]);
+        }
+    };
+    DataService.prototype.getBoroughs = function () {
+        var _this = this;
+        if (!this.boroughs) {
+            return this.http.get(this._baseUrl + 'api/Reference/borough')
+                .map(function (res) {
+                _this.boroughs = res.json();
+                return _this.boroughs;
+            })
+                .catch(this.handleError);
+        }
+        else {
+            //return cached data
+            return this.createObservable(this.boroughs);
+        }
+    };
+    DataService.prototype.getObjectTypes = function () {
+        var _this = this;
+        if (!this.objectTypes) {
+            return this.http.get(this._baseUrl + 'api/Reference/objectType')
+                .map(function (res) {
+                _this.objectTypes = res.json();
+                return _this.objectTypes;
+            })
+                .catch(this.handleError);
+        }
+        else {
+            //return cached data
+            return this.createObservable(this.objectTypes);
         }
     };
     DataService.prototype.createObservable = function (data) {
@@ -134,7 +161,7 @@ var DataService = (function () {
     };
     DataService.prototype.handleError = function (error) {
         console.error(error);
-        return Observable_1.Observable.throw(error.json().error || 'Server error');
+        // return Observable.throw((error.json && error.json().error) || 'Server error');
     };
     DataService = __decorate([
         core_1.Injectable(), 

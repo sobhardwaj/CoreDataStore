@@ -2,6 +2,8 @@
 using CoreDataStore.Domain.Interfaces;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.SwaggerGen.Annotations;
+using Microsoft.AspNetCore.Cors;
 
 namespace CoreDataStore.Web.Controllers
 {
