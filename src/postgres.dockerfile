@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
 
 USER postgres
 
-COPY ./scripts/PGPlaceholder.txt  PGPlaceholder.txt
+COPY  /docker/PGPlaceholder.txt  PGPlaceholder.txt
 
 RUN    /etc/init.d/postgresql start &&\
     psql --command "CREATE USER nyclandmarks WITH SUPERUSER PASSWORD 'nyclandmarks';" &&\
