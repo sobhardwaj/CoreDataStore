@@ -72,6 +72,7 @@ export class PropertiesComponent implements OnInit {
             });
     }
 
+<<<<<<< HEAD
     objectTypeChanged(data: string) {
         // console.log(data);
         this.objectType = data;
@@ -93,6 +94,19 @@ export class PropertiesComponent implements OnInit {
                 // console.log(properties);
             });
     }
+=======
+  pageChanged(event: any) {
+    // console.log(event);
+    // console.log('Page changed to: ' + event.page);
+    // console.log('Number items per page: ' + event.itemsPerPage);  }
+    this.page = event.page;
+    this.dataService.getProperties(this.borough, this.objectType, this.page)
+      .subscribe((properties: IProperty[]) => {
+        this.properties = this.filteredProperties = properties;
+        // console.log(properties);
+      });
+  }
+>>>>>>> a0c55d2089e78d5fc491e5df6843fe07c27bca9b
 }
 
 /*

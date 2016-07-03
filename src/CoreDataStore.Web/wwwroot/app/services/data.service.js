@@ -161,7 +161,7 @@ var DataService = (function () {
     };
     DataService.prototype.handleError = function (error) {
         console.error(error);
-        // return Observable.throw((error.json && error.json().error) || 'Server error');
+        return Observable_1.Observable.throw((error.json && error.json().error) || 'Server error');
     };
     DataService = __decorate([
         core_1.Injectable(), 
