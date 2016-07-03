@@ -16,15 +16,20 @@ RUN apt-get update && apt-get install -y \
     postgresql-9.3 \ 
     postgresql-client-9.3 \ 
 	postgresql-contrib-9.3 \
+	nano \
 	&& rm -rf /var/lib/apt/lists/*
 
 USER postgres
 
-COPY  /docker/PGPlaceholder.txt  PGPlaceholder.txt
+RUN mkdir /scripts
+COPY  /docker/PGPlaceholder.sh  /scripts/PGPlaceholder.sh
 
 RUN    /etc/init.d/postgresql start &&\
     psql --command "CREATE USER nyclandmarks WITH SUPERUSER PASSWORD 'nyclandmarks';" &&\
     createdb -O nyclandmarks nyclandmarks
+
+
+##RUN psql  /scripts/PGPlaceholder.sql
 
 RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.conf
 
