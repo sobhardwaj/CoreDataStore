@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p /scripts
 RUN touch /scripts/test.txt
 COPY  /docker/PGPlaceholder.sh  /scripts/PGPlaceholder.sh
-
+RUN chmod +x /scripts/PGPlaceholder.sh
 
 USER postgres
 
