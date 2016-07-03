@@ -19,10 +19,12 @@ RUN apt-get update && apt-get install -y \
 	nano \
 	&& rm -rf /var/lib/apt/lists/*
 
-USER postgres
-
 RUN mkdir -p /scripts
+RUN touch /scripts/test.txt
 COPY  /docker/PGPlaceholder.sh  /scripts/PGPlaceholder.sh
+
+
+USER postgres
 
 RUN    /etc/init.d/postgresql start &&\
     psql --command "CREATE USER nyclandmarks WITH SUPERUSER PASSWORD 'nyclandmarks';" &&\
