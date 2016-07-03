@@ -20,7 +20,6 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /scripts
-RUN touch /scripts/test.txt
 COPY  /docker/PGPlaceholder.sh  /scripts/PGPlaceholder.sh
 RUN chmod +x /scripts/PGPlaceholder.sh
 
@@ -32,6 +31,9 @@ RUN    /etc/init.d/postgresql start &&\
 
 
 ##RUN psql  /scripts/PGPlaceholder.sql
+
+
+USER Root
 
 RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.conf
 
