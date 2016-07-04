@@ -12,7 +12,9 @@ services:
       - aspnetcoreapp-network
 
   postgres:
-    image: postgres
+    build:
+      context: .
+      dockerfile: postgres.dockerfile
     environment:
       POSTGRES_PASSWORD: password
     networks:
