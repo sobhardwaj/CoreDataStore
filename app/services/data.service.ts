@@ -11,7 +11,7 @@ import { IProperty } from '../interfaces';
 @Injectable()
 export class DataService {
   
-    _baseUrl: string = 'http://localhost:5000/';
+    _baseUrl: string = 'http://' + window.location.hostname + ':5000/';
     properties: any; //IProperty[][][][]; // cache for borough/objecttype/page
 
     boroughs: string[];
