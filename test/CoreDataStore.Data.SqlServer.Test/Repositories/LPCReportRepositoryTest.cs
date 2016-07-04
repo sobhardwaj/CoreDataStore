@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using CoreDataStore.Data.Helpers;
 using CoreDataStore.Data.Interfaces;
@@ -7,15 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 using CoreDataStore.Common.Helpers;
+using Microsoft.Extensions.Configuration;
 
 namespace CoreDataStore.Data.SqlServer.Test.Repositories
 {
     // Setup Unit Tests - In Memory etc
     //http://www.jerriepelser.com/blog/unit-testing-aspnet5-entityframework7-inmemory-database
     //https://github.com/jerriep/Aspnet5DbContextTesting
-
-    // R# BROKEN in .NET CORE 
-    //https://www.jetbrains.com/help/resharper/2016.1/Reference__Windows__Unit_Test_Sessions.html?origin=old_help
 
     public class LPCReportRepositoryTest
     {
@@ -27,16 +26,21 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         {
             var services = new ServiceCollection();
 
-#warning "Remove Hardcoded DB Connection String"
+            var builder = new ConfigurationBuilder();
+            builder.SetBasePath(Directory.GetCurrentDirectory());
+            builder.AddJsonFile("appsettings.json").Build();
+
+            var connectionStringConfig = builder.Build();
+            var dbonnection = connectionStringConfig.GetConnectionString("SqlServer");
+
             services.AddDbContext<NYCLandmarkContext>(options =>
-            options.UseSqlServer(@"Data Source=.;Initial Catalog=NycLandmarks;Integrated Security=True"));
+            options.UseSqlServer(dbonnection));
 
             services.AddScoped<ILPCReportRepository, LPCReportRepository>();
             serviceProvider = services.BuildServiceProvider();
 
             dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
             lpcReportRepository = serviceProvider.GetRequiredService<ILPCReportRepository>();
-
         }
 
 
