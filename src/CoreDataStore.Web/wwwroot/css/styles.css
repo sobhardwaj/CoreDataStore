@@ -48,6 +48,12 @@ body {
 	margin-left: 10px;
 }
 
+.ui-select-container {
+	width: 300px;
+}
+
+
+
  /*
   * See https://github.com/angular/angular.io/blob/master/public/docs/_examples/styles.css
   * for the full set of master styles used by the documentation samples

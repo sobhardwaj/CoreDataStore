@@ -10,38 +10,100 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-// import { SortByDirective } from '../directives/sortby.directive';
-var capitalize_pipe_1 = require('../pipes/capitalize.pipe');
-var trim_pipe_1 = require('../pipes/trim.pipe');
-var sorter_1 = require('../utils/sorter');
-var trackby_service_1 = require('../services/trackby.service');
-var PropertiesListComponent = (function () {
-    function PropertiesListComponent(sorter, trackby) {
-        this.sorter = sorter;
-        this.trackby = trackby;
+//import { Observable } from 'rxjs/Observable';
+var ng2_bootstrap_1 = require('ng2-bootstrap/ng2-bootstrap');
+var data_service_1 = require('../services/data.service');
+var filterTextbox_component_1 = require('./filterTextbox.component');
+var filterSelectbox_component_1 = require('./filterSelectbox.component');
+// import { CustomersCardComponent } from './customersCard.component';
+var propertiesList_component_1 = require('./propertiesList.component');
+var PropertiesComponent = (function () {
+    // displayMode: DisplayModeEnum;
+    // displayModeEnum = DisplayModeEnum;
+    function PropertiesComponent(dataService) {
+        this.dataService = dataService;
+        this.borough = '';
+        this.objectType = '';
+        this.page = 1;
+        this.boroughs = [];
+        this.objectTypes = [];
         this.properties = [];
+        this.filteredProperties = [];
+        this.totalItems = 100;
     }
-    PropertiesListComponent.prototype.ngOnInit = function () {
+    PropertiesComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.title = 'Properties';
+        // this.displayMode = DisplayModeEnum.Card;
+        this.dataService.getProperties(this.borough, this.objectType, this.page)
+            .subscribe(function (properties) {
+            _this.properties = _this.filteredProperties = properties;
+            // console.log(properties);
+        });
+        this.dataService.getBoroughs()
+            .subscribe(function (boroughs) {
+            _this.boroughs = boroughs;
+            // console.log(boroughs);
+        });
+        this.dataService.getObjectTypes()
+            .subscribe(function (objectTypes) {
+            _this.objectTypes = objectTypes;
+            // console.log(objectTypes);
+        });
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Array)
-    ], PropertiesListComponent.prototype, "properties", void 0);
-    PropertiesListComponent = __decorate([
+    /*changeDisplayMode(mode: DisplayModeEnum) {
+        this.displayMode = mode;
+    }*/
+    PropertiesComponent.prototype.boroughChanged = function (data) {
+        var _this = this;
+        // console.log(data);
+        this.borough = data;
+        this.dataService.getProperties(this.borough, this.objectType, this.page)
+            .subscribe(function (properties) {
+            _this.properties = _this.filteredProperties = properties;
+            // console.log(properties);
+        });
+    };
+    PropertiesComponent.prototype.objectTypeChanged = function (data) {
+        var _this = this;
+        // console.log(data);
+        this.objectType = data;
+        this.dataService.getProperties(this.borough, this.objectType, this.page)
+            .subscribe(function (properties) {
+            _this.properties = _this.filteredProperties = properties;
+            // console.log(properties);
+        });
+    };
+    PropertiesComponent.prototype.pageChanged = function (event) {
+        var _this = this;
+        // console.log(event);
+        // console.log('Page changed to: ' + event.page);
+        // console.log('Number items per page: ' + event.itemsPerPage);  }
+        this.page = event.page;
+        this.dataService.getProperties(this.borough, this.objectType, this.page)
+            .subscribe(function (properties) {
+            _this.properties = _this.filteredProperties = properties;
+            // console.log(properties);
+        });
+    };
+    PropertiesComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'properties-list',
-            templateUrl: 'propertiesList.component.html',
-            directives: [router_1.ROUTER_DIRECTIVES /*, SortByDirective*/],
-            pipes: [capitalize_pipe_1.CapitalizePipe, trim_pipe_1.TrimPipe],
-            //When using OnPush detectors, then the framework will check an OnPush 
-            //component when any of its input properties changes, when it fires 
-            //an event, or when an observable fires an event ~ Victor Savkin (Angular Team)
-            changeDetection: core_1.ChangeDetectionStrategy.OnPush
+            selector: 'properties',
+            templateUrl: 'properties.component.html',
+            directives: [ng2_bootstrap_1.PAGINATION_DIRECTIVES, router_1.ROUTER_DIRECTIVES, propertiesList_component_1.PropertiesListComponent, filterTextbox_component_1.FilterTextboxComponent, filterSelectbox_component_1.FilterSelectboxComponent
+            ],
         }), 
-        __metadata('design:paramtypes', [sorter_1.Sorter, trackby_service_1.TrackByService])
-    ], PropertiesListComponent);
-    return PropertiesListComponent;
+        __metadata('design:paramtypes', [data_service_1.DataService])
+    ], PropertiesComponent);
+    return PropertiesComponent;
 }());
-exports.PropertiesListComponent = PropertiesListComponent;
-//# sourceMappingURL=propertiesList.component.js.map
+exports.PropertiesComponent = PropertiesComponent;
+/*
+enum DisplayModeEnum {
+  Card = 0,
+  Grid = 1,
+  Map = 2
+}
+*/ 
+//# sourceMappingURL=properties.component.js.map

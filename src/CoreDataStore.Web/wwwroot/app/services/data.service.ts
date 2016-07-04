@@ -12,7 +12,10 @@ import { IProperty } from '../interfaces';
 export class DataService {
   
     _baseUrl: string = 'http://localhost:5000/';
-    properties: IProperty[];
+    properties: any; //IProperty[][][][]; // cache for borough/objecttype/page
+
+    boroughs: string[];
+    objectTypes: string[];
 /*    customers: ICustomer[];
     orders: IOrder[];
     states: IState[];
@@ -77,22 +80,7 @@ export class DataService {
             observer.complete();
         });
     }
-    
-    getStates(): Observable<IState[]> {
-        if (this.states) {
-            return Observable.create((observer: Observer<IState[]>) => {
-                observer.next(this.states);
-                observer.complete();
-            });
-        } else {
-            return this.http.get(this._baseUrl + 'states.json').map((response: Response) => {
-                this.states = response.json();
-                return this.states;
-            })
-            .catch(this.handleError);
-        }
-    }
-    
+        
     private findCustomerObservable(id: number) : Observable<ICustomer> {        
         return this.createObservable(this.filterCustomers(id));
     }
@@ -108,19 +96,62 @@ export class DataService {
     }
 */    
     
-    getProperties() : Observable<IProperty[]> {
-        if (!this.properties) {
-            return this.http.get(this._baseUrl + 'api/LPCReport/99/1')
+    getProperties(borough, objectType, pageNo) : Observable<IProperty[]> {
+                    // console.log(-1);
+        if (!(this.properties && this.properties[borough] && this.properties[borough][objectType] && this.properties[borough][objectType][pageNo])) {
+            return this.http.get(this._baseUrl + 'api/LPCReport/10/' + pageNo + '/?Borough=' + borough + '&ObjectType=' + objectType)
                 .map((res: Response) => {
-                    this.properties = res.json()
+                    // console.log(0);
+                    if (!this.properties) {
+                        this.properties = {};
+                        // this.properties[borough] = {};
+                    }
+                    // console.log(1);
+                    if (!this.properties[borough])
+                        this.properties[borough] = {};
+                    // console.log(2);
+                    if (!this.properties[borough][objectType])
+                        this.properties[borough][objectType] = {};
+                    this.properties[borough][objectType] = this.properties[borough][objectType] ? this.properties[borough][objectType] : {pageNo:[]};
+                    this.properties[borough][objectType][pageNo] = res.json()
                         .map(p => { p.dateDesignated = Date.parse(p.dateDesignated); return p; });
-                    return this.properties;
+                    return this.properties[borough][objectType][pageNo];
                 })
                 .catch(this.handleError);
         }
         else {
             //return cached data
-            return this.createObservable(this.properties);
+            return this.createObservable(this.properties[borough][objectType][pageNo]);
+        }
+    }
+
+    getBoroughs() : Observable<string[]> {
+        if (!this.boroughs) {
+            return this.http.get(this._baseUrl + 'api/Reference/borough')
+                .map((res: Response) => {
+                    this.boroughs = res.json();
+                    return this.boroughs;
+                })
+                .catch(this.handleError);
+        }
+        else {
+            //return cached data
+            return this.createObservable(this.boroughs);
+        }
+    }
+
+    getObjectTypes() : Observable<string[]> {
+        if (!this.objectTypes) {
+            return this.http.get(this._baseUrl + 'api/Reference/objectType')
+                .map((res: Response) => {
+                    this.objectTypes = res.json();
+                    return this.objectTypes;
+                })
+                .catch(this.handleError);
+        }
+        else {
+            //return cached data
+            return this.createObservable(this.objectTypes);
         }
     }
 
@@ -133,7 +164,7 @@ export class DataService {
 
     private handleError(error: any) {
         console.error(error);
-        return Observable.throw(error.json().error || 'Server error');
+        return Observable.throw((error.json && error.json().error) || 'Server error');
     }
 
 
