@@ -8,13 +8,13 @@ using CoreDataStore.Data.SqlServer;
 namespace CoreDataStore.Data.SqlServer.Test.Migrations
 {
     [DbContext(typeof(NYCLandmarkContext))]
-    [Migration("20160612220155_DB-Landmarks-16")]
-    partial class DBLandmarks16
+    [Migration("20160704130655_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rc2-20901")
+                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("CoreDataStore.Domain.Entities.Landmark", b =>
@@ -41,7 +41,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Migrations
                     b.Property<bool>("COUNT_BLDG");
 
                     b.Property<string>("DESIG_ADDR")
-                        .IsRequired()
                         .HasAnnotation("MaxLength", 200);
 
                     b.Property<DateTime?>("DESIG_DATE");
