@@ -15,19 +15,24 @@ namespace CoreDataStore.Data.SqlServer.Test.Helpers
 
         public NYCLandmarkContext Create(DbContextFactoryOptions options)
         {
-            var builder = new DbContextOptionsBuilder<NYCLandmarkContext>();
-
             Console.WriteLine(AppContext.BaseDirectory);
+            var dbContextBuilder = new DbContextOptionsBuilder<NYCLandmarkContext>();
+
             var configBuilder = new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
-            IConfigurationRoot Configuration = configBuilder.Build();
+            var connectionStringConfig = configBuilder.Build();
+            var devConnection = connectionStringConfig.GetConnectionString("SqlServer");
 
-            builder.UseSqlServer(@"Data Source=.;Initial Catalog=NycLandmarks;Integrated Security=True" //Configuration["connectionString:SqlServer"]
+            Console.WriteLine("DEV Connection" + devConnection);
+            IConfigurationRoot Configuration = configBuilder.Build();
+  
+
+            dbContextBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=NycLandmarks;Integrated Security=True"
                 , b => b.MigrationsAssembly(GetType().GetTypeInfo().Assembly.GetName().Name));
 
-            return new NYCLandmarkContext(builder.Options);
+            return new NYCLandmarkContext(dbContextBuilder.Options);
         }
     }
 }
