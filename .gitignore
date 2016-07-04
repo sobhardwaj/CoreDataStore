@@ -213,3 +213,14 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 src/CoreDataStore.Web/bower_components
+src/CoreDataStore.Web/wwwroot/app/*.js
+src/CoreDataStore.Web/wwwroot/app/*.map
+src/CoreDataStore.Web/wwwroot/app/components/*.js
+src/CoreDataStore.Web/wwwroot/app/components/*.map
+src/CoreDataStore.Web/wwwroot/app/pipes/*.js
+src/CoreDataStore.Web/wwwroot/app/pipes/*.map
+src/CoreDataStore.Web/wwwroot/app/services/*.js
+src/CoreDataStore.Web/wwwroot/app/services/*.map
+src/CoreDataStore.Web/wwwroot/app/utils/*.js
+src/CoreDataStore.Web/wwwroot/app/utils/*.map
+
