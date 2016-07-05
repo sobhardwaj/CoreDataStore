@@ -21,6 +21,10 @@ $npm3 install -g typings
 $typings -v # >=1.0.4
 ```
 
+```bash
+npm3 run tsc
+```
+
 ### Setup
 
 ```bash
