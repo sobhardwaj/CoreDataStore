@@ -21,10 +21,6 @@ $npm3 install -g typings
 $typings -v # >=1.0.4
 ```
 
-```bash
-npm3 run tsc
-```
-
 ### Setup
 
 ```bash
@@ -42,6 +38,9 @@ $typings install
 - rename \wwwroot\node_modules\ng2-bootstrap\tsconfig.json to _tsconfig.json
 ```
 
+```bash
+npm3 run tsc
+```
 
 ##Website
 
