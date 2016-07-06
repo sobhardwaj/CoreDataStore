@@ -20,7 +20,7 @@ namespace CoreDataStore.Web.Controllers
         [Route("borough")]
         public IEnumerable<string> GetBoroughs()
         {
-            return new string[] { "Brooklyn", "Bronx", "Mahhattan", "Queens", "Staten Island" }; 
+            return new string[] { "Brooklyn", "Bronx", "Manhattan", "Queens", "Staten Island" }; 
         }
 
         [HttpGet]
