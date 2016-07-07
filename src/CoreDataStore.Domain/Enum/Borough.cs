@@ -10,7 +10,7 @@ namespace CoreDataStore.Domain.Enum
         [Description("Bronx")]
         X,
 
-        [Description("Mahhattan")]
+        [Description("Manhattan")]
         M,
 
         [Description("Queens")]

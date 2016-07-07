@@ -38,7 +38,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{9CAE5C90-C078-449A-9855-6E797F9FE4ED}"
 	ProjectSection(SolutionItems) = preProject
 		src\aspnetcore.dockerfile = src\aspnetcore.dockerfile
+		src\docker-compose-nginx.yml = src\docker-compose-nginx.yml
 		src\docker-compose.yml = src\docker-compose.yml
+		src\nginx.dockerfile = src\nginx.dockerfile
 		src\postgres.dockerfile = src\postgres.dockerfile
 	EndProjectSection
 EndProject
