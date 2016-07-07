@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using CoreDataStore.Data.Filters;
-using CoreDataStore.Data.Sqlite.Filters;
 using CoreDataStore.Service.Models;
 
 namespace CoreDataStore.Service.Interfaces

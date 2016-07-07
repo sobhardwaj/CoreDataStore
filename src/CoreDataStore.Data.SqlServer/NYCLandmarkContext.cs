@@ -53,6 +53,9 @@ namespace CoreDataStore.Data.SqlServer
             base.OnModelCreating(builder);
         }
 
+        //FluentModelBuilder
+        //https://github.com/Grinderofl/FluentModelBuilder/wiki/0.-Introduction
+
         //http://stackoverflow.com/questions/34578573/entity-framework-7-audit-log
         //http://stackoverflow.com/questions/37210914/changetracker-entries-currentvalue-equals-originalvalue-in-ef7-ef-core
         //http://www.c-sharpcorner.com/article/shadow-properties-in-entity-framework-7/

@@ -86,8 +86,9 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         [Fact]
         public void Can_Get_Inclueded_Fields()
         {
-            var test = dbContext.LPCReports.Include(x => x.Name).ToList();
-            var results = lpcReportRepository.AllIncluding(x => x.Name).ToList();
+            //var test = dbContext.LPCReports.Include(x => x.Name).Select(x => x.Name).ToList();
+            var test2 = dbContext.LPCReports.Select(x => x.Name).ToList();
+            var results = lpcReportRepository.GetAll().Select(x => x.Name).ToList();
             Assert.NotNull(results);
 
         }

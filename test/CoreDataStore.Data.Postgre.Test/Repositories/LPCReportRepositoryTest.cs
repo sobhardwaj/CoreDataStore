@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 using CoreDataStore.Common.Helpers;
+using CoreDataStore.Domain.Enum;
 
 
 namespace CoreDataStore.Data.Postgre.Test.Repositories
@@ -65,6 +66,19 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
                 dbContext.SaveChanges();
             }
         }
+
+        [Fact]
+        public void Can_Get_List()
+        {
+            var list = EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription()).ToList();
+            foreach (var v in list)
+            {
+                
+            }
+
+
+        }
+
 
     }
 }
