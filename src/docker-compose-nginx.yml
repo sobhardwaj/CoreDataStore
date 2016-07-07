@@ -2,7 +2,7 @@ version: '2'
 
 services:
 
-webapp1:
+ webapp1:
     container_name: aspnetcore-1
     build:
       context: .
@@ -10,9 +10,9 @@ webapp1:
     ports:
      - "5001:5000"
     networks:
-      - ngnix-aspnet-network
+     - ngnix-aspnet-network
 
-webapp2:
+ webapp2:
     container_name: aspnetcore-2
     build:
       context: .
@@ -20,9 +20,9 @@ webapp2:
     ports:
      - "5002:5000"
     networks:
-      - ngnix-aspnet-network
+    - ngnix-aspnet-network
 
-nginx:
+ nginx:
     container_name: nginx-1
     build:
       context: .
@@ -30,7 +30,7 @@ nginx:
     ports:
      - "5000:80"
     networks:
-      - ngnix-aspnet-network
+    - ngnix-aspnet-network
 
 
 networks:
