@@ -38,6 +38,9 @@ $typings install
 - rename \wwwroot\node_modules\ng2-bootstrap\tsconfig.json to _tsconfig.json
 ```
 
+```bash
+npm3 run tsc
+```
 
 ##Website
 
