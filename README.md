@@ -85,6 +85,13 @@ docker-compose build
 docker-compose up
 ```
 
+Web & NGINX
+
+```bash
+ docker-compose --file docker-compose-nginx.yml  build 
+ docker-compose --file docker-compose-nginx.yml  up
+```
+
 ##Entity Framework
 
 ```bash
