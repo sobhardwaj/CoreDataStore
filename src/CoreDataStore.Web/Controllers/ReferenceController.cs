@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using CoreDataStore.Common.Helpers;
+using CoreDataStore.Domain.Enum;
 using CoreDataStore.Domain.Interfaces;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace CoreDataStore.Web.Controllers
 {
@@ -20,7 +23,7 @@ namespace CoreDataStore.Web.Controllers
         [Route("borough")]
         public IEnumerable<string> GetBoroughs()
         {
-            return new string[] { "Brooklyn", "Bronx", "Manhattan", "Queens", "Staten Island" }; 
+            return EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription());
         }
 
         [HttpGet]
@@ -29,21 +32,6 @@ namespace CoreDataStore.Web.Controllers
         {
             return new string[] { "Individual Landmark", "Historic District", "Scenic Landmark", "Interior Landmark" };
         }
-
-  
-        /////// <summary>
-        ///////  Reference Types List
-        /////// </summary>
-        /////// <returns></returns>
-        //// [Route("objectType")]
-        //// [Produces(typeof(List<KeyValuePair<string, string>>))]
-        /// 
-        //[HttpGet]
-        //public IEnumerable<ReferenceType> GetReferenceTypes()
-        //{
-        //    var results = _referenceRepository.GetObjectTypes();
-        //    return results;
-        //}
 
 
     }
