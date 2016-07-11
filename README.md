@@ -104,5 +104,3 @@ dotnet ef database update
 ```
 
 
-
-
