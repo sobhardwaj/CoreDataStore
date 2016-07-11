@@ -1,5 +1,7 @@
 # CoreDataStore
 
+[![Build status](https://ci.appveyor.com/api/projects/status/4j2ebt69uw0e0wmg/branch/core-net-1-0?svg=true)](https://ci.appveyor.com/project/StuartShay/coredatastore/branch/core-net-1-0)
+
 ##Prerequisites:
 
 ### .NET Core 
@@ -100,7 +102,5 @@ cd /test/CoreDataStore.Data.Postgre.Test
 dotnet ef migrations add <MigrationName>
 dotnet ef database update
 ```
-
-
 
 
