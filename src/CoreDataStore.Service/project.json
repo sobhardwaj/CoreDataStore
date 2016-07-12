@@ -2,7 +2,7 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "AutoMapper": "5.0.0",
+    "AutoMapper": "5.0.2",
     "CoreDataStore.Data.Sqlite": "1.0.0-*",
     "CoreDataStore.Domain": "1.0.0-*",
     "FluentValidation": "6.4.0-beta1",

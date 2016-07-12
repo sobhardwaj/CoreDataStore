@@ -1,0 +1,19 @@
+version: '1.0.{build}'
+os: Visual Studio 2015
+
+
+branches:  
+  only:
+  - core-net-1-0
+
+before_build:
+ npm install -g npm3
+ npm3 install -g typings
+ dotnet restore
+
+build:
+ cd src\CoreDataStore.Web\
+ dotnet build
+
+
+test: off 

@@ -1,0 +1,26 @@
+npm install -g generator-aspnet
+npm install -g npm3
+npm3 install -g typings
+DOTNET restore
+cd src\CoreDataStore.Web\wwwroot\
+npm3 install
+typings install
+rd /s /q "node_modules\browser-sync\"
+cd "node_modules\ng2-bootstrap\"
+ren tsconfig.json _tsconfig.json
+cd "C:\projects\coredatastore\src\CoreDataStore.Web\wwwroot\"
+cd "node_modules\bs-recipes\recipes\webpack.typescript\"
+ren tsconfig.json _tsconfig.json
+cd "C:\projects\coredatastore\src\CoreDataStore.Web\wwwroot\"
+cd "node_modules\bs-recipes\recipes\webpack.typescript.react\"
+ren tsconfig.json _tsconfig.json
+cd "C:\projects\coredatastore\src\CoreDataStore.Web\wwwroot\"
+cd "node_modules\ng2-select\"
+ren tsconfig.json _tsconfig.json
+cd "C:\projects\coredatastore\src\CoreDataStore.Web\wwwroot\"
+cd "node_modules\reflect-metadata\"
+ren tsconfig.json _tsconfig.json
+cd "C:\projects\coredatastore\src\CoreDataStore.Web\wwwroot\"
+cd "node_modules\reflect-metadata\test\"
+ren tsconfig.json _tsconfig.json
+cd "C:\projects\coredatastore\"

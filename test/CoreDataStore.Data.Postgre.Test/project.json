@@ -10,7 +10,6 @@
     "CoreDataStore.Data.Postgre": "1.0.0-*",
     "CoreDataStore.Domain": "1.0.0-*",
     "dotnet-test-xunit": "1.0.0-*",
-    "FluentAssertions": "4.9.1",
     "GenFu": "1.1.1",
     "Microsoft.EntityFrameworkCore": "1.0.0",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
@@ -22,7 +21,8 @@
       "type": "platform"
     },
     "xunit": "2.2.0-beta2-build3300",
-    "xunit.runner.visualstudio": "2.2.0-beta1-build1144"
+    "xunit.runner.visualstudio": "2.2.0-beta1-build1144",
+    "FluentAssertions": "4.11.0"
   },
 
   "frameworks": {
