@@ -11,9 +11,9 @@ before_build:
  npm3 install -g typings
  
 build:
- dotnet restore
+ DOTNET restore
  cd src\CoreDataStore.Web\
- dotnet build
+ DOTNET build
 
 
 test: off 
