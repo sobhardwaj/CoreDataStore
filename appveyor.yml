@@ -9,9 +9,9 @@ branches:
 before_build:
  npm install -g npm3
  npm3 install -g typings
- dotnet restore
-
+ 
 build:
+ dotnet restore
  cd src\CoreDataStore.Web\
  dotnet build
 
