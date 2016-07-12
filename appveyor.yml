@@ -8,11 +8,11 @@ branches:
 before_build:
  npm install -g npm3
  npm3 install -g typings
+- cmd: DOTNET restore
  
 build:
- DOTNET restore
  cd src\CoreDataStore.Web\
- DOTNET build
+- cmd: DOTNET build
 
 
 test: off 
