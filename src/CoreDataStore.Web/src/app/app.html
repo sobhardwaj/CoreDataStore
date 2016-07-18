@@ -1,0 +1,34 @@
+<header class="topnavbar-wrapper">
+    <!-- START Top Navbar-->
+    <nav role="navigation" class="navbar topnavbar">
+        <!-- START navbar header-->
+        <div class="navbar-header">
+            <a asp-controller="Home" asp-action="Index" class="navbar-brand">
+                <div class="brand-logo">
+                    CoreDataStore.Web
+                </div>
+                <div class="brand-logo-collapsed">
+                    CoreDataStore.Web
+                </div>
+            </a>
+        </div>
+        <!-- END navbar header-->
+        <!-- START Nav wrapper-->
+        <div class="nav-wrapper">
+            <!-- START Left navbar-->
+            <ul class="nav navbar-nav">
+                <li><a [routerLink]="['/']" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a href="/swagger/ui/index.html">Swagger</a></li>
+                <!-- END lock screen-->
+            </ul>
+            <!-- END Left navbar-->
+        </div>
+        <!-- END Nav wrapper-->
+    </nav>
+    <!-- END Top Navbar-->
+</header>
+<section>
+    <div class="content-wrapper">
+        <router-outlet></router-outlet>
+    </div>
+</section>
