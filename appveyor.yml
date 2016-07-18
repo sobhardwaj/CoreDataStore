@@ -1,17 +1,20 @@
 version: '1.0.{build}'
 
 branches:  
-  only:
+ only:
   - core-net-1-0
 
-before_build:
- npm install -g npm3
- npm3 install -g typings
- 
-build:
- DOTNET restore
- cd src\CoreDataStore.Web\
- DOTNET build
+install:
+- cmd: dotnet restore -v warning
 
 
-test: off 
+build_script:
+- cmd: dotnet publish .\src\CoreDataStore.Web
+
+
+test_script:
+- ps: foreach ($d in dir .\test |? {$_.PSIsContainer -eq $True}){ &"dotnet" "test" $d.FullName }
+
+
+artifacts:
+  path: .\src\CoreDataStore.Web\bin\Debug\netcoreapp1.0\publish
