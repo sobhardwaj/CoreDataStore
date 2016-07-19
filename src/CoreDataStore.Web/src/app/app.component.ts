@@ -19,7 +19,7 @@ import { TrackByService } from './services/trackby';
 const APP_PROVIDERS = [
   Sorter,
   ReferencesService,
-  DiagnosticsService
+  DiagnosticsService,
   TrackByService,
   FORM_PROVIDERS,
   HTTP_PROVIDERS,
