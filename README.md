@@ -5,7 +5,7 @@
 ##Prerequisites:
 
 ### .NET Core 
-.NET Core SDK 1.0.0 RTM  - June 27, 2016 
+.NET Core SDK 1.0.0 RTM  - June 27, 2016    
 https://www.microsoft.com/net/core  
 
 ###Visual Studio  
