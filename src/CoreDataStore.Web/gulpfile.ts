@@ -54,7 +54,7 @@ gulp.task("compile", ["tslint"], () => {
 /**
  * Copy all resources that are not TypeScript files into build directory.
  */
-gulp.task("resources", () => {
+gulp.task("resources", ['fonts', 'less'], () => {
   return gulp.src(["src/**/*", "!src/styles-less", "!src/styles-less/**/*", "!**/*.ts"])
     .pipe(gulp.dest(buildDir));
 });
@@ -107,6 +107,6 @@ gulp.task('watch', function() {
 /**
  * Build the project.
  */
-gulp.task("build", ['compile', 'resources', 'libs', 'fonts', 'less'], () => {
+gulp.task("build", ['compile', 'resources', 'libs'], () => {
   console.log("Building the project ...");
 });

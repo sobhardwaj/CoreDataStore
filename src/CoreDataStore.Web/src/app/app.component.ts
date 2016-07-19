@@ -4,6 +4,7 @@ import { AlertComponent } from "ng2-bootstrap/ng2-bootstrap";
 
 import { ReferencesComponent } from './references/components/references';
 import { AboutComponent } from './about/components/about.components';
+import { DiagnosticsComponent } from './diagnostics/components/diagnostics';
 
 
 /* Providers */
@@ -12,11 +13,13 @@ import { FORM_PROVIDERS, LocationStrategy, HashLocationStrategy } from '@angular
 
 import { Sorter } from './utils/sorter';
 import { ReferencesService } from './references/services/references';
+import { DiagnosticsService } from './diagnostics/services/diagnostics';
 import { TrackByService } from './services/trackby';
 
 const APP_PROVIDERS = [
   Sorter,
   ReferencesService,
+  DiagnosticsService
   TrackByService,
   FORM_PROVIDERS,
   HTTP_PROVIDERS,
@@ -44,6 +47,7 @@ export class HomeComponent {}
 
 @Routes([
   { path: '/', component: ReferencesComponent },
+  { path: '/diagnostics', component: DiagnosticsComponent },
   { path: '/about', component: AboutComponent }
 ])
 
