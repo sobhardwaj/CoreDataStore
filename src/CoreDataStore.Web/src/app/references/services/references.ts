@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, URLSearchParams } from '@angular/http';
 //Grab everything with import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
@@ -97,19 +97,21 @@ export class ReferencesService {
   */
 
   getReference(borough, objectType, pageNo): Observable < IProperty[] > {
-    console.log(borough,objectType);
+    // console.log(borough,objectType);
     if (!(this.properties && this.properties[borough] &&
         this.properties[borough][objectType] &&
         this.properties[borough][objectType][pageNo])) {
 
-      let params = [];
+      let params = new URLSearchParams();
       if (borough && borough !== '') {
         params['Borough'] = borough;
+        params.set('Borough', borough);
+
       }
       if (objectType && objectType !== '') {
-        params['ObjectType'] = objectType;
+        params.set('ObjectType', objectType);
       }
-      return this.http.get(this._baseUrl + 'api/LPCReport/10/' + pageNo, { params: params })
+      return this.http.get(this._baseUrl + 'api/LPCReport/10/' + pageNo, { search: params })
         .map((res: Response) => {
           // console.log(0);
           if (!this.properties) {
