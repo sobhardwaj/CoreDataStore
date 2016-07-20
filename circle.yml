@@ -17,5 +17,6 @@ test:
   override:
     - dotnet restore
     - dotnet run
+    = echo dotnet --version
     - echo "done"
 
