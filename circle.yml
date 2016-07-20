@@ -16,8 +16,8 @@ test:
     - dotnet new
   override:
     - dotnet restore
-    - cd /home/ubuntu/CoreDataStore/src/CoreDataStore.Web
-    - dotnet run
+    - dotnet build
+    - dotnet run --project /home/ubuntu/CoreDataStore/src/CoreDataStore.Web/project.json
     - dotnet --version
     - echo "done"
 
