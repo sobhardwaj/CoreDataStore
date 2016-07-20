@@ -16,7 +16,7 @@ test:
     - dotnet new
   override:
     - dotnet restore
-    - dotnet build -o /home/ubuntu/CoreDataStore/bin/ -b /home/ubuntu/CoreDataStore/obj/
+    - dotnet build -o /home/ubuntu/CoreDataStore/bin/ -b /home/ubuntu/CoreDataStore/obj/ -f netcoreapp1.0
     #- dotnet run --project /home/ubuntu/CoreDataStore/src/CoreDataStore.Web/project.json
     - dotnet --version
     - echo "done"
