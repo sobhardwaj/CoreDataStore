@@ -16,6 +16,7 @@ test:
     - dotnet new
   override:
     - dotnet restore
+    - cd CoreDataStore.Web
     - dotnet run
     - dotnet --version
     - echo "done"
