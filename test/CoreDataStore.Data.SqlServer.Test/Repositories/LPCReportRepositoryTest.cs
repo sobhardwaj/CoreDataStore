@@ -82,7 +82,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             }
         }
 
-
         [Fact(Skip = "ci test")]
         public void Can_Get_Inclueded_Fields()
         {
@@ -91,18 +90,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             var results = lpcReportRepository.GetAll().Select(x => x.Name).ToList();
             Assert.NotNull(results);
 
-        }
-
-
-        [Fact()]
-        public void PassingTest()
-        {
-            Assert.Equal(4, Add(2, 2));
-        }
-
-        int Add(int x, int y)
-        {
-            return x + y;
         }
 
 
