@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Repositories;
 using CoreDataStore.Domain.Entities;
@@ -7,11 +8,13 @@ using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Models;
 using CoreDataStore.Service.Services;
 using CoreDataStore.Web.Controllers;
+using CoreDataStore.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 using FluentAssertions;
+using System.Linq;
 
 namespace CoreDataStore.Data.SqlServer.Test.Controllers
 {
@@ -63,6 +66,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
         private LPCReportController PrepareController()
         {
             var dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
+            dbContext.Database.EnsureDeleted();
+
             CreateTestData(dbContext);
 
             var lpcReportSvc = serviceProvider.GetRequiredService<ILPCReportService>();
@@ -72,22 +77,33 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
         }
 
 
-        //[Fact]
-        //public void Get_Should_Have_Record()
-        //{
-        //    var controller = PrepareController();
+        [Fact]
+        public void DbContext_Should_Have_Records()
+        {
+            var controller = PrepareController();
+            var dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
 
-        //    var id = 10;
-        //    var actionResult = controller.Get(id);
+            Assert.Equal(20, dbContext.LPCReports.ToList().Count());
+            Assert.Equal(20, dbContext.Landmarks.ToList().Count());
+        }
 
-        //    // Assert
-        //    actionResult.Should().BeOfType<ObjectResult>();
 
-        //    //// Assert
-        //    //actionResult.Should().BeOfType<ObjectResult>()
-        //    //    .Which.Should().BeOfType<LPCReportModel>()
-        //    //    .Which.Id.Should().Be(id);
-        //}
+        [Fact]
+        public void Get_Should_Have_Record()
+        {
+            var controller = PrepareController();
+
+            var id = 10;
+            var actionResult = controller.Get(id);
+
+            // Assert
+            actionResult.Should().BeOfType<ObjectResult>();
+
+            //// Assert
+            //actionResult.Should().BeOfType<ObjectResult>()
+            //    .Which.Should().BeOfType<LPCReportModel>()
+            //    .Which.Id.Should().Be(id);
+        }
 
 
         [Fact]
@@ -100,6 +116,30 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             // Assert
             actionResult.Should().BeOfType<BadRequestResult>();
         }
+
+
+
+
+
+
+        //[Fact]
+        //public void Get_Should_Return_Correct_Record()
+        //{
+        //    var controller = PrepareController();
+
+        //    var model = new LPCReportRequestModel
+        //    {
+        //        ObjectType = "ObjectType5",
+        //    };
+
+        //    var actionResult = controller.Get(null, 5, 1);
+
+        //    // Assert
+        //    actionResult.Should().BeOfType<IEnumerable<LPCReportModel>>()
+        //      //  .Which.Count().Equals(1)
+        //      ;
+        //}
+
 
 
 
@@ -155,7 +195,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
 
         //    var actionResult = controller.Put(id, model);
 
-        //    // Assert
+        //    Assert
         //    actionResult.Should().BeOfType<NotFoundResult>();
         //}
 
@@ -168,38 +208,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //[Fact]
-        //public void Get_Should_Return_Correct_Record()
-        //{
-        //    var controller = PrepareController();
-
-        //    var model = new LPCReportRequestModel
-        //    {
-        //        ObjectType = "ObjectType5",
-        //    };
-
-        //    var actionResult = controller.Get(model, 5, 1);
-
-        //    // Assert
-        //    actionResult.Should().BeOfType<IEnumerable<LPCReportModel>>()
-        //        .Which.Count().Should().Equals(1);
-        //}
 
         //[Fact]
         //public void Get_Should_Return_No_Record()
@@ -217,6 +225,9 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
         //    actionResult.Should().BeOfType<IEnumerable<LPCReportModel>>()
         //        .Which.Count().Should().Equals(0);
         //}
+
+
+
 
         //[Fact]
         //public void GetLandmarks_Should_Return_Correct_Record()
@@ -247,7 +258,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
 
         //    var actionResult = controller.GetLandmarks(model, 5, 1);
 
-        //    // Assert
+        //    Assert
         //    actionResult.Should().BeOfType<IEnumerable<LPCReportModel>>()
         //        .Which.Count().Should().Equals(0);
         //}
