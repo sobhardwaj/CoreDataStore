@@ -5,16 +5,15 @@ using CoreDataStore.Data.SqlServer.Repositories;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Mappings;
-using CoreDataStore.Service.Models;
 using CoreDataStore.Service.Services;
 using CoreDataStore.Web.Controllers;
-using CoreDataStore.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 using FluentAssertions;
 using System.Linq;
+using CoreDataStore.Web.Filters;
 
 namespace CoreDataStore.Data.SqlServer.Test.Controllers
 {
@@ -118,27 +117,24 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
         }
 
 
+        [Fact(Skip = "ci test")]
+        public void Paging_Should_Return_Correct_Record_Count()
+        {
+            var controller = PrepareController();
 
+            var model = new LPCReportRequestModel
+            {
+               // ObjectType = "ObjectType5",
+            };
 
+            //Response Header Null Exception
+            var actionResult = controller.Get(model, 5, 1);
 
+            // Assert
+            actionResult.Should().BeOfType<IEnumerable<ObjectResult>>()
+                               .Which.Count().Should().Be(5);
 
-        //[Fact]
-        //public void Get_Should_Return_Correct_Record()
-        //{
-        //    var controller = PrepareController();
-
-        //    var model = new LPCReportRequestModel
-        //    {
-        //        ObjectType = "ObjectType5",
-        //    };
-
-        //    var actionResult = controller.Get(null, 5, 1);
-
-        //    // Assert
-        //    actionResult.Should().BeOfType<IEnumerable<LPCReportModel>>()
-        //      //  .Which.Count().Equals(1)
-        //      ;
-        //}
+        }
 
 
 
