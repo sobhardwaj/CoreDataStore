@@ -30,3 +30,6 @@ Build the project:
 > npm start
 
 The application should be displayed in the browser.
+
+> dotnet run
+Start webservice with dotnet
