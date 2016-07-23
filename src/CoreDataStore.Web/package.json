@@ -7,7 +7,7 @@
     "clean": "./node_modules/.bin/gulp clean",
     "compile": "./node_modules/.bin/gulp compile",
     "build": "./node_modules/.bin/gulp build",
-    "postinstall": "./node_modules/.bin/typings install;./node_modules/.bin/gulp build",
+    "postinstall": "./node_modules/.bin/typings install",
     "start": "concurrently --kill-others \"./node_modules/.bin/gulp watch\" \"./node_modules/.bin/lite-server\"",
     "tsc": "./node_modules/.bin/tsc",
     "tsc:w": "./node_modules/.bin/tsc -w",
