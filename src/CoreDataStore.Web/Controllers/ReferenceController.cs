@@ -30,7 +30,7 @@ namespace CoreDataStore.Web.Controllers
         [Route("objectType")]
         public IEnumerable<string> GetReferenceTypes()
         {
-            return new string[] { "Individual Landmark", "Historic District", "Scenic Landmark", "Interior Landmark" };
+            return EnumHelper.EnumToList<ObjectType>().Select(e => e.GetDescription());
         }
 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Repositories;
 using CoreDataStore.Domain.Entities;
@@ -13,7 +14,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 using FluentAssertions;
 using System.Linq;
+using CoreDataStore.Domain.Enum;
 using CoreDataStore.Web.Filters;
+using CoreDataStore.Common.Helpers;
+using GenFu;
+using Remotion.Linq.Clauses;
 
 namespace CoreDataStore.Data.SqlServer.Test.Controllers
 {
@@ -41,20 +46,28 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
 
         private void CreateTestData(NYCLandmarkContext dbContext)
         {
-            var id = 1;
-            GenFu.GenFu.Configure<LPCReport>()
-                .Fill(l => l.Id, () => id++)
-                .Fill(l => l.LPNumber, () => "LPCNumber" + (id++).ToString())
-                .Fill(l => l.ObjectType, () => "ObjectType" + (id++).ToString());
+            var i = 0;
+            var boroughs = EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription());
+            var boroughCodes = EnumHelper.EnumToList<Borough>().Select(e => e.GetAttribute<BoroughId>().Value);
+            var objectTypes = EnumHelper.EnumToList<ObjectType>().Select(e => e.GetDescription());
 
-            var lpcReports = GenFu.GenFu.ListOf<LPCReport>(20);
+            GenFu.GenFu.Configure<LPCReport>()
+                .Fill(l => l.Id, () => ++i)
+                .Fill(l => l.LPNumber, () => string.Format("LP-{0,5:D5}", i))
+                .Fill(l => l.LPCId, () => string.Format("{0,5:D5}", i))
+                .Fill(l => l.Borough, () => BaseValueGenerator.GetRandomValue(boroughs))
+                .Fill(l => l.ObjectType, () => BaseValueGenerator.GetRandomValue(objectTypes));
+
+            var lpcReports = GenFu.GenFu.ListOf<LPCReport>(20);  
 
             dbContext.LPCReports.AddRange(lpcReports);
 
-            var lmId = 1;
+            var j = 0;
             GenFu.GenFu.Configure<Landmark>()
-                .Fill(m => m.Id, () => lmId++)
-                .Fill(m => m.LP_NUMBER, () => "LPCNumber" + (lmId++).ToString());
+                .Fill(m => m.Id, () => ++j)
+                .Fill(l => l.LM_TYPE, () => BaseValueGenerator.GetRandomValue(objectTypes))
+                .Fill(l => l.BoroughID, () => BaseValueGenerator.GetRandomValue(boroughCodes))
+                .Fill(m => m.LP_NUMBER, () => string.Format("LP-{0,5:D5}", j));
 
             var landmarks = GenFu.GenFu.ListOf<Landmark>(20);
 
@@ -62,12 +75,14 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             dbContext.SaveChanges();
         }
 
+
+
         private LPCReportController PrepareController()
         {
             var dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
             dbContext.Database.EnsureDeleted();
 
-            CreateTestData(dbContext);
+            CreateTestData(dbContext); 
 
             var lpcReportSvc = serviceProvider.GetRequiredService<ILPCReportService>();
             var landmarkSvc = serviceProvider.GetRequiredService<ILandmarkService>();
@@ -258,10 +273,5 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
         //    actionResult.Should().BeOfType<IEnumerable<LPCReportModel>>()
         //        .Which.Count().Should().Equals(0);
         //}
-
-
-
-
-
     }
 }
