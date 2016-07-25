@@ -7,7 +7,7 @@ dependencies:
 
 test:
   pre:
-    - dotnet restore home/ubuntu/CoreDataStore
+    - sudo dotnet restore home/ubuntu/CoreDataStore
    
   override:    
-    - dotnet test home/ubuntu/CoreDataStore/test/CoreDataStore.Data.Postgre.Test
+    - sudo dotnet test home/ubuntu/CoreDataStore/test/CoreDataStore.Data.Postgre.Test
