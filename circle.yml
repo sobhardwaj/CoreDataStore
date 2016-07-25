@@ -1,7 +1,3 @@
-general:
-  artifacts:
-    - "hwapp"
-    
 dependencies:
   pre:
     - sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
@@ -11,13 +7,10 @@ dependencies:
 
 test:
   pre:
-    - mkdir hwapp
-    - cd hwapp
-    - dotnet new
-  override:
-    - dotnet restore
-    - dotnet build -o /home/ubuntu/CoreDataStore/bin/ -b /home/ubuntu/CoreDataStore/obj/ -f netcoreapp1.0
-    #- dotnet run --project /home/ubuntu/CoreDataStore/src/CoreDataStore.Web/project.json
-    - dotnet --version
-    - echo "done"
+    - dotnet restore home/ubuntu/CoreDataStore
+   
+  override:    
+    - dotnet test home/ubuntu/CoreDataStore/test/CoreDataStore.Data.Postgre.Test
+
+  
 
