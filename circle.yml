@@ -11,6 +11,3 @@ test:
    
   override:    
     - dotnet test home/ubuntu/CoreDataStore/test/CoreDataStore.Data.Postgre.Test
-
-  
-
