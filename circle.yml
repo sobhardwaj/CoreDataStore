@@ -4,12 +4,28 @@ dependencies:
     - sudo apt-key adv --keyserver apt-mo.trafficmanager.net --recv-keys 417A0893
     - sudo apt-get update
     - sudo apt-get install dotnet-dev-1.0.0-preview2-003121
-    # - sudo dotnet new
+    
+  override:
+    - sudo dotnet restore -v warning
+
+  # TODO cache
+  # cache_directories:
+  #   - "assets/cache"    # relative to the build directory
+  #   - "~/assets/output" # relative to the user's home directory
+
 
 test:
-  pre:
-    - sudo dotnet restore -v warning
-   
   override:    
     - sudo dotnet test test/CoreDataStore.Data.Postgre.Test
     - sudo dotnet test test/CoreDataStore.Data.SqlServer.Test
+
+deployment:
+  staging:
+    branch: master
+    commands:
+        - sudo dotnet publish src/CoreDataStore.Web
+
+general:
+  artifacts:
+    - "src/CoreDataStore.Web/bin/Debug/netcoreapp1.0/publish"
+       
