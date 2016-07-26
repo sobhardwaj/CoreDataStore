@@ -12,6 +12,9 @@ dependencies:
   override:
     - sudo dotnet restore -v warning
 
+  cache_directories:   
+    - "~/.nuget"
+
 
 test:
   override:    
