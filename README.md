@@ -88,11 +88,10 @@ docker pull stuartshay/coredatastore
 
 #Verify Created  Date
 docker inspect -f '{{ .Created }}' stuartshay/coredatastore 
-```
 
 #Run Image 
 docker run --rm --name <containername> -p 5000:5000 stuartshay/coredatastore
-
+```
 
 ##Postgres Db
 
