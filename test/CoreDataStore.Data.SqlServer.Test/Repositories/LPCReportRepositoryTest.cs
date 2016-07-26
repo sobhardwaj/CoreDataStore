@@ -93,5 +93,17 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
+        public void Can_Get_Paging_List()
+        {
+
+           // GetLPCReports(LPCReportRequest request, out int totalCount)
+
+
+        }
+
+
+
+
+
     }
 }

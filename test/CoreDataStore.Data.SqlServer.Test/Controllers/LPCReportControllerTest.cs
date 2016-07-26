@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Repositories;
 using CoreDataStore.Domain.Entities;
@@ -17,8 +16,8 @@ using System.Linq;
 using CoreDataStore.Domain.Enum;
 using CoreDataStore.Web.Filters;
 using CoreDataStore.Common.Helpers;
+using CoreDataStore.Service.Models;
 using GenFu;
-using Remotion.Linq.Clauses;
 
 namespace CoreDataStore.Data.SqlServer.Test.Controllers
 {
@@ -87,7 +86,9 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             var lpcReportSvc = serviceProvider.GetRequiredService<ILPCReportService>();
             var landmarkSvc = serviceProvider.GetRequiredService<ILandmarkService>();
 
-            return new LPCReportController(lpcReportSvc, landmarkSvc);
+            var controller = new LPCReportController(lpcReportSvc, landmarkSvc);
+
+            return controller;
         }
 
 
@@ -139,7 +140,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
 
             var model = new LPCReportRequestModel
             {
-               // ObjectType = "ObjectType5",
+                ObjectType = "Individual Landmark",
             };
 
             //Response Header Null Exception
@@ -152,45 +153,72 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
         }
 
 
+        [Fact(Skip = "ci test")]
+        public void Paging_Should_Return_No_Record()
+        {
+            var controller = PrepareController();
+
+            var model = new LPCReportRequestModel
+            {
+                ObjectType = "ObjectType45",
+            };
+
+            var actionResult = controller.Get(model, 5, 1);
+
+            // Assert
+            actionResult.Should().BeOfType<IEnumerable<LPCReportModel>>()
+                .Which.Count().Should().Equals(0);
+        }
+
+
+        [Fact(Skip = "ci test")]
+        public void Put_Exception_Return_NoContent()
+        {
+            var controller = PrepareController();
+
+            var id = 110;
+
+            var dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
+            var model1 = dbContext.LPCReports.Where(x => x.Id == 1);
+
+            var model = new LPCReportModel{};
+
+            var actionResult = controller.Put(id, model);
+
+            // Assert
+            actionResult.Should().BeOfType<NoContentResult>();
+        }
+
+
+        [Fact(Skip = "ci test")]
+        public void Put_Valiation_Return_Name_Error()
+        {
+
+        }
+
+
+        [Fact(Skip = "ci test")]
+        public void Put_Sucess_Update_Record()
+        {
+            var controller = PrepareController();
+
+            var id = 11;
+            var model = new LPCReportModel
+            {
+
+            };
+
+            var actionResult = controller.Put(id, model);
+
+            // Assert
+            actionResult.Should().BeOfType<OkResult>();
+        }
 
 
 
 
 
-        //[Fact]
-        //public void Put_Should_Be_Able_To_Update_Record()
-        //{
-        //    var controller = PrepareController();
 
-        //    var id = 11;
-        //    var model = new LPCReportModel
-        //    {
-
-        //    };
-
-        //    var actionResult = controller.Put(id, model);
-
-        //    // Assert
-        //    actionResult.Should().BeOfType<OkResult>();
-        //}
-
-
-        //[Fact]
-        //public void Put_Should_Return_NoContent()
-        //{
-        //    var controller = PrepareController();
-
-        //    var id = 110;
-        //    var model = new LPCReportModel
-        //    {
-
-        //    };
-
-        //    var actionResult = controller.Put(id, model);
-
-        //    // Assert
-        //    actionResult.Should().BeOfType<NoContentResult>();
-        //}
 
 
         //[Fact]
@@ -220,22 +248,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
 
 
 
-        //[Fact]
-        //public void Get_Should_Return_No_Record()
-        //{
-        //    var controller = PrepareController();
 
-        //    var model = new LPCReportRequestModel
-        //    {
-        //        ObjectType = "ObjectType45",
-        //    };
-
-        //    var actionResult = controller.Get(model, 5, 1);
-
-        //    // Assert
-        //    actionResult.Should().BeOfType<IEnumerable<LPCReportModel>>()
-        //        .Which.Count().Should().Equals(0);
-        //}
 
 
 
