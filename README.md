@@ -85,17 +85,8 @@ docker push stuartshay/coredatastore:latest
 Pull
 ```bash
 docker pull stuartshay/coredatastore
+docker run --rm --name <containername> -p 5000:5000 stuartshay/coredatastore
 ```
-
-
-
-
-
-
-
-
-
-
 
 Postgres Db
 
