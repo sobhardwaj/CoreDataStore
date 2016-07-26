@@ -27,4 +27,4 @@ deployment:
     branch: master
     commands:
       - sudo dotnet publish src/CoreDataStore.Web
-      - sudo docker build -f src/aspnetcore.dockerfile -t coredatastore      
+      - sudo docker build -f src/aspnetcore.dockerfile -t coredatastore .     
