@@ -72,6 +72,31 @@ docker build -f aspnetcore.dockerfile -t coredatastore .
 docker run --rm --name  coredatastore -p 5000:5000 coredatastore
 ```
 
+##Docker Hub
+
+https://hub.docker.com/r/stuartshay/coredatastore/      
+
+Publish
+```bash
+docker tag coredatastore stuartshay/coredatastore
+docker push stuartshay/coredatastore:latest
+```
+
+Pull
+```bash
+docker pull stuartshay/coredatastore
+```
+
+
+
+
+
+
+
+
+
+
+
 Postgres Db
 
 ```bash
