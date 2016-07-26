@@ -20,13 +20,12 @@ test:
   override:    
     - sudo dotnet test test/CoreDataStore.Data.Postgre.Test
     - sudo dotnet test test/CoreDataStore.Data.SqlServer.Test
-    - sudo dotnet publish src/CoreDataStore.Web
-    - sudo docker build -f src/aspnetcore.dockerfile -t coredatastore .  
 
 
-# deployment:
-#   staging:
-#     branch: master
-#     commands:
-#       - sudo dotnet publish src/CoreDataStore.Web
-#       - sudo docker build -f src/aspnetcore.dockerfile -t coredatastore .     
+deployment:
+  staging:
+    branch: master
+    commands:
+      - sudo dotnet publish src/CoreDataStore.Web
+      - sudo docker build -f src/aspnetcore.dockerfile -t coredatastore --rm=false .
+ 
