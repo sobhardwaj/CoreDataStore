@@ -1,6 +1,6 @@
-FROM microsoft/dotnet
+FROM microsoft/dotnet:core
 
-COPY src/CoreDataStore.Web/bin/Debug/netcoreapp1.0/publish /dotnetapp
+COPY CoreDataStore/src/CoreDataStore.Web/bin/Debug/netcoreapp1.0/publish /dotnetapp
 
 WORKDIR /dotnetapp
 

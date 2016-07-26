@@ -2,7 +2,6 @@ machine:
   services:
     - docker
 
-
 dependencies:
   pre:
     - sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
@@ -24,5 +23,5 @@ deployment:
   staging:
     branch: master
     commands:
-        - sudo dotnet publish src/CoreDataStore.Web
-        - docker build -f src/aspnetcore.dockerfile -t coredatastore      
+      - sudo dotnet publish src/CoreDataStore.Web
+      - sudo docker build -f src/aspnetcore.dockerfile -t coredatastore      
