@@ -28,9 +28,6 @@ deployment:
     commands:
       - sudo dotnet publish src/CoreDataStore.Web
       - sudo docker build -f src/aspnetcore.dockerfile -t stuartshay/coredatastore --rm=false .
-  
-  hub:
-    branch: master
-    commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push stuartshay/coredatastore
+      
