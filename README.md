@@ -72,7 +72,7 @@ docker build -f aspnetcore.dockerfile -t coredatastore .
 docker run --rm --name  coredatastore -p 5000:5000 coredatastore
 ```
 
-##Docker Hub
+###Docker Hub
 
 https://hub.docker.com/r/stuartshay/coredatastore/      
 
@@ -88,14 +88,14 @@ docker pull stuartshay/coredatastore
 docker run --rm --name <containername> -p 5000:5000 stuartshay/coredatastore
 ```
 
-Postgres Db
+##Postgres Db
 
 ```bash
 docker build -f postgres.dockerfile -t postgresdb .
 docker run --rm --name  postgresdb -p 5432:5432 postgresdb
 ```
 
-Docker Compose Web & Postgre Db
+##Docker Compose Web & Postgre Db
 
 ```bash
 cd CoreDataStore/src
@@ -104,7 +104,7 @@ docker-compose build
 docker-compose up
 ```
 
-Web & NGINX
+##Web & NGINX
 
 ```bash
  docker-compose --file docker-compose-nginx.yml  build 
