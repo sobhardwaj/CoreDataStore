@@ -66,7 +66,7 @@ dotnet run
 
 [Docker Commands](src/docker/README.md)
 
-Web Container
+##Web Container
 
 [Docker Hub](https://hub.docker.com/r/stuartshay/coredatastore/ )
 
@@ -76,8 +76,7 @@ cd CoreDataStore/src
 docker build -f aspnetcore.dockerfile -t coredatastore . 
 docker run --rm --name  coredatastore -p 5000:5000 coredatastore
 ```
-    
-    
+
 ##Postgres Db
 
 ```bash
