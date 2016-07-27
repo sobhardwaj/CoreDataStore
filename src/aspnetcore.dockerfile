@@ -6,7 +6,7 @@ MAINTAINER Stuart Shay
 ENV ASPNETCORE_URLS="http://*:5000"
 ENV ASPNETCORE_ENVIRONMENT="Staging"
 
-WORKDIR /dotnetapp/CoreDataStore.Web
+WORKDIR /dotnetapp/src/CoreDataStore.Web
 
 # Open up port
 EXPOSE 5000
