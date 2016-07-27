@@ -55,5 +55,6 @@ namespace CoreDataStore.Domain.Entities
 
         public bool SECND_BLDG { get; set; }
         
+        public LPCReport LPCReport { get; set; }
     }
 }
