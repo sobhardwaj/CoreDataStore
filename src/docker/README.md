@@ -6,7 +6,7 @@
 
 ```bash 
     docker images                     #Get List of Images
-    docker rmi  -f IMAGEID            #Remove Image 
+    docker rmi  -f <IMAGEID>          #Remove Image 
 ```
 
 ###Containers 
@@ -14,8 +14,8 @@
 ```bash 
     docker ps -a                    #All Containers
     docker ps                       #Running Containers 
-    docker stop CONATINERID         #Stop Running Container
-    docker rm  -f IMAGEID           #Remove Container
+    docker stop <CONATINERID>       #Stop Running Container
+    docker rm  -f <IMAGEID>         #Remove Container
 ```
 
 ###Run 
