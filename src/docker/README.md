@@ -18,6 +18,13 @@
     docker rm  -f <IMAGEID>         #Remove Container
 ```
 
+###Publish
+
+```bash 
+docker tag coredatastore stuartshay/coredatastore
+docker push stuartshay/coredatastore:latest
+```
+
 ###Run 
 
 ```bash 
