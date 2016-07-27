@@ -1,9 +1,17 @@
-FROM microsoft/dotnet:core
+FROM microsoft/dotnet:onbuild
 
-COPY src/CoreDataStore.Web/bin/Debug/netcoreapp1.0/publish /dotnetapp
+MAINTAINER Stuart Shay
 
+# Set environment variables
+ENV ASPNETCORE_URLS="http://*:5000"
+ENV ASPNETCORE_ENVIRONMENT="Staging"
+
+WORKDIR /dotnetapp/src/CoreDataStore.Web
+
+# Open up port
 EXPOSE 5000
 
-ENTRYPOINT ["dotnet", "/dotnetapp/CoreDataStore.Web.dll"]
+# Run the app
+ENTRYPOINT ["dotnet", "run"]
 
 
