@@ -10,7 +10,7 @@ dependencies:
     - sudo apt-get install dotnet-dev-1.0.0-preview2-003121
     
   override:
-    - sudo dotnet restore -v warning
+    - dotnet restore -v warning
 
   cache_directories:   
     - "~/.nuget"
@@ -18,8 +18,8 @@ dependencies:
 
 test:
   override:    
-    - sudo dotnet test test/CoreDataStore.Data.Postgre.Test
-    - sudo dotnet test test/CoreDataStore.Data.SqlServer.Test
+    - dotnet test test/CoreDataStore.Data.Postgre.Test
+    - dotnet test test/CoreDataStore.Data.SqlServer.Test
 
 
 deployment:
@@ -27,5 +27,7 @@ deployment:
     branch: master
     commands:
       - sudo dotnet publish src/CoreDataStore.Web
-      - sudo docker build -f src/aspnetcore.dockerfile -t coredatastore --rm=false .
- 
+      - docker build -f src/aspnetcore.dockerfile --rm=false .
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push stuartshay/coredatastore
+      
