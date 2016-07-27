@@ -27,7 +27,7 @@ deployment:
     branch: master
     commands:
       - dotnet publish src/CoreDataStore.Web
-      - docker build -f src/aspnetcore.dockerfile.bak -t stuartshay/coredatastore:$CIRCLE_BUILD_NUM --rm=false .
+      - docker build -f src/aspnetcore.dockerfile -t stuartshay/coredatastore:$CIRCLE_BUILD_NUM --rm=false .
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push stuartshay/coredatastore
  
