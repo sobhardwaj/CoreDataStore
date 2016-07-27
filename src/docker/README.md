@@ -14,9 +14,18 @@
 ```bash 
     docker ps -a                    #All Containers
     docker ps                       #Running Containers 
-    docker stop CONATINERID         #Stop Running Image 
-    docker rm  -f IMAGEID           #Remove Image 
+    docker stop CONATINERID         #Stop Running Container
+    docker rm  -f IMAGEID           #Remove Container
 ```
+
+###Run 
+
+```bash 
+   docker pull stuartshay/coredatastore
+   docker run --rm --name <containername> -p 5000:5000 stuartshay/coredatastore
+```
+
+
 
 ##Examine Containers
 
@@ -27,7 +36,7 @@ docker inspect -f '{{ .Created }}' stuartshay/coredatastore
 
 ```bash 
 # Examine Filesystem (bash shell)
-docker run -i -t --entrypoint /bin/bash IMAGEID  
+docker run -i -t --entrypoint /bin/bash <IMAGEID>  
 ```
 
 
