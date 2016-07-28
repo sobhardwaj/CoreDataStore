@@ -12,10 +12,6 @@ using Microsoft.Extensions.Configuration;
 
 namespace CoreDataStore.Data.SqlServer.Test.Repositories
 {
-    // Setup Unit Tests - In Memory etc
-    //http://www.jerriepelser.com/blog/unit-testing-aspnet5-entityframework7-inmemory-database
-    //https://github.com/jerriep/Aspnet5DbContextTesting
-
     public class LPCReportRepositoryTest
     {
         private readonly IServiceProvider serviceProvider;
@@ -82,14 +78,28 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             }
         }
 
+
+       // [Fact(Skip = "ci test")]
+       [Fact]
+        public void Can_Get_LPCReport()
+        {
+            var lpNumber = "LP-00871";
+            var landmark = dbContext.LPCReports.Where(x => x.LPNumber == lpNumber).Select(x => x.LPNumber).First();
+
+            Assert.Equal(lpNumber, landmark);
+        }
+
+
         [Fact(Skip = "ci test")]
         public void Can_Get_Inclueded_Fields()
         {
-            //var test = dbContext.LPCReports.Include(x => x.Name).Select(x => x.Name).ToList();
-            var test2 = dbContext.LPCReports.Select(x => x.Name).ToList();
-            var results = lpcReportRepository.GetAll().Select(x => x.Name).ToList();
-            Assert.NotNull(results);
+            var lpNumber = "LP-00871";
+            var landmarkCount = 4;
 
+            var landmark = dbContext.LPCReports.Include(x => x.Landmarks).Where(x => x.LPNumber == lpNumber).Select(x => x).First();
+
+            Assert.Equal(lpNumber, landmark.LPNumber);
+            Assert.Equal(landmarkCount, landmark.Landmarks.Count);
         }
 
 
@@ -100,10 +110,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
 
         }
-
-
-
-
 
     }
 }

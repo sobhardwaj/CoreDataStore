@@ -8,9 +8,10 @@ using CoreDataStore.Data.SqlServer;
 namespace CoreDataStore.Data.SqlServer.Test.Migrations
 {
     [DbContext(typeof(NYCLandmarkContext))]
-    partial class NYCLandmarkContextModelSnapshot : ModelSnapshot
+    [Migration("20160728025929_mappings_2")]
+    partial class mappings_2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")

@@ -20,7 +20,11 @@ using CoreDataStore.Service.Models;
 using GenFu;
 
 namespace CoreDataStore.Data.SqlServer.Test.Controllers
-{
+{   
+    // Setup Unit Tests - In Memory etc
+    //http://www.jerriepelser.com/blog/unit-testing-aspnet5-entityframework7-inmemory-database
+    //https://github.com/jerriep/Aspnet5DbContextTesting
+
     public class LPCReportControllerTest
     {
         private readonly IServiceProvider serviceProvider;

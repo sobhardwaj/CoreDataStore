@@ -54,8 +54,8 @@ namespace CoreDataStore.Data.SqlServer
                 .HasOne(l => l.LPCReport)
                 .WithMany(r => r.Landmarks)
                 .HasForeignKey(l => l.LP_NUMBER)
-                .HasPrincipalKey(r => r.LPNumber)
-                .HasConstraintName("FK_Landmark_LPCReport");
+                .HasPrincipalKey(r => r.LPNumber);
+                //.HasConstraintName("FK_Landmark_LPCReport");
 
             base.OnModelCreating(builder);
         }
