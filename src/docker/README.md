@@ -15,7 +15,7 @@
     docker ps -a                    #All Containers
     docker ps                       #Running Containers 
     docker stop <CONATINERID>       #Stop Running Container
-    docker rm  -f <IMAGEID>         #Remove Container
+    docker rm  -f <CONATINERID>     #Remove Container
 ```
 
 ###Publish
