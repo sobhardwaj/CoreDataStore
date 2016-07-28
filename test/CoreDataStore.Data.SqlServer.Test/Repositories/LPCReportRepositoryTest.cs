@@ -79,8 +79,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-       // [Fact(Skip = "ci test")]
-       [Fact]
+        [Fact(Skip = "ci test")]
         public void Can_Get_LPCReport()
         {
             var lpNumber = "LP-00871";
