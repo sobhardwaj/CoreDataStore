@@ -1,7 +1,7 @@
-﻿<html>
+<html>
 
 <head>
-    <title>@ViewData["Title"] - CoreDataStore.Web</title>
+    <title>CoreDataStore</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/app.css">
     <!-- 1. Load libraries -->
@@ -12,23 +12,14 @@
     <script src="lib/systemjs/dist/system.src.js"></script>
     <!-- 2. Configure SystemJS -->
     <script src="systemjs.config.js"></script>
-
-        <environment names="Development">
-        <script>
-          System.import('app').catch(function(err){ console.error(err); });
-        </script>
-    </environment>
-    <environment names="Staging,Production">
-        <script>
-          System.import('app').catch(function(err){ console.error(err); });
-          window['g_AngularProdMode'] = true;
-        </script>
-    </environment>
+    <script>
+    System.import('app').then(null, console.error.bind(console));
+    </script>
 </head>
 <!-- 3. Display the application -->
 
 <body class="layout-fixed layout-boxed">
-    @RenderBody()
+    <app>Loading...</app>
 </body>
 
 </html>
