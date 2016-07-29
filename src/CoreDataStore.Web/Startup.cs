@@ -125,8 +125,6 @@ namespace CoreDataStore.Web
         public void ConfigureStaging(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             //app.UseExceptionHandler("/Home/Error");
-
-
             app.UseExceptionHandler(
                           builder =>
                           {
@@ -143,15 +141,7 @@ namespace CoreDataStore.Web
                                         await context.Response.WriteAsync(error.Error.Message).ConfigureAwait(false);
                                     }
                                 });
-                          });
-
-
-
-
-
-
-
-
+                          }); 
 
             AppConfig(app, loggerFactory);
         }
