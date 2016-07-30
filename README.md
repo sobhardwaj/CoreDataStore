@@ -25,7 +25,7 @@ npm install -g typings typescript ts-node
 
 Server Development
 ```bash
-$npm install -g generator-aspnet
+npm install -g generator-aspnet
 ```
 
 ### Setup
@@ -34,22 +34,13 @@ $npm install -g generator-aspnet
 git clone https://github.com/stuartshay/CoreDataStore.git
 ```
 
-
-
-
 ```bash
-$cd src/CoreDataStore.Web/wwwroot/
-$npm3 install
-$typings install
-```
+cd src/CoreDataStore.Web/wwwroot/
+npm run clean
+npm run build
 
-```bash
-- delete \wwwroot\node_modules\browser-sync\modules
-- rename \wwwroot\node_modules\ng2-bootstrap\tsconfig.json to _tsconfig.json
-```
+npm start
 
-```bash
-npm3 run tsc
 ```
 
 ##Website
