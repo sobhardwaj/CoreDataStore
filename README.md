@@ -15,13 +15,17 @@ Visual Studio 2015 Update 3 RTM
 Visual Studio 2015 Tools 1.0.0 RC2
 
 ### Packages 
-```bash
-$npm -v # >=2.15
-$npm install -g generator-aspnet
 
-$npm install -g npm3
-$npm3 install -g typings
-$typings -v # >=1.0.4
+Client Packages 
+```bash
+npm install -g nodejs
+npm install -g gulp gulp-cli
+npm install -g typings typescript ts-node
+```
+
+Server Development
+```bash
+$npm install -g generator-aspnet
 ```
 
 ### Setup
@@ -29,6 +33,9 @@ $typings -v # >=1.0.4
 ```bash
 git clone https://github.com/stuartshay/CoreDataStore.git
 ```
+
+
+
 
 ```bash
 $cd src/CoreDataStore.Web/wwwroot/
