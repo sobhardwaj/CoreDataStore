@@ -10,6 +10,17 @@ DROP CONSTRAINT FK_Landmark_LPCReport
 SELECT Name, Street, * FROM [dbo].[LPCReport]
 WHERE Borough = 'Queens'
 
+SELECT DISTINCT [Style] FROM [dbo].[LPCReport]
+
+SELECT [Style], Count ([Style]) FROM [dbo].[LPCReport]
+GROUP BY [Style]
+
+
+SELECT LEN( [Style]) FROM [dbo].[LPCReport]
+GROUP BY [Style]
+ORDER BY LEN( [Style]) DESC
+
+
 SELECT * FROM [dbo].[Landmark]
 
 

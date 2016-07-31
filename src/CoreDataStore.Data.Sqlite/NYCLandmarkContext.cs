@@ -19,7 +19,12 @@ namespace CoreDataStore.Data.Sqlite
             builder.RemovePluralizingTableNameConvention();
 
             builder.Entity<LPCReport>().HasKey(m => m.Id);
+            builder.Entity<LPCReport>().Property(t => t.Style).HasMaxLength(100);
+
+        
             builder.Entity<Landmark>().HasKey(m => m.Id);
+
+
 
             base.OnModelCreating(builder);
         }

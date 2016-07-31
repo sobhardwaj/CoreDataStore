@@ -5,6 +5,7 @@ using CoreDataStore.Domain.Interfaces;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using CoreDataStore.Data.Data;
 
 namespace CoreDataStore.Web.Controllers
 {
@@ -32,6 +33,16 @@ namespace CoreDataStore.Web.Controllers
         {
             return EnumHelper.EnumToList<ObjectType>().Select(e => e.GetDescription());
         }
+
+
+        [HttpGet]
+        [Route("parentStyles")]
+        public IEnumerable<string> GetParentStyles()
+        {
+            return StylesData.GetParentStyles();
+        }
+
+
 
 
     }
