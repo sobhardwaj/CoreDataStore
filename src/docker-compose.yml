@@ -1,32 +1,33 @@
 version: '2'
 
 services:
-  db:
-    image: postgres
-    
+  database:
+    image: postgres    
     environment:
       - POSTGRES_USER="coredatastore"
       - POSTGRES_PASSWORD="123456"
-
     networks:
-      - app-internal
+      - back-tier
 
-  web:
-    image: stuartshay/coredatastore
-
+  api:
+    image: stuartshay/coredatastore:api
     links:
-      - db
-  
+      - db  
     environment:
       - ENV ASPNETCORE_URLS="http://*:5000"
       - ENV ASPNETCORE_ENVIRONMENT="Staging"
-
-    ports:
-      - "8080:5000"
-
     networks:
-      - app-internal
+      - back-tier
+    
+  frontend:
+    image: stuartshay/coredatastore:ui
+    links:
+      - api
+    ports:
+      - "80:80"    
+    networks:
+      - back-tier     
 
 networks:
-  app-internal:
+  back-tier:
     driver: bridge
