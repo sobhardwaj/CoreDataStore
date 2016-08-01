@@ -11,7 +11,8 @@ dependencies:
     
   override:
     - dotnet restore -v warning
-    - ( cd src/CoreDataStore.UI ; npm i )
+    - npm i -g typings typescript ts-node
+    - ( cd src/CoreDataStore.UI ; npm i )    
 
   cache_directories:   
     - "~/.nuget"
