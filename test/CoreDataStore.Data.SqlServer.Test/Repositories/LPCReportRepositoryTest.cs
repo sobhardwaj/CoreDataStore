@@ -117,7 +117,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         //[Fact]
         public void Can_Get_Paging_List()
         {
-            int count = 0;
+            //int count = 0;
             var request = new LPCReportRequest
             {
                 PageSize = 20,
