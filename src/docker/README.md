@@ -32,13 +32,20 @@ docker push stuartshay/coredatastore:latest
    docker run --rm --name <containername> -p 5000:5000 stuartshay/coredatastore
 ```
 
+###Volumes 
 
+```bash 
+   docker volume ls
+   docker volume rm <VOLUMENAME>
+```
 
 ##Examine Containers
 
 ```bash 
 # Get Created DateTime  
-docker inspect -f '{{ .Created }}' stuartshay/coredatastore 
+docker inspect -f '{{ .Created }}' stuartshay/coredatastore
+
+docker logs <CONATINERID>
 ```
 
 ```bash 
