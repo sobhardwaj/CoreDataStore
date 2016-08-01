@@ -8,6 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 using CoreDataStore.Common.Helpers;
+using CoreDataStore.Data.Filters;
+using CoreDataStore.Service.Interfaces;
+using CoreDataStore.Service.Mappings;
+using CoreDataStore.Service.Services;
 using Microsoft.Extensions.Configuration;
 
 namespace CoreDataStore.Data.SqlServer.Test.Repositories
@@ -16,6 +20,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
     {
         private readonly IServiceProvider serviceProvider;
         private readonly ILPCReportRepository lpcReportRepository;
+        private readonly ILPCReportService lbcReportService;
         private readonly NYCLandmarkContext dbContext;
 
         public LPCReportRepositoryTest()
@@ -33,10 +38,14 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             options.UseSqlServer(dbonnection));
 
             services.AddScoped<ILPCReportRepository, LPCReportRepository>();
+            services.AddScoped<ILPCReportService, LPCReportService>();
             serviceProvider = services.BuildServiceProvider();
 
             dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
             lpcReportRepository = serviceProvider.GetRequiredService<ILPCReportRepository>();
+            lbcReportService = serviceProvider.GetRequiredService<ILPCReportService>();
+
+            AutoMapperConfiguration.Configure();
         }
 
 
@@ -102,13 +111,39 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
+        //**** Remove Skip For Testing
+
+        [Fact(Skip = "ci test")]
         public void Can_Get_Paging_List()
         {
+            int count = 0;
+            var request = new LPCReportRequest
+            {
+                PageSize = 20,
+                Page = 1,
+            };
 
-           // GetLPCReports(LPCReportRequest request, out int totalCount)
-
+            var results = lbcReportService.GetLPCReports(request, out count).ToList();
+            Assert.Equal(request.PageSize, results.Count);
 
         }
+
+        [Fact(Skip = "ci test")]
+        public void Can_Get_Filtered_Paging_List()
+        {
+            int count = 0;
+            var request = new LPCReportRequest
+            {
+                PageSize = 20,
+                Page = 1,
+                Borough = "Manhattan"
+            };
+
+            var results = lbcReportService.GetLPCReports(request, out count).ToList();
+            Assert.Equal(request.PageSize, results.Count);
+
+        }
+
 
     }
 }

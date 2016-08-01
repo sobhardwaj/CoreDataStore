@@ -36,14 +36,11 @@ namespace CoreDataStore.Web.Controllers
 
 
         [HttpGet]
-        [Route("parentStyles")]
+        [Route("parentStyle")]
         public IEnumerable<string> GetParentStyles()
         {
             return StylesData.GetParentStyles();
         }
-
-
-
 
     }
 }

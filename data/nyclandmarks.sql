@@ -14,6 +14,8 @@ SELECT DISTINCT [Style] FROM [dbo].[LPCReport]
 
 SELECT [Style], Count ([Style]) FROM [dbo].[LPCReport]
 GROUP BY [Style]
+ORDER BY Count ([Style]) DESC
+
 
 
 SELECT LEN( [Style]) FROM [dbo].[LPCReport]
@@ -37,6 +39,14 @@ SELECT r.LPNumber, Count(*) FROM [dbo].[LPCReport] r
 INNER JOIN [dbo].[Landmark] l on r.LPNumber = l.LP_NUMBER
 GROUP BY r.LPNumber
 HAVING COUNT(*) = 4
+
+
+
+SELECT * FROM [LPCReport] 
+ORDER BY Id
+OFFSET (0) ROWS FETCH NEXT (20) ROWS ONLY
+
+
 
 
 
