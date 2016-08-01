@@ -12,7 +12,7 @@ services:
   api:
     image: stuartshay/coredatastore:api
     links:
-      - db  
+      - database  
     environment:
       - ENV ASPNETCORE_URLS="http://*:5000"
       - ENV ASPNETCORE_ENVIRONMENT="Staging"
@@ -24,7 +24,7 @@ services:
     links:
       - api
     ports:
-      - "80:80"    
+      - "8080:80"    
     networks:
       - back-tier     
 
