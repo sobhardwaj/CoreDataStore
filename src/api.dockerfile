@@ -1,7 +1,6 @@
 FROM microsoft/dotnet:core
 
 COPY src/CoreDataStore.Web/bin/Debug/netcoreapp1.0/publish /dotnetapp
-COPY src/CoreDataStore.Web/wwwroot /dotnetapp/wwwroot
 
 # Set environment variables
 ENV ASPNETCORE_URLS="http://*:5000"

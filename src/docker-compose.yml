@@ -1,25 +1,32 @@
 version: '2'
 
 services:
+  db:
+    image: postgres
+    
+    environment:
+      - POSTGRES_USER="coredatastore"
+      - POSTGRES_PASSWORD="123456"
+
+    networks:
+      - app-internal
 
   web:
-    build:
-      context: .
-      dockerfile: aspnetcore.dockerfile
-    ports:
-     - "5000:5000"
-    networks:
-      - aspnetcoreapp-network
+    image: stuartshay/coredatastore
 
-  postgres:
-    build:
-      context: .
-      dockerfile: postgres.dockerfile
+    links:
+      - db
+  
     environment:
-      POSTGRES_PASSWORD: password
+      - ENV ASPNETCORE_URLS="http://*:5000"
+      - ENV ASPNETCORE_ENVIRONMENT="Staging"
+
+    ports:
+      - "8080:5000"
+
     networks:
-      - aspnetcoreapp-network
+      - app-internal
 
 networks:
-  aspnetcoreapp-network:
+  app-internal:
     driver: bridge
