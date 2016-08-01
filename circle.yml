@@ -11,7 +11,7 @@ dependencies:
     
   override:
     - dotnet restore -v warning
-    - ( cd src/CoreDataStore.Web ; npm i )
+    - ( cd src/CoreDataStore.UI ; npm i )
 
   cache_directories:   
     - "~/.nuget"
@@ -28,7 +28,7 @@ deployment:
     branch: feat/docker_compose
     commands:
       - dotnet publish src/CoreDataStore.Web
-      - ( cd src/CoreDataStore.Web ; npm run clean ; npm run build)
+      - ( cd src/CoreDataStore.UI ; npm run clean ; npm run build)
       - docker build -f src/api.dockerfile -t stuartshay/coredatastore:api --rm=false .
       - docker build -f src/ui.dockerfile -t stuartshay/coredatastore:ui --rm=false .
       
