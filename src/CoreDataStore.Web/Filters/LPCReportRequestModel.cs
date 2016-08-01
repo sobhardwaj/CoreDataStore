@@ -15,5 +15,11 @@ namespace CoreDataStore.Web.Filters
         /// </summary>
         public string Borough { get; set; }
 
+
+        /// <summary>
+        /// Parent Styles List Comma Separated 
+        /// </summary>
+        public string ParentStyles { get; set; }
+
     }
 }

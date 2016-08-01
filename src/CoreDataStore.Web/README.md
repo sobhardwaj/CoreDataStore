@@ -9,7 +9,7 @@ Prerequisites
 - nodejs
 - gulp and gulp-cli
 - typings
-- typescrit
+- typescript
 - ts-node
 
 Running

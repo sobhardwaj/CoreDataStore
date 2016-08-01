@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using CoreDataStore.Domain.Entities.Base;
@@ -27,6 +28,8 @@ namespace CoreDataStore.Data.Infrastructure
         IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate);
 
         Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate);
+
+        IEnumerable<T> GetPage(int startRow, int pageLength, IOrderedQueryable<T> orderBy);
 
         void Add(T entity);
 

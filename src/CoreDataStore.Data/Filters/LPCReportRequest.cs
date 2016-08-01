@@ -1,4 +1,6 @@
-﻿using CoreDataStore.Data.Sqlite.Filters.Base;
+﻿using System;
+using System.Collections.Generic;
+using CoreDataStore.Data.Sqlite.Filters.Base;
 
 namespace CoreDataStore.Data.Filters
 {
@@ -14,6 +16,13 @@ namespace CoreDataStore.Data.Filters
         /// Borough
         /// </summary>
         public string Borough { get; set; }
+
+
+        /// <summary>
+        /// Parent Style List
+        /// </summary>
+        public List<string> ParentStyleList { get; set; }
+
 
     }
 }
