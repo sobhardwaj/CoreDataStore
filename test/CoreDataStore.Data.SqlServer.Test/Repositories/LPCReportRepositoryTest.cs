@@ -113,7 +113,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
         //**** Remove Skip For Testing
 
-        [Fact(Skip = "ci test")]
+        //[Fact(Skip = "ci test")]
+        [Fact]
         public void Can_Get_Paging_List()
         {
             int count = 0;
@@ -123,10 +124,12 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
                 Page = 1,
             };
 
-            var results = lbcReportService.GetLPCReports(request, out count).ToList();
+            //Implenent Dyanmic Order By
+            var results = lpcReportRepository.GetPage(request.Page, request.PageSize, null).ToList();
             Assert.Equal(request.PageSize, results.Count);
 
         }
+
 
         [Fact(Skip = "ci test")]
         public void Can_Get_Filtered_Paging_List()
