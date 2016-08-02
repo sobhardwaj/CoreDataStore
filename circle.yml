@@ -10,8 +10,7 @@ dependencies:
     - sudo apt-get install dotnet-dev-1.0.0-preview2-003121
     
   override:
-    - dotnet restore -v warning
-    - npm i -g typings typescript ts-node
+    - dotnet restore -v warning    
     - ( cd src/CoreDataStore.UI ; npm i )    
 
   cache_directories:   
