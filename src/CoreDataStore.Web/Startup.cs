@@ -23,6 +23,7 @@ namespace CoreDataStore.Web
     {
         public Startup(IHostingEnvironment env)
         {
+            Console.WriteLine($"******Content root: {env.ContentRootPath}");
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
