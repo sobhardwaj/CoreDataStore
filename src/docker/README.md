@@ -44,7 +44,6 @@ docker push stuartshay/coredatastore:latest
 ```bash 
 # Get Created DateTime  
 docker inspect -f '{{ .Created }}' stuartshay/coredatastore
-
 docker logs <CONATINERID>
 ```
 
