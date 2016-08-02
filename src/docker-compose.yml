@@ -15,7 +15,7 @@ services:
     #   - database  
     environment:
       - ASPNETCORE_URLS=http://api:80
-      - ASPNETCORE_ENVIRONMENT=DevelopmentServices        
+      - ASPNETCORE_ENVIRONMENT=Development    
     networks:
       - back-tier
     

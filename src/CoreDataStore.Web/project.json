@@ -64,8 +64,11 @@
   },
 
   "publishOptions": {
-    "include": [     
+    "include": [
       "appsettings.json",
+      "appsettings.Production.json",
+      "appsettings.Development.json",
+      "appsettings.Staging.json",
       "web.config"
     ]
   },
