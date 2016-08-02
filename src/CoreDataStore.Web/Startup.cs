@@ -25,8 +25,9 @@ namespace CoreDataStore.Web
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            builder = builder.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -161,6 +162,11 @@ namespace CoreDataStore.Web
             Console.WriteLine(Configuration["ConnectionStrings:PostgreSQL"]);
             Console.WriteLine(Configuration["ConnectionStrings:Sqlite"]);
             Console.WriteLine(Configuration["ConnectionStrings:SqlServer"]);
+
+            foreach (var item in Configuration.AsEnumerable())
+            {
+                Console.WriteLine($"{item.Key} -- {item.Value}");
+            }  
 
             Console.WriteLine("-------connection strings-------");
 
