@@ -1,18 +1,21 @@
 version: '2'
 
 services:
-   database:
-     image: postgres    
-     environment:
-       - POSTGRES_USER="nyclandmarks"
-       - POSTGRES_PASSWORD="nyclandmarks"
-     networks:
-       - back-tier
+  database:
+    image: postgres    
+    environment:
+      - POSTGRES_USER=nyclandmarks
+      - POSTGRES_PASSWORD=nyclandmarks
+      - POSTGRES_DB=nyclandmarks
+    networks:
+      - back-tier
+   #ports:
+   #   - "5432:5432" 
 
   api:
     image: stuartshay/coredatastore:api
     links:
-       - database  
+      - database  
     environment:
       - ASPNETCORE_URLS=http://api:80
       - ASPNETCORE_ENVIRONMENT=Staging    
