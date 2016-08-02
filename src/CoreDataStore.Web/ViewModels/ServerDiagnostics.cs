@@ -13,6 +13,8 @@ namespace CoreDataStore.Web.ViewModels
 
         public string EnvironmentName { get; set; }
 
+        public string Platform { get; set; }
+
         public string WorkingDirectory { get; set; }
 
         public string ContentRootPath { get; set; }
