@@ -15,6 +15,7 @@ using CoreDataStore.Web.Extensions;
 using Microsoft.AspNetCore.Diagnostics;
 using Swashbuckle.Swagger.Model;
 using Microsoft.AspNetCore.Http;
+using System;
 
 namespace CoreDataStore.Web
 {
@@ -156,7 +157,15 @@ namespace CoreDataStore.Web
 
         private void AppConfig(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
+            Console.WriteLine("-------connection strings-------");
+            Console.WriteLine(Configuration["ConnectionStrings:PostgreSQL"]);
+            Console.WriteLine(Configuration["ConnectionStrings:Sqlite"]);
+            Console.WriteLine(Configuration["ConnectionStrings:SqlServer"]);
+
+            Console.WriteLine("-------connection strings-------");
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+
             //loggerFactory.AddProvider(new SqlLoggerProvider());
             loggerFactory.AddDebug();
 
