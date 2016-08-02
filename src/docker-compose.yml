@@ -14,8 +14,8 @@ services:
     # links:
     #   - database  
     environment:
-      - ENV ASPNETCORE_URLS="http://*:80"
-      - ENV ASPNETCORE_ENVIRONMENT="Staging"
+      - ASPNETCORE_URLS=http://api:80
+      - ASPNETCORE_ENVIRONMENT=Development        
     networks:
       - back-tier
     
