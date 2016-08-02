@@ -10,12 +10,12 @@ const tsc = require("gulp-typescript");
 const sourcemaps = require('gulp-sourcemaps');
 const tsProject = tsc.createProject("tsconfig.json");
 
-const buildDir = "wwwroot"
+const buildDir = "build"
   /**
    * Remove build directory.
    */
 gulp.task('clean', (cb) => {
-  return del(["wwwroot"], cb);
+  return del([buildDir], cb);
 });
 
 

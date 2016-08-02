@@ -111,7 +111,7 @@ export class ReferencesService {
       if (objectType && objectType !== '') {
         params.set('ObjectType', objectType);
       }
-      return this.http.get(this._baseUrl + 'api/LPCReport/10/' + pageNo, { search: params })
+      return this.http.get('api/LPCReport/10/' + pageNo, { search: params })
         .map((res: Response) => {
           // console.log(0);
           if (!this.properties) {
@@ -140,7 +140,7 @@ export class ReferencesService {
 
   getBoroughs(): Observable < string[] > {
     if (!this.boroughs) {
-      return this.http.get(this._baseUrl + 'api/Reference/borough')
+      return this.http.get('api/Reference/borough')
         .map((res: Response) => {
           this.boroughs = res.json();
           return this.boroughs;
@@ -154,7 +154,7 @@ export class ReferencesService {
 
   getObjectTypes(): Observable < string[] > {
     if (!this.objectTypes) {
-      return this.http.get(this._baseUrl + 'api/Reference/objectType')
+      return this.http.get('api/Reference/objectType')
         .map((res: Response) => {
           this.objectTypes = res.json();
           return this.objectTypes;

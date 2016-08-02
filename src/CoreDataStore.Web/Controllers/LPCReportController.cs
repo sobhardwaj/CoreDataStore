@@ -85,7 +85,7 @@ namespace CoreDataStore.Web.Controllers
                 Page = page,
                 SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "name",
                 SortOrder = !string.IsNullOrEmpty(query.Order) ? query.Order : "asc",
-                ParentStyleList = query.ParentStyles != null  ? query.ParentStyles.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList() : null,
+                ParentStyleList = !string.IsNullOrEmpty(query.ParentStyles) ? query.ParentStyles.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList() : null,
                 Borough = query.Borough,
                 ObjectType = query.ObjectType
             };

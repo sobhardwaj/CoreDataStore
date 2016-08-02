@@ -15,6 +15,7 @@ using CoreDataStore.Web.Extensions;
 using Microsoft.AspNetCore.Diagnostics;
 using Swashbuckle.Swagger.Model;
 using Microsoft.AspNetCore.Http;
+using System;
 
 namespace CoreDataStore.Web
 {
@@ -155,8 +156,10 @@ namespace CoreDataStore.Web
 
 
         private void AppConfig(IApplicationBuilder app, ILoggerFactory loggerFactory)
-        {
+        {         
+            
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+
             //loggerFactory.AddProvider(new SqlLoggerProvider());
             loggerFactory.AddDebug();
 
