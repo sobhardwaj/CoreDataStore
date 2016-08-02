@@ -11,7 +11,13 @@ namespace CoreDataStore.Web.ViewModels
 
         public string Status { get; set; }
 
+        public string EnvironmentName { get; set; }
+
         public string WorkingDirectory { get; set; }
+
+        public string ContentRootPath { get; set; }
+
+        public string WebRootPath { get; set; }
 
         public string DnsHostName { get; set; }
 

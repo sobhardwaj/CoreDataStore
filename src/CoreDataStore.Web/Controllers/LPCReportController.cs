@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
@@ -7,6 +8,7 @@ using CoreDataStore.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.SwaggerGen.Annotations;
 using Microsoft.AspNetCore.Cors;
+using System.Linq;
 
 namespace CoreDataStore.Web.Controllers
 {
@@ -83,6 +85,7 @@ namespace CoreDataStore.Web.Controllers
                 Page = page,
                 SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "name",
                 SortOrder = !string.IsNullOrEmpty(query.Order) ? query.Order : "asc",
+               // ParentStyleList = query.ParentStyles.Length != 0 ? query.ParentStyles.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList() : null,
                 Borough = query.Borough,
                 ObjectType = query.ObjectType
             };

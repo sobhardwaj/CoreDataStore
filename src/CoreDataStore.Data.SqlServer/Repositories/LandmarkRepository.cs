@@ -11,9 +11,5 @@ namespace CoreDataStore.Data.SqlServer.Repositories
         {
         }
 
-        //public IEnumerable<Landmark> GetLandmarks(string lpNumber)
-        //{
-        //    throw new System.NotImplementedException();
-        //}
     }
 }

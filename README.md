@@ -1,11 +1,12 @@
 # CoreDataStore
 
 [![Build status](https://ci.appveyor.com/api/projects/status/4j2ebt69uw0e0wmg/branch/master?svg=true)](https://ci.appveyor.com/project/StuartShay/coredatastore/branch/master)
+[![CircleCI](https://circleci.com/gh/stuartshay/CoreDataStore.svg?style=svg)](https://circleci.com/gh/stuartshay/CoreDataStore)
 
 ##Prerequisites:
 
 ### .NET Core 
-.NET Core SDK 1.0.0 RTM  - June 27, 2016 
+.NET Core SDK 1.0.0 RTM  - June 27, 2016    
 https://www.microsoft.com/net/core  
 
 ###Visual Studio  
@@ -14,13 +15,17 @@ Visual Studio 2015 Update 3 RTM
 Visual Studio 2015 Tools 1.0.0 RC2
 
 ### Packages 
-```bash
-$npm -v # >=2.15
-$npm install -g generator-aspnet
 
-$npm install -g npm3
-$npm3 install -g typings
-$typings -v # >=1.0.4
+Client Packages 
+```bash
+npm install -g nodejs
+npm install -g gulp gulp-cli
+npm install -g typings typescript ts-node
+```
+
+Server Development
+```bash
+npm install -g generator-aspnet
 ```
 
 ### Setup
@@ -30,18 +35,12 @@ git clone https://github.com/stuartshay/CoreDataStore.git
 ```
 
 ```bash
-$cd src/CoreDataStore.Web/wwwroot/
-$npm3 install
-$typings install
-```
+cd src/CoreDataStore.Web/wwwroot/
+npm run clean
+npm run build
 
-```bash
-- delete \wwwroot\node_modules\browser-sync\modules
-- rename \wwwroot\node_modules\ng2-bootstrap\tsconfig.json to _tsconfig.json
-```
+npm start
 
-```bash
-npm3 run tsc
 ```
 
 ##Website
@@ -63,7 +62,12 @@ dotnet run
 ```
 ##Docker   
 
-Web Container
+[Docker Commands](src/docker/README.md)
+
+##Web Container
+
+[Docker Hub](https://hub.docker.com/r/stuartshay/coredatastore/ )
+
 ```bash
 cd CoreDataStore/src
 
@@ -71,14 +75,14 @@ docker build -f aspnetcore.dockerfile -t coredatastore .
 docker run --rm --name  coredatastore -p 5000:5000 coredatastore
 ```
 
-Postgres Db
+##Postgres Db
 
 ```bash
 docker build -f postgres.dockerfile -t postgresdb .
 docker run --rm --name  postgresdb -p 5432:5432 postgresdb
 ```
 
-Docker Compose Web & Postgre Db
+##Docker Compose Web & Postgre Db
 
 ```bash
 cd CoreDataStore/src
@@ -87,7 +91,7 @@ docker-compose build
 docker-compose up
 ```
 
-Web & NGINX
+##Web & NGINX
 
 ```bash
  docker-compose --file docker-compose-nginx.yml  build 

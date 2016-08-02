@@ -50,6 +50,13 @@ namespace CoreDataStore.Data.SqlServer
             builder.Entity<Landmark>().Property(t => t.STATUS).HasMaxLength(50).IsRequired();
             builder.Entity<Landmark>().Property(t => t.STATUS_NOT).HasMaxLength(200);
 
+            builder.Entity<Landmark>()
+                .HasOne(l => l.LPCReport)
+                .WithMany(r => r.Landmarks)
+                .HasForeignKey(l => l.LP_NUMBER)
+                .HasPrincipalKey(r => r.LPNumber);
+                //.HasConstraintName("FK_Landmark_LPCReport");
+
             base.OnModelCreating(builder);
         }
 

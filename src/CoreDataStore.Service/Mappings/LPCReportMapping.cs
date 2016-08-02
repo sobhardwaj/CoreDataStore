@@ -7,8 +7,16 @@ namespace CoreDataStore.Service.Mappings
 {
     public class LPCReportMapping : Profile
     {
-        [Obsolete]
-        protected override void Configure()
+        //[Obsolete]
+        //protected override void Configure()
+        //{
+        //    CreateMap<LPCReport, LPCReportModel>();
+
+        //    CreateMap<LPCReportModel, LPCReport>();
+        //}
+
+        public LPCReportMapping()
+            : base("LPCReportMapping")
         {
             CreateMap<LPCReport, LPCReportModel>();
 

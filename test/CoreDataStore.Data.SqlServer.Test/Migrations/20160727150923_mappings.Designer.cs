@@ -8,9 +8,10 @@ using CoreDataStore.Data.SqlServer;
 namespace CoreDataStore.Data.SqlServer.Test.Migrations
 {
     [DbContext(typeof(NYCLandmarkContext))]
-    partial class NYCLandmarkContextModelSnapshot : ModelSnapshot
+    [Migration("20160727150923_mappings")]
+    partial class mappings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -141,6 +142,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Migrations
                     b.HasOne("CoreDataStore.Domain.Entities.LPCReport", "LPCReport")
                         .WithMany("Landmarks")
                         .HasForeignKey("LP_NUMBER")
+                        .HasConstraintName("FK_Landmark_LPCReport")
                         .HasPrincipalKey("LPNumber");
                 });
         }

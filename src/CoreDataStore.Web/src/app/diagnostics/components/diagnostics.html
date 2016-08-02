@@ -6,41 +6,41 @@
                 <div class="col-md-2">
                     <ul>
                         <li>Machine Name:</li>
-                        <li>IP addresses:</li>
-                        <li>Date:</li>
+                        <li>Machine Date Time:</li>
+                        <li>IP Addresses:</li>
                     </ul>
                 </div>
                 <div class="col-md-8">
                     <ul>
                         <li>@Model.MachineName</li>
+                        <li>machineDate</li>
                         <li>@string.Join(",", Model.IpAddressList)</li>
-                        <li></li>
                     </ul>
                 </div>
             </div>
-            <h2>App Diagnostics</h2>
+            <h4>App Diagnostics</h4>
             <div class="row">
                 <div class="col-md-2">
                     <ul>
                         <li>App Name:</li>
                         <li>App Version:</li>
-                        <li>Working Directory:</li>
+                        <li>Environment:</li>
                     </ul>
                 </div>
                 <div class="col-md-8">
                     <ul>
-                        <li></li>
-                        <li>@Model.ApplicationVersionNumber</li>
-                        <li>@Model.WorkingDirectory</li>
+                        <li>@applicationName</li>
+                        <li>@applicationVersionNumber</li>
+                        <li>@environmentName</li>
                     </ul>
                 </div>
             </div>
-            <h2>Culture Diagnostics</h2>
+            <h4>Culture Diagnostics</h4>
             <div class="row">
                 <div class="col-md-2">
                     <ul>
                         <li>Culture:</li>
-                        <li>TimeZone:</li>
+                        <li>Time Zone:</li>
                     </ul>
                 </div>
                 <div class="col-md-8">
@@ -52,4 +52,31 @@
             </div>
         </div>
     </div>
+
+    <h3>Client Diagnostics</h3>
+    <div class="panel panel-green">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <ul>
+                        <li>Attraction API:</li>
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <ul>
+                        <li>XXXXXXXXX</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+<!--TODO: Page Needs to Refresh Every 1 Sec -->
+<script>
+    function refresh(milliseconds) {
+         setTimeout("location.reload(true);", milliseconds);
+     }
+    refresh(1000);
+</script>

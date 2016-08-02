@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Net;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,10 @@ using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;
+using CoreDataStore.Web.Extensions;
+using Microsoft.AspNetCore.Diagnostics;
 using Swashbuckle.Swagger.Model;
+using Microsoft.AspNetCore.Http;
 
 namespace CoreDataStore.Web
 {
@@ -22,13 +26,40 @@ namespace CoreDataStore.Web
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-                //.AddJsonFile("config.json", optional: true, reloadOnChange: true);
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; }
+
+        private void ConfigService(IServiceCollection services)
+        {
+            services.AddCors();
+            services.AddMvc();
+
+            services.AddSwaggerGen();
+            services.ConfigureSwaggerGen(options =>
+            {
+                options.SingleApiVersion(new Info
+                {
+                    Version = "v1",
+                    Title = "Core DataStore API",
+                    Description = "Core DataStore API",
+                    TermsOfService = "None"
+                });
+            });
+
+            services.ConfigureSwaggerGen(options =>
+            {
+                options.DescribeAllEnumsAsStrings();
+            });
+
+            // Services
+            services.AddScoped<ILPCReportService, LPCReportService>();
+            services.AddScoped<ILandmarkService, LandmarkService>();
+
+        }
 
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
@@ -82,36 +113,6 @@ namespace CoreDataStore.Web
         }
 
 
-
-
-        private void ConfigService(IServiceCollection services)
-        { 
-            services.AddCors();
-            services.AddMvc();
-
-            services.AddSwaggerGen();
-            services.ConfigureSwaggerGen(options =>
-            {
-                options.SingleApiVersion(new Info
-                {
-                    Version = "v1",
-                    Title = "Core DataStore API",
-                    Description = "Core DataStore API",
-                    TermsOfService = "None"
-                });
-            });
-
-            services.ConfigureSwaggerGen(options =>
-            {
-                options.DescribeAllEnumsAsStrings();  
-            });
-
-            // Services
-            services.AddScoped<ILPCReportService, LPCReportService>();
-            services.AddScoped<ILandmarkService, LandmarkService>();
-
-        }
-
         public void ConfigureDevelopment(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseDeveloperExceptionPage();
@@ -123,7 +124,24 @@ namespace CoreDataStore.Web
 
         public void ConfigureStaging(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            app.UseExceptionHandler("/Home/Error");
+            //app.UseExceptionHandler("/Home/Error");
+            app.UseExceptionHandler(
+                          builder =>
+                          {
+                              builder.Run(
+                                async context =>
+                                {
+                                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                                    context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+                                    var error = context.Features.Get<IExceptionHandlerFeature>();
+                                    if (error != null)
+                                    {
+                                        context.Response.AddApplicationError(error.Error.Message);
+                                        await context.Response.WriteAsync(error.Error.Message).ConfigureAwait(false);
+                                    }
+                                });
+                          }); 
 
             AppConfig(app, loggerFactory);
         }
@@ -134,8 +152,6 @@ namespace CoreDataStore.Web
 
             AppConfig(app, loggerFactory);
         }
-
-
 
 
         private void AppConfig(IApplicationBuilder app, ILoggerFactory loggerFactory)

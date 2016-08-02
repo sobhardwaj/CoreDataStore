@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using CoreDataStore.Data.Query;
 using CoreDataStore.Domain.Entities.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -13,7 +15,10 @@ namespace CoreDataStore.Data.Infrastructure
                 where T : class, IEntityBase, new()
     {
 
-         private DbContext _context;
+        private DbContext _context;
+
+        private readonly OrderBy<T> DefaultOrderBy = new OrderBy<T>(qry => qry.OrderBy(e => e.Id));
+
 
         #region Properties
         public EntityBaseRepository(DbContext context)
@@ -87,6 +92,14 @@ namespace CoreDataStore.Data.Infrastructure
         public virtual async Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate)
         {
             return await _context.Set<T>().Where(predicate).ToListAsync();
+        }
+
+        public virtual IEnumerable<T> GetPage(int startRow, int pageLength, IOrderedQueryable<T> orderBy = null)
+        {
+            //if (orderBy == null)
+              //  orderBy = DefaultOrderBy.Expression;
+
+            return _context.Set<T>().OrderBy(x => x.Id).Skip(startRow).Take(pageLength).ToList();
         }
 
         public virtual void Add(T entity)

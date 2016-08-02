@@ -1,5 +1,6 @@
 ﻿using System;
 using CoreDataStore.Domain.Entities.Base;
+using System.Collections.Generic;
 
 namespace CoreDataStore.Domain.Entities
 {
@@ -28,5 +29,7 @@ namespace CoreDataStore.Domain.Entities
         public bool PhotoStatus  { get; set; }
 
         public string PhotoURL  { get; set; }
+
+        public List<Landmark> Landmarks { get; set; }
     }
 }
