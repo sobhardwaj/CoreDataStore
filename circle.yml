@@ -25,7 +25,7 @@ test:
 
 deployment:
   staging:
-    branch: feat/docker_compose
+    branch: master
     commands:
       - dotnet publish src/CoreDataStore.Web
       - ( cd src/CoreDataStore.UI ; npm run clean ; npm run build)
