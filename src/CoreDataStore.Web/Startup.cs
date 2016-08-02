@@ -156,19 +156,8 @@ namespace CoreDataStore.Web
 
 
         private void AppConfig(IApplicationBuilder app, ILoggerFactory loggerFactory)
-        {
-            Console.WriteLine("-------connection strings-------");
-            Console.WriteLine(Configuration["ConnectionStrings:PostgreSQL"]);
-            Console.WriteLine(Configuration["ConnectionStrings:Sqlite"]);
-            Console.WriteLine(Configuration["ConnectionStrings:SqlServer"]);
-
-            foreach (var item in Configuration.AsEnumerable())
-            {
-                Console.WriteLine($"{item.Key} -- {item.Value}");
-            }  
-
-            Console.WriteLine("-------connection strings-------");
-
+        {         
+            
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 
             //loggerFactory.AddProvider(new SqlLoggerProvider());
