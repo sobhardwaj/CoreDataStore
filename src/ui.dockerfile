@@ -1,4 +1,4 @@
 FROM nginx
 
-COPY src/CoreDataStore.UI/build etc/nginx/html
-COPY src/CoreDataStore.UI/nginx.conf /etc/nginx/nginx.conf
+COPY src/CoreDataStore.Web/wwwroot etc/nginx/html
+COPY src/CoreDataStore.Web/nginx.conf /etc/nginx/nginx.conf
