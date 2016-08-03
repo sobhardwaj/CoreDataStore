@@ -165,6 +165,7 @@ namespace CoreDataStore.Web
 
             AutoMapperConfiguration.Configure();
 
+            app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseMvc(ConfigureRoutes);
