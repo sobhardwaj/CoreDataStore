@@ -1,3 +1,4 @@
+/// <binding BeforeBuild='build' />
 "use strict";
 
 const del = require("del");
