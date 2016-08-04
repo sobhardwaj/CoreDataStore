@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:onbuild
+FROM microsoft/dotnet:core
 MAINTAINER Stuart Shay
 
 COPY src/CoreDataStore.Web/bin/Debug/netcoreapp1.0/publish /dotnetapp
