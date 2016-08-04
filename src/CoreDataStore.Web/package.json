@@ -13,15 +13,6 @@
     "tsc:w": "./node_modules/.bin/tsc -w",
     "typings": "./node_modules/.bin/typings"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kolorobot/angular2-typescript-gulp.git"
-  },
-  "author": "Rafał Borowiec",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kolorobot/angular2-typescript-gulp/issues"
-  },
   "dependencies": {
     "@angular/common": "2.0.0-rc.1",
     "@angular/compiler": "2.0.0-rc.1",
@@ -45,6 +36,7 @@
   "devDependencies": {
     "bootstrap": "^3.3.6",
     "concurrently": "^2.0.0",
+    "connect-history-api-fallback": "^1.2.0",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-cssmin": "^0.1.7",
@@ -52,6 +44,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-tslint": "^4.3.3",
     "gulp-typescript": "^2.12.0",
+    "http-proxy-middleware": "^0.17.0",
     "lite-server": "^2.2.0",
     "tslint": "^3.5.0",
     "typescript": "^1.8.10",

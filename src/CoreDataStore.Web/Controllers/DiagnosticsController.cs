@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
 using System.Reflection;
+using CoreDataStore.Web.Extensions;
 using CoreDataStore.Web.ViewModels;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +36,7 @@ namespace CoreDataStore.Web.Controllers
                 MachineCulture =
                     string.Format("{0} - {1}", CultureInfo.CurrentCulture.DisplayName, CultureInfo.CurrentCulture.Name),
 
+                Platform = PlatformHandler.Platform.OSPlatform.ToString(),
                 DnsHostName = Dns.GetHostName(),
                 WorkingDirectory = null,
                 ContentRootPath = _env.ContentRootPath,

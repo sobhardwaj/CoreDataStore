@@ -1,3 +1,4 @@
+/// <binding BeforeBuild='build' />
 "use strict";
 
 const del = require("del");
@@ -15,7 +16,7 @@ const buildDir = "wwwroot"
    * Remove build directory.
    */
 gulp.task('clean', (cb) => {
-  return del(["wwwroot"], cb);
+  return del([buildDir], cb);
 });
 
 

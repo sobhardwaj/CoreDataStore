@@ -20,7 +20,7 @@
     "Microsoft.Extensions.Logging": "1.0.0",
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader" :  "14.0.0", 
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
     "Microsoft.NETCore.App": {
       "version": "1.0.0",
       "type": "platform"
@@ -53,6 +53,8 @@
     }
   },
 
+  "webroot": "wwwroot",
+
   "buildOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true
@@ -64,15 +66,15 @@
 
   "publishOptions": {
     "include": [
-      "wwwroot",
-      "Views",
       "appsettings.json",
+      "appsettings.Production.json",
+      "appsettings.Development.json",
+      "appsettings.Staging.json",
       "web.config"
     ]
   },
 
   "scripts": {
-    //"prepublish": [ "npm install", "bower install", "gulp clean", "gulp min" ],
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }

@@ -10,8 +10,8 @@ dependencies:
     - sudo apt-get install dotnet-dev-1.0.0-preview2-003121
     
   override:
-    - dotnet restore -v warning
-    - ( cd src/CoreDataStore.Web ; npm i )
+    - dotnet restore -v warning    
+    - ( cd src/CoreDataStore.Web ; npm i )    
 
   cache_directories:   
     - "~/.nuget"
@@ -30,6 +30,7 @@ deployment:
       - dotnet publish src/CoreDataStore.Web
       - ( cd src/CoreDataStore.Web ; npm run clean ; npm run build)
       - docker build -f src/aspnetcore.dockerfile -t stuartshay/coredatastore --rm=false .
+      
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push stuartshay/coredatastore
  

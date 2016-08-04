@@ -1,25 +1,36 @@
 version: '2'
 
 services:
-
-  web:
-    build:
-      context: .
-      dockerfile: aspnetcore.dockerfile
-    ports:
-     - "5000:5000"
-    networks:
-      - aspnetcoreapp-network
-
-  postgres:
-    build:
-      context: .
-      dockerfile: postgres.dockerfile
+  database:
+    image: postgres    
     environment:
-      POSTGRES_PASSWORD: password
+      - POSTGRES_USER=nyclandmarks
+      - POSTGRES_PASSWORD=nyclandmarks
+      - POSTGRES_DB=nyclandmarks
     networks:
-      - aspnetcoreapp-network
+      - back-tier
+   #ports:
+   #   - "5432:5432" 
+
+  api:
+    image: stuartshay/coredatastore:api
+    links:
+      - database  
+    environment:
+      - ASPNETCORE_URLS=http://api:80
+      - ASPNETCORE_ENVIRONMENT=Staging    
+    networks:
+      - back-tier
+    
+  frontend:
+    image: stuartshay/coredatastore:ui
+    links:
+      - api
+    ports:
+      - "80:80"    
+    networks:
+      - back-tier     
 
 networks:
-  aspnetcoreapp-network:
+  back-tier:
     driver: bridge

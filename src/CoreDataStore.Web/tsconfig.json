@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "wwwroot/app",
+    "outDir": "wwwroot",
     "target": "es5",
     "module": "system",
     "moduleResolution": "node",

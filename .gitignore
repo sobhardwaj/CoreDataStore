@@ -224,3 +224,4 @@ src/CoreDataStore.Web/wwwroot/app/services/*.map
 src/CoreDataStore.Web/wwwroot/app/utils/*.js
 src/CoreDataStore.Web/wwwroot/app/utils/*.map
 
+/src/CoreDataStore.UI/typings
