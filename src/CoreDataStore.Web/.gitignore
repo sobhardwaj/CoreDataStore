@@ -2,3 +2,4 @@ wwwroot
 node_modules
 typings
 appsettings.yml
+src/app/appsettings.ts

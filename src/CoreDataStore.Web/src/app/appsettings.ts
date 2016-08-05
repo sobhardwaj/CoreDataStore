@@ -1,6 +1,6 @@
 export class AppSettings {
 
   public static get ApiEndpoint(): string {
-    return "http://dev.nycwayfinding.com/api";
+    return "http://localhost:5000/api";
   }
 }
