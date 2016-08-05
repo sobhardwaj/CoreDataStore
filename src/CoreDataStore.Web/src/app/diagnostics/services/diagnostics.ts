@@ -8,11 +8,7 @@ export class DiagnosticsService {
 
   constructor(private http: Http) {}
   getDiagnostics() {
-<<<<<<< HEAD
     return this.http.get(`${AppSettings.ApiEndpoint}Diagnostics`).map((res: Response) => res.json());
-=======
-    return this.http.get('api/Diagnostics').map((res: Response) => res.json());
->>>>>>> master
   }
 
 }
