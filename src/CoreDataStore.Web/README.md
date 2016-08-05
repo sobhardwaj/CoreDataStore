@@ -23,7 +23,11 @@ Install dependencies:
 
 Build the project:
 
-> npm run clean & npm run build
+> npm run clean
+> npm run build:local
+> npm run build:dev
+> npm run build:stage
+> npm run build:prod
 
 `build` directory should be created during the build
 
