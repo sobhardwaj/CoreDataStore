@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { ROUTER_PROVIDERS, ROUTER_DIRECTIVES, Routes } from "@angular/router";
+import { ROUTER_DIRECTIVES, provideRouter, RouterConfig } from "@angular/router";
 import { AlertComponent } from "ng2-bootstrap/ng2-bootstrap";
 
 import { ReferencesComponent } from './references/components/references';
+import { DetailsComponent } from './details/components/details';
 import { AboutComponent } from './about/components/about.components';
 import { DiagnosticsComponent } from './diagnostics/components/diagnostics';
 
@@ -13,17 +14,32 @@ import { FORM_PROVIDERS, LocationStrategy, HashLocationStrategy } from '@angular
 
 import { Sorter } from './utils/sorter';
 import { ReferencesService } from './references/services/references';
+import { DetailsService } from './details/services/details';
 import { DiagnosticsService } from './diagnostics/services/diagnostics';
 import { TrackByService } from './services/trackby';
 
 const APP_PROVIDERS = [
   Sorter,
   ReferencesService,
+  DetailsService,
   DiagnosticsService,
   TrackByService,
   FORM_PROVIDERS,
   HTTP_PROVIDERS,
   //bind(LocationStrategy).toClass(HashLocationStrategy)
+];
+
+export const routes: RouterConfig = [
+  { path: '', component: ReferencesComponent },
+  { path: 'diagnostics', component: DiagnosticsComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'details/:id', component: DetailsComponent }
+];
+
+// export class HomeComponent {};
+
+export const appRouterProviders = [
+  provideRouter(routes)
 ];
 
 
@@ -35,7 +51,6 @@ const APP_PROVIDERS = [
 		<h1>My First Angular 2 App</h1>
 	`
 })
-
 export class HomeComponent {}
 
 @Component({
@@ -44,13 +59,6 @@ export class HomeComponent {}
   providers: [APP_PROVIDERS],
   directives: [ROUTER_DIRECTIVES]
 })
-
-@Routes([
-  { path: '/', component: ReferencesComponent },
-  { path: '/diagnostics', component: DiagnosticsComponent },
-  { path: '/about', component: AboutComponent }
-])
-
 export class AppComponent implements OnInit {
   ngOnInit() {
     console.log("Application component initialized ...");
