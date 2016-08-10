@@ -7,32 +7,50 @@
                 </div>
             </td>
             <td>
-                <form class="property-details-form">
+                <form class="property-details-form" [ngFormModel]="propertyDetailsForm">
                 <table class="table table-striped table-hover property-details" style="display: inline-table">
                     <tr>
                         <td>Designation Report:</td>
-                        <td>{{ details.name | capitalize }}</td>
+                        <td>
+                            <input type="text" class="form-control" name="designationReport" ngControl="designationReport" />
+                            <div *ngIf="designationReport.dirty && !designationReport.valid">
+                               <p *ngIf="designationReport.errors.required">
+                                  Name should not be empty!
+                               </p>
+                            </div>
+                        </td>
+                        <!-- value="{{ details.name | capitalize }}" -->
                     </tr>
                     <tr>
                         <td>Landmark Type:</td>
-                        <td>{{ details.objectType }}</td>
+                        <td>
+                            <input type="text" class="form-control" name="objectType" ngControl="objectType" />
+                            <div *ngIf="objectType.dirty && !objectType.valid">
+                               <p *ngIf="objectType.errors.required">
+                                  Landmark Type should not be empty!
+                               </p>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td>Architect:</td>
-                        <td>{{ details.architect }}</td>
+                        <td><input type="text" class="form-control" name="architect" ngControl="architect" /></td>
                     </tr>
                     <tr>
                         <td>Architectural Style:</td>
-                        <td>{{ details.style }}</td>
+                        <td><input type="text" class="form-control" name="style" value="{{ details.style }}" /></td>
                     </tr>
                     <tr>
                         <td>Date of Designation:</td>
-                        <td>{{ details.dateDesignated | date: 'ddMMyyyy' }}</td>
+                        <td><input type="text" class="form-control" name="dateDesignated" value="{{ details.dateDesignated | date: 'MM/dd/yyyy' }}" /></td>
                     </tr>
                     <tr>
-                        <td>Address:</td>
-                        <td>{{ details.street }}
-                            <br />{{ details.borough }}</td>
+                        <td>Street:</td>
+                        <td><input type="text" class="form-control" name="street" value="{{ details.street }}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Borough:</td>
+                        <td><input type="text" class="form-control" name="borough" value="{{ details.borough }}" /></td>
                     </tr>
                 </table>
                 <button class="btn btn-success btn-lg">Submit</button>

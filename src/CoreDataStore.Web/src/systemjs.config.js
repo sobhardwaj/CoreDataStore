@@ -46,16 +46,16 @@
     packages: packages
   };
 
-  packages['@angular/common']['main'] = 'common.umd.js';
-  packages['@angular/compiler']['main'] = 'compiler.umd.js';
-  packages['@angular/core']['main'] = 'core.umd.js';
-  packages['@angular/http']['main'] = 'http.umd.js';
-  packages['@angular/platform-browser']['main'] = 'platform-browser.umd.js';
-  packages['@angular/platform-browser-dynamic']['main'] = 'platform-browser-dynamic.umd.js';
-  packages['@angular/router']['main'] = 'router.umd.js';
+  // packages['@angular/common']['main'] = 'common.umd.js';
+  // packages['@angular/compiler']['main'] = 'compiler.umd.js';
+  // packages['@angular/core']['main'] = 'core.umd.js';
+  // packages['@angular/http']['main'] = 'http.umd.js';
+  // packages['@angular/platform-browser']['main'] = 'platform-browser.umd.js';
+  // packages['@angular/platform-browser-dynamic']['main'] = 'platform-browser-dynamic.umd.js';
+  // packages['@angular/router']['main'] = 'router.umd.js';
   packages['@angular/router-deprecated']['main'] = 'router-deprecated.umd.js';
-  packages['@angular/testing']['main'] = 'testing.umd.js';
-  packages['@angular/upgrade']['main'] = 'upgrade.umd.js';
+  // packages['@angular/testing']['main'] = 'testing.umd.js';
+  // packages['@angular/upgrade']['main'] = 'upgrade.umd.js';
   // filterSystemConfig - index.html's chance to modify config before we register it.
   // if (global.filterSystemConfig) {
   //   global.filterSystemConfig(config);
