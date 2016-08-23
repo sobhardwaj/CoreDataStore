@@ -38,6 +38,19 @@ export class DetailsService {
     }
   }
 
+  updateProperty(property: IProperty): Observable<boolean> {
+    console.log(property);
+    let date = new Date(Date.parse(property.dateDesignated));
+    property.dateDesignated = date.toISOString();
+    return this.http.put('api/LPCReport/' + property.id.toString(), property)
+      .map((res: Response) => {
+        let response = res.json();
+        console.log(response);
+        return response;
+      })
+      .catch(this.handleError);
+  }
+
   private createObservable(data: any): Observable < any > {
     return Observable.create((observer: Observer < any > ) => {
       observer.next(data);
