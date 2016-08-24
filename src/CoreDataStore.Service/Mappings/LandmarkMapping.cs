@@ -87,7 +87,10 @@ namespace CoreDataStore.Service.Mappings
                 .ForMember(dest => dest.IsSecondaryBuilding, opt => opt.MapFrom(src => src.SECND_BLDG))
                 .ForMember(dest => dest.IsCurrent, opt => opt.MapFrom(src => src.MOST_CURRE))
                 .ForMember(dest => dest.IsVacantLot, opt => opt.MapFrom(src => src.VACANT_LOT))
-            ;
+
+                .ForMember(dest => dest.LPCReport, opt => opt.Ignore())
+                ;
+          
 
             CreateMap<LandmarkModel, Landmark>()
                 .ForMember(dest => dest.LM_NAME, opt => opt.MapFrom(src => src.Name))
@@ -112,6 +115,9 @@ namespace CoreDataStore.Service.Mappings
                 .ForMember(dest => dest.SECND_BLDG, opt => opt.MapFrom(src => src.IsSecondaryBuilding))
                 .ForMember(dest => dest.MOST_CURRE, opt => opt.MapFrom(src => src.IsCurrent))
                 .ForMember(dest => dest.VACANT_LOT, opt => opt.MapFrom(src => src.IsVacantLot))
+                
+                //.ForMember(dest => dest.LPCReport, src => src.Ignore())
+
             ;
         }
     }

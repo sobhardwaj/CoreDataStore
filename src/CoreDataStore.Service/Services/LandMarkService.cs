@@ -21,13 +21,13 @@ namespace CoreDataStore.Service.Services
 
         public List<LandmarkModel> GetLandmarks(LandmarkRequest request, out int totalCount)
         {
-            var query = _landmarktRepository.GetAll().Where(x => x.LP_NUMBER == "LP-00955");
+            var query = _landmarktRepository.GetAll().Where(x => x.LP_NUMBER == "LP-01831");
             var results = query.ToList(); 
 
             totalCount = results.Count();
             results = results.Skip(request.PageSize * (request.Page - 1)).Take(request.PageSize).ToList();
 
-            return Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkModel>>(results).ToList();
+            return Mapper.Map<List<Landmark>, List<LandmarkModel>>(results).ToList();
         }
 
     }

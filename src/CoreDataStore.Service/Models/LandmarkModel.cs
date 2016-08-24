@@ -1,4 +1,6 @@
-﻿namespace CoreDataStore.Service.Models
+﻿using System;
+
+namespace CoreDataStore.Service.Models
 {
     public class LandmarkModel
     {
@@ -24,9 +26,9 @@
 
         public string DesignatedAddress { get; set; }
 
-        public string DesignatedDate { get; set; }
+        public DateTime? DesignatedDate { get; set; }
 
-        public string CalendaredDate { get; set; }
+        public DateTime? CalendaredDate { get; set; }
 
         public string PublicHearingDate { get; set; }
 
@@ -52,6 +54,6 @@
 
         public bool IsSecondaryBuilding { get; set; }
 
-
+        public LPCReportModel LPCReport { get; set; }
     }
 }
