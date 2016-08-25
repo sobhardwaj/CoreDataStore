@@ -16,7 +16,7 @@ import { IProperty } from '../../interfaces';
   templateUrl: 'app/references/components/references.html',
   directives: [
     PAGINATION_DIRECTIVES, ROUTER_DIRECTIVES,
-     ReferencesListComponent, FilterTextboxComponent, FilterSelectboxComponent
+    ReferencesListComponent, FilterTextboxComponent, FilterSelectboxComponent
     /* CustomersCardComponent, CustomersGridComponent*/
   ],
 })
@@ -25,11 +25,17 @@ export class ReferencesComponent implements OnInit {
   borough: string = '';
   objectType: string = '';
   page: number = 1;
+  limit: number = 20;
+  perPage: any[] = [10, 20, 50, 100];
+  totalItems: number = 100;
+  fromItem: number = 1;
+  toItem: number = 20;
   boroughs: string[] = [];
   objectTypes: string[] = [];
-  properties: IProperty[] = [];
-  filteredReference: IProperty[] = [];
-  totalItems: number = 100;
+  // properties: IProperty[] = [];
+  properties: any[] = []; // References;
+  filteredReference: any[] = [];
+
   // displayMode: DisplayModeEnum;
   // displayModeEnum = DisplayModeEnum;
 
@@ -37,25 +43,45 @@ export class ReferencesComponent implements OnInit {
 
   ngOnInit() {
     this.title = 'Reference';
-    // this.displayMode = DisplayModeEnum.Card;
+    this.getObjectTypes();
+    this.getBoroughs();
+    this.getReferences(this.page, this.limit, this.borough, this.objectType);
+  }
 
-    this.referenceService.getReference(this.borough, this.objectType, this.page)
-      .subscribe((properties: IProperty[]) => {
-        this.properties = this.filteredReference = properties;
-        // console.log(properties);
-      });
+  getReferences(page, limit, borough, objectType) {
+    this.referenceService.getReferences(page, limit, borough, objectType).subscribe(
+      data => { this.properties = this.filteredReference = data; },
+      () => console.log('done loading References')
+    );
 
-    this.referenceService.getBoroughs()
-      .subscribe((boroughs: string[]) => {
-        this.boroughs = boroughs;
-        // console.log(boroughs);
-      });
+    let total = 1622; // will fix later 
+    // subscribe((res) => {
+    //   let headers = res.headers._headersMap;
+    //   let total = headers.get('X-InlineCount');
+    //   console.log(res);
+    // });
+    this.objectType = objectType;
+    this.borough = borough;
+    this.page = page;
+    this.totalItems = total;
+    this.fromItem = ((page - 1) * limit) + 1;
+    this.toItem = (total < (page * limit)) ? total : (page * limit);
+  }
 
-    this.referenceService.getObjectTypes()
-      .subscribe((objectTypes: string[]) => {
-        this.objectTypes = objectTypes;
-        // console.log(objectTypes);
-      });
+  getObjectTypes() {
+    this.referenceService.getObjectTypes().subscribe(
+      data => { this.objectTypes = data; },
+      err => console.error(err),
+      () => console.log('done loading objectTypes')
+    );
+  }
+
+  getBoroughs() {
+    this.referenceService.getBoroughs().subscribe(
+      data => { this.boroughs = data; },
+      err => console.error(err),
+      () => console.log('done loading boroughs')
+    );
   }
 
   /*changeDisplayMode(mode: DisplayModeEnum) {
@@ -65,21 +91,13 @@ export class ReferencesComponent implements OnInit {
   boroughChanged(data: string) {
     // console.log(data);
     this.borough = data;
-    this.referenceService.getReference(this.borough, this.objectType, this.page)
-      .subscribe((properties: IProperty[]) => {
-        this.properties = this.filteredReference = properties;
-        // console.log(properties);
-      });
+    this.getReferences(this.page, this.limit, this.borough, this.objectType);
   }
 
   objectTypeChanged(data: string) {
     // console.log(data);
     this.objectType = data;
-    this.referenceService.getReference(this.borough, this.objectType, this.page)
-      .subscribe((properties: IProperty[]) => {
-        this.properties = this.filteredReference = properties;
-        // console.log(properties);
-      });
+    this.getReferences(this.page, this.limit, this.borough, this.objectType);
   }
 
   pageChanged(event: any) {
@@ -87,11 +105,13 @@ export class ReferencesComponent implements OnInit {
     // console.log('Page changed to: ' + event.page);
     // console.log('Number items per page: ' + event.itemsPerPage);  }
     this.page = event.page;
-    this.referenceService.getReference(this.borough, this.objectType, this.page)
-      .subscribe((properties: IProperty[]) => {
-        this.properties = this.filteredReference = properties;
-        // console.log(properties);
-      });
+    this.getReferences(event.page, this.limit, this.borough, this.objectType);
+  }
+
+  perPageChanged(limit: any) {
+    this.page = 1;
+    this.limit = limit;
+    this.getReferences(1, limit, this.borough, this.objectType);
   }
 }
 

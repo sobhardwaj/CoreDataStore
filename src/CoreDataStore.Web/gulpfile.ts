@@ -1,12 +1,14 @@
 /// <binding BeforeBuild='build' />
 "use strict";
 
+const fs = require('fs');
 const del = require("del");
 const path = require("path");
 const gulp = require("gulp");
 const less = require('gulp-less');
 const cssmin = require("gulp-cssmin");
 const tslint = require('gulp-tslint');
+const tsconfig = require('gulp-ts-config');
 const tsc = require("gulp-typescript");
 const sourcemaps = require('gulp-sourcemaps');
 const tsProject = tsc.createProject("tsconfig.json");
@@ -77,7 +79,6 @@ gulp.task("libs", () => {
       'ng2-bootstrap/**',
       'ng2-pagination/**',
       'moment/moment.js',
-      'angular2-modal/**',
       '@angular/**'
     ], { cwd: "node_modules/**" }) /* Glob required here. */
     .pipe(gulp.dest(path.join(buildDir, "lib")));
@@ -106,9 +107,39 @@ gulp.task('watch', function() {
   });
 });
 
+gulp.task('setting:local', function(cb) {
+  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://localhost:5000/api', cb);
+});
+
+gulp.task('setting:dev', function(cb) {
+  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://dev.nycwayfinding.com/api', cb);
+});
+
+gulp.task('setting:stage', function(cb) {
+  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://stage.nycwayfinding.com/api', cb);
+});
+
+gulp.task('setting:prod', function(cb) {
+  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://prod.nycwayfinding.com/api', cb);
+});
+
+gulp.task('api', function() {
+  gulp.src('appsettings.yml')
+    .pipe(tsconfig('AppSettings', JSON.parse('{"parser": "yml"}')))
+    .pipe(gulp.dest('./src/app'))
+});
 /**
  * Build the project.
  */
-gulp.task("build", ['compile', 'resources', 'libs'], () => {
+gulp.task("build:local", ['setting:local', 'api', 'compile', 'resources', 'libs'], () => {
+  console.log("Building the project ...");
+});
+gulp.task("build:dev", ['setting:dev', 'api', 'compile', 'resources', 'libs'], () => {
+  console.log("Building the project ...");
+});
+gulp.task("build:stage", ['setting:stage', 'api', 'compile', 'resources', 'libs'], () => {
+  console.log("Building the project ...");
+});
+gulp.task("build:prod", ['setting:prod', 'api', 'compile', 'resources', 'libs'], () => {
   console.log("Building the project ...");
 });

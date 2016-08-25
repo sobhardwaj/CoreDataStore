@@ -1,4 +1,4 @@
-<div class="diagnostics view indent">
+<div class="page-diagnostics">
     <h3>Server Diagnostics</h3>
     <div class="panel panel-green">
         <div class="panel-body">
@@ -12,9 +12,9 @@
                 </div>
                 <div class="col-md-8">
                     <ul>
-                        <li>@Model.MachineName</li>
-                        <li>machineDate</li>
-                        <li>@string.Join(",", Model.IpAddressList)</li>
+                        <li>{{diagnostics.machineName}}</li>
+                        <li>{{diagnostics.machineDate}}</li>
+                        <li>{{diagnostics.ipAddressList}}</li>
                     </ul>
                 </div>
             </div>
@@ -29,9 +29,9 @@
                 </div>
                 <div class="col-md-8">
                     <ul>
-                        <li>@applicationName</li>
-                        <li>@applicationVersionNumber</li>
-                        <li>@environmentName</li>
+                        <li>{{diagnostics.applicationName}}</li>
+                        <li>{{diagnostics.applicationVersionNumber}}</li>
+                        <li>{{diagnostics.environmentName}}</li>
                     </ul>
                 </div>
             </div>
@@ -45,14 +45,13 @@
                 </div>
                 <div class="col-md-8">
                     <ul>
-                        <li>@Model.MachineCulture</li>
-                        <li>@Model.MachineTimeZone</li>
+                        <li>{{diagnostics.machineCulture}}</li>
+                        <li>{{diagnostics.machineTimeZone}}</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-
     <h3>Client Diagnostics</h3>
     <div class="panel panel-green">
         <div class="panel-body">
@@ -64,19 +63,17 @@
                 </div>
                 <div class="col-md-8">
                     <ul>
-                        <li>XXXXXXXXX</li>
+                        <li>{{ApiEndpoint}}</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-
 <!--TODO: Page Needs to Refresh Every 1 Sec -->
 <script>
-    function refresh(milliseconds) {
-         setTimeout("location.reload(true);", milliseconds);
-     }
-    refresh(1000);
+function refresh(milliseconds) {
+    setTimeout("location.reload(true);", milliseconds);
+}
+refresh(1000);
 </script>

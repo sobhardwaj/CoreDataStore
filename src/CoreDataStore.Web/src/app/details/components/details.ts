@@ -7,6 +7,7 @@ import { PAGINATION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 // import { Modal } from 'angular2-modal/plugins/bootstrap';
 
 import { DetailsListComponent } from './detailsList';
+import { LandmarksListComponent } from './landmarksList';
 import { DetailsService } from '../services/details';
 import { IProperty } from '../../interfaces';
 
@@ -15,13 +16,14 @@ import { IProperty } from '../../interfaces';
   templateUrl: 'app/details/components/details.html',
   directives: [
     PAGINATION_DIRECTIVES, ROUTER_DIRECTIVES,
-    DetailsListComponent
+    DetailsListComponent,
+    LandmarksListComponent
   ],
 })
 export class DetailsComponent implements OnInit, OnDestroy {
   title: string;
   details: IProperty = null;
-  landmarkProperties: any;
+  landmarkProperties: any = null;
   sub: any = null;
 
   /*@Inject(ActivatedRoute) */
@@ -43,6 +45,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
           console.log(details);
           this.detailsService.getLandmarkProperties(details.lpNumber)
             .subscribe((lp: any) => {
+              console.log(lp);
               this.landmarkProperties = lp;
             }, e => {
               console.log(e);

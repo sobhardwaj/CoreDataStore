@@ -24,14 +24,12 @@ namespace CoreDataStore.Service.Services
         {
             var predicate = PredicateBuilder.True<Landmark>();
 
-            //HardCoded 
-            predicate = predicate.And(x => x.LP_NUMBER == "LP-01831");
+            predicate = predicate.And(x => x.LP_NUMBER == request.LPCNumber);
 
             totalCount = _landmarktRepository.FindBy(predicate).Count();
 
             var results = _landmarktRepository.FindBy(predicate).Skip(request.PageSize * (request.Page - 1)).Take(request.PageSize).ToList();
             return Mapper.Map<List<Landmark>, List<LandmarkModel>>(results).ToList();
-
         }
 
     }

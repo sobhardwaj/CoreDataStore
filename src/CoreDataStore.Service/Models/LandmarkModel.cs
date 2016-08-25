@@ -55,5 +55,6 @@ namespace CoreDataStore.Service.Models
         public bool IsSecondaryBuilding { get; set; }
 
         public LPCReportModel LPCReport { get; set; }
+
     }
 }

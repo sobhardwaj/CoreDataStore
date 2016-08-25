@@ -52,7 +52,6 @@ namespace CoreDataStore.Data.Sqlite
                 .WithMany(r => r.Landmarks)
                 .HasForeignKey(l => l.LP_NUMBER)
                 .HasPrincipalKey(r => r.LPNumber);
-            //.HasConstraintName("FK_Landmark_LPCReport");
 
             base.OnModelCreating(builder);
         }
@@ -60,7 +59,7 @@ namespace CoreDataStore.Data.Sqlite
         public DbSet<LPCReport> LPCReports { get; set; }
 
         public DbSet<Landmark> Landmarks { get; set; }
-        
+
 
     }
 }

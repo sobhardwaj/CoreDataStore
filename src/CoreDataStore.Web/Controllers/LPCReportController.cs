@@ -108,6 +108,9 @@ namespace CoreDataStore.Web.Controllers
         [HttpGet("landmark/{limit:int}/{page:int}")]
         public IEnumerable<LandmarkModel> GetLandmarks([FromQuery]LandmarkRequestModel query, int limit, int page)
         {
+            //Hardcode 
+            query.LPCNumber = "LP-01831";
+
             var totalRecords = 0;
             var request = new LandmarkRequest
             {
