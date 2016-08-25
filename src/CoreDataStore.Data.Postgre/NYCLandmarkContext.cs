@@ -29,8 +29,6 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<LPCReport>().Property(t => t.Style).HasColumnType("varchar").HasMaxLength(100);
             builder.Entity<LPCReport>().Property(t => t.DateDesignated); //.HasColumnType("NpgsqlDate");
 
-
-
             builder.Entity<Landmark>().HasKey(m => m.Id);
             builder.Entity<Landmark>().Property(t => t.BoroughID).HasColumnType("varchar").HasMaxLength(2).IsRequired();
             builder.Entity<Landmark>().Property(t => t.BOUNDARIES).HasColumnType("varchar").HasMaxLength(50).IsRequired();
@@ -46,7 +44,14 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<Landmark>().Property(t => t.PUBLIC_HEA).HasColumnType("varchar").HasMaxLength(200);
             builder.Entity<Landmark>().Property(t => t.STATUS).HasColumnType("varchar").HasMaxLength(50).IsRequired();
             builder.Entity<Landmark>().Property(t => t.STATUS_NOT).HasColumnType("varchar").HasMaxLength(200);
+            builder.Entity<Landmark>().Property(t => t.CALEN_DATE).HasColumnType("date");
+            builder.Entity<Landmark>().Property(t => t.DESIG_DATE).HasColumnType("date");
 
+            builder.Entity<Landmark>()
+                .HasOne(l => l.LPCReport)
+                .WithMany(r => r.Landmarks)
+                .HasForeignKey(l => l.LP_NUMBER)
+                .HasPrincipalKey(r => r.LPNumber);
 
             base.OnModelCreating(builder);
         }
