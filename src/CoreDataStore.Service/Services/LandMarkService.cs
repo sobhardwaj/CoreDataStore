@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Domain.Entities;
@@ -21,13 +22,14 @@ namespace CoreDataStore.Service.Services
 
         public List<LandmarkModel> GetLandmarks(LandmarkRequest request, out int totalCount)
         {
-            var query = _landmarktRepository.GetAll().Where(x => x.LP_NUMBER == "LP-00955");
-            var results = query.ToList(); 
+            var predicate = PredicateBuilder.True<Landmark>();
 
-            totalCount = results.Count();
-            results = results.Skip(request.PageSize * (request.Page - 1)).Take(request.PageSize).ToList();
+            predicate = predicate.And(x => x.LP_NUMBER == request.LPCNumber);
 
-            return Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkModel>>(results).ToList();
+            totalCount = _landmarktRepository.FindBy(predicate).Count();
+
+            var results = _landmarktRepository.FindBy(predicate).Skip(request.PageSize * (request.Page - 1)).Take(request.PageSize).ToList();
+            return Mapper.Map<List<Landmark>, List<LandmarkModel>>(results).ToList();
         }
 
     }
