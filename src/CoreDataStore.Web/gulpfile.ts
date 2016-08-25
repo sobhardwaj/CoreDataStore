@@ -77,6 +77,7 @@ gulp.task("libs", () => {
       'ng2-bootstrap/**',
       'ng2-pagination/**',
       'moment/moment.js',
+      'angular2-modal/**',
       '@angular/**'
     ], { cwd: "node_modules/**" }) /* Glob required here. */
     .pipe(gulp.dest(path.join(buildDir, "lib")));

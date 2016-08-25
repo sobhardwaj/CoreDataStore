@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 import { IProperty } from '../../interfaces';
 
@@ -13,6 +14,7 @@ export class DetailsService {
 
   _baseUrl: string = 'http://' + window.location.hostname + ':5000/';
   details: any; //IProperty[]; // cache for details
+  landmarks: any;
 
   constructor(private http: Http) {}
 
@@ -25,7 +27,7 @@ export class DetailsService {
           if (!this.details) {
             this.details = {};
           }
-          console.log(res.json());
+          // console.log(res.json());
           let p = res.json();
           this.details[id] = p;
           this.details[id].dateDesignated = Date.parse(p.dateDesignated);
@@ -38,6 +40,27 @@ export class DetailsService {
     }
   }
 
+  getLandmarkProperties(lpcNumber): Observable < IProperty > {
+    if (!(this.landmarks && this.landmarks[lpcNumber])) {
+      let params = new URLSearchParams();
+      params.set('LPCNumber', lpcNumber);
+      return this.http.get('api/LPCReport/landmark/100/1', { search: params })
+        .map((res: Response) => {
+          if (!this.landmarks) {
+            this.landmarks = {};
+          }
+          console.log(res);
+          let p = res.json();
+          this.landmarks[lpcNumber] = p;
+          return this.landmarks[lpcNumber];
+        })
+        .catch(this.handleError);
+    } else {
+      //return cached data
+      return this.createObservable(this.landmarks[lpcNumber]);
+    }
+  }
+
   updateProperty(property: IProperty): Observable<boolean> {
     console.log(property);
     let date = new Date(Date.parse(property.dateDesignated));
@@ -45,7 +68,7 @@ export class DetailsService {
     return this.http.put('api/LPCReport/' + property.id.toString(), property)
       .map((res: Response) => {
         let response = res.json();
-        console.log(response);
+        // console.log(response);
         return response;
       })
       .catch(this.handleError);
@@ -59,7 +82,13 @@ export class DetailsService {
   }
 
   private handleError(error: any) {
-    console.error(error);
-    return Observable.throw((error.json && error.json().error) || 'Server error');
+    // console.error(error);
+    let errorText = '';
+    try {
+      errorText = (error.json && error.json().error) || 'Server error';
+    } catch (e) {
+      errorText = 'Server error';
+    }
+    return Observable.throw(errorText);
   }
 }

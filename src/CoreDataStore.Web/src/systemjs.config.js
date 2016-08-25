@@ -10,7 +10,9 @@
     'ng2-select': 'lib/ng2-select',
     'ng2-bootstrap': 'lib/ng2-bootstrap',
     'ng2-pagination': 'lib/ng2-pagination',
-    'moment': 'lib/moment/moment.js'
+    'moment': 'lib/moment/moment.js',
+    // 'angular2-modal': 'lib/angular2-modal',
+    // 'angular2-modal/plugins/bootstrap': 'lib/angular2-modal/plugins/bootstrap/index.js',
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
@@ -21,6 +23,7 @@
     'ng2-select': { main: 'ng2-select.js', defaultExtension: 'js' },
     'ng2-bootstrap': { main: 'ng2-bootstrap.js', defaultExtension: 'js' },
     'ng2-pagination': { main: 'index.js', defaultExtension: 'js' },
+    // 'angular2-modal': { main: 'index.js', defaultExtension: 'js' },
   };
 
   var packageNames = [

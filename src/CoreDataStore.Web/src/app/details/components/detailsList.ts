@@ -109,12 +109,15 @@ export class DetailsListComponent implements AfterViewChecked {
     details.photoURL = this.details.photoURL;
     details.name = this.propertyDetailsForm.value.designationReport;
     // delete details.designationReport;
-    console.log(details);
+    // console.log(details);
 
     // Submit http request
     this.detailsService.updateProperty(details)
       .subscribe((result: boolean) => {
         console.log(result);
+      }, e => {
+        console.log(e);
+        alert('Error: ' + e);
       });
   }
 
