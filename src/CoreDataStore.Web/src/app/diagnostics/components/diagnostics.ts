@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
-import { OnInit } from "@angular/core";
+import { Input, OnInit } from "@angular/core";
 
-
+import { AppSettings } from '../../appsettings';
 import { DiagnosticsService } from '../services/diagnostics';
 
 @Component({
@@ -10,7 +10,9 @@ import { DiagnosticsService } from '../services/diagnostics';
 })
 
 export class DiagnosticsComponent implements OnInit {
-  public diagnostics;
+
+  ApiEndpoint: string = AppSettings.ApiEndpoint;
+  @Input() diagnostics: any[] = [];
 
   constructor(private diagnosticsService: DiagnosticsService) {}
   ngOnInit() {

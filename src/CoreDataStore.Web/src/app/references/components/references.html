@@ -1,4 +1,4 @@
-<div class="properties view indent">
+<div class="page-references">
     <h3>Properties</h3>
     <div class="panel panel-green">
         <div class="panel-body">
@@ -19,14 +19,15 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-6 page-num-info">
                         <div class="inline">
-                            1-20 of {{ totalItems }} items
-                            <select options="">
+                            {{fromItem}}-{{toItem}} of {{ totalItems }} items
+                            <select [ngModel]="limit" (ngModelChange)="perPageChanged($event)">
+                            <option [value]="p" *ngFor="let p of perPage">{{p}}</option>
                             </select>
                             per page
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 text-right pagination-container">
-                        <pagination [totalItems]="totalItems" [(ngModel)]="page" (pageChanged)="pageChanged($event)"></pagination>
+                        <pagination [totalItems]="totalItems" maxSize="5" [(ngModel)]="page" (pageChanged)="pageChanged($event)"></pagination>
                     </div>
                 </div>
             </div>
