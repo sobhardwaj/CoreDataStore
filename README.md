@@ -12,7 +12,7 @@ https://www.microsoft.com/net/core
 ###Visual Studio  
 
 Visual Studio 2015 Update 3 RTM     
-Visual Studio 2015 Tools 1.0.0 RC2
+Visual Studio 2015 Tooling Preview 2 - Core 1.0.0 
 
 ### Packages 
 
