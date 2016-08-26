@@ -112,7 +112,7 @@ gulp.task('setting:local', function(cb) {
 });
 
 gulp.task('setting:dev', function(cb) {
-  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://dev.nycwayfinding.com/api', cb);
+  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://104.208.237.3:5000/api/', cb);
 });
 
 gulp.task('setting:stage', function(cb) {
