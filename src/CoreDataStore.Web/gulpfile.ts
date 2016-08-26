@@ -108,7 +108,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('setting:local', function(cb) {
-  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://localhost:5000/api', cb);
+  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://localhost:5000/api/', cb);
 });
 
 gulp.task('setting:dev', function(cb) {
