@@ -126,8 +126,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
         //**** Remove Skip For Testing
 
-        //[Fact(Skip = "ci test")]
-        [Fact]
+        [Fact(Skip = "ci test")]
+        //[Fact]
         public void Can_Get_Paging_List()
         {
             //int count = 0;
@@ -152,8 +152,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
         }
 
-        //[Fact(Skip = "ci test")]
-        [Fact]
+        [Fact(Skip = "ci test")]
+        //[Fact]
         public void Can_Get_Filtered_Paging_List()
         {
             //int count = 0;
