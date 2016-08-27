@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using CoreDataStore.Data.Extensions;
 using CoreDataStore.Domain.Entities.Base;
 
 namespace CoreDataStore.Data.Infrastructure
@@ -29,7 +30,9 @@ namespace CoreDataStore.Data.Infrastructure
 
         Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate);
 
-        IEnumerable<T> GetPage(int startRow, int pageLength, IOrderedQueryable<T> orderBy);
+        IEnumerable<T> GetPage(int startRow, int pageLength, IEnumerable<SortModel> sortingList);
+
+        IQueryable<T> GetPage(Expression<Func<T, bool>> predicate, int startRow, int pageLength, IEnumerable<SortModel> sortingList);
 
         void Add(T entity);
 

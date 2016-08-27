@@ -130,11 +130,11 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
         }
 
-
         [Fact(Skip = "ci test")]
+        //[Fact]
         public void Can_Get_Filtered_Paging_List()
         {
-            int count = 0;
+            //int count = 0;
             var request = new LPCReportRequest
             {
                 PageSize = 20,
@@ -142,7 +142,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
                 Borough = "Manhattan"
             };
 
-            var results = lbcReportService.GetLPCReports(request, out count).ToList();
+            var results = lbcReportService.GetLPCReports(request).Results;
             Assert.Equal(request.PageSize, results.Count);
 
         }

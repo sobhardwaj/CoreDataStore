@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Query;
 using CoreDataStore.Domain.Entities.Base;
 using Microsoft.EntityFrameworkCore;
@@ -94,12 +95,17 @@ namespace CoreDataStore.Data.Infrastructure
             return await _context.Set<T>().Where(predicate).ToListAsync();
         }
 
-        public virtual IEnumerable<T> GetPage(int startRow, int pageLength, IOrderedQueryable<T> orderBy = null)
+        public virtual IEnumerable<T> GetPage(int startRow, int pageLength, IEnumerable<SortModel> sortingList)
         {
             //if (orderBy == null)
               //  orderBy = DefaultOrderBy.Expression;
 
-            return _context.Set<T>().OrderBy(x => x.Id).Skip(startRow).Take(pageLength).ToList();
+            return _context.Set<T>().OrderBy<T>(sortingList).Skip(startRow).Take(pageLength).ToList();
+        }
+
+        public virtual IQueryable<T> GetPage(Expression<Func<T, bool>> predicate, int startRow, int pageLength, IEnumerable<SortModel> sortingList)
+        {
+            return _context.Set<T>().OrderBy<T>(sortingList).Where(predicate).Skip(startRow).Take(pageLength);
         }
 
         public virtual void Add(T entity)

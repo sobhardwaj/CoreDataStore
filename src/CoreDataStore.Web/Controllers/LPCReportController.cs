@@ -73,12 +73,12 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="limit">Records per Page</param>
         /// <param name="page">Page Number</param>
         /// <returns></returns>
-        [Produces(typeof(IEnumerable<LPCReportModel>))]
-        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(IEnumerable<LPCReportModel>))]
+        [Produces(typeof(PagedResultModel<LPCReportModel>))]
+        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(PagedResultModel<LPCReportModel>))]
         [HttpGet("{limit:int}/{page:int}")]
-        public IEnumerable<LPCReportModel> Get([FromQuery]LPCReportRequestModel query, int limit, int page)
+        public PagedResultModel<LPCReportModel> Get([FromQuery]LPCReportRequestModel query, int limit, int page)
         {
-            var totalRecords = 0;
+            long totalRecords = 0;
             var request = new LPCReportRequest
              {
                 PageSize = limit,
@@ -90,7 +90,8 @@ namespace CoreDataStore.Web.Controllers
                 ObjectType = query.ObjectType
             };
 
-            var results = _lpcReportService.GetLPCReports(request,out totalRecords);
+            var results = _lpcReportService.GetLPCReports(request);
+            totalRecords = results.Total;
             HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
             return results;
         }
@@ -103,25 +104,26 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="limit">Records per Page</param>
         /// <param name="page">Page Number</param>
         /// <returns></returns>
-        [Produces(typeof(IEnumerable<LandmarkModel>))]
-        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(IEnumerable<LandmarkModel>))]
+        [Produces(typeof(PagedResultModel<LandmarkModel>))]
+        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(PagedResultModel<LandmarkModel>))]
         [HttpGet("landmark/{limit:int}/{page:int}")]
-        public IEnumerable<LandmarkModel> GetLandmarks([FromQuery]LandmarkRequestModel query, int limit, int page)
+        public PagedResultModel<LandmarkModel> GetLandmarks([FromQuery]LandmarkRequestModel query, int limit, int page)
         {
             //Hardcode 
-            query.LPCNumber = "LP-01831";
+            //query.LPCNumber = "LP-01831";
 
-            var totalRecords = 0;
+            long totalRecords = 0;
             var request = new LandmarkRequest
             {
                 PageSize = limit,
                 Page = page,
-                SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "name",
+                SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "lm_name",
                 SortOrder = !string.IsNullOrEmpty(query.Order) ? query.Order : "asc",
                 LPCNumber = query.LPCNumber,
             };
 
-            var results = _landmarkService.GetLandmarks(request, out totalRecords);
+            var results = _landmarkService.GetLandmarks(request);
+            totalRecords = results.Total;
             HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
             return results;
         }
