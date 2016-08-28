@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Input, OnInit } from "@angular/core";
+import { Observable } from 'rxjs/Rx';
 
 import { AppSettings } from '../../appsettings';
 import { DiagnosticsService } from '../services/diagnostics';
@@ -15,10 +16,10 @@ export class DiagnosticsComponent implements OnInit {
   @Input() diagnostics: any[] = [];
 
   constructor(private diagnosticsService: DiagnosticsService) {}
-  ngOnInit() {
-    this.getDiagnostics();
-  }
 
+  ngOnInit() {
+    Observable.interval(1000).subscribe(() => { this.getDiagnostics(); });
+  }
 
   getDiagnostics() {
     this.diagnosticsService.getDiagnostics().subscribe(
