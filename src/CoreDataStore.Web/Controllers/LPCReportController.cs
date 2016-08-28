@@ -73,8 +73,8 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="limit">Records per Page</param>
         /// <param name="page">Page Number</param>
         /// <returns></returns>
-        [Produces(typeof(PagedResultModel<LPCReportModel>))]
-        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(PagedResultModel<LPCReportModel>))]
+        [Produces(typeof(IEnumerable<LPCReportModel>))]
+        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(IEnumerable<LPCReportModel>))]
         [HttpGet("{limit:int}/{page:int}")]
         public IEnumerable<LPCReportModel> Get([FromQuery]LPCReportRequestModel query, int limit, int page)
         {
@@ -104,8 +104,8 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="limit">Records per Page</param>
         /// <param name="page">Page Number</param>
         /// <returns></returns>
-        [Produces(typeof(PagedResultModel<LandmarkModel>))]
-        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(PagedResultModel<LandmarkModel>))]
+        [Produces(typeof(IEnumerable<LandmarkModel>))]
+        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(IEnumerable<LandmarkModel>))]
         [HttpGet("landmark/{limit:int}/{page:int}")]
         public IEnumerable<LandmarkModel> GetLandmarks([FromQuery]LandmarkRequestModel query, int limit, int page)
         {
