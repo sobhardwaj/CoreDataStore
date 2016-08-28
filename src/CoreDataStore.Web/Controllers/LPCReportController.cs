@@ -76,7 +76,7 @@ namespace CoreDataStore.Web.Controllers
         [Produces(typeof(PagedResultModel<LPCReportModel>))]
         [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(PagedResultModel<LPCReportModel>))]
         [HttpGet("{limit:int}/{page:int}")]
-        public PagedResultModel<LPCReportModel> Get([FromQuery]LPCReportRequestModel query, int limit, int page)
+        public IEnumerable<LPCReportModel> Get([FromQuery]LPCReportRequestModel query, int limit, int page)
         {
             long totalRecords = 0;
             var request = new LPCReportRequest
@@ -90,10 +90,10 @@ namespace CoreDataStore.Web.Controllers
                 ObjectType = query.ObjectType
             };
 
-            var results = _lpcReportService.GetLPCReports(request);
-            totalRecords = results.Total;
+            var records = _lpcReportService.GetLPCReports(request);
+            totalRecords = records.Total;
             HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
-            return results;
+            return records.Results;
         }
 
 
@@ -107,25 +107,22 @@ namespace CoreDataStore.Web.Controllers
         [Produces(typeof(PagedResultModel<LandmarkModel>))]
         [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(PagedResultModel<LandmarkModel>))]
         [HttpGet("landmark/{limit:int}/{page:int}")]
-        public PagedResultModel<LandmarkModel> GetLandmarks([FromQuery]LandmarkRequestModel query, int limit, int page)
+        public IEnumerable<LandmarkModel> GetLandmarks([FromQuery]LandmarkRequestModel query, int limit, int page)
         {
-            //Hardcode 
-            //query.LPCNumber = "LP-01831";
-
             long totalRecords = 0;
             var request = new LandmarkRequest
             {
                 PageSize = limit,
                 Page = page,
-                SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "lm_name",
+                SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "LP_NUMBER",
                 SortOrder = !string.IsNullOrEmpty(query.Order) ? query.Order : "asc",
                 LPCNumber = query.LPCNumber,
             };
 
-            var results = _landmarkService.GetLandmarks(request);
-            totalRecords = results.Total;
+            var records = _landmarkService.GetLandmarks(request);
+            totalRecords = records.Total;
             HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
-            return results;
+            return records.Results;
         }
 
     }
