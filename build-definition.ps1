@@ -19,7 +19,7 @@ Properties {
 
 FormatTaskName ("`n" + ("-"*25) + "[{0}]" + ("-"*25) + "`n")
 
-Task Default -depends init
+Task Default -depends init, clean, dotnet-install, dotnet-restore, dotnet-build
 
 Task init {
 
