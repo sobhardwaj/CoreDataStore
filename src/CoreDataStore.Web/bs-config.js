@@ -3,9 +3,9 @@ var fallbackMiddleware = require('connect-history-api-fallback');
 
 module.exports = {
     port: 8000,
-    files: ["build/**/*.{html,htm,css,js}"],
+    files: ["wwwroot/**/*.{html,htm,css,js}"],
     server: {
-        baseDir: "build",
+        baseDir: "wwwroot",
         middleware: {
             1: proxyMiddleware('/api', {
                 target: 'localhost:5000',
