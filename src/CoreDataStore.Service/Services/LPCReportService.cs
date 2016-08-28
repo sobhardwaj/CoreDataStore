@@ -33,7 +33,7 @@ namespace CoreDataStore.Service.Services
            return Mapper.Map<IEnumerable<LPCReport>, IEnumerable<LPCReportModel>>(results).ToList();
         }
 
-        public List<LPCReportModel> GetLPCReports(LPCReportRequest request, out int totalCount)
+        public PagedResultModel<LPCReportModel> GetLPCReports(LPCReportRequest request)
         {
             var predicate = PredicateBuilder.True<LPCReport>();
 
@@ -46,13 +46,31 @@ namespace CoreDataStore.Service.Services
             var sortModel = new SortModel
             {
                 SortColumn = !string.IsNullOrEmpty(request.SortColumn) ? request.SortColumn : null,
-                SortOrder = !string.IsNullOrEmpty(request.SortColumn) ? request.SortColumn : null
+                SortOrder = !string.IsNullOrEmpty(request.SortOrder) ? request.SortOrder : null
             };
 
-            totalCount = _lpcReportRepository.FindBy(predicate).Count();
+            var sortingList = new List<SortModel>();
+            sortingList.Add(sortModel);
 
-            var results = _lpcReportRepository.FindBy(predicate).Skip(request.PageSize * (request.Page - 1)).Take(request.PageSize).ToList();
-            return Mapper.Map<IEnumerable<LPCReport>, IEnumerable<LPCReportModel>>(results).ToList(); 
+            int totalCount = _lpcReportRepository.FindBy(predicate).Count();
+
+            var results = _lpcReportRepository
+                .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList);
+                //.FindBy(predicate)
+                //.Skip(request.PageSize * (request.Page - 1))
+                //.Take(request.PageSize);
+            
+            var modelData = Mapper.Map<IEnumerable<LPCReport>, IEnumerable<LPCReportModel>>(results).ToList();
+
+            var pagedResult = new PagedResultModel<LPCReportModel>
+            {
+                Total = totalCount,
+                Page = request.Page,
+                Limit = request.PageSize,
+                Results = modelData,
+            };
+
+            return pagedResult;
         }
 
     }

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using CoreDataStore.Common.Helpers;
+using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Domain.Entities;
@@ -19,15 +21,41 @@ namespace CoreDataStore.Service.Services
         }
 
 
-        public List<LandmarkModel> GetLandmarks(LandmarkRequest request, out int totalCount)
+        public PagedResultModel<LandmarkModel> GetLandmarks(LandmarkRequest request)
         {
-            var query = _landmarktRepository.GetAll().Where(x => x.LP_NUMBER == "LP-00955");
-            var results = query.ToList(); 
+            var predicate = PredicateBuilder.True<Landmark>();
 
-            totalCount = results.Count();
-            results = results.Skip(request.PageSize * (request.Page - 1)).Take(request.PageSize).ToList();
+            if (!string.IsNullOrEmpty(request.LPCNumber))
+                predicate = predicate.And(x => x.LP_NUMBER == request.LPCNumber);
 
-            return Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkModel>>(results).ToList();
+            var sortModel = new SortModel
+            {
+                SortColumn = !string.IsNullOrEmpty(request.SortColumn) ? request.SortColumn : null,
+                SortOrder = !string.IsNullOrEmpty(request.SortOrder) ? request.SortOrder : null
+            };
+
+            var sortingList = new List<SortModel>();
+            sortingList.Add(sortModel);
+
+            int totalCount = _landmarktRepository.FindBy(predicate).Count();
+
+            var results = _landmarktRepository
+                .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList);
+                //.FindBy(predicate)
+                //.Skip(request.PageSize * (request.Page - 1))
+                //.Take(request.PageSize);
+
+            var modelData = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkModel>>(results).ToList();
+
+            var pagedResult = new PagedResultModel<LandmarkModel>
+            {
+                Total = totalCount,
+                Page = request.Page,
+                Limit = request.PageSize,
+                Results = modelData,
+            };
+
+            return pagedResult;
         }
 
     }

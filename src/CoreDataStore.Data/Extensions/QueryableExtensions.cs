@@ -13,6 +13,11 @@ namespace CoreDataStore.Data.Extensions
             int count = 0;
             foreach (var item in sortModels)
             {
+                if (string.IsNullOrEmpty(item.SortColumn))
+                {
+                    continue;
+                }
+
                 var parameter = Expression.Parameter(typeof(T), "x");
                 var selector = Expression.PropertyOrField(parameter, item.SortColumn);
                 var method = string.Equals(item.SortOrder, "desc", StringComparison.OrdinalIgnoreCase) ?

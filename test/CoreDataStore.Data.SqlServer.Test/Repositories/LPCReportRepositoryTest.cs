@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Helpers;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Repositories;
@@ -13,6 +14,7 @@ using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 
 namespace CoreDataStore.Data.SqlServer.Test.Repositories
 {
@@ -82,8 +84,19 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             var landmarks = DataLoader.LoadLandmarks(@"./../../data/Landmarks.csv").ToList();
             foreach (var list in landmarks.Batch(batchSize))
             {
-                dbContext.Landmarks.AddRange(list);
-                dbContext.SaveChanges();
+                foreach (var mark in list)
+                {
+                    var exsiting = dbContext.LPCReports.Where(l => l.LPNumber == mark.LP_NUMBER);
+                    if (exsiting.Any())
+                    {
+                        dbContext.Landmarks.AddRange(mark);
+                    }
+                }
+
+                if (dbContext.Landmarks.Any())
+                {
+                    dbContext.SaveChanges();
+                }
             }
         }
 
@@ -124,17 +137,26 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
                 Page = 1,
             };
 
+            var sortingList = new List<SortModel>()
+            {
+                new SortModel
+                {
+                    SortColumn = "name",
+                    SortOrder = "asc"
+                }
+            };
+
             //Implenent Dyanmic Order By
-            var results = lpcReportRepository.GetPage(request.Page, request.PageSize, null).ToList();
+            var results = lpcReportRepository.GetPage(request.Page, request.PageSize, sortingList).ToList();
             Assert.Equal(request.PageSize, results.Count);
 
         }
 
-
         [Fact(Skip = "ci test")]
+        //[Fact]
         public void Can_Get_Filtered_Paging_List()
         {
-            int count = 0;
+            //int count = 0;
             var request = new LPCReportRequest
             {
                 PageSize = 20,
@@ -142,7 +164,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
                 Borough = "Manhattan"
             };
 
-            var results = lbcReportService.GetLPCReports(request, out count).ToList();
+            var results = lbcReportService.GetLPCReports(request).Results;
             Assert.Equal(request.PageSize, results.Count);
 
         }

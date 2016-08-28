@@ -6,6 +6,6 @@ namespace CoreDataStore.Service.Interfaces
 {
     public interface ILandmarkService
     {
-        List<LandmarkModel> GetLandmarks(LandmarkRequest request, out int totalCount);
+        PagedResultModel<LandmarkModel> GetLandmarks(LandmarkRequest request);
     }
 }

@@ -1,0 +1,9 @@
+﻿
+
+
+ALTER TABLE public."Landmark" ALTER COLUMN "CALEN_DATE" TYPE DATE
+using to_date("CALEN_DATE", 'YYYY-MM-DD');
+
+
+ALTER TABLE public."Landmark" ALTER COLUMN "DESIG_DATE" TYPE DATE
+using to_date("DESIG_DATE", 'YYYY-MM-DD');
