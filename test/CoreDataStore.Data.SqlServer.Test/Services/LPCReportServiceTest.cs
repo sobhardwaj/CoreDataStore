@@ -1,7 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Repositories;
 using CoreDataStore.Service.Interfaces;
@@ -47,23 +46,26 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
             AutoMapperConfiguration.Configure();
         }
 
-
+        [Category("SQL-IntergrationTest")]
         [Fact(Skip = "ci test")]
         public void LPC_Reports_Exist()
         {
-            var totalRecords = 0;
-            var request = new LPCReportRequest
-            {
-                PageSize = 20,
-                Page = 1,
-                SortColumn = "name",
-                SortOrder = "asc",
-            };
+            //var totalRecords = 0;
+            //var request = new LPCReportRequest
+            //{
+            //    PageSize = 20,
+            //    Page = 1,
+            //    SortColumn = "name",
+            //    SortOrder = "asc",
+            //};
 
-            //var results = lbcReportService.GetLPCReports(request, out totalRecords);
+            ////var results = lbcReportService.GetLPCReports(request, out totalRecords);
 
-            //Assert.NotNull(results);
+            ////Assert.NotNull(results);
         }
+
+
+
 
 
 
