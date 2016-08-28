@@ -24,14 +24,13 @@ git clone https://github.com/stuartshay/CoreDataStore.git
 
 Install dependencies:
 ```bash
-npm install -g nodejs
 npm install -g gulp gulp-cli
 npm install -g typings typescript ts-node
 ```
 
 ServerSide
 ```bash
-cd src/CoreDataStore.Web/wwwroot/
+cd src/CoreDataStore.Web/
 npm install
 npm run clean
 npm run build:local
