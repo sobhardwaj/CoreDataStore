@@ -116,7 +116,7 @@ gulp.task('setting:dev', function(cb) {
 });
 
 gulp.task('setting:stage', function(cb) {
-  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://stage.nycwayfinding.com/api', cb);
+  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://40.84.59.215:5000/api/', cb);
 });
 
 gulp.task('setting:prod', function(cb) {

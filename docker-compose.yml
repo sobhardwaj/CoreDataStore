@@ -5,7 +5,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: aspnetcore.dockerfile
+      dockerfile: docker/aspnetcore.dockerfile
     ports:
      - "5000:5000"
     networks:
@@ -14,12 +14,20 @@ services:
   postgres:
     build:
       context: .
-      dockerfile: postgres.dockerfile
+      dockerfile: docker/postgres.dockerfile
     environment:
       POSTGRES_PASSWORD: password
     networks:
       - aspnetcoreapp-network
 
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx.dockerfile
+    ports:
+     - "80:80"
+    networks:
+      - aspnetcoreapp-network
 networks:
   aspnetcoreapp-network:
     driver: bridge
