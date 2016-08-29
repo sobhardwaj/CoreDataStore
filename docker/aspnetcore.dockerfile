@@ -28,7 +28,7 @@ RUN dotnet restore
 WORKDIR /app/CoreDataStore.Web
 RUN npm install
 RUN npm run clean
-RUN npm run build:stage
+RUN npm run build:local
 RUN dotnet build
 
 ENTRYPOINT ["dotnet", "run"]
