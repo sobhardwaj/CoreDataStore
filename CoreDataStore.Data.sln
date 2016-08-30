@@ -43,6 +43,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{9CAE5C
 	ProjectSection(SolutionItems) = preProject
 		src\api.dockerfile = src\api.dockerfile
 		src\aspnetcore.dockerfile = src\aspnetcore.dockerfile
+		src\docker-compose-staging.yml = src\docker-compose-staging.yml
 		src\docker-compose.yml = src\docker-compose.yml
 		src\ui.dockerfile = src\ui.dockerfile
 	EndProjectSection
