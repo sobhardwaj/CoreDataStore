@@ -11,7 +11,6 @@ dependencies:
     
   override:
     - dotnet restore -v warning    
-    - ( cd src/CoreDataStore.Web ; npm i )    
 
   cache_directories:   
     - "~/.nuget"
@@ -28,9 +27,6 @@ deployment:
     branch: leduong-docker
     commands:
       - dotnet publish src/CoreDataStore.Web
-      - ( cd src/CoreDataStore.Web ; npm run clean ; npm run build:local)
       - docker build -f docker/aspnetcore.dockerfile -t stuartshay/coredatastore --rm=false .
-      
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push stuartshay/coredatastore
- 
