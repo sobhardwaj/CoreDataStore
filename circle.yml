@@ -25,7 +25,7 @@ test:
 
 deployment:
   staging:
-    branch: master
+    branch: leduong-docker
     commands:
       - dotnet publish src/CoreDataStore.Web
       - ( cd src/CoreDataStore.Web ; npm run clean ; npm run build:local)
