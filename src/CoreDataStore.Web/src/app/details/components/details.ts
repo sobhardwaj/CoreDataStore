@@ -42,10 +42,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
       this.detailsService.getDetails(id)
         .subscribe((details: IProperty) => {
           this.details = details;
-          console.log(details);
+          // console.log(details);
           this.detailsService.getLandmarkProperties(details.lpNumber)
             .subscribe((lp: any) => {
-              console.log(lp);
+              // console.log(lp);
               this.landmarkProperties = lp;
             }, e => {
               console.log(e);

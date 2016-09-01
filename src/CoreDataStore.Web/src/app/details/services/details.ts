@@ -8,11 +8,12 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { IProperty } from '../../interfaces';
+import { AppSettings } from '../../appsettings';
 
 @Injectable()
 export class DetailsService {
 
-  _baseUrl: string = 'http://' + window.location.hostname + ':5000/';
+  _baseUrl: string = `${AppSettings.ApiEndpoint}`;
   details: any; //IProperty[]; // cache for details
   landmarks: any;
 
@@ -22,7 +23,7 @@ export class DetailsService {
     // console.log(borough,objectType);
     if (!(this.details && this.details[id])) {
 
-      return this.http.get('api/LPCReport/' + id)
+      return this.http.get(this._baseUrl + 'LPCReport/' + id)
         .map((res: Response) => {
           if (!this.details) {
             this.details = {};
@@ -44,12 +45,12 @@ export class DetailsService {
     if (!(this.landmarks && this.landmarks[lpcNumber])) {
       let params = new URLSearchParams();
       params.set('LPCNumber', lpcNumber);
-      return this.http.get('api/LPCReport/landmark/100/1', { search: params })
+      return this.http.get(this._baseUrl + 'LPCReport/landmark/100/1', { search: params })
         .map((res: Response) => {
           if (!this.landmarks) {
             this.landmarks = {};
           }
-          console.log(res);
+          // console.log(res);
           let p = res.json();
           this.landmarks[lpcNumber] = p;
           return this.landmarks[lpcNumber];
@@ -65,7 +66,7 @@ export class DetailsService {
     console.log(property);
     let date = new Date(Date.parse(property.dateDesignated));
     property.dateDesignated = date.toISOString();
-    return this.http.put('api/LPCReport/' + property.id.toString(), property)
+    return this.http.put(this._baseUrl + 'LPCReport/' + property.id.toString(), property)
       .map((res: Response) => {
         let response = res.json();
         // console.log(response);
