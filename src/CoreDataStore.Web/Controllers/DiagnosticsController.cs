@@ -8,6 +8,8 @@ using CoreDataStore.Web.ViewModels;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Net.Sockets;
 
 namespace CoreDataStore.Web.Controllers
 {
@@ -48,8 +50,8 @@ namespace CoreDataStore.Web.Controllers
             diagnostics.MachineTimeZone = TimeZoneInfo.Local.IsDaylightSavingTime(diagnostics.MachineDate) ? TimeZoneInfo.Local.DaylightName : TimeZoneInfo.Local.StandardName;
             diagnostics.ApplicationVersionNumber = GetType().GetTypeInfo().Assembly.GetName().Version.ToString();
 
-            var ipAddresses = Dns.GetHostAddressesAsync(diagnostics.DnsHostName).Result;
-            var ipList = new List<string>(ipAddresses.Length);
+            var ipAddresses = Dns.GetHostAddressesAsync(diagnostics.DnsHostName).Result.Where(x => x.AddressFamily == AddressFamily.InterNetwork).ToList();
+            var ipList = new List<string>(ipAddresses.Count());
             foreach (var ipAddress in ipAddresses)
             {
                 ipList.Add(ipAddress.ToString());

@@ -11,13 +11,12 @@ export class ReferencesService {
   getReferences(page = 1, limit = 10, borough: string, objectType: string) {
     let params = new URLSearchParams();
     if (borough && borough !== '') {
-      params['Borough'] = borough;
       params.set('Borough', borough);
     }
     if (objectType && objectType !== '') {
       params.set('ObjectType', objectType);
     }
-    return this.http.get(`${AppSettings.ApiEndpoint}LPCReport/${limit}/${page}`).map((res: Response) => res.json());
+    return this.http.get(`${AppSettings.ApiEndpoint}LPCReport/${limit}/${page}`, { search: params }).map((res: Response) => res.json());
   };
 
   getBoroughs() {

@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
-import { Input, OnInit } from "@angular/core";
+import { Input } from "@angular/core";
+import { Observable } from 'rxjs/Rx';
+import { OnActivate } from '@angular/router';
 
 import { AppSettings } from '../../appsettings';
 import { DiagnosticsService } from '../services/diagnostics';
@@ -9,16 +11,12 @@ import { DiagnosticsService } from '../services/diagnostics';
   templateUrl: './app/diagnostics/components/diagnostics.html'
 })
 
-export class DiagnosticsComponent implements OnInit {
-
+export class DiagnosticsComponent implements OnActivate {
+  public timer;
   ApiEndpoint: string = AppSettings.ApiEndpoint;
   @Input() diagnostics: any[] = [];
 
   constructor(private diagnosticsService: DiagnosticsService) {}
-  ngOnInit() {
-    this.getDiagnostics();
-  }
-
 
   getDiagnostics() {
     this.diagnosticsService.getDiagnostics().subscribe(
@@ -27,4 +25,13 @@ export class DiagnosticsComponent implements OnInit {
       () => console.log('done loading diagnostics')
     );
   }
+
+  routerOnActivate() {
+    this.timer = Observable.interval(1000).subscribe(() => { this.getDiagnostics(); });
+  };
+
+  routerCanDeactivate() {
+    this.timer.unsubscribe();
+    return true;
+  };
 }

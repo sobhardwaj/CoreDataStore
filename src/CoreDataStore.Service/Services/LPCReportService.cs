@@ -56,9 +56,6 @@ namespace CoreDataStore.Service.Services
 
             var results = _lpcReportRepository
                 .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList);
-                //.FindBy(predicate)
-                //.Skip(request.PageSize * (request.Page - 1))
-                //.Take(request.PageSize);
             
             var modelData = Mapper.Map<IEnumerable<LPCReport>, IEnumerable<LPCReportModel>>(results).ToList();
 
