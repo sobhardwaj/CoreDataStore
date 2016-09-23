@@ -5,7 +5,7 @@
                 <table class="table table-striped table-hover property-details" style="display: inline-table">
                     <tr>
                         <td>Designation Report:</td>
-                        <td>{{ property.name | capitalize }}</td>
+                        <td><a [routerLink]="['/details', property.id]">123{{ property.name | capitalize }}</a></td>
                     </tr>
                     <tr>
                         <td>Landmark Type:</td>
@@ -21,7 +21,7 @@
                     </tr>
                     <tr>
                         <td>Date of Designation:</td>
-                        <td>{{ property.dateDesignated  }}</td>
+                        <td>{{ property.dateDesignated | date: 'ddMMyyyy' }}</td>
                     </tr>
                     <tr>
                         <td>Address:</td>

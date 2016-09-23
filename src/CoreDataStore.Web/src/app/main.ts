@@ -3,8 +3,9 @@
 
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { enableProdMode, provide } from '@angular/core';
-import { AppComponent } from './app.component';
-import { ROUTER_PROVIDERS } from '@angular/router';
+import { AppComponent, appRouterProviders } from './app.component';
+// import { appRouterProviders } from './app.routes';
+// import { ROUTER_PROVIDERS } from '@angular/router';
 
 import {
   LocationStrategy,
@@ -17,7 +18,7 @@ if (window['g_AngularProdMode']) {
 }
 
 bootstrap(AppComponent, [
-  ROUTER_PROVIDERS,
+  appRouterProviders,
   provide(APP_BASE_HREF, { useValue: '/' }),
   provide(LocationStrategy, { useClass: HashLocationStrategy })
 ]);

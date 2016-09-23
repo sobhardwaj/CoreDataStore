@@ -10,7 +10,9 @@
     'ng2-select': 'lib/ng2-select',
     'ng2-bootstrap': 'lib/ng2-bootstrap',
     'ng2-pagination': 'lib/ng2-pagination',
-    'moment': 'lib/moment/moment.js'
+    'moment': 'lib/moment/moment.js',
+    // 'angular2-modal': 'lib/angular2-modal',
+    // 'angular2-modal/plugins/bootstrap': 'lib/angular2-modal/plugins/bootstrap/index.js',
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
@@ -21,6 +23,7 @@
     'ng2-select': { main: 'ng2-select.js', defaultExtension: 'js' },
     'ng2-bootstrap': { main: 'ng2-bootstrap.js', defaultExtension: 'js' },
     'ng2-pagination': { main: 'index.js', defaultExtension: 'js' },
+    // 'angular2-modal': { main: 'index.js', defaultExtension: 'js' },
   };
 
   var packageNames = [
@@ -46,16 +49,16 @@
     packages: packages
   };
 
-  packages['@angular/common']['main'] = 'common.umd.js';
-  packages['@angular/compiler']['main'] = 'compiler.umd.js';
-  packages['@angular/core']['main'] = 'core.umd.js';
-  packages['@angular/http']['main'] = 'http.umd.js';
-  packages['@angular/platform-browser']['main'] = 'platform-browser.umd.js';
-  packages['@angular/platform-browser-dynamic']['main'] = 'platform-browser-dynamic.umd.js';
-  packages['@angular/router']['main'] = 'router.umd.js';
+  // packages['@angular/common']['main'] = 'common.umd.js';
+  // packages['@angular/compiler']['main'] = 'compiler.umd.js';
+  // packages['@angular/core']['main'] = 'core.umd.js';
+  // packages['@angular/http']['main'] = 'http.umd.js';
+  // packages['@angular/platform-browser']['main'] = 'platform-browser.umd.js';
+  // packages['@angular/platform-browser-dynamic']['main'] = 'platform-browser-dynamic.umd.js';
+  // packages['@angular/router']['main'] = 'router.umd.js';
   packages['@angular/router-deprecated']['main'] = 'router-deprecated.umd.js';
-  packages['@angular/testing']['main'] = 'testing.umd.js';
-  packages['@angular/upgrade']['main'] = 'upgrade.umd.js';
+  // packages['@angular/testing']['main'] = 'testing.umd.js';
+  // packages['@angular/upgrade']['main'] = 'upgrade.umd.js';
   // filterSystemConfig - index.html's chance to modify config before we register it.
   // if (global.filterSystemConfig) {
   //   global.filterSystemConfig(config);
