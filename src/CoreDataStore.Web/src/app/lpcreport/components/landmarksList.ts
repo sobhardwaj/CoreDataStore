@@ -2,7 +2,7 @@ import { Component, Input, OnInit, AfterViewChecked, ChangeDetectionStrategy } f
 
 @Component({
   selector: 'landmarks-list',
-  templateUrl: 'app/details/components/landmarksList.html',
+  templateUrl: 'app/lpcreport/components/landmarksList.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandmarksListComponent {

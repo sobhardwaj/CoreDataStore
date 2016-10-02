@@ -19,6 +19,8 @@ import { ReferencesComponent } from './references/components/references';
 import { ReferencesListComponent } from './references/components/referencesList';
 import { DetailsComponent } from './lpcreport/components/details';
 import { DetailsListComponent } from './lpcreport/components/detailsList';
+import { LandmarksListComponent } from './lpcreport/components/landmarksList';
+
 
 
 // import { FilterTextboxComponent } from './components/filterTextbox';
@@ -48,6 +50,7 @@ import { TrimPipe } from './pipes/trim';
     ReferencesListComponent,
     DetailsComponent,
     DetailsListComponent,
+    LandmarksListComponent,
 
 
     // FilterSelectboxComponent,

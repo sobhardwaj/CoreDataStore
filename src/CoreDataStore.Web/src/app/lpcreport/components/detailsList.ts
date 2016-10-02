@@ -74,11 +74,11 @@ export class DetailsListComponent implements AfterViewChecked {
       let values = this.form.value;
       delete values.designationReport;
       let details: IProperty = values;
-      details.id = this.details.id;
-      details.lpcId = this.details.lpcId;
-      details.lpNumber = this.details.lpNumber;
-      details.photoStatus = this.details.photoStatus;
-      details.photoURL = this.details.photoURL;
+      details.id = this.form.value.id;
+      details.lpcId = this.form.value.lpcId;
+      details.lpNumber = this.form.value.lpNumber;
+      details.photoStatus = this.form.value.photoStatus;
+      details.photoURL = this.form.value.photoURL;
       details.name = this.form.value.designationReport;
       // console.log(details);
 
@@ -90,7 +90,5 @@ export class DetailsListComponent implements AfterViewChecked {
           console.log(e);
         });
     }
-
-    console.log(values);
   }
 };

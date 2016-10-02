@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 // import { Modal } from 'angular2-modal/plugins/bootstrap';
 
 import { DetailsListComponent } from './detailsList';
-// import { LandmarksListComponent } from './landmarksList';
+import { LandmarksListComponent } from './landmarksList';
 import { LPCReportService } from '../services/lpcreport';
 import { IProperty } from '../../interfaces';
 
@@ -36,8 +36,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
       let id = +params['id'];
       // console.log(id);
       this.lpcReportService.getLPCReport(id).subscribe(
-        data => { this.details = data; },
-        () => {
+        data => {
+          this.details = data;
           this.lpcReportService.getLandmarkProperties(this.details.lpNumber).subscribe(
             data => { this.landmarkProperties = data; },
             () => console.log('done loading getLandmarkProperties')
