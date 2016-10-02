@@ -1,11 +1,11 @@
-<div *ngFor="let property of properties;trackBy:trackby.property" class="property_wrapper">
+<div *ngFor="let property of properties; let i = index; trackBy: id" class="property_wrapper">
     <table class="table table-hover small ng-table">
         <tr>
             <td>
                 <table class="table table-striped table-hover property-details" style="display: inline-table">
                     <tr>
                         <td>Designation Report:</td>
-                        <td><a [routerLink]="['/details', property.id]">123{{ property.name | capitalize }}</a></td>
+                        <td><a [routerLink]="['/details', property.id]">{{ property.name | capitalize }}</a></td>
                     </tr>
                     <tr>
                         <td>Landmark Type:</td>
@@ -21,7 +21,7 @@
                     </tr>
                     <tr>
                         <td>Date of Designation:</td>
-                        <td>{{ property.dateDesignated | date: 'ddMMyyyy' }}</td>
+                        <td>{{ property.dateDesignated | date: 'MM/dd/yyyy' }}</td>
                     </tr>
                     <tr>
                         <td>Address:</td>

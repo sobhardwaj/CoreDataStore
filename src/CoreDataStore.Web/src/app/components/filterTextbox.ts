@@ -1,5 +1,4 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { FORM_DIRECTIVES } from '@angular/common';
 
 @Component({
   selector: 'filter-textbox',
@@ -8,11 +7,11 @@ import { FORM_DIRECTIVES } from '@angular/common';
          Filter:
          <input type="text" name="filter"
                 [(ngModel)]="model.filter" 
-                (keyup)="filterChanged($event)"  />
+                (keyup)="filterChanged($event)" />
     </form>
   `,
-  directives: [FORM_DIRECTIVES]
 })
+
 export class FilterTextboxComponent {
 
 

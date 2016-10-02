@@ -67,14 +67,14 @@ gulp.task("resources", ['fonts', 'less'], () => {
  */
 gulp.task("libs", () => {
   return gulp.src([
-      'es6-shim/es6-shim.min.js',
-      'es6-shim/es6-shim.map',
-      'systemjs/dist/system-polyfills.js',
-      'systemjs/dist/system.src.js',
+      'core-js/client/shim.min.js',
+      'core-js/client/shim.min.map',
       'reflect-metadata/Reflect.js',
       'reflect-metadata/Reflect.map',
       'rxjs/**',
+      'core-js/**',
       'zone.js/dist/**',
+      'systemjs/dist/**',
       'ng2-select/**',
       'ng2-bootstrap/**',
       'ng2-pagination/**',

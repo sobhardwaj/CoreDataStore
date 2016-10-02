@@ -8,11 +8,11 @@ module.exports = {
         baseDir: "wwwroot",
         middleware: {
             1: proxyMiddleware('/api', {
-                target: 'localhost:5000',
+                target: 'http://localhost:5000',
                 changeOrigin: false   
             }),       
             2: proxyMiddleware('/swagger', {
-                target: 'localhost:5000',
+                target: 'http://localhost:5000',
                 changeOrigin: false   
             })           
         }

@@ -1,6 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FORM_DIRECTIVES } from '@angular/common';
-import { SELECT_DIRECTIVES } from 'ng2-select';
 
 @Component({
   selector: 'filter-selectbox',
@@ -24,8 +22,9 @@ import { SELECT_DIRECTIVES } from 'ng2-select';
                 (keyup)="filterChanged($event)"  /-->
     </form>
   `,
-  directives: [FORM_DIRECTIVES, SELECT_DIRECTIVES]
+  // directives: [FORM_DIRECTIVES, SELECT_DIRECTIVES]
 })
+
 export class FilterSelectboxComponent {
   model: { filter: string } = { filter: null };
 

@@ -1,16 +1,17 @@
 <div class="details view indent">
     <ol class="breadcrumb">
-      <li><a href="#" (clicked)="goBack">LPC DESIGNATION REPORTS</a></li>
-      <li class="active">Details</li>
+        <li><a href="#" (clicked)="goBack">LPC DESIGNATION REPORTS</a></li>
+        <li class="active">Details</li>
     </ol>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <details-list [details]="details"></details-list>
+            <!-- <pre>{{details|json}}</pre> -->
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <landmarks-list [landmarks]="landmarkProperties"></landmarks-list>
+            <!-- <landmarks-list [landmarks]="landmarkProperties"></landmarks-list> -->
         </div>
     </div>
 </div>
