@@ -19,7 +19,7 @@ export class LPCReportService {
 
     putLPCReport(id: number, params: any) {
         if (id && id > 0) {
-            return this.http.get(`${AppSettings.ApiEndpoint}LPCReport/${id}`, params)
+            return this.http.put(`${AppSettings.ApiEndpoint}LPCReport/${id}`, params)
                 .map((res: Response) => res.json());
         }
         return;
