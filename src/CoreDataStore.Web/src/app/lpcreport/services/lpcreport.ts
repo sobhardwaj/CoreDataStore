@@ -38,7 +38,7 @@ export class LPCReportService {
     };
 
 
-    getLandmarkProperties(LPCNumber: string, page = 1, limit = 100, Sort: string, Order: string) {
+    getLandmarkProperties(LPCNumber: string, page = 1, limit = 100, Sort?: string, Order?: string) {
         let params = new URLSearchParams();
         if (Sort && Sort !== '') {
             params.set('Sort', Sort);

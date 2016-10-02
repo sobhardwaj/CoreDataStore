@@ -71,35 +71,26 @@ export class DetailsListComponent implements AfterViewChecked {
   public onSubmit(values: Object): void {
     this.submitted = true;
     if (this.form.valid) {
-      // your code goes here
-      console.log(values);
+      let values = this.form.value;
+      delete values.designationReport;
+      let details: IProperty = values;
+      details.id = this.details.id;
+      details.lpcId = this.details.lpcId;
+      details.lpNumber = this.details.lpNumber;
+      details.photoStatus = this.details.photoStatus;
+      details.photoURL = this.details.photoURL;
+      details.name = this.form.value.designationReport;
+      // console.log(details);
+
+      // Submit http request
+      this.lpcReportService.putLPCReport(details.id, details)
+        .subscribe((result: boolean) => {
+          console.log(result);
+        }, e => {
+          console.log(e);
+        });
     }
-  };
 
-  // onSubmit() {
-  // let values = Object.assign({}, this.propertyDetailsForm.value);
-  // delete values.designationReport;
-  // let details: IProperty = values;
-  // details.id = this.details.id;
-  // details.lpcId = this.details.lpcId;
-  // details.lpNumber = this.details.lpNumber;
-  // details.photoStatus = this.details.photoStatus;
-  // details.photoURL = this.details.photoURL;
-  // details.name = this.propertyDetailsForm.value.designationReport;
-  // // delete details.designationReport;
-  // // console.log(details);
-
-  // // Submit http request
-  // this.lpcReportService.putLPCReport(details)
-  //     .subscribe((result: boolean) => {
-  //         console.log(result);
-  //     }, e => {
-  //         console.log(e);
-  //     });
-  // }
-
-  /*sort(prop: string) {
-      this.sorter.sort(this.properties, prop);
-  }*/
-
-}
+    console.log(values);
+  }
+};

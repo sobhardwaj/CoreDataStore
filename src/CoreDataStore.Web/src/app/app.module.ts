@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { CommonModule }  from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+
+// import { SELECT_DIRECTIVES } from 'ng2-select';
+// import { PAGINATION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 
 
 import { AppComponent } from './app.component';
@@ -18,34 +21,43 @@ import { DetailsComponent } from './lpcreport/components/details';
 import { DetailsListComponent } from './lpcreport/components/detailsList';
 
 
+// import { FilterTextboxComponent } from './components/filterTextbox';
+// import { FilterSelectboxComponent } from './components/filterSelectbox';
+
 import { CapitalizePipe } from './pipes/capitalize';
 import { TrimPipe } from './pipes/trim';
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        CommonModule,
-        ReactiveFormsModule,
-        FormsModule,
-        HttpModule,
-        routing
-    ],
-    declarations: [
-        AppComponent,
-        AboutComponent,
-        PageNotFoundComponent,
-        DiagnosticsComponent,
-        ReferencesComponent,
-        ReferencesListComponent,
-        DetailsComponent,
-        DetailsListComponent,
+  imports: [
+    BrowserModule,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpModule,
+    routing,
 
-        TrimPipe,
-        CapitalizePipe,
-    ],
-    providers: [
-        appRoutingProviders
-    ],
-    bootstrap: [AppComponent]
+    // SELECT_DIRECTIVES,
+    // PAGINATION_DIRECTIVES
+  ],
+  declarations: [
+    AppComponent,
+    AboutComponent,
+    PageNotFoundComponent,
+    DiagnosticsComponent,
+    ReferencesComponent,
+    ReferencesListComponent,
+    DetailsComponent,
+    DetailsListComponent,
+
+
+    // FilterSelectboxComponent,
+    // FilterTextboxComponent,
+    TrimPipe,
+    CapitalizePipe,
+  ],
+  providers: [
+    appRoutingProviders
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

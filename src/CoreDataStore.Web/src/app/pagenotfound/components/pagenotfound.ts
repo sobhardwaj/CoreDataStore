@@ -1,6 +1,6 @@
-import {Component} from "@angular/core";
+import { Component } from "@angular/core";
 
 @Component({
-    templateUrl: './app/pagenotfound/components/pagenotfound.html'
+  templateUrl: './app/pagenotfound/components/pagenotfound.html'
 })
 export class PageNotFoundComponent {}
