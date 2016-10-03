@@ -9,16 +9,16 @@ import { ReferencesComponent } from './references/components/references';
 import { DetailsComponent } from './lpcreport/components/details';
 
 const appRoutes: Routes = [
-    { path: 'details/:id', component: DetailsComponent },
-    { path: 'diagnostics', component: DiagnosticsComponent },
-    { path: 'references', component: ReferencesComponent },
-    { path: 'about', component: AboutComponent },
-    { path: '', component: AboutComponent },
-    { path: '**', component: PageNotFoundComponent }
+  { path: 'details/:id', component: DetailsComponent },
+  { path: 'diagnostics', component: DiagnosticsComponent },
+  { path: 'references', component: ReferencesComponent },
+  { path: 'about', component: AboutComponent },
+  { path: '', component: AboutComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 export const appRoutingProviders: any[] = [{
-    provide: APP_BASE_HREF,
-    useValue: '/'
+  provide: APP_BASE_HREF,
+  useValue: '/'
 }];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes, { useHash: true });
