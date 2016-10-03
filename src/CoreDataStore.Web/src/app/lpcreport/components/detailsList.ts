@@ -67,11 +67,11 @@ export class DetailsListComponent implements AfterViewChecked {
   public onSubmit(values: Object) {
     this.submitted = true;
     if (this.form.valid) {
-      let details: IProperty = values;
+      // let details: Object = values;
+      // details.id = this.details.id;
       // console.log(values);
-
       // Submit http request
-      this.lpcReportService.putLPCReport(this.details.id, details)
+      this.lpcReportService.putLPCReport(this.details.id, values)
         .subscribe(
           (res) => { console.log(res); },
           e => { console.log(e); }
