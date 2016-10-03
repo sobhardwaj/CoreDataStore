@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, AfterViewChecked, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, AfterViewChecked, ChangeDetectionStrategy } from '@angular/core';
 // import { ROUTER_DIRECTIVES } from '@angular/router';
 // import { FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, Validators } from '@angular/common';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
@@ -16,7 +16,7 @@ import { IProperty } from '../../interfaces';
   //an event, or when an observable fires an event ~ Victor Savkin (Angular Team)
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DetailsListComponent implements OnInit, AfterViewChecked {
+export class DetailsListComponent implements AfterViewChecked {
   @Input() details: any;
 
   public form: FormGroup;
@@ -29,12 +29,9 @@ export class DetailsListComponent implements OnInit, AfterViewChecked {
   public borough: AbstractControl;
 
   public submitted: boolean = false;
+  public formInitted: boolean = false;
 
   constructor(private builder: FormBuilder, private lpcReportService: LPCReportService) {
-
-  };
-
-  ngOnInit() {
     this.form = this.builder.group({
       'name': ['', Validators.compose([Validators.required])],
       'objectType': ['', Validators.compose([Validators.required])],
@@ -55,8 +52,9 @@ export class DetailsListComponent implements OnInit, AfterViewChecked {
   };
 
   ngAfterViewChecked() {
-    if (this.details) {
+    if (this.details && !this.formInitted) {
       this.form.patchValue(this.details, { onlySelf: true });
+      this.formInitted = true;
     }
   };
 
@@ -66,19 +64,18 @@ export class DetailsListComponent implements OnInit, AfterViewChecked {
     return [(mm.length === 2 && '0') + mm, (dd.length === 2 && '0') + dd, date.getFullYear()].join('/'); // padding
   };
 
-  public onSubmit(values: Object): void {
+  public onSubmit(values: Object) {
     this.submitted = true;
     if (this.form.valid) {
       let details: IProperty = values;
-      console.log(values);
+      // console.log(values);
 
       // Submit http request
-      // this.lpcReportService.putLPCReport(details.id, details)
-      //   .subscribe((result: boolean) => {
-      //     console.log(result);
-      //   }, e => {
-      //     console.log(e);
-      //   });
+      this.lpcReportService.putLPCReport(this.details.id, details)
+        .subscribe(
+          (res) => { console.log(res); },
+          e => { console.log(e); }
+        );
     }
   }
 };
