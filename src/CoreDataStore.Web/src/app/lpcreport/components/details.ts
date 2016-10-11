@@ -1,14 +1,13 @@
 import { Component, ViewContainerRef, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-// import { PAGINATION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+
 // import { Overlay } from 'angular2-modal';
 // import { Modal } from 'angular2-modal/plugins/bootstrap';
 
 import { DetailsListComponent } from './detailsList';
 import { LandmarksListComponent } from './landmarksList';
 import { LPCReportService } from '../services/lpcreport';
-import { IProperty } from '../../interfaces';
 
 @Component({
   selector: 'properties-details',

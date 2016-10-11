@@ -4,8 +4,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-// import { SELECT_DIRECTIVES } from 'ng2-select';
-// import { PAGINATION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+
+import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { SelectModule } from 'ng2-select/ng2-select';
 
 
 import { AppComponent } from './app.component';
@@ -24,7 +25,7 @@ import { LandmarksListComponent } from './lpcreport/components/landmarksList';
 
 
 // import { FilterTextboxComponent } from './components/filterTextbox';
-// import { FilterSelectboxComponent } from './components/filterSelectbox';
+import { FilterSelectboxComponent } from './components/filterSelectbox';
 
 import { CapitalizePipe } from './pipes/capitalize';
 import { TrimPipe } from './pipes/trim';
@@ -38,8 +39,8 @@ import { TrimPipe } from './pipes/trim';
     HttpModule,
     routing,
 
-    // SELECT_DIRECTIVES,
-    // PAGINATION_DIRECTIVES
+    PaginationModule,
+    SelectModule
   ],
   declarations: [
     AppComponent,
@@ -53,7 +54,7 @@ import { TrimPipe } from './pipes/trim';
     LandmarksListComponent,
 
 
-    // FilterSelectboxComponent,
+    FilterSelectboxComponent,
     // FilterTextboxComponent,
     TrimPipe,
     CapitalizePipe,

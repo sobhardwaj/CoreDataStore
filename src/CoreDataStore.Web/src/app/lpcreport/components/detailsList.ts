@@ -5,7 +5,7 @@ import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/fo
 
 import { LPCReportService } from '../services/lpcreport';
 
-import { IProperty } from '../../interfaces';
+import { LPCReport } from '../models/lpcreport';
 
 @Component({
   // moduleId: module.id,
@@ -67,7 +67,7 @@ export class DetailsListComponent implements AfterViewChecked {
   public onSubmit(values: Object) {
     this.submitted = true;
     if (this.form.valid) {
-      // let details: Object = values;
+      // let details: LPCReport = values;
       // details.id = this.details.id;
       // console.log(values);
       // Submit http request

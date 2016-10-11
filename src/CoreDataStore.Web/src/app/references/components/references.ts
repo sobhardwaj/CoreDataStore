@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { PAGINATION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { ReferencesService } from '../services/references';
 import { LPCReportService } from '../../lpcreport/services/lpcreport';

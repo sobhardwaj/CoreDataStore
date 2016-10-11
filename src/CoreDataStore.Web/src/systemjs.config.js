@@ -1,9 +1,3 @@
-/**
- * PLUNKER VERSION
- * (based on systemjs.config.js in angular.io)
- * System configuration for Angular samples
- * Adjust as necessary for your application needs.
- */
 (function(global) {
   System.config({
     paths: {
@@ -25,26 +19,27 @@
       '@angular/router': 'libs:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'libs:@angular/forms/bundles/forms.umd.js',
       '@angular/upgrade': 'libs:@angular/upgrade/bundles/upgrade.umd.js',
-      // "@angular/core/src/facade/lang": "libs:/@angular/core/src/facade/lang.js",
+      "@angular/core/src/facade/lang": "libs:@angular/core/src/facade/lang.js",
       // other libraries
       'rxjs': 'libs:rxjs',
       'angular2-in-memory-web-api': 'libs:angular2-in-memory-web-api',
 
-      // 'moment': 'libs:/moment/moment.js',
-      // 'ng2-select': 'libs:/ng2-select',
-      // 'ng2-bootstrap': 'libs:/ng2-bootstrap'
+      'moment': 'libs:moment/moment.js',
+      'ng2-bootstrap': 'libs:ng2-bootstrap',
+      'ng2-select': 'libs:ng2-select'
 
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
       app: { main: './main.js', defaultExtension: 'js' },
       rxjs: { defaultExtension: 'js' },
-      // 'ng2-select': { main: 'ng2-select.js', defaultExtension: 'js' },
-      // 'ng2-bootstrap': { main: 'ng2-bootstrap.js', defaultExtension: 'js' },
+      'ng2-select': { defaultExtension: 'js' },
+      'ng2-bootstrap': { defaultExtension: 'js' },
       'angular2-in-memory-web-api': { main: './index.js', defaultExtension: 'js' }
     }
   });
 })(this);
+
 
 // (function(global) {
 

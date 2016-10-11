@@ -1,4 +1,4 @@
-export interface IProperty {
+export interface LPCReport {
     id: number;
     name: string;
     lpcId: string;
