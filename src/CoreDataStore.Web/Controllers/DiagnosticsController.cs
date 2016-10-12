@@ -51,10 +51,12 @@ namespace CoreDataStore.Web.Controllers
             diagnostics.ApplicationVersionNumber = GetType().GetTypeInfo().Assembly.GetName().Version.ToString();
 
             var ipAddresses = Dns.GetHostAddressesAsync(diagnostics.DnsHostName).Result.Where(x => x.AddressFamily == AddressFamily.InterNetwork).ToList();
-            var ipList = new List<string>(ipAddresses.Count());
-            foreach (var ipAddress in ipAddresses)
+            var distinctIps = ipAddresses.Distinct();
+
+            var ipList = new List<string>(distinctIps.Count());
+            foreach (var ipAddress in ipList)
             {
-                ipList.Add(ipAddress.ToString());
+                ipList.Add(ipAddress);
             }
 
             diagnostics.IpAddressList = ipList;
