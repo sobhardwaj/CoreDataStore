@@ -17,8 +17,8 @@ import { ReferencesListComponent } from './referencesList';
 
 export class ReferencesComponent implements OnInit {
   title: string;
-  borough: string = '';
-  objectType: string = '';
+  borough: string;
+  objectType: string;
   page: number = 1;
   limit: number = 20;
   perPage: any[] = [10, 20, 50, 100];
@@ -42,6 +42,13 @@ export class ReferencesComponent implements OnInit {
     this.title = 'Reference';
     this.getObjectTypes();
     this.getBoroughs();
+
+    let objectType = this.session.get('objectType');
+    this.objectType = (objectType) ? objectType : '';
+
+    let borough = this.session.get('borough');
+    this.borough = (borough) ? borough : '';
+
     this.getLPCReports(this.page, this.limit, this.borough, this.objectType);
   }
 
@@ -86,12 +93,18 @@ export class ReferencesComponent implements OnInit {
   boroughChanged(data: string) {
     // console.log(data);
     this.borough = data;
+    this.session.set('borough', data);
+    this.page = 1;
+    this.session.set('page', this.page);
     this.getLPCReports(this.page, this.limit, this.borough, this.objectType);
   }
 
   objectTypeChanged(data: string) {
     // console.log(data);
     this.objectType = data;
+    this.session.set('objectType', data);
+    this.page = 1;
+    this.session.set('page', this.page);
     this.getLPCReports(this.page, this.limit, this.borough, this.objectType);
   }
 
