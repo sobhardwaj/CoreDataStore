@@ -1,25 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
-//import { Observable } from 'rxjs/Observable';
-import { PAGINATION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+
+import { SessionService } from '../../services/session';
 
 import { ReferencesService } from '../services/references';
-import { FilterTextboxComponent } from '../../components/filterTextbox';
-import { FilterSelectboxComponent } from '../../components/filterSelectbox';
+import { LPCReportService } from '../../lpcreport/services/lpcreport';
+// import { FilterTextboxComponent } from '../../components/filterTextbox';
+// import { FilterSelectboxComponent } from '../../components/filterSelectbox';
 // import { CustomersCardComponent } from './customersCard.component';
 import { ReferencesListComponent } from './referencesList';
-import { IProperty } from '../../interfaces';
 
 @Component({
-  // moduleId: module.id,
   selector: 'properties',
   templateUrl: 'app/references/components/references.html',
-  directives: [
-    PAGINATION_DIRECTIVES, ROUTER_DIRECTIVES,
-    ReferencesListComponent, FilterTextboxComponent, FilterSelectboxComponent
-    /* CustomersCardComponent, CustomersGridComponent*/
-  ],
+  providers: [ReferencesService, LPCReportService, SessionService]
 })
+
 export class ReferencesComponent implements OnInit {
   title: string;
   borough: string = '';
@@ -32,26 +27,28 @@ export class ReferencesComponent implements OnInit {
   toItem: number = 20;
   boroughs: string[] = [];
   objectTypes: string[] = [];
-  // properties: IProperty[] = [];
-  properties: any[] = []; // References;
+  properties: any[] = []; // LPCReports list;
   filteredReference: any[] = [];
 
   // displayMode: DisplayModeEnum;
   // displayModeEnum = DisplayModeEnum;
 
-  constructor(private referenceService: ReferencesService) {}
+  constructor(private session: SessionService, private referenceService: ReferencesService, private lpcReportService: LPCReportService) {
+    let page = this.session.get('page');
+    this.page = (parseInt(page, 10) > 0) ? page : 1;
+  }
 
   ngOnInit() {
     this.title = 'Reference';
     this.getObjectTypes();
     this.getBoroughs();
-    this.getReferences(this.page, this.limit, this.borough, this.objectType);
+    this.getLPCReports(this.page, this.limit, this.borough, this.objectType);
   }
 
-  getReferences(page, limit, borough, objectType) {
-    this.referenceService.getReferences(page, limit, borough, objectType).subscribe(
+  getLPCReports(page, limit, borough, objectType) {
+    this.lpcReportService.getLPCReports(page, limit, borough, objectType).subscribe(
       data => { this.properties = this.filteredReference = data; },
-      () => console.log('done loading References')
+      () => console.log('done loading getLPCReports')
     );
 
     let total = 1622; // will fix later 
@@ -71,16 +68,14 @@ export class ReferencesComponent implements OnInit {
   getObjectTypes() {
     this.referenceService.getObjectTypes().subscribe(
       data => { this.objectTypes = data; },
-      err => console.error(err),
-      () => console.log('done loading objectTypes')
+      err => console.error(err)
     );
   }
 
   getBoroughs() {
     this.referenceService.getBoroughs().subscribe(
       data => { this.boroughs = data; },
-      err => console.error(err),
-      () => console.log('done loading boroughs')
+      err => console.error(err)
     );
   }
 
@@ -91,27 +86,27 @@ export class ReferencesComponent implements OnInit {
   boroughChanged(data: string) {
     // console.log(data);
     this.borough = data;
-    this.getReferences(this.page, this.limit, this.borough, this.objectType);
+    this.getLPCReports(this.page, this.limit, this.borough, this.objectType);
   }
 
   objectTypeChanged(data: string) {
     // console.log(data);
     this.objectType = data;
-    this.getReferences(this.page, this.limit, this.borough, this.objectType);
+    this.getLPCReports(this.page, this.limit, this.borough, this.objectType);
   }
 
   pageChanged(event: any) {
     // console.log(event);
-    // console.log('Page changed to: ' + event.page);
-    // console.log('Number items per page: ' + event.itemsPerPage);  }
     this.page = event.page;
-    this.getReferences(event.page, this.limit, this.borough, this.objectType);
+    this.session.set('page', this.page);
+    this.getLPCReports(event.page, this.limit, this.borough, this.objectType);
   }
 
   perPageChanged(limit: any) {
     this.page = 1;
     this.limit = limit;
-    this.getReferences(1, limit, this.borough, this.objectType);
+    this.session.set('page', this.page);
+    this.getLPCReports(1, limit, this.borough, this.objectType);
   }
 }
 

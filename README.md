@@ -24,8 +24,7 @@ git clone https://github.com/stuartshay/CoreDataStore.git
 
 Install dependencies:
 ```bash
-npm install -g gulp gulp-cli
-npm install -g typings typescript ts-node
+npm install -g gulp gulp-cli typings typescript ts-node
 ```
 
 ServerSide
@@ -64,16 +63,16 @@ dotnet run
 ##Docker   
 
 [Docker Commands](src/docker/README.md)
+[Install Docker Compose](https://docs.docker.com/compose/install/)
 
 ##Web Container
 
 [Docker Hub](https://hub.docker.com/r/stuartshay/coredatastore/ )
 
 ```bash
-cd CoreDataStore/src
-
-docker build -f aspnetcore.dockerfile -t coredatastore . 
-docker run --rm --name  coredatastore -p 5000:5000 coredatastore
+cd CoreDataStore
+docker-compose build
+docker run --rm --name coredatastore -p 5000:5000 coredatastore_web
 ```
 
 ##Postgres Db
@@ -86,8 +85,7 @@ docker run --rm --name  postgresdb -p 5432:5432 postgresdb
 ##Docker Compose Web & Postgre Db
 
 ```bash
-cd CoreDataStore/src
-
+cd CoreDataStore
 docker-compose build 
 docker-compose up
 ```

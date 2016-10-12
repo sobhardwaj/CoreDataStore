@@ -1,6 +1,8 @@
 machine:
   services:
     - docker
+  node:
+    version: 6.1.0
 
 dependencies:
   pre:
@@ -29,7 +31,7 @@ deployment:
     commands:
       - dotnet publish src/CoreDataStore.Web
       - ( cd src/CoreDataStore.Web ; npm run clean ; npm run build:local)
-      - docker build -f src/aspnetcore.dockerfile -t stuartshay/coredatastore --rm=false .
+      - docker build -f docker/aspnetcore.dockerfile -t stuartshay/coredatastore --rm=false .
       
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push stuartshay/coredatastore

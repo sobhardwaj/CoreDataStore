@@ -1,75 +1,75 @@
 <div class="page-diagnostics">
-    <h3>Server Diagnostics</h3>
-    <div class="panel panel-green">
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-2">
-                    <ul>
-                        <li>Machine Name:</li>
-                        <li>Machine Date Time:</li>
-                        <li>Platform:</li>
-                        <li>IP Addresses:</li>
-                    </ul>
-                </div>
-                <div class="col-md-8">
-                    <ul>
-                        <li>{{diagnostics.machineName}}</li>
-                        <li>{{diagnostics.machineDate}}</li>
-                        <li>{{diagnostics.platform}}</li>
-                        <li>{{diagnostics.ipAddressList}}</li>
-                    </ul>
-                </div>
-            </div>
-            <h4>App Diagnostics</h4>
-            <div class="row">
-                <div class="col-md-2">
-                    <ul>
-                        <li>App Name:</li>
-                        <li>App Version:</li>
-                        <li>Environment:</li>
-                    </ul>
-                </div>
-                <div class="col-md-8">
-                    <ul>
-                        <li>{{diagnostics.applicationName}}</li>
-                        <li>{{diagnostics.applicationVersionNumber}}</li>
-                        <li>{{diagnostics.environmentName}}</li>
-                    </ul>
-                </div>
-            </div>
-            <h4>Culture Diagnostics</h4>
-            <div class="row">
-                <div class="col-md-2">
-                    <ul>
-                        <li>Culture:</li>
-                        <li>Time Zone:</li>
-                    </ul>
-                </div>
-                <div class="col-md-8">
-                    <ul>
-                        <li>{{diagnostics.machineCulture}}</li>
-                        <li>{{diagnostics.machineTimeZone}}</li>
-                    </ul>
-                </div>
-            </div>
+  <h3>Server Diagnostics</h3>
+  <div class="panel panel-green">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-3">
+          <ul>
+            <li>Machine Name:</li>
+            <li>Machine Date Time:</li>
+            <li>Platform:</li>
+            <li>IP Addresses:</li>
+          </ul>
         </div>
-    </div>
-    <h3>Client Diagnostics</h3>
-    <div class="panel panel-green">
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-2">
-                    <ul>
-                        <li>Attraction API:</li>
-                    </ul>
-                </div>
-                <div class="col-md-8">
-                    <ul>
-                        <li>{{ApiEndpoint}}</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{diagnostics.machineName}}</li>
+            <li>{{diagnostics.machineDate}}</li>
+            <li>{{diagnostics.platform}}</li>
+            <li>{{diagnostics.ipAddressList}}</li>
+          </ul>
         </div>
+      </div>
+      <h4>App Diagnostics</h4>
+      <div class="row">
+        <div class="col-md-3">
+          <ul>
+            <li>App Name:</li>
+            <li>App Version:</li>
+            <li>Environment:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{diagnostics.applicationName}}</li>
+            <li>{{diagnostics.applicationVersionNumber}}</li>
+            <li>{{diagnostics.environmentName}}</li>
+          </ul>
+        </div>
+      </div>
+      <h4>Culture Diagnostics</h4>
+      <div class="row">
+        <div class="col-md-3">
+          <ul>
+            <li>Culture:</li>
+            <li>Time Zone:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{diagnostics.machineCulture}}</li>
+            <li>{{diagnostics.machineTimeZone}}</li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </div>
+  <h3>Client Diagnostics</h3>
+  <div class="panel panel-green">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-3">
+          <ul>
+            <li>Attraction API:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{ApiEndpoint}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!--TODO: Page Needs to Refresh Every 1 Sec -->

@@ -1,0 +1,16 @@
+<div class="details view indent">
+  <ol class="breadcrumb">
+    <li><a [routerLink]="['/references']" asp-controller="References">References</a></li>
+    <li class="active">{{title}}</li>
+  </ol>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <details-list [details]="details"></details-list>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <landmarks-list [landmarks]="landmarkProperties"></landmarks-list>
+    </div>
+  </div>
+</div>

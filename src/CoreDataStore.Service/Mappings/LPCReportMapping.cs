@@ -7,20 +7,18 @@ namespace CoreDataStore.Service.Mappings
 {
     public class LPCReportMapping : Profile
     {
-        //[Obsolete]
-        //protected override void Configure()
-        //{
-        //    CreateMap<LPCReport, LPCReportModel>();
-
-        //    CreateMap<LPCReportModel, LPCReport>();
-        //}
-
         public LPCReportMapping()
             : base("LPCReportMapping")
         {
             CreateMap<LPCReport, LPCReportModel>();
 
-            CreateMap<LPCReportModel, LPCReport>();
+            CreateMap<LPCReportModel, LPCReport>()
+                 .ForMember(dest => dest.LPCId, opt => opt.Ignore())
+                 .ForMember(dest => dest.LPNumber, opt => opt.Ignore())
+                 .ForMember(dest => dest.PhotoStatus, opt => opt.Ignore())
+                 .ForMember(dest => dest.PhotoURL, opt => opt.Ignore())
+                 .ForMember(dest => dest.Landmarks, opt => opt.Ignore())
+                 ;
         }
     }
 }

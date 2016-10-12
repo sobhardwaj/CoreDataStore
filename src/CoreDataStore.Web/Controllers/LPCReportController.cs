@@ -60,7 +60,8 @@ namespace CoreDataStore.Web.Controllers
             if (result == null)
                 return NotFound();
 
-            //TODO Add Update Logic
+            model.Id = 998;
+            _lpcReportService.UpdateLPCReport(model);
 
             return new NoContentResult();
         }

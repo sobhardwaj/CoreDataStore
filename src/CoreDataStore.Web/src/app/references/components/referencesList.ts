@@ -1,33 +1,16 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
-
-// import { SortByDirective } from '../directives/sortby.directive';
-import { CapitalizePipe } from '../../pipes/capitalize';
-import { TrimPipe } from '../../pipes/trim';
-
-import { Sorter } from '../../utils/sorter';
-import { TrackByService } from '../../services/trackby';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  // moduleId: module.id,
   selector: 'references-list',
   templateUrl: 'app/references/components/referencesList.html',
-  directives: [ROUTER_DIRECTIVES /*, SortByDirective*/ ],
-  pipes: [CapitalizePipe, TrimPipe],
   //When using OnPush detectors, then the framework will check an OnPush 
   //component when any of its input properties changes, when it fires 
   //an event, or when an observable fires an event ~ Victor Savkin (Angular Team)
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ReferencesListComponent implements OnInit {
+export class ReferencesListComponent {
 
-  @Input() properties: any[] = [];
-
-  constructor(private sorter: Sorter, public trackby: TrackByService) {}
-
-  ngOnInit() {
-
-  }
+  @Input() properties: Object;
 
   /*sort(prop: string) {
       this.sorter.sort(this.properties, prop);

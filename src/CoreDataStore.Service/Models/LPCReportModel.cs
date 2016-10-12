@@ -27,5 +27,8 @@ namespace CoreDataStore.Service.Models
         public bool PhotoStatus { get; set; }
 
         public string PhotoURL { get; set; }
+
+  
+
     }
 }

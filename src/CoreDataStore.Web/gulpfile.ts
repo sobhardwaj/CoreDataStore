@@ -67,14 +67,14 @@ gulp.task("resources", ['fonts', 'less'], () => {
  */
 gulp.task("libs", () => {
   return gulp.src([
-      'es6-shim/es6-shim.min.js',
-      'es6-shim/es6-shim.map',
-      'systemjs/dist/system-polyfills.js',
-      'systemjs/dist/system.src.js',
+      'core-js/client/shim.min.js',
+      'core-js/client/shim.min.map',
       'reflect-metadata/Reflect.js',
       'reflect-metadata/Reflect.map',
       'rxjs/**',
+      'core-js/**',
       'zone.js/dist/**',
+      'systemjs/dist/**',
       'ng2-select/**',
       'ng2-bootstrap/**',
       'ng2-pagination/**',
@@ -108,19 +108,19 @@ gulp.task('watch', function() {
 });
 
 gulp.task('setting:local', function(cb) {
-  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://localhost:5000/api/', cb);
+  fs.writeFile('appsettings.yml', 'ApiEndpoint: /api/', cb);
 });
 
 gulp.task('setting:dev', function(cb) {
-  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://104.208.237.3:5000/api/', cb);
+  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://dev.nycwayfinding.com/api/', cb);
 });
 
 gulp.task('setting:stage', function(cb) {
-  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://stage.nycwayfinding.com/api', cb);
+  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://stage.nycwayfinding.com/api/', cb);
 });
 
 gulp.task('setting:prod', function(cb) {
-  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://prod.nycwayfinding.com/api', cb);
+  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://prod.nycwayfinding.com/api/', cb);
 });
 
 gulp.task('api', function() {
