@@ -11,7 +11,7 @@ import { LPCReport } from '../models/lpcreport';
 @Component({
   // moduleId: module.id,
   selector: 'details-list',
-  templateUrl: 'app/lpcreport/components/detailsList.html'
+  templateUrl: 'app/lpcreport/components/detailsList.html',
   //When using OnPush detectors, then the framework will check an OnPush 
   //component when any of its input properties changes, when it fires 
   //an event, or when an observable fires an event ~ Victor Savkin (Angular Team)
