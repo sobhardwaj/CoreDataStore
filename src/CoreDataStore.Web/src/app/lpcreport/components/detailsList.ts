@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, AfterViewChecked, ChangeDetectionStrategy } from '@angular/core';
-// import { ROUTER_DIRECTIVES } from '@angular/router';
-// import { FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, Validators } from '@angular/common';
+import { Location } from '@angular/common';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 
 import { LPCReportService } from '../services/lpcreport';
@@ -12,8 +11,7 @@ import { LPCReport } from '../models/lpcreport';
 @Component({
   // moduleId: module.id,
   selector: 'details-list',
-  templateUrl: 'app/lpcreport/components/detailsList.html',
-  provider: [ReferencesService],
+  templateUrl: 'app/lpcreport/components/detailsList.html'
   //When using OnPush detectors, then the framework will check an OnPush 
   //component when any of its input properties changes, when it fires 
   //an event, or when an observable fires an event ~ Victor Savkin (Angular Team)
@@ -37,7 +35,11 @@ export class DetailsListComponent implements OnInit, AfterViewChecked {
   public submitted: boolean = false;
   public formInitted: boolean = false;
 
-  constructor(private builder: FormBuilder, private referenceService: ReferencesService, private lpcReportService: LPCReportService) {
+  constructor(
+    private builder: FormBuilder,
+    private location: Location,
+    private referenceService: ReferencesService,
+    private lpcReportService: LPCReportService) {
     this.form = this.builder.group({
       'name': ['', Validators.compose([Validators.required])],
       'objectType': ['', Validators.compose([Validators.required])],
@@ -98,7 +100,10 @@ export class DetailsListComponent implements OnInit, AfterViewChecked {
       // Submit http request
       this.lpcReportService.putLPCReport(this.details.id, values)
         .subscribe(
-          (res) => { console.log(res); },
+          (res) => {
+            console.log(res);
+            this.location.back();
+          },
           e => { console.log(e); }
         );
     }

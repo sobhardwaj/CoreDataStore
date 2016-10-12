@@ -23,7 +23,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public sub: any = null;
 
   /*@Inject(ActivatedRoute) */
-  constructor(private lpcReportService: LPCReportService, private location: Location, private route: ActivatedRoute
+  constructor(private lpcReportService: LPCReportService, private route: ActivatedRoute
     /*overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal*/
   ) {
     // overlay.defaultViewContainer = vcRef;
@@ -50,7 +50,4 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  goBack() {
-    this.location.back();
-  }
 }
