@@ -1,5 +1,7 @@
 <div class="page-references">
-  <h3>{{title}}</h3>
+  <ol class="breadcrumb">
+    <li class="active"><a [routerLink]="['/references']" asp-controller="References">{{title}}</a></li>
+  </ol>
   <div class="panel panel-green">
     <div class="panel-body">
       <div class="row">
@@ -27,7 +29,7 @@
             </div>
           </div>
           <div class="col-md-6 col-sm-6 text-right pagination-container">
-             <pagination [totalItems]="totalItems" [maxSize]="5" [(ngModel)]="page" (pageChanged)="pageChanged($event)"  class="pagination-sm"></pagination>
+            <pagination [totalItems]="totalItems" [maxSize]="5" [(ngModel)]="page" (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>
           </div>
         </div>
       </div>

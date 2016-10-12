@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SessionService } from '../../services/session';
+
 import { ReferencesService } from '../services/references';
 import { LPCReportService } from '../../lpcreport/services/lpcreport';
 // import { FilterTextboxComponent } from '../../components/filterTextbox';
@@ -10,7 +12,7 @@ import { ReferencesListComponent } from './referencesList';
 @Component({
   selector: 'properties',
   templateUrl: 'app/references/components/references.html',
-  providers: [ReferencesService, LPCReportService]
+  providers: [ReferencesService, LPCReportService, SessionService]
 })
 
 export class ReferencesComponent implements OnInit {
@@ -31,7 +33,9 @@ export class ReferencesComponent implements OnInit {
   // displayMode: DisplayModeEnum;
   // displayModeEnum = DisplayModeEnum;
 
-  constructor(private referenceService: ReferencesService, private lpcReportService: LPCReportService) {}
+  constructor(private session: SessionService, private referenceService: ReferencesService, private lpcReportService: LPCReportService) {
+    this.page = this.session.get('page');
+  }
 
   ngOnInit() {
     this.title = 'Reference';
@@ -95,12 +99,14 @@ export class ReferencesComponent implements OnInit {
   pageChanged(event: any) {
     // console.log(event);
     this.page = event.page;
+    this.session.set('page', this.page);
     this.getLPCReports(event.page, this.limit, this.borough, this.objectType);
   }
 
   perPageChanged(limit: any) {
     this.page = 1;
     this.limit = limit;
+    this.session.set('page', this.page);
     this.getLPCReports(1, limit, this.borough, this.objectType);
   }
 }

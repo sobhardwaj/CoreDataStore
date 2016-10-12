@@ -17,7 +17,7 @@ import { LPCReportService } from '../services/lpcreport';
 
 export class DetailsComponent implements OnInit, OnDestroy {
   public title: string;
-  public details: any = null;
+  public details: any;
   public landmarkProperties: any = null;
   public sub: any = null;
 
@@ -29,14 +29,13 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.title = 'Details';
-
     this.sub = this.route.params.subscribe(params => {
       let id = +params['id'];
       // console.log(id);
       this.lpcReportService.getLPCReport(id).subscribe(
         data => {
           this.details = data;
+          this.title = data.name;
           this.lpcReportService.getLandmarkProperties(this.details.lpNumber).subscribe(
             data => { this.landmarkProperties = data; },
             () => console.log('done loading getLandmarkProperties')
