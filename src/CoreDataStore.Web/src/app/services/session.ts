@@ -4,7 +4,7 @@ export class SessionService {
     let record: any;
     record = JSON.parse(sessionStorage.getItem(key));
     if (!record) {
-      return false;
+      return null;
     }
     return new Date().getTime() < record.timestamp && JSON.parse(record.value);
   };

@@ -34,7 +34,8 @@ export class ReferencesComponent implements OnInit {
   // displayModeEnum = DisplayModeEnum;
 
   constructor(private session: SessionService, private referenceService: ReferencesService, private lpcReportService: LPCReportService) {
-    this.page = this.session.get('page');
+    let page = this.session.get('page');
+    this.page = (parseInt(page, 10) > 0) ? page : 1;
   }
 
   ngOnInit() {
