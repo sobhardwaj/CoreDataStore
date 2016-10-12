@@ -8,11 +8,12 @@ import { ActivatedRoute } from '@angular/router';
 import { DetailsListComponent } from './detailsList';
 import { LandmarksListComponent } from './landmarksList';
 import { LPCReportService } from '../services/lpcreport';
+import { ReferencesService } from '../../references/services/references';
 
 @Component({
   selector: 'properties-details',
   templateUrl: 'app/lpcreport/components/details.html',
-  providers: [LPCReportService]
+  providers: [LPCReportService, ReferencesService]
 })
 
 export class DetailsComponent implements OnInit, OnDestroy {

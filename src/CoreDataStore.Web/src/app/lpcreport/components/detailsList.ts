@@ -1,9 +1,11 @@
-import { Component, Input, AfterViewChecked, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit, AfterViewChecked, ChangeDetectionStrategy } from '@angular/core';
 // import { ROUTER_DIRECTIVES } from '@angular/router';
 // import { FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, Validators } from '@angular/common';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 
 import { LPCReportService } from '../services/lpcreport';
+import { ReferencesService } from '../../references/services/references';
+
 
 import { LPCReport } from '../models/lpcreport';
 
@@ -11,13 +13,17 @@ import { LPCReport } from '../models/lpcreport';
   // moduleId: module.id,
   selector: 'details-list',
   templateUrl: 'app/lpcreport/components/detailsList.html',
+  provider: [ReferencesService],
   //When using OnPush detectors, then the framework will check an OnPush 
   //component when any of its input properties changes, when it fires 
   //an event, or when an observable fires an event ~ Victor Savkin (Angular Team)
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DetailsListComponent implements AfterViewChecked {
+export class DetailsListComponent implements OnInit, AfterViewChecked {
   @Input() details: any;
+
+  public objectTypes: Object;
+  public boroughs: Object;
 
   public form: FormGroup;
   public name: AbstractControl;
@@ -31,7 +37,7 @@ export class DetailsListComponent implements AfterViewChecked {
   public submitted: boolean = false;
   public formInitted: boolean = false;
 
-  constructor(private builder: FormBuilder, private lpcReportService: LPCReportService) {
+  constructor(private builder: FormBuilder, private referenceService: ReferencesService, private lpcReportService: LPCReportService) {
     this.form = this.builder.group({
       'name': ['', Validators.compose([Validators.required])],
       'objectType': ['', Validators.compose([Validators.required])],
@@ -49,6 +55,25 @@ export class DetailsListComponent implements AfterViewChecked {
     this.dateDesignated = this.form.controls['dateDesignated'];
     this.street = this.form.controls['street'];
     this.borough = this.form.controls['borough'];
+  };
+
+  getObjectTypes() {
+    this.referenceService.getObjectTypes().subscribe(
+      data => { this.objectTypes = data; },
+      err => console.error(err)
+    );
+  }
+
+  getBoroughs() {
+    this.referenceService.getBoroughs().subscribe(
+      data => { this.boroughs = data; },
+      err => console.error(err)
+    );
+  }
+
+  ngOnInit() {
+    this.getObjectTypes();
+    this.getBoroughs();
   };
 
   ngAfterViewChecked() {

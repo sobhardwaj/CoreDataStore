@@ -19,7 +19,11 @@
             <tr>
               <td>Landmark Type:</td>
               <td [ngClass]="{'has-error': (!objectType.valid && objectType.touched), 'has-success': (objectType.valid && objectType.touched)}">
-                <input type="text" class="form-control" [formControl]="objectType" />
+                <select class="form-control" [formControl]="objectType">
+                  <option *ngFor="let value of objectTypes" [value]="value">
+                    {{value}}
+                  </option>
+                </select>
                 <span *ngIf="!objectType.valid && objectType.touched && objectType.errors.required" class="help-block sub-little-text">Landmark Type should not be empty!</span>
               </td>
             </tr>
@@ -54,7 +58,11 @@
             <tr>
               <td>Borough:</td>
               <td [ngClass]="{'has-error': (!borough.valid && borough.touched), 'has-success': (borough.valid && borough.touched)}">
-                <input type="text" class="form-control" [formControl]="borough" />
+                <select class="form-control" [formControl]="borough">
+                  <option *ngFor="let value of boroughs" [value]="value">
+                    {{value}}
+                  </option>
+                </select>
                 <span *ngIf="!borough.valid && borough.touched && borough.errors.required" class="help-block sub-little-text">Borough should not be empty!</span>
               </td>
               <td>

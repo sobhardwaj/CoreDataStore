@@ -67,16 +67,14 @@ export class ReferencesComponent implements OnInit {
   getObjectTypes() {
     this.referenceService.getObjectTypes().subscribe(
       data => { this.objectTypes = data; },
-      err => console.error(err),
-      () => console.log('done loading objectTypes')
+      err => console.error(err)
     );
   }
 
   getBoroughs() {
     this.referenceService.getBoroughs().subscribe(
       data => { this.boroughs = data; },
-      err => console.error(err),
-      () => console.log('done loading boroughs')
+      err => console.error(err)
     );
   }
 
