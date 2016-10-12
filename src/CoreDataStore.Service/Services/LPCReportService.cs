@@ -38,8 +38,6 @@ namespace CoreDataStore.Service.Services
             var report = _lpcReportRepository.GetSingle(model.Id);
             Mapper.Map(model, report);
 
-            var test = report;
-
             _lpcReportRepository.Edit(report);
             _lpcReportRepository.Commit();
 
