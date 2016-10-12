@@ -26,21 +26,24 @@ npm3
 ```bash
 git clone https://github.com/stuartshay/CoreDataStore.git
 ```
-### Packages 
 
-Install dependencies:
+Step1: .NET Core Restore
 ```bash
-npm install -g gulp gulp-cli typings typescript ts-node
+cd  CoreDataStore/
+dotnet restore
 ```
 
-ServerSide
+Step2: Build Web Site
+
 ```bash
 cd src/CoreDataStore.Web/
 npm install
 npm run clean
 npm run build:local
+
 dotnet run
 ```
+
 
 ### Live reload Typescript ClientSide (not use dotnet watch)
 > npm start
