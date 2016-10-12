@@ -12,7 +12,13 @@ namespace CoreDataStore.Service.Mappings
         {
             CreateMap<LPCReport, LPCReportModel>();
 
-            CreateMap<LPCReportModel, LPCReport>();
+            CreateMap<LPCReportModel, LPCReport>()
+                 .ForMember(dest => dest.LPCId, opt => opt.Ignore())
+                 .ForMember(dest => dest.LPNumber, opt => opt.Ignore())
+                 .ForMember(dest => dest.PhotoStatus, opt => opt.Ignore())
+                 .ForMember(dest => dest.PhotoURL, opt => opt.Ignore())
+                 .ForMember(dest => dest.Landmarks, opt => opt.Ignore())
+                 ;
         }
     }
 }

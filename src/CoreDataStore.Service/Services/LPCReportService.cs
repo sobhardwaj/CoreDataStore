@@ -33,6 +33,20 @@ namespace CoreDataStore.Service.Services
            return Mapper.Map<IEnumerable<LPCReport>, IEnumerable<LPCReportModel>>(results).ToList();
         }
 
+        public LPCReportModel UpdateLPCReport(LPCReportModel model)
+        {
+            var report = _lpcReportRepository.GetSingle(model.Id);
+            Mapper.Map(model, report);
+
+            var test = report;
+
+            _lpcReportRepository.Edit(report);
+            _lpcReportRepository.Commit();
+
+            var results = _lpcReportRepository.GetSingle(model.Id);
+            return Mapper.Map<LPCReport, LPCReportModel>(results);
+        }
+
         public PagedResultModel<LPCReportModel> GetLPCReports(LPCReportRequest request)
         {
             var predicate = PredicateBuilder.True<LPCReport>();
