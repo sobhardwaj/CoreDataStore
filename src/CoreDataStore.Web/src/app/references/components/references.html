@@ -27,7 +27,7 @@
             </div>
           </div>
           <div class="col-md-6 col-sm-6 text-right pagination-container">
-             <pagination [totalItems]="totalItems" maxSize="5" [(ngModel)]="page" (pageChanged)="pageChanged($event)"></pagination>
+             <pagination [totalItems]="totalItems" [maxSize]="5" [(ngModel)]="page" (pageChanged)="pageChanged($event)"  class="pagination-sm"></pagination>
           </div>
         </div>
       </div>
