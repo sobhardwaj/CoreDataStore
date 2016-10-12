@@ -50,13 +50,13 @@ namespace CoreDataStore.Web.Controllers
             diagnostics.MachineTimeZone = TimeZoneInfo.Local.IsDaylightSavingTime(diagnostics.MachineDate) ? TimeZoneInfo.Local.DaylightName : TimeZoneInfo.Local.StandardName;
             diagnostics.ApplicationVersionNumber = GetType().GetTypeInfo().Assembly.GetName().Version.ToString();
 
-            var ipAddresses = Dns.GetHostAddressesAsync(diagnostics.DnsHostName).Result.Where(x => x.AddressFamily == AddressFamily.InterNetwork).ToList();
-            var distinctIps = ipAddresses.Distinct();
+            var ipAddresses = Dns.GetHostAddressesAsync(diagnostics.DnsHostName).Result.Where(x => x.AddressFamily == AddressFamily.InterNetwork).ToList().Distinct();
 
-            var ipList = new List<string>(distinctIps.Count());
-            foreach (var ipAddress in ipList)
+            var enumerable = ipAddresses as IPAddress[] ?? ipAddresses.ToArray();
+            var ipList = new List<string>(enumerable.Count());
+            foreach (var ipAddress in enumerable)
             {
-                ipList.Add(ipAddress);
+                ipList.Add(ipAddress.ToString());
             }
 
             diagnostics.IpAddressList = ipList;
