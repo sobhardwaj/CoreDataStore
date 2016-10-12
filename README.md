@@ -27,13 +27,13 @@ npm3
 git clone https://github.com/stuartshay/CoreDataStore.git
 ```
 
-Step1: .NET Core Restore
+Step 1: .NET Core Restore
 ```bash
 cd  CoreDataStore/
 dotnet restore
 ```
 
-Step2: Build Web Site
+Step 2: Build Web Site
 
 ```bash
 cd src/CoreDataStore.Web/
