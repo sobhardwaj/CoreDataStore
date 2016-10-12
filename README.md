@@ -3,7 +3,8 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/4j2ebt69uw0e0wmg/branch/master?svg=true)](https://ci.appveyor.com/project/StuartShay/coredatastore/branch/master)
 [![CircleCI](https://circleci.com/gh/stuartshay/CoreDataStore.svg?style=svg)](https://circleci.com/gh/stuartshay/CoreDataStore)
 [![Code Climate](https://codeclimate.com/github/stuartshay/CoreDataStore/badges/gpa.svg)](https://codeclimate.com/github/stuartshay/CoreDataStore)
-##Prerequisites:
+
+## Prerequisites:
 
 ### .NET Core 
 .NET Core SDK 1.0.0 RTM  - June 27, 2016    
@@ -14,27 +15,35 @@ https://www.microsoft.com/net/core
 Visual Studio 2015 Update 3 RTM     
 Visual Studio 2015 Tooling Preview 2 - 8/15/2016
 
+### Web Application
+nodejs_version: "6.x"    
+npm3
+
+## Build Web Application
+
 ### Clone
 
 ```bash
 git clone https://github.com/stuartshay/CoreDataStore.git
 ```
 
-### Packages 
-
-Install dependencies:
+Step 1: .NET Core Restore
 ```bash
-npm install -g gulp gulp-cli typings typescript ts-node
+cd  CoreDataStore/
+dotnet restore
 ```
 
-ServerSide
+Step 2: Build Web Site
+
 ```bash
 cd src/CoreDataStore.Web/
 npm install
 npm run clean
 npm run build:local
+
 dotnet run
 ```
+
 
 ### Live reload Typescript ClientSide (not use dotnet watch)
 > npm start
