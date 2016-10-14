@@ -17,7 +17,7 @@ EXPOSE 5000
 RUN apt-get install curl -y
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -y nodejs
-RUN npm install -g gulp gulp-cli typings typescript ts-node
+RUN npm install -g npm@3
 
 COPY src /app
 
@@ -28,7 +28,7 @@ RUN dotnet restore
 WORKDIR /app/CoreDataStore.Web
 RUN npm install
 RUN npm run clean
-RUN npm run build:local
+RUN npm run build
 RUN dotnet build
 
 ENTRYPOINT ["dotnet", "run"]
