@@ -13,10 +13,14 @@ const tsc = require("gulp-typescript");
 const sourcemaps = require('gulp-sourcemaps');
 const tsProject = tsc.createProject("tsconfig.json");
 
-const buildDir = "wwwroot"
-  /**
-   * Remove build directory.
-   */
+const buildDir = "wwwroot";
+var BUILD = process.env.BUILD || 'local';
+var LANDMARK = process.env.LANDMARK || '/api/';
+var ATTRACTION = process.env.ATTRACTION || '/attraction/';
+
+/**
+ * Remove build directory.
+ */
 gulp.task('clean', (cb) => {
   return del([buildDir], cb);
 });
@@ -46,7 +50,7 @@ gulp.task('tslint', () => {
  * Compile TypeScript sources and create sourcemaps in build directory.
  */
 gulp.task("compile", ["tslint"], () => {
-  let tsResult = gulp.src("src/**/*.ts")
+  var tsResult = gulp.src("src/**/*.ts")
     .pipe(sourcemaps.init())
     .pipe(tsc(tsProject));
   return tsResult.js
@@ -107,20 +111,11 @@ gulp.task('watch', function() {
   });
 });
 
-gulp.task('setting:local', function(cb) {
-  fs.writeFile('appsettings.yml', 'ApiEndpoint: /api/', cb);
-});
-
-gulp.task('setting:dev', function(cb) {
-  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://dev.nycwayfinding.com/api/', cb);
-});
-
-gulp.task('setting:stage', function(cb) {
-  fs.writeFile('appsettings.yml', 'ApiEndpoint: /api/', cb);
-});
-
-gulp.task('setting:prod', function(cb) {
-  fs.writeFile('appsettings.yml', 'ApiEndpoint: http://prod.nycwayfinding.com/api/', cb);
+gulp.task('appsettings', function(cb) {
+  var build = 'build: ' + BUILD;
+  var landmark = '\nApiEndpoint: ' + LANDMARK;
+  var attraction = '\nApiAttraction: ' + ATTRACTION;
+  fs.writeFile('appsettings.yml', build + landmark + attraction, cb);
 });
 
 gulp.task('api', function() {
@@ -131,15 +126,6 @@ gulp.task('api', function() {
 /**
  * Build the project.
  */
-gulp.task("build:local", ['setting:local', 'api', 'compile', 'resources', 'libs'], () => {
-  console.log("Building the project ...");
-});
-gulp.task("build:dev", ['setting:dev', 'api', 'compile', 'resources', 'libs'], () => {
-  console.log("Building the project ...");
-});
-gulp.task("build:stage", ['setting:stage', 'api', 'compile', 'resources', 'libs'], () => {
-  console.log("Building the project ...");
-});
-gulp.task("build:prod", ['setting:prod', 'api', 'compile', 'resources', 'libs'], () => {
+gulp.task("build", ['appsettings', 'api', 'compile', 'resources', 'libs'], () => {
   console.log("Building the project ...");
 });

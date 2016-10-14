@@ -14,7 +14,9 @@ import { DiagnosticsService } from '../services/diagnostics';
 
 export class DiagnosticsComponent implements OnInit {
   private timer;
+  build: string = AppSettings.build;
   ApiEndpoint: string = AppSettings.ApiEndpoint;
+  ApiAttraction: string = AppSettings.ApiAttraction;
   @Input() diagnostics: any[] = [];
 
   constructor(private diagnosticsService: DiagnosticsService) {}
