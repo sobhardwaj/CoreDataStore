@@ -116,7 +116,7 @@ gulp.task('setting:dev', function(cb) {
 });
 
 gulp.task('setting:stage', function(cb) {
-    fs.writeFile('appsettings.yml', 'ApiEndpoint: /api/', cb);
+  fs.writeFile('appsettings.yml', 'ApiEndpoint: /api/', cb);
 });
 
 gulp.task('setting:prod', function(cb) {
