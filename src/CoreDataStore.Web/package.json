@@ -6,12 +6,9 @@
   "scripts": {
     "clean": "./node_modules/.bin/gulp clean",
     "compile": "./node_modules/.bin/gulp compile",
-    "build:local": "./node_modules/.bin/gulp build:local",
-    "build:dev": "./node_modules/.bin/gulp build:dev",
-    "build:stage": "./node_modules/.bin/gulp build:stage",
-    "build:prod": "./node_modules/.bin/gulp build:prod",
+    "build": "./node_modules/.bin/gulp build",
     "postinstall": "./node_modules/.bin/typings install",
-    "start": "concurrently --kill-others \"./node_modules/.bin/gulp watch\" \"./node_modules/.bin/lite-server\"",
+    "start": "concurrently --kill-others \"./node_modules/.bin/gulp watch\" \"./node_modules/.bin/lite-server --host=0.0.0.0\"",
     "tsc": "./node_modules/.bin/tsc",
     "tsc:w": "./node_modules/.bin/tsc -w",
     "typings": "./node_modules/.bin/typings"
