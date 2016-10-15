@@ -3,19 +3,36 @@ version: '2'
 services:
 
   web:
-    image: stuartshay/coredatastore:latest
+    container_name: 'coredatastore'
+    image: "stuartshay/coredatastore:stable"
+    volumes:
+      - .:/var/www/aspnetcoreapp
     ports:
      - "5000:5000"
+    depends_on:
+     - "database"
     networks:
       - aspnetcoreapp-network
 
   database:
-      image: stuartshay/coredatastore-postgre:stable
-      environment:
+    container_name: 'database'
+    image: "stuartshay/coredatastore-postgres:stable"
+    environment:
       POSTGRES_PASSWORD: password
     networks:
       - aspnetcoreapp-network
 
+
 networks:
   aspnetcoreapp-network:
     driver: bridge
+
+
+
+
+
+
+
+
+
+
