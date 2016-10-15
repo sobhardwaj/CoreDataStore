@@ -106,12 +106,6 @@ docker pull stuartshay/coredatastore-postgres:stable
 docker run --rm --name postgresdb -p 5432:5432  stuartshay/coredatastore-postgres:stable  
 ```
 
-
-
-
-
-
-
 ##Web & NGINX
 
 ```bash
