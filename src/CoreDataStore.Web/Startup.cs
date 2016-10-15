@@ -29,6 +29,7 @@ namespace CoreDataStore.Web
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             builder.AddEnvironmentVariables();
+
             Configuration = builder.Build();
         }
 
@@ -85,8 +86,17 @@ namespace CoreDataStore.Web
                                                                 .AllowAnyMethod()
                                                                 .AllowAnyHeader()));
 
-            var prodConnection = Configuration["ConnectionStrings:PostgreSQL"];
-            services.AddDbContext<Data.Postgre.NYCLandmarkContext>(options => options.UseNpgsql(prodConnection));
+            var builder = new ConfigurationBuilder();
+            builder.AddEnvironmentVariables("");
+            var config = builder.Build();
+
+            var stageConnection = Configuration["ConnectionStrings:PostgreSQL"];
+
+            //EnvironmentVariable Exist Overide
+            if (!string.IsNullOrWhiteSpace(config["CONNECTION_PostgreSQL"]))
+                stageConnection = config["CONNECTION_PostgreSQL"];
+
+            services.AddDbContext<Data.Postgre.NYCLandmarkContext>(options => options.UseNpgsql(stageConnection));
             
             // Repositories
             services.AddScoped<ILPCReportRepository, Data.Postgre.Repositories.LPCReportRepository>();
