@@ -1,4 +1,9 @@
-### Docker Readme
+### Docker 
+
+````
+ docker-compose --file docker-compose-staging.yml  build 
+ docker-compose --file docker-compose-staging.yml  up
+````
 
 ##Usefull Commands 
 
