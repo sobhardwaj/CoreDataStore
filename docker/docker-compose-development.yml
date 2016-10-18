@@ -15,7 +15,7 @@ services:
 
   web:
     container_name: 'coredatastore_web'
-    image: "stuartshay/coredatastore:stable"
+    image: "stuartshay/coredatastore:latest"
     volumes:
       - .:/var/www/aspnetcoreapp
     ports:
