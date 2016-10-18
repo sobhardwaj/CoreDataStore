@@ -71,8 +71,7 @@ dotnet run
 ```
 ##Docker   
 
-[Docker Commands](src/docker/README.md)
-[Install Docker Compose](https://docs.docker.com/compose/install/)
+[Docker Commands](src/docker/README.md)      
 
 ##Web Container
 
@@ -91,7 +90,6 @@ docker tag coredatastore:stable  stuartshay/coredatastore:stable
 
 docker push stuartshay/coredatastore:stable
 ```
-
 
 ```
 cd CoreDataStore
