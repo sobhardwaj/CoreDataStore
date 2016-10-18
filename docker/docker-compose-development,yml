@@ -4,18 +4,21 @@ services:
 
   nginx:
     container_name: 'coredatastore_nginx'
-    image: "stuartshay/coredatastore-nginx:latest"
+    image: "stuartshay/coredatastore-nginx:stable"
     depends_on:
      - "web"
-    links:
-        -  web
     ports:
         - "80:80"
+    networks:
+      - aspnetcoreapp-network
 
 
   web:
     container_name: 'coredatastore_web'
-    image: "stuartshay/coredatastore:latest"
+    image: "coredatastore:development"
+    build:
+      context: .
+      dockerfile: aspnetcore.dockerfile
     volumes:
       - .:/var/www/aspnetcoreapp
     ports:
