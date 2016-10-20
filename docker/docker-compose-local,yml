@@ -1,0 +1,53 @@
+version: '2'
+
+services:
+
+  nginx:
+    container_name: 'coredatastore_nginx'
+    image: "stuartshay/coredatastore-nginx:stable"
+    depends_on:
+     - "web"
+    ports:
+        - "80:80"
+    networks:
+      - aspnetcoreapp-network
+
+
+  web:
+    container_name: 'coredatastore_web'
+    image: "coredatastore:development"
+    build:
+      context: .
+      dockerfile: aspnetcore.dockerfile
+    volumes:
+      - .:/var/www/aspnetcoreapp
+    ports:
+     - "5000:5000"
+    depends_on:
+     - "database"
+    networks:
+      - aspnetcoreapp-network
+
+
+  database:
+    container_name: 'database'
+    image: "stuartshay/coredatastore-postgres:stable"
+    environment:
+      POSTGRES_PASSWORD: password
+    networks:
+      - aspnetcoreapp-network
+
+
+networks:
+  aspnetcoreapp-network:
+    driver: bridge
+
+
+
+
+
+
+
+
+
+

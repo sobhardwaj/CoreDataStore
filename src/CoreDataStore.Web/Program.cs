@@ -18,9 +18,11 @@ namespace CoreDataStore.Web
 
             var url = config["ASPNETCORE_URLS"] ?? "http://*:5000";  //TOOD Set Default from Hosting
             var env = config["ASPNETCORE_ENVIRONMENT"] ?? "Development";
+            var connectionPostgreSql = config["CONNECTION_PostgreSQL"];
 
             Console.WriteLine("ASPNETCORE_URLS:{0}", url);
             Console.WriteLine("ASPNETCORE_ENVIRONMENT:{0}", env);
+            Console.WriteLine("CONNECTION_PostgreSQL:{0}", connectionPostgreSql);
 
             var host = new WebHostBuilder()
                 .UseConfiguration(config)

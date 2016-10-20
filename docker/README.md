@@ -1,4 +1,21 @@
-### Docker Readme
+### Docker 
+
+##### Local - (Build container)
+
+````
+ docker-compose --file docker-compose-local.yml  build 
+ docker-compose --file docker-compose-local.yml  up
+````
+
+##### Development - (Lattest Tag)
+````
+ docker-compose --file docker-compose-development.yml  up
+````
+
+##### Staging - (Stable Tag)
+````
+ docker-compose --file docker-compose-staging.yml  up
+````
 
 ##Usefull Commands 
 
