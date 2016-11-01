@@ -1,6 +1,6 @@
 ### Docker 
 
-##### Local - (Build Contiainer)
+##### Local - (Build container)
 
 ````
  docker-compose --file docker-compose-local.yml  build 

@@ -1,19 +1,29 @@
 /// <binding BeforeBuild='build' />
 "use strict";
 
-const fs = require('fs');
-const del = require("del");
-const path = require("path");
-const gulp = require("gulp");
-const less = require('gulp-less');
-const cssmin = require("gulp-cssmin");
-const tslint = require('gulp-tslint');
-const tsconfig = require('gulp-ts-config');
-const tsc = require("gulp-typescript");
-const sourcemaps = require('gulp-sourcemaps');
-const tsProject = tsc.createProject("tsconfig.json");
+const fs = require('fs'),
+  del = require('del'),
+  path = require('path'),
+  args = require('yargs'),
+  gulp = require('gulp'),
+  iF = require('gulp-if'),
+  concat = require('gulp-concat'),
+  less = require('gulp-less'),
+  cssmin = require('gulp-cssmin'),
+  tslint = require('gulp-tslint'),
+  tsc = require('gulp-typescript'),
+  tsconfig = require('gulp-ts-config'),
+  coveralls = require('gulp-coveralls'),
+  sourcemaps = require('gulp-sourcemaps'),
+  jsMinify = require('gulp-uglify'),
+  cssPrefixer = require('gulp-autoprefixer'),
+  merge = require('merge-stream');
+
+const SystemBuilder = require('systemjs-builder');
+const tsProject = tsc.createProject('tsconfig.json');
 
 const buildDir = "wwwroot";
+var build = !!(args.build || args.run);
 var BUILD = process.env.BUILD || 'local';
 var LANDMARK = process.env.LANDMARK || '/api/';
 var ATTRACTION = process.env.ATTRACTION || '/attraction/';
@@ -46,17 +56,43 @@ gulp.task('tslint', () => {
     .pipe(tslint.report('prose'));
 });
 
+
 /**
- * Compile TypeScript sources and create sourcemaps in build directory.
+ * Compile TypeScript sources in build directory.
  */
-gulp.task("compile", ["tslint"], () => {
-  var tsResult = gulp.src("src/**/*.ts")
-    .pipe(sourcemaps.init())
-    .pipe(tsc(tsProject));
-  return tsResult.js
-    .pipe(sourcemaps.write("."))
-    .pipe(gulp.dest(buildDir));
+
+gulp.task('shims', () => {
+  return gulp.src([
+      'node_modules/core-js/client/shim.min.js',
+      'node_modules/zone.js/dist/zone.js',
+      'node_modules/reflect-metadata/Reflect.js',
+      'node_modules/systemjs/dist/system.src.js'
+    ])
+    .pipe(concat('shims.js'))
+    .pipe(iF(build, jsMinify()))
+    .pipe(gulp.dest(path.join(buildDir, 'js')));
 });
+
+gulp.task('tsc', () => {
+  var tsProject = tsc.createProject('tsconfig.json'),
+    tsResult = tsProject.src()
+    .pipe(tsc(tsProject));
+
+  return tsResult.js
+    .pipe(gulp.dest('.tmp'));
+});
+
+gulp.task('compile', ['tslint', 'tsc'], () => {
+  var builder = new SystemBuilder();
+
+  builder.loadConfig('systemjs.config.js')
+    .then(() => builder.buildStatic('app', path.join('.tmp', 'js', 'bundle.js')));
+
+  return gulp.src(path.join('.tmp', 'js', 'bundle.js'))
+    .pipe(iF(build, jsMinify()))
+    .pipe(gulp.dest(path.join(buildDir, 'js')));
+});
+
 
 /**
  * Copy all resources that are not TypeScript files into build directory.
@@ -66,27 +102,6 @@ gulp.task("resources", ['fonts', 'less'], () => {
     .pipe(gulp.dest(buildDir));
 });
 
-/**
- * Copy all required libraries into build directory.
- */
-gulp.task("libs", () => {
-  return gulp.src([
-      'core-js/client/shim.min.js',
-      'core-js/client/shim.min.map',
-      'reflect-metadata/Reflect.js',
-      'reflect-metadata/Reflect.map',
-      'rxjs/**',
-      'core-js/**',
-      'zone.js/dist/**',
-      'systemjs/dist/**',
-      'ng2-select/**',
-      'ng2-bootstrap/**',
-      'ng2-pagination/**',
-      'moment/moment.js',
-      '@angular/**'
-    ], { cwd: "node_modules/**" }) /* Glob required here. */
-    .pipe(gulp.dest(path.join(buildDir, "lib")));
-});
 
 /**
  * Copy all required fonts into build directory.
@@ -99,14 +114,14 @@ gulp.task("fonts", () => {
 /**
  * Watch for changes in TypeScript, HTML and CSS files.
  */
-gulp.task('watch', function() {
-  gulp.watch(["src/**/*.ts"], ['compile']).on('change', function(e) {
+gulp.task('watch', () => {
+  gulp.watch(['src/**/**.ts'], ['compile']).on('change', function(e) {
     console.log('TypeScript file ' + e.path + ' has been changed. Compiling.');
   });
-  gulp.watch(["src/**/*.html", "src/**/*.css"], ['resources']).on('change', function(e) {
+  gulp.watch(['src/**/**.html', 'src/**/*.css', 'src/img/*.*'], ['resources']).on('change', function(e) {
     console.log('Resource file ' + e.path + ' has been changed. Updating.');
   });
-  gulp.watch(["src/**/*.less"], ['less']).on('change', function(e) {
+  gulp.watch(['src/**/**.less'], ['less']).on('change', function(e) {
     console.log('LESS file ' + e.path + ' has been changed. Updating.');
   });
 });
@@ -126,6 +141,6 @@ gulp.task('api', function() {
 /**
  * Build the project.
  */
-gulp.task("build", ['appsettings', 'api', 'compile', 'resources', 'libs'], () => {
+gulp.task("build", ['appsettings', 'api', 'shims', 'compile', 'less', 'fonts', 'resources'], () => {
   console.log("Building the project ...");
 });
