@@ -22,11 +22,20 @@ namespace CoreDataStore.Web.Controllers
     {
         private readonly IHostingEnvironment _env;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="env"></param>
         public DiagnosticsController(IHostingEnvironment env)
         {
             this._env = env;
         }
 
+
+        /// <summary>
+        ///  Get Server Diagnostics
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [EnableCors("AllowAll")]
         public ServerDiagnostics Get()
@@ -62,8 +71,6 @@ namespace CoreDataStore.Web.Controllers
             diagnostics.IpAddressList = ipList;
 
             return diagnostics;
-        }
-
-        
+        } 
     }
 }

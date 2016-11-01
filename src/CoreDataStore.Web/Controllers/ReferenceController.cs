@@ -20,6 +20,10 @@ namespace CoreDataStore.Web.Controllers
             this._referenceRepository = referenceRepository;
         }
 
+        /// <summary>
+        ///  Get Boroughs
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("borough")]
         public IEnumerable<string> GetBoroughs()
@@ -27,6 +31,10 @@ namespace CoreDataStore.Web.Controllers
             return EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription());
         }
 
+        /// <summary>
+        ///  Get Reference Types
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("objectType")]
         public IEnumerable<string> GetReferenceTypes()
@@ -35,6 +43,10 @@ namespace CoreDataStore.Web.Controllers
         }
 
 
+        /// <summary>
+        ///  Get Parent Styles
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("parentStyle")]
         public IEnumerable<string> GetParentStyles()

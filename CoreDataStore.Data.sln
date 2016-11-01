@@ -41,10 +41,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Web", "src\Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{9CAE5C90-C078-449A-9855-6E797F9FE4ED}"
 	ProjectSection(SolutionItems) = preProject
-		docker\api.dockerfile = docker\api.dockerfile
 		docker\aspnetcore.dockerfile = docker\aspnetcore.dockerfile
 		docker\docker-compose-staging.yml = docker\docker-compose-staging.yml
-		docker\nginx.dockerfile = docker\nginx.dockerfile
 		docker\ui.dockerfile = docker\ui.dockerfile
 	EndProjectSection
 EndProject

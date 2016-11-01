@@ -14,7 +14,7 @@ namespace CoreDataStore.Web.Controllers
 {
 
     /// <summary>
-    /// LPC Reports API Controllers.
+    /// LPC Reports API Controller.
     /// </summary>
     [Route("api/[controller]")]
     [EnableCors("AllowAll")]
@@ -23,6 +23,11 @@ namespace CoreDataStore.Web.Controllers
         private readonly ILPCReportService _lpcReportService;
         private readonly ILandmarkService _landmarkService;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lpcReportService"></param>
+        /// <param name="landmarkService"></param>
         public LPCReportController(ILPCReportService lpcReportService, ILandmarkService landmarkService)
         {
             _lpcReportService = lpcReportService;
@@ -47,6 +52,13 @@ namespace CoreDataStore.Web.Controllers
             return new ObjectResult(result);
         }
 
+
+        /// <summary>
+        ///  Put Update LPC Report 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]LPCReportModel model)
         {

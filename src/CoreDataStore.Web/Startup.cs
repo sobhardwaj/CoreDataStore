@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Diagnostics;
 using Swashbuckle.Swagger.Model;
 using Microsoft.AspNetCore.Http;
 using System;
+using System.IO;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace CoreDataStore.Web
 {
@@ -50,17 +52,15 @@ namespace CoreDataStore.Web
                     Description = "Core DataStore API",
                     TermsOfService = "None"
                 });
-            });
 
-            services.ConfigureSwaggerGen(options =>
-            {
                 options.DescribeAllEnumsAsStrings();
-            });
+                options.IncludeXmlComments(GetXmlCommentsPath(PlatformServices.Default.Application));
+
+            }); 
 
             // Services
             services.AddScoped<ILPCReportService, LPCReportService>();
             services.AddScoped<ILandmarkService, LandmarkService>();
-
         }
 
         public void ConfigureDevelopmentServices(IServiceCollection services)
@@ -190,6 +190,12 @@ namespace CoreDataStore.Web
             routeBuilder.MapRoute(
                 name: "default",
                 template: "{controller=Home}/{action=Index}/{id?}");
+        }
+
+        private string GetXmlCommentsPath(ApplicationEnvironment appEnvironment)
+        {
+            var documentationFile = appEnvironment.ApplicationName + ".xml";
+            return Path.Combine(appEnvironment.ApplicationBasePath, documentationFile);
         }
 
     }
