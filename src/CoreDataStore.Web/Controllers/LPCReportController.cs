@@ -129,7 +129,7 @@ namespace CoreDataStore.Web.Controllers
                 Page = page,
                 SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "LP_NUMBER",
                 SortOrder = !string.IsNullOrEmpty(query.Order) ? query.Order : "asc",
-                LPCNumber = query.LPCNumber,
+                LPCNumber = query.LpcNumber
             };
 
             var records = _landmarkService.GetLandmarks(request);
