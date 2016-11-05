@@ -7,15 +7,16 @@ const fs = require('fs'),
   args = require('yargs'),
   gulp = require('gulp'),
   iF = require('gulp-if'),
-  concat = require('gulp-concat'),
   less = require('gulp-less'),
+  concat = require('gulp-concat'),
   cssmin = require('gulp-cssmin'),
   tslint = require('gulp-tslint'),
   tsc = require('gulp-typescript'),
+  replace = require('gulp-replace'),
+  jsMinify = require('gulp-uglify'),
   tsconfig = require('gulp-ts-config'),
   coveralls = require('gulp-coveralls'),
   sourcemaps = require('gulp-sourcemaps'),
-  jsMinify = require('gulp-uglify'),
   cssPrefixer = require('gulp-autoprefixer'),
   merge = require('merge-stream');
 
@@ -23,6 +24,7 @@ const SystemBuilder = require('systemjs-builder');
 const tsProject = tsc.createProject('tsconfig.json');
 
 const buildDir = "wwwroot";
+var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || 'Dev';
 var build = !!(args.build || args.run);
 var BUILD = process.env.BUILD || 'local';
 var LANDMARK = process.env.LANDMARK || '/api/';
@@ -74,12 +76,13 @@ gulp.task('shims', () => {
 });
 
 gulp.task('tsc', () => {
+  var tsDest = (NG_ENVIRONMENT === 'Stage') ? '.tmp' : (buildDir + '/app');
   var tsProject = tsc.createProject('tsconfig.json'),
     tsResult = tsProject.src()
     .pipe(tsc(tsProject));
 
   return tsResult.js
-    .pipe(gulp.dest('.tmp'));
+    .pipe(gulp.dest(tsDest));
 });
 
 gulp.task('compile', ['tslint', 'tsc'], () => {
@@ -98,7 +101,7 @@ gulp.task('compile', ['tslint', 'tsc'], () => {
  * Copy all resources that are not TypeScript files into build directory.
  */
 gulp.task("resources", ['fonts', 'less'], () => {
-  return gulp.src(["src/**/*", "!src/styles-less", "!src/styles-less/**/*", "!**/*.ts"])
+  return gulp.src(["!src/index.html", "!src/styles-less", "!src/styles-less/**/*", "!**/*.ts", "src/**/*"])
     .pipe(gulp.dest(buildDir));
 });
 
@@ -138,9 +141,47 @@ gulp.task('api', function() {
     .pipe(tsconfig('AppSettings', JSON.parse('{"parser": "yml"}')))
     .pipe(gulp.dest('./src/app'))
 });
+
+
+gulp.task('bundle', function() {
+  var bundleTpl;
+  if (NG_ENVIRONMENT === 'Stage') {
+    bundleTpl = '<script type="text/javascript" src="js/bundle.js"></script>';
+  } else {
+    bundleTpl = '<script src="systemjs.config.js"></script>' +
+      '<script>System.import(\'app\').catch(function(err) {console.error(err);});</script>';
+  }
+
+  gulp.src('src/index.html')
+    .pipe(replace('<--bundleTpl-->', bundleTpl))
+    .pipe(gulp.dest(buildDir));
+});
+/**
+ * Copy all required libraries into build directory.
+ */
+gulp.task("node_modules", () => {
+  return gulp.src([
+      'rxjs/**',
+      'core-js/**',
+      'zone.js/dist/**',
+      'systemjs/dist/**',
+      'ng2-select/**',
+      'ng2-bootstrap/**',
+      'moment/moment.js',
+      '@angular/**'
+    ], { cwd: "node_modules/**" }) /* Glob required here. */
+    .pipe(gulp.dest(path.join(buildDir, "node_modules")));
+});
+
+gulp.task('build:dev', ['appsettings', 'api', 'shims', 'tsc', 'less', 'fonts', 'resources', 'node_modules', 'bundle'], function() {
+  gulp.src('systemjs.config.js')
+    .pipe(replace('.tmp', 'app'))
+    .pipe(gulp.dest(buildDir));
+});
+
 /**
  * Build the project.
  */
-gulp.task("build", ['appsettings', 'api', 'shims', 'compile', 'less', 'fonts', 'resources'], () => {
+gulp.task("build", ['appsettings', 'api', 'shims', 'compile', 'less', 'fonts', 'resources', 'bundle'], () => {
   console.log("Building the project ...");
 });
