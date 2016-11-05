@@ -33,6 +33,14 @@ namespace CoreDataStore.Web.Controllers
 
 
         /// <summary>
+        ///  Heartbeat
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("status")]
+        public IActionResult Status() => Ok();
+
+
+        /// <summary>
         ///  Get Server Diagnostics
         /// </summary>
         /// <returns></returns>
