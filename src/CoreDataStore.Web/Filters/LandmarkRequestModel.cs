@@ -2,12 +2,15 @@
 
 namespace CoreDataStore.Web.Filters
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class LandmarkRequestModel : RequestModel
     {
         /// <summary>
         /// LPC Number
         /// </summary>
-        public string LPCNumber { get; set; }
+        public string LpcNumber { get; set; }
 
     }
 }

@@ -2,6 +2,9 @@
 
 namespace CoreDataStore.Web.Filters
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class LPCReportRequestModel : RequestModel
     {
         /// <summary>

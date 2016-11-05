@@ -2,6 +2,9 @@
 
 namespace CoreDataStore.Web.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PlatformHandler
     {
         static PlatformHandler()
@@ -18,6 +21,9 @@ namespace CoreDataStore.Web.Extensions
         public static Platform Platform { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class Platform
     {
         public Platform(OSPlatform platform)
@@ -25,12 +31,24 @@ namespace CoreDataStore.Web.Extensions
             OSPlatform = platform;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public OSPlatform OSPlatform { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsLinux { get { return OSPlatform == OSPlatform.Linux; } }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsMac { get { return OSPlatform == OSPlatform.OSX; } }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsWindows { get { return OSPlatform == OSPlatform.Windows; } }
     }
 }
