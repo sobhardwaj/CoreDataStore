@@ -4,6 +4,9 @@
 [![CircleCI](https://circleci.com/gh/stuartshay/CoreDataStore.svg?style=svg)](https://circleci.com/gh/stuartshay/CoreDataStore)
 [![Code Climate](https://codeclimate.com/github/stuartshay/CoreDataStore/badges/gpa.svg)](https://codeclimate.com/github/stuartshay/CoreDataStore)
 
+#### Demo
+http://http://informationcart.eastus2.cloudapp.azure.com/    
+
 ## Prerequisites:
 
 ### .NET Core 
