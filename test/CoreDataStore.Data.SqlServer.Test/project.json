@@ -8,8 +8,6 @@
 
   "dependencies": {
     "dotnet-test-xunit": "1.0.0-*",
-    "FluentAssertions": "4.12.0",
-    "GenFu": "1.1.1",
     "Microsoft.EntityFrameworkCore": "1.0.0",
     "Microsoft.EntityFrameworkCore.InMemory": "1.0.0",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
@@ -21,13 +19,14 @@
     },
     "xunit": "2.2.0-beta2-build3300",
     "xunit.runner.visualstudio": "2.2.0-beta1-build1144",
-    
     "CoreDataStore.Common": "1.0.0-*",
     "CoreDataStore.Data": "1.0.0-*",
     "CoreDataStore.Data.SqlServer": "1.0.0-*",
     "CoreDataStore.Domain": "1.0.0-*",
     "CoreDataStore.Service": "1.0.0-*",
-    "CoreDataStore.Web": "1.0.0-*"
+    "CoreDataStore.Web": "1.0.0-*",
+    "FluentAssertions": "4.16.0",
+    "GenFu": "1.2.1"
   },
 
   "frameworks": {

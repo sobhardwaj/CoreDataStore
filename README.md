@@ -39,7 +39,7 @@ Step 2: Build Web Site
 cd src/CoreDataStore.Web/
 npm install
 npm run clean
-npm run build
+npm run build:dev
 
 dotnet run
 ```

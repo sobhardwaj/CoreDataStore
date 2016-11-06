@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
@@ -58,8 +57,8 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         }
 
 
-        //[Fact(Skip = "ci test")]
-        [Fact]
+        [Fact(Skip = "ci test")]
+        //[Fact]
         public void Can_Get_Filtered_Paging_List()
         {
             var predicate = PredicateBuilder.True<Landmark>();
@@ -84,9 +83,5 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             Assert.NotNull(results);
 
         }
-
-
-
-
     }
 }
