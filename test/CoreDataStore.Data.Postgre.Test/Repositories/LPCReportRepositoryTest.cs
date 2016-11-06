@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using CoreDataStore.Data.Helpers;
-using CoreDataStore.Data.Interfaces;
-using CoreDataStore.Data.Postgre.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
+using CoreDataStore.Data.Helpers;
+using CoreDataStore.Data.Interfaces;
+using CoreDataStore.Data.Postgre.Repositories;
 using CoreDataStore.Common.Helpers;
+using CoreDataStore.Data.Extensions;
+using CoreDataStore.Data.Filters;
+using CoreDataStore.Domain.Entities;
 using CoreDataStore.Domain.Enum;
 
 
@@ -23,7 +27,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             var services = new ServiceCollection();
 
             services.AddDbContext<NYCLandmarkContext>(options =>
-            options.UseNpgsql(@"User ID=nyclandmarks;Password=nyclandmarks;Server=192.168.1.6;Port=5432;Database=nyclandmarks;Integrated Security=true;Pooling=true;"));
+            options.UseNpgsql(@"User ID=nyclandmarks;Password=nyclandmarks;Server=192.168.99.100;Port=5432;Database=nyclandmarks;Integrated Security=true;Pooling=true;"));
 
             services.AddScoped<ILPCReportRepository, LPCReportRepository>();
             serviceProvider = services.BuildServiceProvider();
@@ -33,7 +37,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
 
         }
 
-
+        //[Fact]
         [Fact(Skip = "ci test")]
         public void LPC_Reports_Exist()
         {
@@ -54,42 +58,42 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             dbContext.SaveChanges();
         }
 
+
+        [Fact]
+        public void Can_Get_Borough_List()
+        {
+            var results = EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription()).ToList();
+            Assert.NotNull(results);
+        }
+
+
         [Fact(Skip = "ci test")]
-        public void Can_Load_Landmarks()
+        //[Fact]
+        public void Can_Get_Filtered_Paging_List()
         {
-            int batchSize = 1000;
-
-            var landmarks = DataLoader.LoadLandmarks(@"./../../data/Landmarks.csv").ToList();
-            foreach (var list in landmarks.Batch(batchSize))
+            var predicate = PredicateBuilder.True<LPCReport>();
+            var request = new LandmarkRequest
             {
-                dbContext.Landmarks.AddRange(list);
-                dbContext.SaveChanges();
-            }
-        }
+                PageSize = 20,
+                Page = 1,
+            };
 
-        [Fact]
-        public void Can_Get_List()
-        {
-            var list = EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription()).ToList();
-            foreach (var v in list)
+            var sortModel = new SortModel
             {
-                
-            }
+                SortColumn = !string.IsNullOrEmpty(request.SortColumn) ? request.SortColumn : null,
+                SortOrder = !string.IsNullOrEmpty(request.SortOrder) ? request.SortOrder : null
+            };
 
+            var sortingList = new List<SortModel>();
+            sortingList.Add(sortModel);
+
+            var results = lpcReportRepository
+                .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList);
+
+            Assert.NotNull(results);
 
         }
 
-
-        [Fact]
-        public void PassingTest()
-        {
-            Assert.Equal(4, Add(2, 2));
-        }
-
-        int Add(int x, int y)
-        {
-            return x + y;
-        }
 
     }
 }
