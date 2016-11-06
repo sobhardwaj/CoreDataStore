@@ -58,40 +58,32 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         }
 
 
+        //[Fact(Skip = "ci test")]
+        [Fact]
+        public void Can_Get_Filtered_Paging_List()
+        {
+            var predicate = PredicateBuilder.True<Landmark>();
+            var request = new LandmarkRequest() 
+            {
+                PageSize = 20,
+                Page = 1,
+            };
 
+            var sortModel = new SortModel
+            {
+                SortColumn = !string.IsNullOrEmpty(request.SortColumn) ? request.SortColumn : null,
+                SortOrder = !string.IsNullOrEmpty(request.SortOrder) ? request.SortOrder : null
+            };
 
+            var sortingList = new List<SortModel>();
+            sortingList.Add(sortModel);
 
+            var results = landmarkRepository
+                .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList);
 
+            Assert.NotNull(results);
 
-
-        //[Fact]
-        //public void Can_Get_Landmarks()
-        //{
-        //    var lpcNumber = "LP-01883";
-
-        //    var predicate = PredicateBuilder.True<Landmark>();
-        //    predicate = predicate.And(x => x.LP_NUMBER == lpcNumber);
-
-        //    var request = new LandmarkRequest
-        //    {
-
-        //    };
-
-
-        //    var sortModel = new SortModel
-        //    {
-        //        // SortColumn = !string.IsNullOrEmpty(request.SortColumn) ? request.SortColumn : null,
-        //        // SortOrder = !string.IsNullOrEmpty(request.SortOrder) ? request.SortOrder : null
-        //    };
-
-        //    var sortingList = new List<SortModel>();
-        //    sortingList.Add(sortModel);
-
-        //    var results =
-        //    //    .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList);
-
-        //}
-
+        }
 
 
 

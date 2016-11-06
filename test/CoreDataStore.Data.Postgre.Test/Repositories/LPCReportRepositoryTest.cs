@@ -72,7 +72,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         public void Can_Get_Filtered_Paging_List()
         {
             var predicate = PredicateBuilder.True<LPCReport>();
-            var request = new LandmarkRequest
+            var request = new LPCReportRequest()
             {
                 PageSize = 20,
                 Page = 1,
