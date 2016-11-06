@@ -18,6 +18,9 @@ namespace CoreDataStore.Web.Extensions
             Platform = new Platform(currentPlatform);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static Platform Platform { get; set; }
     }
 
@@ -26,6 +29,10 @@ namespace CoreDataStore.Web.Extensions
     /// </summary>
     public class Platform
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="platform"></param>
         public Platform(OSPlatform platform)
         {
             OSPlatform = platform;

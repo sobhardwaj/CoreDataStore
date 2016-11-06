@@ -44,6 +44,11 @@ npm run build
 dotnet run
 ```
 
+#### Development Mode
+```bash
+npm run build:dev
+```
+
 
 ### Live reload Typescript ClientSide (not use dotnet watch)
 > npm start

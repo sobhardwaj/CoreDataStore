@@ -46,6 +46,7 @@ namespace CoreDataStore.Web.Controllers
         /// <returns></returns>
         [HttpGet]
         [EnableCors("AllowAll")]
+        [ProducesResponseType(typeof(ServerDiagnostics), 200)]
         public ServerDiagnostics Get()
         {
             var diagnostics = new ServerDiagnostics

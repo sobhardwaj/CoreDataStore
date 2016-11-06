@@ -21,8 +21,15 @@ using Microsoft.Extensions.PlatformAbstractions;
 
 namespace CoreDataStore.Web
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="env"></param>
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -35,6 +42,9 @@ namespace CoreDataStore.Web
             Configuration = builder.Build();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IConfigurationRoot Configuration { get; }
 
         private void ConfigService(IServiceCollection services)
@@ -63,6 +73,10 @@ namespace CoreDataStore.Web
             services.AddScoped<ILandmarkService, LandmarkService>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
             services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
@@ -80,6 +94,10 @@ namespace CoreDataStore.Web
             ConfigService(services);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureStagingServices(IServiceCollection services)
         {
             services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
@@ -106,6 +124,10 @@ namespace CoreDataStore.Web
             ConfigService(services);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureProductionServices(IServiceCollection services)
         {
             services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
@@ -124,6 +146,11 @@ namespace CoreDataStore.Web
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="loggerFactory"></param>
         public void ConfigureDevelopment(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseDeveloperExceptionPage();
@@ -133,6 +160,11 @@ namespace CoreDataStore.Web
             AppConfig(app, loggerFactory);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="loggerFactory"></param>
         public void ConfigureStaging(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             //app.UseExceptionHandler("/Home/Error");
@@ -157,6 +189,11 @@ namespace CoreDataStore.Web
             AppConfig(app, loggerFactory);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="loggerFactory"></param>
         public void ConfigureProduction(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseExceptionHandler("/Home/Error");

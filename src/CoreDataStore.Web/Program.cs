@@ -5,8 +5,15 @@ using Microsoft.Extensions.Configuration;
 
 namespace CoreDataStore.Web
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             var config = new ConfigurationBuilder()
@@ -16,7 +23,7 @@ namespace CoreDataStore.Web
                 .AddCommandLine(args)
                 .Build();
 
-            var url = config["ASPNETCORE_URLS"] ?? "http://*:5000";  //TOOD Set Default from Hosting
+            var url = config["ASPNETCORE_URLS"] ?? "http://*:5000"; 
             var env = config["ASPNETCORE_ENVIRONMENT"] ?? "Development";
             var connectionPostgreSql = config["CONNECTION_PostgreSQL"];
 
