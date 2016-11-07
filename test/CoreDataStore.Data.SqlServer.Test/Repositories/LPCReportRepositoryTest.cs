@@ -100,7 +100,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             }
         }
 
-
         [Fact(Skip = "ci test")]
         public void Can_Get_LPCReport()
         {
@@ -112,7 +111,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
 
         [Fact(Skip = "ci test")]
-        public void Can_Get_Inclueded_Fields()
+        public void Can_Get_Included_Fields()
         {
             var lpNumber = "LP-00871";
             var landmarkCount = 4;

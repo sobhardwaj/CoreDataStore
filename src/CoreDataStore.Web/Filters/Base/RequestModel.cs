@@ -1,5 +1,8 @@
 ﻿namespace CoreDataStore.Web.Filters.Base
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class RequestModel
     {
         /// <summary>

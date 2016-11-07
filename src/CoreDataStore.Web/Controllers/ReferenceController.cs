@@ -9,12 +9,19 @@ using CoreDataStore.Data.Data;
 
 namespace CoreDataStore.Web.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/[controller]")]
     [EnableCors("AllowAll")]
     public class ReferenceController : Controller
     {
         private readonly IReferenceRepository _referenceRepository;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="referenceRepository"></param>
         public ReferenceController(IReferenceRepository referenceRepository)
         {
             this._referenceRepository = referenceRepository;
@@ -26,6 +33,7 @@ namespace CoreDataStore.Web.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("borough")]
+        [ProducesResponseType(typeof(IEnumerable<string>), 200)]
         public IEnumerable<string> GetBoroughs()
         {
             return EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription());
@@ -37,6 +45,7 @@ namespace CoreDataStore.Web.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("objectType")]
+        [ProducesResponseType(typeof(IEnumerable<string>), 200)]
         public IEnumerable<string> GetReferenceTypes()
         {
             return EnumHelper.EnumToList<ObjectType>().Select(e => e.GetDescription());
@@ -49,6 +58,7 @@ namespace CoreDataStore.Web.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("parentStyle")]
+        [ProducesResponseType(typeof(IEnumerable<string>), 200)]
         public IEnumerable<string> GetParentStyles()
         {
             return StylesData.GetParentStyles();

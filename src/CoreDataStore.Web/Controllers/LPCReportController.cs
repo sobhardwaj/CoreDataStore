@@ -6,7 +6,6 @@ using CoreDataStore.Service.Models;
 using CoreDataStore.Service.ValidationRules;
 using CoreDataStore.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.SwaggerGen.Annotations;
 using Microsoft.AspNetCore.Cors;
 using System.Linq;
 
@@ -41,7 +40,7 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="id">Id</param>
         /// <returns></returns>
         [Produces(typeof(LPCReportModel))]
-        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(LPCReportModel))]
+        [ProducesResponseType(typeof(LPCReportModel), 200)]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -87,7 +86,7 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="page">Page Number</param>
         /// <returns></returns>
         [Produces(typeof(IEnumerable<LPCReportModel>))]
-        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(IEnumerable<LPCReportModel>))]
+        [ProducesResponseType(typeof(IEnumerable<LPCReportModel>), 200)]
         [HttpGet("{limit:int}/{page:int}")]
         public IEnumerable<LPCReportModel> Get([FromQuery]LPCReportRequestModel query, int limit, int page)
         {
@@ -118,7 +117,7 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="page">Page Number</param>
         /// <returns></returns>
         [Produces(typeof(IEnumerable<LandmarkModel>))]
-        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(IEnumerable<LandmarkModel>))]
+        [ProducesResponseType(typeof(IEnumerable<LandmarkModel>), 200)]
         [HttpGet("landmark/{limit:int}/{page:int}")]
         public IEnumerable<LandmarkModel> GetLandmarks([FromQuery]LandmarkRequestModel query, int limit, int page)
         {
@@ -129,7 +128,7 @@ namespace CoreDataStore.Web.Controllers
                 Page = page,
                 SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "LP_NUMBER",
                 SortOrder = !string.IsNullOrEmpty(query.Order) ? query.Order : "asc",
-                LPCNumber = query.LPCNumber,
+                LPCNumber = query.LpcNumber
             };
 
             var records = _landmarkService.GetLandmarks(request);

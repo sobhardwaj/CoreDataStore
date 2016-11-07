@@ -4,6 +4,9 @@
 [![CircleCI](https://circleci.com/gh/stuartshay/CoreDataStore.svg?style=svg)](https://circleci.com/gh/stuartshay/CoreDataStore)
 [![Code Climate](https://codeclimate.com/github/stuartshay/CoreDataStore/badges/gpa.svg)](https://codeclimate.com/github/stuartshay/CoreDataStore)
 
+#### Demo
+http://informationcart.eastus2.cloudapp.azure.com   
+
 ## Prerequisites:
 
 ### .NET Core 
@@ -39,9 +42,14 @@ Step 2: Build Web Site
 cd src/CoreDataStore.Web/
 npm install
 npm run clean
-npm run build
+npm run build:dev
 
 dotnet run
+```
+
+#### Development Mode
+```bash
+npm run build:dev
 ```
 
 
