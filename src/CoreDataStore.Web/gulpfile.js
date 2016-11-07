@@ -76,7 +76,7 @@ gulp.task('shims', () => {
 });
 
 gulp.task('tsc', () => {
-  var tsDest = (NG_ENVIRONMENT === 'Stage') ? '.tmp' : (buildDir + '/app');
+  var tsDest = (NG_ENVIRONMENT === 'Dev') ? (buildDir + '/app') : '.tmp';
   var tsProject = tsc.createProject('tsconfig.json'),
     tsResult = tsProject.src()
     .pipe(tsc(tsProject));
@@ -86,14 +86,16 @@ gulp.task('tsc', () => {
 });
 
 gulp.task('compile', ['tslint', 'tsc'], () => {
-  var builder = new SystemBuilder();
+  if (NG_ENVIRONMENT !== 'Dev') {
+    var builder = new SystemBuilder();
 
-  builder.loadConfig('systemjs.config.js')
-    .then(() => builder.buildStatic('app', path.join('.tmp', 'js', 'bundle.js')));
+    builder.loadConfig('systemjs.config.js')
+      .then(() => builder.buildStatic('app', path.join('.tmp', 'js', 'bundle.js')));
 
-  return gulp.src(path.join('.tmp', 'js', 'bundle.js'))
-    .pipe(iF(build, jsMinify()))
-    .pipe(gulp.dest(path.join(buildDir, 'js')));
+    return gulp.src(path.join('.tmp', 'js', 'bundle.js'))
+      .pipe(iF(build, jsMinify()))
+      .pipe(gulp.dest(path.join(buildDir, 'js')));
+  }
 });
 
 
@@ -145,11 +147,11 @@ gulp.task('api', function() {
 
 gulp.task('bundle', function() {
   var bundleTpl;
-  if (NG_ENVIRONMENT === 'Stage') {
-    bundleTpl = '<script type="text/javascript" src="js/bundle.js"></script>';
-  } else {
+  if (NG_ENVIRONMENT !== 'Dev') {
     bundleTpl = '<script src="systemjs.config.js"></script>' +
       '<script>System.import(\'app\').catch(function(err) {console.error(err);});</script>';
+  } else {
+    bundleTpl = '<script type="text/javascript" src="js/bundle.js"></script>';
   }
 
   gulp.src('src/index.html')
@@ -160,28 +162,36 @@ gulp.task('bundle', function() {
  * Copy all required libraries into build directory.
  */
 gulp.task("node_modules", () => {
-  return gulp.src([
-      'rxjs/**',
-      'core-js/**',
-      'zone.js/dist/**',
-      'systemjs/dist/**',
-      'ng2-select/**',
-      'ng2-bootstrap/**',
-      'moment/moment.js',
-      '@angular/**'
-    ], { cwd: "node_modules/**" }) /* Glob required here. */
-    .pipe(gulp.dest(path.join(buildDir, "node_modules")));
-});
-
-gulp.task('build:dev', ['appsettings', 'api', 'shims', 'tsc', 'less', 'fonts', 'resources', 'node_modules', 'bundle'], function() {
-  gulp.src('systemjs.config.js')
-    .pipe(replace('.tmp', 'app'))
-    .pipe(gulp.dest(buildDir));
+  if (NG_ENVIRONMENT === 'Dev') {
+    return gulp.src([
+        'rxjs/**',
+        'core-js/**',
+        'zone.js/dist/**',
+        'systemjs/dist/**',
+        'ng2-select/**',
+        'ng2-bootstrap/**',
+        'moment/moment.js',
+        '@angular/**'
+      ], { cwd: "node_modules/**" }) /* Glob required here. */
+      .pipe(gulp.dest(path.join(buildDir, "node_modules")));
+  }
 });
 
 /**
  * Build the project.
  */
-gulp.task("build", ['appsettings', 'api', 'shims', 'compile', 'less', 'fonts', 'resources', 'bundle'], () => {
-  console.log("Building the project ...");
+gulp.task("build", [
+  'appsettings',
+  'api',
+  'shims',
+  'compile',
+  'less',
+  'fonts',
+  'resources',
+  'node_modules',
+  'bundle'
+], () => {
+  gulp.src('systemjs.config.js')
+    .pipe(replace('.tmp', 'app'))
+    .pipe(gulp.dest(buildDir));
 });
