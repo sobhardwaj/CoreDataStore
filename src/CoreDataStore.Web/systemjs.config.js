@@ -1,4 +1,3 @@
-(function(global) {
   System.config({
     paths: {
       // paths serve as alias
@@ -38,4 +37,3 @@
       'angular2-in-memory-web-api': { main: './index.js', defaultExtension: 'js' }
     }
   });
-})(this);
