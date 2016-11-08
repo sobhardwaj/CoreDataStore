@@ -147,7 +147,7 @@ gulp.task('api', function() {
 
 gulp.task('bundle', function() {
   var bundleTpl;
-  if (NG_ENVIRONMENT !== 'Dev') {
+  if (NG_ENVIRONMENT === 'Dev') {
     bundleTpl = '<script src="systemjs.config.js"></script>' +
       '<script>System.import(\'app\').catch(function(err) {console.error(err);});</script>';
   } else {
