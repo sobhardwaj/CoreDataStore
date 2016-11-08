@@ -52,12 +52,12 @@ dotnet run
 
 Windows   
 ```bash
-set NG_ENVIRONMENT Stage
+set NG_ENVIRONMENT=Dev
 ```
 
 Linux   
 ```bash
-export NG_ENVIRONMENT Stage
+export NG_ENVIRONMENT Dev
 ```
 
 
