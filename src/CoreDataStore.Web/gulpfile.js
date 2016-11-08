@@ -90,15 +90,12 @@ gulp.task('tsc', ['tslint'], () => {
 });
 
 gulp.task('compile', ['tsc'], () => {
-  var tsDest = (NG_ENVIRONMENT !== 'Dev') ? buildDir : '.tmp';
-  var builder = new SystemBuilder();
-
-  builder.loadConfig('systemjs.config.js')
-    .then(() => builder.buildStatic('app', path.join(tsDest, 'js', 'bundle.js')));
-
-  return gulp.src(path.join(tsDest, 'js', 'bundle.js'))
-    .pipe(iF(build, jsMinify()))
-    .pipe(gulp.dest(path.join(tsDest, 'js')));
+  if (NG_ENVIRONMENT !== 'Dev') {
+    var builder = new SystemBuilder();
+    return builder.loadConfig('systemjs.config.js')
+      .then(() => builder.buildStatic('app', path.join(buildDir, 'js', 'bundle.js')));
+  }
+  return;
 });
 
 
@@ -157,10 +154,20 @@ gulp.task('bundle', function() {
     bundleTpl = '<script type="text/javascript" src="js/bundle.js"></script>';
   }
 
-  gulp.src('src/index.html')
+  return gulp.src('src/index.html')
     .pipe(replace('<--bundleTpl-->', bundleTpl))
     .pipe(gulp.dest(buildDir));
 });
+
+gulp.task('systemjs', function() {
+  if (NG_ENVIRONMENT === 'Dev') {
+    return gulp.src('systemjs.config.js')
+      .pipe(replace('.tmp', 'app'))
+      .pipe(gulp.dest(buildDir));
+  }
+  return;
+});
+
 /**
  * Copy all required libraries into build directory.
  */
@@ -178,6 +185,7 @@ gulp.task("node_modules", () => {
       ], { cwd: "node_modules/**" }) /* Glob required here. */
       .pipe(gulp.dest(path.join(buildDir, "node_modules")));
   }
+  return;
 });
 
 /**
@@ -192,9 +200,15 @@ gulp.task("build", [
   'fonts',
   'resources',
   'node_modules',
+  'systemjs',
   'bundle'
 ], () => {
-  gulp.src('systemjs.config.js')
-    .pipe(replace('.tmp', 'app'))
-    .pipe(gulp.dest(buildDir));
+  console.log('Building the project ...');
+  if (NG_ENVIRONMENT !== 'Dev') {
+    return gulp.src(path.join(buildDir, 'js', 'bundle.js'))
+      .pipe(iF(build, jsMinify()))
+      .pipe(gulp.dest(path.join(buildDir, 'js')));
+  }
+  return;
+
 });
