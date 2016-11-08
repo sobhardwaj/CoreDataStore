@@ -24,7 +24,7 @@ const SystemBuilder = require('systemjs-builder');
 const tsProject = tsc.createProject('tsconfig.json');
 
 const buildDir = "wwwroot";
-var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || 'Dev';
+var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || 'local';
 var build = !!(args.build || args.run);
 var BUILD = process.env.BUILD || 'local';
 var LANDMARK = process.env.LANDMARK || '/api/';
