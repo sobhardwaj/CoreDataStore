@@ -23,7 +23,7 @@ const SystemBuilder = require('systemjs-builder');
 const tsProject = tsc.createProject('tsconfig.json');
 
 const buildDir = "wwwroot";
-var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || 'local';
+var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || '';
 var BUILD = process.env.BUILD || 'local';
 var LANDMARK = process.env.LANDMARK || '/api/';
 var ATTRACTION = process.env.ATTRACTION || '/attraction/';
@@ -133,9 +133,10 @@ gulp.task('watch', () => {
 
 gulp.task('appsettings', function(cb) {
   var build = 'build: ' + BUILD;
+  var ng2ENV = '\nng2ENV: ' + NG_ENVIRONMENT;
   var landmark = '\nApiEndpoint: ' + LANDMARK;
   var attraction = '\nApiAttraction: ' + ATTRACTION;
-  return fs.writeFile('appsettings.yml', build + landmark + attraction, cb);
+  return fs.writeFile('appsettings.yml', build + ng2ENV + landmark + attraction, cb);
 });
 
 gulp.task('api', function() {

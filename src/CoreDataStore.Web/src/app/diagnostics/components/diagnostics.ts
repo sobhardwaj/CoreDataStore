@@ -17,6 +17,7 @@ export class DiagnosticsComponent implements OnInit {
   build: string = AppSettings.build;
   ApiEndpoint: string = AppSettings.ApiEndpoint;
   ApiAttraction: string = AppSettings.ApiAttraction;
+  ng2ENV: string = AppSettings.ng2ENV;
   @Input() diagnostics: any[] = [];
 
   constructor(private diagnosticsService: DiagnosticsService) {}
