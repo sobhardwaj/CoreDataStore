@@ -128,4 +128,3 @@ cd /test/CoreDataStore.Data.Postgre.Test
 dotnet ef migrations add <MigrationName>
 dotnet ef database update
 ```
-
