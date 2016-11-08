@@ -4,7 +4,6 @@
 const fs = require('fs'),
   del = require('del'),
   path = require('path'),
-  args = require('yargs'),
   gulp = require('gulp'),
   iF = require('gulp-if'),
   less = require('gulp-less'),
@@ -25,16 +24,21 @@ const tsProject = tsc.createProject('tsconfig.json');
 
 const buildDir = "wwwroot";
 var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || 'local';
-var build = !!(args.build || args.run);
 var BUILD = process.env.BUILD || 'local';
 var LANDMARK = process.env.LANDMARK || '/api/';
 var ATTRACTION = process.env.ATTRACTION || '/attraction/';
 
+var build = false;
+process.argv.forEach(function(val, index, array) {
+  if ('build' === val) {
+    build = true;
+  }
+});
 /**
  * Remove build directory.
  */
 gulp.task('clean', (cb) => {
-  return del([buildDir], cb);
+  return del([buildDir, '.tmp'], cb);
 });
 
 
@@ -75,7 +79,7 @@ gulp.task('shims', () => {
     .pipe(gulp.dest(path.join(buildDir, 'js')));
 });
 
-gulp.task('tsc', () => {
+gulp.task('tsc', ['tslint'], () => {
   var tsDest = (NG_ENVIRONMENT === 'Dev') ? (buildDir + '/app') : '.tmp';
   var tsProject = tsc.createProject('tsconfig.json'),
     tsResult = tsProject.src()
@@ -85,17 +89,16 @@ gulp.task('tsc', () => {
     .pipe(gulp.dest(tsDest));
 });
 
-gulp.task('compile', ['tslint', 'tsc'], () => {
-  if (NG_ENVIRONMENT !== 'Dev') {
-    var builder = new SystemBuilder();
+gulp.task('compile', ['tsc'], () => {
+  var tsDest = (NG_ENVIRONMENT !== 'Dev') ? buildDir : '.tmp';
+  var builder = new SystemBuilder();
 
-    builder.loadConfig('systemjs.config.js')
-      .then(() => builder.buildStatic('app', path.join('.tmp', 'js', 'bundle.js')));
+  builder.loadConfig('systemjs.config.js')
+    .then(() => builder.buildStatic('app', path.join(tsDest, 'js', 'bundle.js')));
 
-    return gulp.src(path.join('.tmp', 'js', 'bundle.js'))
-      .pipe(iF(build, jsMinify()))
-      .pipe(gulp.dest(path.join(buildDir, 'js')));
-  }
+  return gulp.src(path.join(tsDest, 'js', 'bundle.js'))
+    .pipe(iF(build, jsMinify()))
+    .pipe(gulp.dest(path.join(tsDest, 'js')));
 });
 
 
@@ -135,11 +138,11 @@ gulp.task('appsettings', function(cb) {
   var build = 'build: ' + BUILD;
   var landmark = '\nApiEndpoint: ' + LANDMARK;
   var attraction = '\nApiAttraction: ' + ATTRACTION;
-  fs.writeFile('appsettings.yml', build + landmark + attraction, cb);
+  return fs.writeFile('appsettings.yml', build + landmark + attraction, cb);
 });
 
 gulp.task('api', function() {
-  gulp.src('appsettings.yml')
+  return gulp.src('appsettings.yml')
     .pipe(tsconfig('AppSettings', JSON.parse('{"parser": "yml"}')))
     .pipe(gulp.dest('./src/app'))
 });
@@ -183,8 +186,8 @@ gulp.task("node_modules", () => {
 gulp.task("build", [
   'appsettings',
   'api',
-  'shims',
   'compile',
+  'shims',
   'less',
   'fonts',
   'resources',
