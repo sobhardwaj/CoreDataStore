@@ -38,18 +38,26 @@ dotnet restore
 
 Step 2: Build Web Site
 
+
 ```bash
 cd src/CoreDataStore.Web/
 npm install
 npm run clean
-npm run build:dev
+npm run build
 
 dotnet run
 ```
 
 #### Development Mode
+
+Windows   
 ```bash
-npm run build:dev
+set NG_ENVIRONMENT Stage
+```
+
+Linux   
+```bash
+export NG_ENVIRONMENT Stage
 ```
 
 
