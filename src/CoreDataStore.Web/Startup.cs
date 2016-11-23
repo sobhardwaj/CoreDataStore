@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
@@ -57,7 +58,7 @@ namespace CoreDataStore.Web
             {
                 options.SingleApiVersion(new Info
                 {
-                    Version = "v1.0.1",
+                    Version = "v1",
                     Title = "Core DataStore API",
                     Description = "Core DataStore API",
                     TermsOfService = "None"
