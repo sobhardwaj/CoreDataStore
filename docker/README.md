@@ -1,4 +1,4 @@
-### Docker 
+## Docker 
 
 ##### Build & Run container
 ````
@@ -43,11 +43,13 @@ docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
     docker rm  -f <CONATINERID>     #Remove Container
 ```
 
-###Publish
+###Tag & Publish
 
 ```bash 
-docker tag coredatastore stuartshay/coredatastore
-docker push stuartshay/coredatastore:latest
+docker tag <imageid> coredatastore_web:stable
+docker tag coredatastore_web:stable  stuartshay/coredatastore:stable
+
+docker push stuartshay/coredatastore:stable
 ```
 
 ###Run 

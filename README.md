@@ -99,19 +99,6 @@ docker pull stuartshay/coredatastore
 docker run --rm --name coredatastore  -p 5000:5000  stuartshay/coredatastore
 ```
 
-### Push Stable Image 
-```
-docker tag <imageid> coredatastore:stable
-docker tag coredatastore:stable  stuartshay/coredatastore:stable
-
-docker push stuartshay/coredatastore:stable
-```
-
-```
-cd CoreDataStore
-docker-compose build
-docker run --rm --name coredatastore -p 5000:5000 coredatastore_web
-```
 
 ##Postgres Db
 
