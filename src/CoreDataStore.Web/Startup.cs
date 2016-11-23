@@ -51,12 +51,13 @@ namespace CoreDataStore.Web
             services.AddCors();
             services.AddMvc();
 
+
             services.AddSwaggerGen();
             services.ConfigureSwaggerGen(options =>
             {
                 options.SingleApiVersion(new Info
                 {
-                    Version = "v1",
+                    Version = "v1.0.1",
                     Title = "Core DataStore API",
                     Description = "Core DataStore API",
                     TermsOfService = "None"
