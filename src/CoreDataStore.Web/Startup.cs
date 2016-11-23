@@ -82,8 +82,8 @@ namespace CoreDataStore.Web
                                                                 .AllowAnyMethod()
                                                                 .AllowAnyHeader()));
 
-            var prodConnection = Configuration["ConnectionStrings:Sqlite"];
-            services.AddDbContext<Data.Sqlite.NYCLandmarkContext>(options => options.UseSqlite(prodConnection));
+            var connection = Configuration["ConnectionStrings:Sqlite"];
+            services.AddDbContext<Data.Sqlite.NYCLandmarkContext>(options => options.UseSqlite(connection));
 
             // Repositories
             services.AddScoped<ILPCReportRepository, Data.Sqlite.Repositories.LPCReportRepository>();
@@ -92,6 +92,9 @@ namespace CoreDataStore.Web
 
             ConfigService(services);
         }
+
+
+
 
         /// <summary>
         /// 
