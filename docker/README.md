@@ -1,9 +1,17 @@
 ### Docker 
 
-##### Local - (Build container)
+##### Build & Run container
+````
+cd  CoreDataStore/
+docker build -f docker/aspnetcore.dockerfile -t coredatastore_web  .
+docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
+````
+
+### Docker Compose
+
+##### Local 
 
 ````
- docker-compose --file docker-compose-local.yml  build 
  docker-compose --file docker-compose-local.yml  up
 ````
 
