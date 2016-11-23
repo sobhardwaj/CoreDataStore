@@ -16,7 +16,7 @@
     "CoreDataStore.Data.SqlServer": "1.0.1-*",
     "CoreDataStore.Domain": "1.0.1-*",
     "CoreDataStore.Service": "1.0.1-*",
-    "CoreDataStore.Web": "1.0.0-*",
+    "CoreDataStore.Web": "1.0.1-*",
     "GenFu": "1.2.1",
     "FluentAssertions": "4.17.0",
     "Microsoft.EntityFrameworkCore": "1.1.0",
@@ -34,6 +34,13 @@
         "portable-net45+win8"
       ]
     }
+  },
+
+  "runtimes": {
+    "win10-x64": {},
+    "debian.8-x64": {},
+    "ubuntu.16.04-x64": {},
+    "osx.10.12-x64": {}
   },
 
   "testRunner": "xunit",
