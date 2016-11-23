@@ -15,7 +15,6 @@ using CoreDataStore.Web.Extensions;
 using Microsoft.AspNetCore.Diagnostics;
 using Swashbuckle.Swagger.Model;
 using Microsoft.AspNetCore.Http;
-using System;
 using System.IO;
 using Microsoft.Extensions.PlatformAbstractions;
 
@@ -154,7 +153,7 @@ namespace CoreDataStore.Web
         public void ConfigureDevelopment(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseDeveloperExceptionPage();
-            app.UseBrowserLink();
+            //app.UseBrowserLink();
             //app.UseDatabaseErrorPage();
 
             AppConfig(app, loggerFactory);
@@ -197,17 +196,16 @@ namespace CoreDataStore.Web
         public void ConfigureProduction(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseExceptionHandler("/Home/Error");
+            //loggerFactory.AddProvider(new SqlLoggerProvider());
 
             AppConfig(app, loggerFactory);
+
         }
 
 
         private void AppConfig(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {         
-            
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-
-            //loggerFactory.AddProvider(new SqlLoggerProvider());
             loggerFactory.AddDebug();
 
             AutoMapperConfiguration.Configure();
@@ -217,7 +215,7 @@ namespace CoreDataStore.Web
 
             app.UseMvc(ConfigureRoutes);
 
-            app.UseSwagger();  //UseSwaggerGen());
+            app.UseSwagger();  
             app.UseSwaggerUi();
 
         }

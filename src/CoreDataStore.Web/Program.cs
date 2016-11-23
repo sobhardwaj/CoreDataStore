@@ -36,7 +36,6 @@ namespace CoreDataStore.Web
                 .UseKestrel()
                 .UseUrls(url)
                 .UseEnvironment(env)
-                .UseIISIntegration()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
                 .Build();
