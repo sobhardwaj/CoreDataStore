@@ -21,7 +21,7 @@
       "launchUrl": "http://localhost:5000",
       "environmentVariables": {
         "CONNECTION_PostgreSQL": "User ID=postgres; Password=password;  Server=localhost;Port=5432;Database=nyclandmarks;Integrated Security=true;Pooling=true",
-        "ASPNETCORE_ENVIRONMENT": "Production"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
   }
