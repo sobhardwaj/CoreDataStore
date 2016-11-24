@@ -10,13 +10,13 @@ http://informationcart.eastus2.cloudapp.azure.com
 ## Prerequisites:
 
 ### .NET Core 
-.NET Core SDK 1.0.0 RTM  - June 27, 2016    
+.NET Core SDK 1.1  - November 16, 2016   
 https://www.microsoft.com/net/core  
 
 ###Visual Studio  
 
-Visual Studio 2015 Update 3 RTM     
-Visual Studio 2015 Tooling Preview 2 - 8/15/2016
+Visual Studio 2015 Update 3     
+Visual Studio 2015 Tooling Preview 2
 
 ### Web Application
 nodejs_version: "6.x"    
@@ -99,19 +99,6 @@ docker pull stuartshay/coredatastore
 docker run --rm --name coredatastore  -p 5000:5000  stuartshay/coredatastore
 ```
 
-### Push Stable Image 
-```
-docker tag <imageid> coredatastore:stable
-docker tag coredatastore:stable  stuartshay/coredatastore:stable
-
-docker push stuartshay/coredatastore:stable
-```
-
-```
-cd CoreDataStore
-docker-compose build
-docker run --rm --name coredatastore -p 5000:5000 coredatastore_web
-```
 
 ##Postgres Db
 

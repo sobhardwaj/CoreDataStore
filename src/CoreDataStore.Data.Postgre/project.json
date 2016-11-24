@@ -1,11 +1,11 @@
 {
-  "version": "1.0.0-*",
+  "version": "1.0.1-*",
 
   "dependencies": {
-    "CoreDataStore.Data": "1.0.0-*",
-    "CoreDataStore.Domain": "1.0.0-*",
-    "NETStandard.Library": "1.6.0",
-    "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.0"
+    "CoreDataStore.Data": "1.0.1-*",
+    "CoreDataStore.Domain": "1.0.1-*",
+    "NETStandard.Library": "1.6.1",
+    "Npgsql.EntityFrameworkCore.PostgreSQL": "1.1.0"
   },
 
   "frameworks": {

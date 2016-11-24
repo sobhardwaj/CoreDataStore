@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
@@ -15,7 +16,6 @@ using CoreDataStore.Web.Extensions;
 using Microsoft.AspNetCore.Diagnostics;
 using Swashbuckle.Swagger.Model;
 using Microsoft.AspNetCore.Http;
-using System;
 using System.IO;
 using Microsoft.Extensions.PlatformAbstractions;
 
@@ -52,6 +52,7 @@ namespace CoreDataStore.Web
             services.AddCors();
             services.AddMvc();
 
+
             services.AddSwaggerGen();
             services.ConfigureSwaggerGen(options =>
             {
@@ -83,8 +84,8 @@ namespace CoreDataStore.Web
                                                                 .AllowAnyMethod()
                                                                 .AllowAnyHeader()));
 
-            var prodConnection = Configuration["ConnectionStrings:Sqlite"];
-            services.AddDbContext<Data.Sqlite.NYCLandmarkContext>(options => options.UseSqlite(prodConnection));
+            var connection = Configuration["ConnectionStrings:Sqlite"];
+            services.AddDbContext<Data.Sqlite.NYCLandmarkContext>(options => options.UseSqlite(connection));
 
             // Repositories
             services.AddScoped<ILPCReportRepository, Data.Sqlite.Repositories.LPCReportRepository>();
@@ -93,6 +94,9 @@ namespace CoreDataStore.Web
 
             ConfigService(services);
         }
+
+
+
 
         /// <summary>
         /// 
@@ -154,7 +158,7 @@ namespace CoreDataStore.Web
         public void ConfigureDevelopment(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseDeveloperExceptionPage();
-            app.UseBrowserLink();
+            //app.UseBrowserLink();
             //app.UseDatabaseErrorPage();
 
             AppConfig(app, loggerFactory);
@@ -197,17 +201,16 @@ namespace CoreDataStore.Web
         public void ConfigureProduction(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseExceptionHandler("/Home/Error");
+            //loggerFactory.AddProvider(new SqlLoggerProvider());
 
             AppConfig(app, loggerFactory);
+
         }
 
 
         private void AppConfig(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {         
-            
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-
-            //loggerFactory.AddProvider(new SqlLoggerProvider());
             loggerFactory.AddDebug();
 
             AutoMapperConfiguration.Configure();
@@ -217,7 +220,7 @@ namespace CoreDataStore.Web
 
             app.UseMvc(ConfigureRoutes);
 
-            app.UseSwagger();  //UseSwaggerGen());
+            app.UseSwagger();  
             app.UseSwaggerUi();
 
         }
