@@ -44,7 +44,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{9CAE5C
 		docker\aspnetcore.dockerfile = docker\aspnetcore.dockerfile
 		docker\docker-compose-development.yml = docker\docker-compose-development.yml
 		docker\docker-compose-staging.yml = docker\docker-compose-staging.yml
-		docker\ui.dockerfile = docker\ui.dockerfile
 	EndProjectSection
 EndProject
 Global

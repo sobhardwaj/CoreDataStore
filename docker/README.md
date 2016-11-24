@@ -1,9 +1,17 @@
-### Docker 
+## Docker 
 
-##### Local - (Build container)
+##### Build & Run container
+````
+cd  CoreDataStore/
+docker build -f docker/aspnetcore.dockerfile -t coredatastore_web  .
+docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
+````
+
+### Docker Compose
+
+##### Local 
 
 ````
- docker-compose --file docker-compose-local.yml  build 
  docker-compose --file docker-compose-local.yml  up
 ````
 
@@ -35,11 +43,13 @@
     docker rm  -f <CONATINERID>     #Remove Container
 ```
 
-###Publish
+###Tag & Publish
 
 ```bash 
-docker tag coredatastore stuartshay/coredatastore
-docker push stuartshay/coredatastore:latest
+docker tag <imageid> coredatastore_web:stable
+docker tag coredatastore_web:stable  stuartshay/coredatastore:stable
+
+docker push stuartshay/coredatastore:stable
 ```
 
 ###Run 
