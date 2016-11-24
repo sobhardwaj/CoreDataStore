@@ -12,7 +12,7 @@ EXPOSE 5000
 RUN apt-get install curl -y
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -y nodejs
-RUN npm install -g npm@3
+RUN npm install -g npm3
 
 COPY src /app
 
