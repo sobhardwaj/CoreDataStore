@@ -47,7 +47,7 @@ gulp.task('clean', (cb) => {
  */
 gulp.task("less", function() {
   return gulp
-    .src("src/styles-less/app.less")
+    .src("src/less/app.less")
     .pipe(less())
     .pipe(cssmin())
     .pipe(gulp.dest(path.join(buildDir, "css")));
@@ -103,7 +103,7 @@ gulp.task('compile', ['tsc'], () => {
  * Copy all resources that are not TypeScript files into build directory.
  */
 gulp.task("resources", ['fonts', 'less'], () => {
-  return gulp.src(["!src/index.html", "!src/styles-less", "!src/styles-less/**/*", "!**/*.ts", "src/**/*"])
+  return gulp.src(["!src/index.html", "!src/less", "!src/less/**/*", "!**/*.ts", "src/**/*"])
     .pipe(gulp.dest(buildDir));
 });
 
