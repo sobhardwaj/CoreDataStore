@@ -3,8 +3,7 @@ declare var $: any;
 
 @Component({
     selector: 'app-navsearch',
-    templateUrl: './navsearch.component.html',
-    styleUrls: ['./navsearch.component.scss']
+    templateUrl: 'app/layout/header/navsearch/navsearch.component.html'
 })
 export class NavsearchComponent implements OnInit, OnChanges {
 

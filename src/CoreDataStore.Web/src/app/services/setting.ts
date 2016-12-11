@@ -15,7 +15,7 @@ export class SettingsService {
         this.user = {
             name: 'John',
             job: 'ng-developer',
-            picture: 'assets/img/user/02.jpg'
+            picture: 'img/user/02.jpg'
         };
 
         // App Settings

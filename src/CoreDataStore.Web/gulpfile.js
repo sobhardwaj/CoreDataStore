@@ -193,7 +193,14 @@ gulp.task("node_modules", () => {
         'zone.js/dist/**',
         'systemjs/dist/**',
         'ng2-select/**',
+        'ng2-dnd/**',
+        'angular2-infinite-scroll/**',
+        'angular2-toaster/**',
+        'ng2-translate/**',
         'ng2-bootstrap/**',
+        'screenfull/dist/screenfull.js',
+        'jquery/dist/jquery.js',
+        'jquery.browser/dist/jquery.browser.js',
         'moment/moment.js',
         '@angular/**'
       ], { cwd: "node_modules/**" }) /* Glob required here. */

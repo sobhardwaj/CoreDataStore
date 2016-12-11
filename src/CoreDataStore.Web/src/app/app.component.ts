@@ -1,65 +1,38 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import SettingsService from './services/setting';
-
-const screenfull = require('screenfull');
-const browser = require('jquery.browser');
+import { Component, ViewEncapsulation, HostBinding, OnInit } from '@angular/core';
+import { SettingsService } from './core/settings/settings.service';
 declare var $: any;
 
 @Component({
-  selector: "app",
-  templateUrl: "./app/app.html"
+  selector: 'app-root',
+  template: '<router-outlet></router-outlet>',
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  isNavSearchVisible: boolean;
-  @ViewChild('fsbutton') fsbutton; // the fullscreen button
 
-  constructor(private settings: SettingsService) {}
+  @HostBinding('class.layout-fixed') get isFixed() {
+    return this.settings.layout.isFixed; };
+  @HostBinding('class.aside-collapsed') get isCollapsed() {
+    return this.settings.layout.isCollapsed; };
+  @HostBinding('class.layout-boxed') get isBoxed() {
+    return this.settings.layout.isBoxed; };
+  @HostBinding('class.layout-fs') get useFullLayout() {
+    return this.settings.layout.useFullLayout; };
+  @HostBinding('class.hidden-footer') get hiddenFooter() {
+    return this.settings.layout.hiddenFooter; };
+  @HostBinding('class.layout-h') get horizontal() {
+    return this.settings.layout.horizontal; };
+  @HostBinding('class.aside-float') get isFloat() {
+    return this.settings.layout.isFloat; };
+  @HostBinding('class.offsidebar-open') get offsidebarOpen() {
+    return this.settings.layout.offsidebarOpen; };
+  @HostBinding('class.aside-toggled') get asideToggled() {
+    return this.settings.layout.asideToggled; };
+  @HostBinding('class.aside-collapsed-text') get isCollapsedText() {
+    return this.settings.layout.isCollapsedText; };
+
+  constructor(public settings: SettingsService) {}
 
   ngOnInit() {
-    this.isNavSearchVisible = false;
-    if (browser.msie) { // Not supported under IE
-      this.fsbutton.nativeElement.style.display = 'none';
-    }
-  }
-
-  openNavSearch(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.setNavSearchVisible(true);
-  }
-
-  setNavSearchVisible(stat: boolean) {
-    // console.log(stat);
-    this.isNavSearchVisible = stat;
-  }
-
-  getNavSearchVisible() {
-    return this.isNavSearchVisible;
-  }
-
-  toggleOffsidebar() {
-    this.settings.layout.offsidebarOpen = !this.settings.layout.offsidebarOpen;
-  }
-
-  toggleCollapsedSideabar() {
-    this.settings.layout.isCollapsed = !this.settings.layout.isCollapsed;
-  }
-
-  isCollapsedText() {
-    return this.settings.layout.isCollapsedText;
-  }
-
-  toggleFullScreen(event) {
-
-    if (screenfull.enabled) {
-      screenfull.toggle();
-    }
-    // Switch icon indicator
-    let el = $(this.fsbutton.nativeElement);
-    if (screenfull.isFullscreen) {
-      el.children('em').removeClass('fa-expand').addClass('fa-compress');
-    } else {
-      el.children('em').removeClass('fa-compress').addClass('fa-expand');
-    }
+    $(document).on('click', '[href="#"]', e => e.preventDefault());
   }
 }

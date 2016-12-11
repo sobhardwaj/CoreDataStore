@@ -4,7 +4,7 @@ import { TestBed, async, inject } from '@angular/core/testing';
 import { SidebarComponent } from './sidebar.component';
 
 import { MenuService } from '../../core/menu/menu.service';
-import { SettingsService } from '../../core/settings/settings.service.ts';
+import { SettingsService } from '../../core/settings/settings.service';
 import { RouterModule, Router } from '@angular/router';
 
 describe('Component: Sidebar', () => {
