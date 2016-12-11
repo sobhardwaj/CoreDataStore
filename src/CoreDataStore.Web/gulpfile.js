@@ -7,6 +7,7 @@ const fs = require('fs'),
   gulp = require('gulp'),
   iF = require('gulp-if'),
   less = require('gulp-less'),
+  sass = require('gulp-sass'),
   concat = require('gulp-concat'),
   cssmin = require('gulp-cssmin'),
   tslint = require('gulp-tslint'),
@@ -41,17 +42,26 @@ gulp.task('clean', (cb) => {
   return del([buildDir, '.tmp'], cb);
 });
 
+/**
+ * Compile all SASS files.
+ */
+gulp.task('sass', function() {
+  return gulp.src('src/sass/app.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(cssmin())
+    .pipe(gulp.dest(path.join(buildDir, "css")));
+});
 
 /**
  * Compile all Less files.
  */
-gulp.task("less", function() {
-  return gulp
-    .src("src/less/app.less")
-    .pipe(less())
-    .pipe(cssmin())
-    .pipe(gulp.dest(path.join(buildDir, "css")));
-});
+// gulp.task("less", function() {
+//   return gulp
+//     .src("src/less/app.less")
+//     .pipe(less())
+//     .pipe(cssmin())
+//     .pipe(gulp.dest(path.join(buildDir, "css")));
+// });
 
 /**
  * Lint all custom TypeScript files.
@@ -102,8 +112,8 @@ gulp.task('compile', ['tsc'], () => {
 /**
  * Copy all resources that are not TypeScript files into build directory.
  */
-gulp.task("resources", ['fonts', 'less'], () => {
-  return gulp.src(["!src/index.html", "!src/less", "!src/less/**/*", "!**/*.ts", "src/**/*"])
+gulp.task("resources", ['fonts', 'sass'], () => {
+  return gulp.src(["!src/index.html", "!src/sass", "!src/sass/**/*", "!**/*.ts", "src/**/*"])
     .pipe(gulp.dest(buildDir));
 });
 
@@ -126,8 +136,11 @@ gulp.task('watch', () => {
   gulp.watch(['src/**/**.html', 'src/**/*.css', 'src/img/*.*'], ['resources']).on('change', function(e) {
     console.log('Resource file ' + e.path + ' has been changed. Updating.');
   });
-  gulp.watch(['src/**/**.less'], ['less']).on('change', function(e) {
-    console.log('LESS file ' + e.path + ' has been changed. Updating.');
+  // gulp.watch(['src/**/**.less'], ['less']).on('change', function(e) {
+  //   console.log('LESS file ' + e.path + ' has been changed. Updating.');
+  // }); 
+  gulp.watch(['src/sass/**.scss'], ['sass']).on('change', function(e) {
+    console.log('SASS file ' + e.path + ' has been changed. Updating.');
   });
 });
 
@@ -197,7 +210,8 @@ gulp.task("build", [
   'api',
   'compile',
   'shims',
-  'less',
+  // 'less',
+  'sass',
   'fonts',
   'resources',
   'node_modules',

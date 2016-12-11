@@ -1,6 +1,16 @@
 <div class="page-diagnostics">
-  <h3>Server Diagnostics</h3>
-  <div class="panel panel-green">
+  <ol class="breadcrumb">
+    <li>
+      <a href="#/"><i class="icon-home"></i> Home</a>
+    </li>
+    <li class="active"><a [routerLink]="['/diagnostics']" asp-controller="Diagnostics">Diagnostics</a></li>
+  </ol>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Server<small>
+        Diagnostics
+    </small></h3>
+    </div>
     <div class="panel-body">
       <div class="row">
         <div class="col-md-3">
@@ -20,7 +30,7 @@
           </ul>
         </div>
       </div>
-      <h4>App Diagnostics</h4>
+      <h5>App Diagnostics</h5>
       <div class="row">
         <div class="col-md-3">
           <ul>
@@ -37,7 +47,7 @@
           </ul>
         </div>
       </div>
-      <h4>Culture Diagnostics</h4>
+      <h5>Culture Diagnostics</h5>
       <div class="row">
         <div class="col-md-3">
           <ul>
@@ -54,8 +64,12 @@
       </div>
     </div>
   </div>
-  <h3>Client Diagnostics</h3>
   <div class="panel panel-green">
+    <div class="panel-heading">
+      <h3 class="panel-title">Client<small>
+        Diagnostics
+    </small></h3>
+    </div>
     <div class="panel-body">
       <div class="row">
         <div class="col-md-3">
