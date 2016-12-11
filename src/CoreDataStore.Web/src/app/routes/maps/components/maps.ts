@@ -1,34 +1,58 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MapsService } from '../services/maps';
+
 @Component({
   selector: 'app-google',
+  providers: [MapsService],
   templateUrl: 'app/routes/maps/components/maps.html'
 })
 export class MapsComponent implements OnInit {
 
-  lat: number = 33.790807;
-  lng: number = -117.835734;
+  public mapId: string;
+  public maps: any = [];
+  public markers: IMap[] = [];
+  public features: any;
+
+  public mapChanged(mapId: any) {
+    this.mapsservice.getMapsId(mapId).subscribe(
+      data => {
+        this.features = data.features || [];
+        let i: number = 0;
+        this.markers = [];
+        this.features.forEach(f => {
+          let map: any = {};
+          if (f.geometry && f.geometry.coordinates) {
+            i++;
+            map.lng = f.geometry.coordinates[0];
+            map.lat = f.geometry.coordinates[1];
+            map.label = String(i);
+            this.markers.push(map);
+          }
+        });
+      }
+    );
+  };
+
   zoom: number = 14;
-  scrollwheel = false;
+  scrollwheel = true;
+  constructor(private mapsservice: MapsService) {}
 
-  // custom map style
-  mapStyles = [
-    { featureType: 'water', 'stylers': [{ 'visibility': 'on' }, { 'color': '#bdd1f9' }] },
-    { featureType: 'all', 'elementType': 'labels.text.fill', 'stylers': [{ 'color': '#334165' }] },
-    { featureType: 'landscape', stylers: [{ color: '#e9ebf1' }] },
-    { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#c5c6c6' }] },
-    { featureType: 'road.arterial', elementType: 'geometry', stylers: [{ color: '#fff' }] },
-    { featureType: 'road.local', elementType: 'geometry', stylers: [{ color: '#fff' }] },
-    { featureType: 'transit', elementType: 'geometry', stylers: [{ color: '#d8dbe0' }] },
-    { featureType: 'poi', elementType: 'geometry', stylers: [{ color: '#cfd5e0' }] },
-    { featureType: 'administrative', stylers: [{ visibility: 'on' }, { lightness: 33 }] },
-    { featureType: 'poi.park', elementType: 'labels', stylers: [{ visibility: 'on' }, { lightness: 20 }] },
-    { featureType: 'road', stylers: [{ color: '#d8dbe0', lightness: 20 }] }
-  ];
+  ngOnInit() {
+    this.markers.push({ lat: 33.790807, lng: -117.835734, label: '' });
+    this.mapsservice.getMaps().subscribe(
+      data => {
+        this.maps = data || [];
+        this.mapId = data[0].id;
+        this.mapChanged(this.mapId);
+      },
+      err => console.log(err)
+    );
+  }
+}
 
-
-  constructor() {}
-
-  ngOnInit() {}
-
+export interface IMap {
+  lat: number;
+  lng: number;
+  label: string;
 }

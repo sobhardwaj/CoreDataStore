@@ -21,8 +21,8 @@ export class SettingsService {
     // App Settings
     // -----------------------------------
     this.app = {
-      name: 'Angle',
-      description: 'Angular Bootstrap Admin Template',
+      name: 'CoreDB',
+      description: 'CoreDataStore',
       year: ((new Date()).getFullYear())
     };
 
@@ -30,7 +30,7 @@ export class SettingsService {
     // -----------------------------------
     this.layout = {
       isFixed: true,
-      isCollapsed: false,
+      isCollapsed: true,
       isBoxed: false,
       isRTL: false,
       horizontal: false,

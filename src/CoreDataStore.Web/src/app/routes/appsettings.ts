@@ -10,6 +10,6 @@ export class AppSettings {
     return "/api/";
   }
   public static get ApiAttraction(): string {
-    return "/attraction/";
+    return "http://informationcart.eastus2.cloudapp.azure.com:82/api/";
   }
 }

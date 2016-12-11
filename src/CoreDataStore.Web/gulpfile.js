@@ -27,7 +27,7 @@ const buildDir = "wwwroot";
 var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || '';
 var BUILD = process.env.BUILD || 'local';
 var LANDMARK = process.env.LANDMARK || '/api/';
-var ATTRACTION = process.env.ATTRACTION || '/attraction/';
+var ATTRACTION = process.env.ATTRACTION || 'http://informationcart.eastus2.cloudapp.azure.com:82/api/';
 
 var build = false;
 process.argv.forEach(function(val, index, array) {

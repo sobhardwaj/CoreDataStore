@@ -12,14 +12,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
               (data)="filterChanged($event)"
               >
           </ng-select>
-          <!--               (data)="refreshValue($event)"
-              (selected)="selected($event)"
-              (removed)="removed($event)"
-              (typed)="typed($event)"
-          -->
-          <!--input type="text" name="filter"
-                [(ngModel)]="model.filter" 
-                (keyup)="filterChanged($event)"  /-->
     </form>
   `,
   // directives: [FORM_DIRECTIVES, SELECT_DIRECTIVES]
