@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { DndModule } from 'ng2-dnd';
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+import { AgmCoreModule } from 'angular2-google-maps';
 import { SelectModule } from 'ng2-select/ng2-select';
 
 import { MenuService } from '../core/menu/menu.service';
@@ -17,8 +18,7 @@ import { DetailsComponent } from './lpcreport/components/details';
 import { DetailsListComponent } from './lpcreport/components/detailsList';
 import { LandmarksListComponent } from './lpcreport/components/landmarksList';
 
-import { GoogleComponent as GoogleMapsComponent } from './maps/google/google.component';
-
+import { MapsComponent } from './maps/components/maps';
 
 import { SharedModule } from '../shared/shared.module';
 // import { CapitalizePipe } from '../shared/pipes/capitalize';
@@ -34,6 +34,9 @@ import appRoutes from './routes';
     DndModule.forRoot(),
     InfiniteScrollModule,
     RouterModule.forRoot(appRoutes, { useHash: true }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA8okzgfpEduXDLlebJtrgw6cmexiGNoN0'
+    })
   ],
   declarations: [
     HomeComponent,
@@ -44,13 +47,14 @@ import appRoutes from './routes';
     DetailsComponent,
     DetailsListComponent,
     LandmarksListComponent,
-    GoogleMapsComponent,
+    MapsComponent,
 
   ],
   providers: [],
   exports: [
     RouterModule,
     DndModule,
+    AgmCoreModule,
     InfiniteScrollModule,
     HomeComponent,
     DiagnosticsComponent,
@@ -58,7 +62,7 @@ import appRoutes from './routes';
     ReferencesComponent,
     ReferencesListComponent,
     DetailsComponent,
-    GoogleMapsComponent
+    MapsComponent
 
   ]
 })

@@ -4,8 +4,8 @@ import { HomeComponent } from './home/home.component';
 import { DiagnosticsComponent } from './diagnostics/components/diagnostics';
 import { ReferencesComponent } from './references/components/references';
 import { DetailsComponent } from './lpcreport/components/details';
+import { MapsComponent } from './maps/components/maps';
 
-import { GoogleComponent as GoogleMapsComponent } from './maps/google/google.component';
 
 const routes = [
 
@@ -17,7 +17,7 @@ const routes = [
       { path: 'diagnostics', component: DiagnosticsComponent },
       { path: 'references', component: ReferencesComponent },
       { path: 'details/:id', component: DetailsComponent },
-      { path: 'maps', children: [{ path: 'google', component: GoogleMapsComponent }] }
+      { path: 'maps', component: MapsComponent }
     ]
 
   },

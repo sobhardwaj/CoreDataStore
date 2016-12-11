@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-google',
-  templateUrl: 'app/routes/maps/google/google.component.html'
+  templateUrl: 'app/routes/maps/components/maps.html'
 })
-export class GoogleComponent implements OnInit {
+export class MapsComponent implements OnInit {
 
   lat: number = 33.790807;
   lng: number = -117.835734;

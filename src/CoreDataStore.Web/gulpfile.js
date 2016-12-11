@@ -200,6 +200,7 @@ gulp.task("node_modules", () => {
         'ng2-dnd/**',
         'angular2-infinite-scroll/**',
         'angular2-toaster/**',
+        'angular2-google-maps/**',
         'ng2-translate/**',
         'ng2-bootstrap/**',
         'screenfull/dist/screenfull.js',

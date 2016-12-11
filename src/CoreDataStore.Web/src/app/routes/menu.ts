@@ -3,6 +3,11 @@ const Home = {
   link: '/home',
   icon: 'icon-home'
 };
+const Maps = {
+  text: 'Maps',
+  link: '/maps',
+  icon: 'icon-map'
+};
 
 const Diagnostics = {
   text: 'Diagnostics',
@@ -122,19 +127,6 @@ const Tables = {
   }]
 };
 
-const Maps = {
-  text: 'Maps',
-  link: '/maps',
-  icon: 'icon-map',
-  submenu: [{
-    text: 'Google',
-    link: '/maps/google'
-  }, {
-    text: 'Vector',
-    link: '/maps/vector'
-  }]
-};
-
 const Pages = {
   text: 'Pages',
   link: '/pages',
@@ -183,12 +175,12 @@ export default [
   Home,
   Diagnostics,
   References,
+  Maps,
   headingComponents,
   Elements,
   Forms,
   Charts,
   Tables,
-  Maps,
   headingMore,
   Pages
 ];
