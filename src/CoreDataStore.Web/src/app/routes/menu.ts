@@ -4,25 +4,15 @@ const Home = {
   icon: 'icon-home'
 };
 
-const Dashboard = {
-  text: 'Dashboard',
-  link: '/dashboard',
-  icon: 'icon-speedometer',
-  submenu: [{
-    text: 'Dashbord v1',
-    link: '/dashboard/v1'
-  }, {
-    text: 'Dashbord v2',
-    link: '/dashboard/v2'
-  }, {
-    text: 'Dashbord v3',
-    link: '/dashboard/v3'
-  }]
+const Diagnostics = {
+  text: 'Diagnostics',
+  link: '/diagnostics',
+  icon: 'icon-speedometer'
 };
 
-const Widgets = {
-  text: 'Widgets',
-  link: '/widgets',
+const References = {
+  text: 'References',
+  link: '/references',
   icon: 'icon-grid'
 };
 
@@ -191,8 +181,8 @@ const headingMore = {
 export default [
   headingMain,
   Home,
-  Dashboard,
-  Widgets,
+  Diagnostics,
+  References,
   headingComponents,
   Elements,
   Forms,

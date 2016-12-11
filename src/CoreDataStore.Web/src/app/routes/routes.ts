@@ -1,8 +1,10 @@
 import { LayoutComponent } from '../layout/layout.component';
 
 import { HomeComponent } from './home/home.component';
-import { Dashboardv1Component } from './dashboard/dashboardv1/dashboardv1.component';
-import { ColorsComponent } from './elements/colors/colors.component';
+import { DiagnosticsComponent } from './diagnostics/components/diagnostics';
+import { ReferencesComponent } from './references/components/references';
+import { DetailsComponent } from './lpcreport/components/details';
+
 import { GoogleComponent as GoogleMapsComponent } from './maps/google/google.component';
 
 const routes = [
@@ -11,20 +13,11 @@ const routes = [
     path: '',
     component: LayoutComponent,
     children: [
-
       { path: 'home', component: HomeComponent },
-
-      {
-        path: 'dashboard',
-        children: [
-          { path: 'v1', component: Dashboardv1Component }
-        ]
-      }, {
-        path: 'maps',
-        children: [
-          { path: 'google', component: GoogleMapsComponent },
-        ]
-      },
+      { path: 'diagnostics', component: DiagnosticsComponent },
+      { path: 'references', component: ReferencesComponent },
+      { path: 'details/:id', component: DetailsComponent },
+      { path: 'maps', children: [{ path: 'google', component: GoogleMapsComponent }] }
     ]
 
   },

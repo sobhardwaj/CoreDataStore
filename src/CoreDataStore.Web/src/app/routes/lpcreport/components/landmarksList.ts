@@ -1,8 +1,8 @@
-import { Component, Input, OnInit, AfterViewChecked, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'landmarks-list',
-  templateUrl: 'app/lpcreport/components/landmarksList.html',
+  templateUrl: 'app/routes/lpcreport/components/landmarksList.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandmarksListComponent {

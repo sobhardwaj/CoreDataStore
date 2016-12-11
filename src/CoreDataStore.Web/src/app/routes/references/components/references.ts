@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SessionService } from '../../services/session';
+import { SessionService } from '../../../shared/services/session';
 
 import { ReferencesService } from '../services/references';
 import { LPCReportService } from '../../lpcreport/services/lpcreport';
@@ -8,10 +8,11 @@ import { LPCReportService } from '../../lpcreport/services/lpcreport';
 // import { FilterSelectboxComponent } from '../../components/filterSelectbox';
 // import { CustomersCardComponent } from './customersCard.component';
 import { ReferencesListComponent } from './referencesList';
+import { FilterSelectboxComponent } from './filterSelectbox';
 
 @Component({
   selector: 'properties',
-  templateUrl: 'app/references/components/references.html',
+  templateUrl: 'app/routes/references/components/references.html',
   providers: [ReferencesService, LPCReportService, SessionService]
 })
 

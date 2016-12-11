@@ -159,7 +159,7 @@ gulp.task('appsettings', function(cb) {
 gulp.task('api', function() {
   return gulp.src('appsettings.yml')
     .pipe(tsconfig('AppSettings', JSON.parse('{"parser": "yml"}')))
-    .pipe(gulp.dest('./src/app'))
+    .pipe(gulp.dest('./src/app/routes'))
 });
 
 

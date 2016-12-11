@@ -1,7 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { CanActivate, CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-
 
 import { AppSettings } from '../../appsettings';
 import { DiagnosticsService } from '../services/diagnostics';
@@ -9,7 +7,7 @@ import { DiagnosticsService } from '../services/diagnostics';
 @Component({
   selector: 'diagnostics',
   providers: [DiagnosticsService],
-  templateUrl: './app/diagnostics/components/diagnostics.html'
+  templateUrl: 'app/routes/diagnostics/components/diagnostics.html'
 })
 
 export class DiagnosticsComponent implements OnInit {

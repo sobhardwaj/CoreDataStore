@@ -12,7 +12,7 @@ import { ReferencesService } from '../../references/services/references';
 
 @Component({
   selector: 'properties-details',
-  templateUrl: 'app/lpcreport/components/details.html',
+  templateUrl: 'app/routes/lpcreport/components/details.html',
   providers: [LPCReportService, ReferencesService]
 })
 
