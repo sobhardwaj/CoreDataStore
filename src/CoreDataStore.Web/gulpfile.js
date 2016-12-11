@@ -121,9 +121,13 @@ gulp.task("resources", ['fonts', 'sass'], () => {
 /**
  * Copy all required fonts into build directory.
  */
-gulp.task("fonts", () => {
-  return gulp.src(['fonts/**'], { cwd: "node_modules/bootstrap" })
-    .pipe(gulp.dest(path.join(buildDir, "fonts")));
+gulp.task('fonts', () => {
+  return gulp.src([
+      'bootstrap/fonts/**',
+      'font-awesome/fonts/**',
+      'simple-line-icons/fonts/**'
+    ], { cwd: 'node_modules' })
+    .pipe(gulp.dest(path.join(buildDir, 'fonts')));
 });
 
 /**
