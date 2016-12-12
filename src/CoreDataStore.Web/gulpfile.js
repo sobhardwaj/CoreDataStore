@@ -27,7 +27,9 @@ const buildDir = "wwwroot";
 var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || '';
 var BUILD = process.env.BUILD || 'local';
 var LANDMARK = process.env.LANDMARK || '/api/';
-var ATTRACTION = process.env.ATTRACTION || 'http://informationcart.eastus2.cloudapp.azure.com:82/api/';
+var ATTRACTION = process.env.ATTRACTION || '/api/attraction';
+var MAPSAPI = process.env.MAPSAPI || '/api/maps';
+var REPORTSAPI = process.env.REPORTSAPI || '/api/reports';
 
 var build = false;
 process.argv.forEach(function(val, index, array) {
@@ -152,8 +154,10 @@ gulp.task('appsettings', function(cb) {
   var build = 'build: ' + BUILD;
   var ng2ENV = '\nng2ENV: ' + NG_ENVIRONMENT;
   var landmark = '\nApiEndpoint: ' + LANDMARK;
+  var maps = '\nApiMaps: ' + MAPSAPI;
+  var reports = '\nApiReports: ' + REPORTSAPI;
   var attraction = '\nApiAttraction: ' + ATTRACTION;
-  return fs.writeFile('appsettings.yml', build + ng2ENV + landmark + attraction, cb);
+  return fs.writeFile('appsettings.yml', build + ng2ENV + landmark + maps + reports + attraction, cb);
 });
 
 gulp.task('api', function() {

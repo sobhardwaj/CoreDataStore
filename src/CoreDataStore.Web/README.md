@@ -24,11 +24,12 @@ Install dependencies:
 Build the project:
 
 ```bash
-npm run clean
-npm run build:local
-npm run build:dev
-npm run build:stage
-npm run build:prod
+export NG_ENVIRONMENT=Dev
+export LANDMARK=http://informationcart.eastus2.cloudapp.azure.com:80/api/
+export ATTRACTION=http://informationcart.eastus2.cloudapp.azure.com:82/api/
+export MAPSAPI=http://informationcart.eastus2.cloudapp.azure.com:83/api/
+export REPORTSAPI=http://informationcart.eastus2.cloudapp.azure.com:84/api/
+npm run build
 ```
 
 `build` directory should be created during the build
