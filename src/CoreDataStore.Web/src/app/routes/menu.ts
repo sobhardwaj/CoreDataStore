@@ -176,11 +176,11 @@ export default [
   Diagnostics,
   References,
   Maps,
-  headingComponents,
-  Elements,
-  Forms,
-  Charts,
-  Tables,
-  headingMore,
-  Pages
+  // headingComponents,
+  // Elements,
+  // Forms,
+  // Charts,
+  // Tables,
+  // headingMore,
+  // Pages
 ];

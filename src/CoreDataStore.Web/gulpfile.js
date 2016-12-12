@@ -114,7 +114,7 @@ gulp.task('compile', ['tsc'], () => {
 /**
  * Copy all resources that are not TypeScript files into build directory.
  */
-gulp.task("resources", ['fonts', 'sass'], () => {
+gulp.task("resources", () => {
   return gulp.src(["!src/index.html", "!src/sass", "!src/sass/**/*", "!**/*.ts", "src/**/*"])
     .pipe(gulp.dest(buildDir));
 });
