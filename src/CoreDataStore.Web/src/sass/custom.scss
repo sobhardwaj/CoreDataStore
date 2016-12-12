@@ -1,0 +1,20 @@
+//
+// This file compiles to a custom bootstrap stylesheet for Angle
+//
+
+// Override bootstrap variables
+@import "app/variables";
+// Bootstrap
+@import "bootstrap/bootstrap";
+
+@import "../../node_modules/simple-line-icons/scss/simple-line-icons.scss";
+@import "../../node_modules/font-awesome/scss/font-awesome.scss";
+
+.img100{
+	width: 100px;
+	height: 75px;
+}
+.img75{
+	width: 75px;
+	height: 75px;
+}

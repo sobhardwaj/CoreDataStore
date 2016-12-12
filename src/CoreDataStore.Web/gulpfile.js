@@ -7,6 +7,7 @@ const fs = require('fs'),
   gulp = require('gulp'),
   iF = require('gulp-if'),
   less = require('gulp-less'),
+  sass = require('gulp-sass'),
   concat = require('gulp-concat'),
   cssmin = require('gulp-cssmin'),
   tslint = require('gulp-tslint'),
@@ -26,7 +27,9 @@ const buildDir = "wwwroot";
 var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || '';
 var BUILD = process.env.BUILD || 'local';
 var LANDMARK = process.env.LANDMARK || '/api/';
-var ATTRACTION = process.env.ATTRACTION || '/attraction/';
+var ATTRACTION = process.env.ATTRACTION || '/api/attraction';
+var MAPSAPI = process.env.MAPSAPI || '/api/maps';
+var REPORTSAPI = process.env.REPORTSAPI || '/api/reports';
 
 var build = false;
 process.argv.forEach(function(val, index, array) {
@@ -41,17 +44,26 @@ gulp.task('clean', (cb) => {
   return del([buildDir, '.tmp'], cb);
 });
 
+/**
+ * Compile all SASS files.
+ */
+gulp.task('sass', function() {
+  return gulp.src('src/sass/app.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(cssmin())
+    .pipe(gulp.dest(path.join(buildDir, "css")));
+});
 
 /**
  * Compile all Less files.
  */
-gulp.task("less", function() {
-  return gulp
-    .src("src/styles-less/app.less")
-    .pipe(less())
-    .pipe(cssmin())
-    .pipe(gulp.dest(path.join(buildDir, "css")));
-});
+// gulp.task("less", function() {
+//   return gulp
+//     .src("src/less/app.less")
+//     .pipe(less())
+//     .pipe(cssmin())
+//     .pipe(gulp.dest(path.join(buildDir, "css")));
+// });
 
 /**
  * Lint all custom TypeScript files.
@@ -102,8 +114,8 @@ gulp.task('compile', ['tsc'], () => {
 /**
  * Copy all resources that are not TypeScript files into build directory.
  */
-gulp.task("resources", ['fonts', 'less'], () => {
-  return gulp.src(["!src/index.html", "!src/styles-less", "!src/styles-less/**/*", "!**/*.ts", "src/**/*"])
+gulp.task("resources", () => {
+  return gulp.src(["!src/index.html", "!src/sass", "!src/sass/**/*", "!**/*.ts", "src/**/*"])
     .pipe(gulp.dest(buildDir));
 });
 
@@ -111,9 +123,13 @@ gulp.task("resources", ['fonts', 'less'], () => {
 /**
  * Copy all required fonts into build directory.
  */
-gulp.task("fonts", () => {
-  return gulp.src(['fonts/**'], { cwd: "node_modules/bootstrap" })
-    .pipe(gulp.dest(path.join(buildDir, "fonts")));
+gulp.task('fonts', () => {
+  return gulp.src([
+      'bootstrap/fonts/**',
+      'font-awesome/fonts/**',
+      'simple-line-icons/fonts/**'
+    ], { cwd: 'node_modules' })
+    .pipe(gulp.dest(path.join(buildDir, 'fonts')));
 });
 
 /**
@@ -126,8 +142,11 @@ gulp.task('watch', () => {
   gulp.watch(['src/**/**.html', 'src/**/*.css', 'src/img/*.*'], ['resources']).on('change', function(e) {
     console.log('Resource file ' + e.path + ' has been changed. Updating.');
   });
-  gulp.watch(['src/**/**.less'], ['less']).on('change', function(e) {
-    console.log('LESS file ' + e.path + ' has been changed. Updating.');
+  // gulp.watch(['src/**/**.less'], ['less']).on('change', function(e) {
+  //   console.log('LESS file ' + e.path + ' has been changed. Updating.');
+  // }); 
+  gulp.watch(['src/sass/**.scss'], ['sass']).on('change', function(e) {
+    console.log('SASS file ' + e.path + ' has been changed. Updating.');
   });
 });
 
@@ -135,14 +154,16 @@ gulp.task('appsettings', function(cb) {
   var build = 'build: ' + BUILD;
   var ng2ENV = '\nng2ENV: ' + NG_ENVIRONMENT;
   var landmark = '\nApiEndpoint: ' + LANDMARK;
+  var maps = '\nApiMaps: ' + MAPSAPI;
+  var reports = '\nApiReports: ' + REPORTSAPI;
   var attraction = '\nApiAttraction: ' + ATTRACTION;
-  return fs.writeFile('appsettings.yml', build + ng2ENV + landmark + attraction, cb);
+  return fs.writeFile('appsettings.yml', build + ng2ENV + landmark + maps + reports + attraction, cb);
 });
 
 gulp.task('api', function() {
   return gulp.src('appsettings.yml')
     .pipe(tsconfig('AppSettings', JSON.parse('{"parser": "yml"}')))
-    .pipe(gulp.dest('./src/app'))
+    .pipe(gulp.dest('./src/app/routes'))
 });
 
 
@@ -180,7 +201,15 @@ gulp.task("node_modules", () => {
         'zone.js/dist/**',
         'systemjs/dist/**',
         'ng2-select/**',
+        'ng2-dnd/**',
+        'angular2-infinite-scroll/**',
+        'angular2-toaster/**',
+        'angular2-google-maps/**',
+        'ng2-translate/**',
         'ng2-bootstrap/**',
+        'screenfull/dist/screenfull.js',
+        'jquery/dist/jquery.js',
+        'jquery.browser/dist/jquery.browser.js',
         'moment/moment.js',
         '@angular/**'
       ], { cwd: "node_modules/**" }) /* Glob required here. */
@@ -197,7 +226,8 @@ gulp.task("build", [
   'api',
   'compile',
   'shims',
-  'less',
+  // 'less',
+  'sass',
   'fonts',
   'resources',
   'node_modules',
