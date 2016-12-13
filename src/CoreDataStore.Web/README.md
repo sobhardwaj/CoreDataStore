@@ -43,6 +43,7 @@ set REPORTSAPI=http://informationcart.eastus2.cloudapp.azure.com:84/api/
 Build the project:
 
 ```bash
+npm run clean
 npm run build
 ```
 
