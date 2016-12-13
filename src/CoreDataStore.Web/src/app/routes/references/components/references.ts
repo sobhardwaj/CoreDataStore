@@ -40,7 +40,7 @@ export class ReferencesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.title = 'Reference';
+    this.title = 'LPC Reports';
     this.getObjectTypes();
     this.getBoroughs();
 
