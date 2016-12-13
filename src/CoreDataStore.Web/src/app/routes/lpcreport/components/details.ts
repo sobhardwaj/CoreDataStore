@@ -28,7 +28,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   ) {
     // overlay.defaultViewContainer = vcRef;
   }
-this.title = 'LPC Reports';
+
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       let id = +params['id'];
