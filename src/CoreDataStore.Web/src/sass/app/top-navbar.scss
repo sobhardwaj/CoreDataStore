@@ -79,6 +79,10 @@ $nav-top-item-desktop-active:   $nav-top-item-mobile-active;
     // Different Logo size depends on the navbar state
     .brand-logo,
     .brand-logo-collapsed {
+      a {
+        color: #fff;
+        font-size: 18pt;
+      }
       > img {
         margin: 0 auto;
       }

@@ -145,7 +145,7 @@ gulp.task('watch', () => {
   // gulp.watch(['src/**/**.less'], ['less']).on('change', function(e) {
   //   console.log('LESS file ' + e.path + ' has been changed. Updating.');
   // }); 
-  gulp.watch(['src/sass/**.scss'], ['sass']).on('change', function(e) {
+  gulp.watch(['src/**/**.scss'], ['sass']).on('change', function(e) {
     console.log('SASS file ' + e.path + ' has been changed. Updating.');
   });
 });

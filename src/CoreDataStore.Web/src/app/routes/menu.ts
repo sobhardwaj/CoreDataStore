@@ -16,7 +16,7 @@ const Diagnostics = {
 };
 
 const References = {
-  text: 'References',
+  text: 'LPC Reports',
   link: '/references',
   icon: 'icon-grid'
 };
