@@ -173,9 +173,9 @@ const headingMore = {
 export default [
   headingMain,
   Home,
-  Diagnostics,
   References,
   Maps,
+  Diagnostics,
   // headingComponents,
   // Elements,
   // Forms,
