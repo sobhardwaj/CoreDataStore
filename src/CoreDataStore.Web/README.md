@@ -22,14 +22,27 @@ Install dependencies:
 
 `node_modules` and `typings` directories should be created during the install.
 
-Build the project:
-
+Environment Linux/Unix
 ```bash
 export NG_ENVIRONMENT=Dev
 export LANDMARK=http://informationcart.eastus2.cloudapp.azure.com:80/api/
 export ATTRACTION=http://informationcart.eastus2.cloudapp.azure.com:83/api/
 export MAPSAPI=http://informationcart.eastus2.cloudapp.azure.com:82/api/
 export REPORTSAPI=http://informationcart.eastus2.cloudapp.azure.com:84/api/
+```
+
+Environment Windows
+```bash
+set NG_ENVIRONMENT=Dev
+set LANDMARK=http://informationcart.eastus2.cloudapp.azure.com:80/api/
+set ATTRACTION=http://informationcart.eastus2.cloudapp.azure.com:83/api/
+set MAPSAPI=http://informationcart.eastus2.cloudapp.azure.com:82/api/
+set REPORTSAPI=http://informationcart.eastus2.cloudapp.azure.com:84/api/
+```
+
+Build the project:
+
+```bash
 npm run build
 ```
 
