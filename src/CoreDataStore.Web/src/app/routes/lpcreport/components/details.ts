@@ -36,6 +36,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
       this.lpcReportService.getLPCReport(id).subscribe(
         data => {
           this.details = data;
+          this.latitude = data.latitude;
+          this.longitude = data.longitude;
           this.title = data.name;
           this.lpcReportService.getLandmarkProperties(this.details.lpNumber).subscribe(
             data => { this.landmarkProperties = data; },

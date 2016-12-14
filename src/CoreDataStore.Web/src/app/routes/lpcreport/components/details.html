@@ -15,6 +15,14 @@
     </div>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <sebm-google-map [latitude]="latitude" [longitude]="longitude" [zoom]="14" [scrollwheel]="true" class="gmap">
+          <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude">
+          </sebm-google-map-marker>
+        </sebm-google-map>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <landmarks-list [landmarks]="landmarkProperties"></landmarks-list>
       </div>
     </div>
