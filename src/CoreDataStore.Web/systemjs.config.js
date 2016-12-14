@@ -30,7 +30,7 @@
       'screenfull': 'libs:screenfull/dist/screenfull.js',
       'angular2-infinite-scroll': 'libs:angular2-infinite-scroll/angular2-infinite-scroll.js',
       'ng2-dnd': 'libs:ng2-dnd/index.js',
-      'angular2-toaster': 'libs:angular2-toaster/angular2-toaster.js',
+      'angular2-toaster': 'libs:angular2-toaster',
       'angular2-google-maps': 'libs:angular2-google-maps/core/index.js',
       'ng2-bootstrap': 'libs:ng2-bootstrap',
       'ng2-select': 'libs:ng2-select'

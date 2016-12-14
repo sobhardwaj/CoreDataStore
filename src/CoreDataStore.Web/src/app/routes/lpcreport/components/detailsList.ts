@@ -1,11 +1,10 @@
 import { Component, Input, OnInit, AfterViewChecked, ChangeDetectionStrategy } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { ToasterService, ToasterConfig } from 'angular2-toaster/angular2-toaster';
 
 import { LPCReportService } from '../services/lpcreport';
 import { ReferencesService } from '../../references/services/references';
-
-
 import { LPCReport } from '../models/lpcreport';
 
 @Component({
@@ -18,6 +17,14 @@ import { LPCReport } from '../models/lpcreport';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DetailsListComponent implements OnInit, AfterViewChecked {
+  // TOASTER
+  toaster: any;
+  toasterConfig: any;
+  toasterconfig: ToasterConfig = new ToasterConfig({
+    positionClass: 'toast-bottom-right',
+    showCloseButton: true
+  });
+
   @Input() details: any;
 
   public objectTypes: Object;
@@ -35,7 +42,9 @@ export class DetailsListComponent implements OnInit, AfterViewChecked {
   public submitted: boolean = false;
   public formInitted: boolean = false;
 
+
   constructor(
+    private toasterService: ToasterService,
     private builder: FormBuilder,
     private location: Location,
     private referenceService: ReferencesService,
@@ -62,14 +71,14 @@ export class DetailsListComponent implements OnInit, AfterViewChecked {
   getObjectTypes() {
     this.referenceService.getObjectTypes().subscribe(
       data => { this.objectTypes = data; },
-      err => console.error(err)
+      err => this.pop(err, 'Error', 'error')
     );
   }
 
   getBoroughs() {
     this.referenceService.getBoroughs().subscribe(
       data => { this.boroughs = data; },
-      err => console.error(err)
+      err => this.pop(err, 'Error', 'error')
     );
   }
 
@@ -83,6 +92,17 @@ export class DetailsListComponent implements OnInit, AfterViewChecked {
       this.form.patchValue(this.details, { onlySelf: true });
       this.formInitted = true;
     }
+  };
+
+  // TOSATER METHOD
+  pop(message: string, title ? : string, type ? : string) {
+    this.toaster = {
+      type: type || 'info',
+      title: title || '',
+      text: message
+    };
+    console.log(this.toaster);
+    this.toasterService.pop(this.toaster.type, this.toaster.title, this.toaster.text);
   };
 
   getDateFormatted(date) {
@@ -101,10 +121,11 @@ export class DetailsListComponent implements OnInit, AfterViewChecked {
       this.lpcReportService.putLPCReport(this.details.id, values)
         .subscribe(
           (res) => {
-            console.log(res);
-            this.location.back();
+            // console.log(res);
+            this.pop(details.name + ' updated', '', 'success');
+            // this.location.back();
           },
-          e => { console.log(e); }
+          err => this.pop(err, 'Error', 'error')
         );
     }
   }
