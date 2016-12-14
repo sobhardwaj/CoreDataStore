@@ -6,6 +6,7 @@ import { ToasterService, ToasterConfig } from 'angular2-toaster/angular2-toaster
 import { LPCReport } from '../models/lpcreport';
 import { LPCReportService } from '../services/lpcreport';
 import { ReferencesService } from '../../references/services/references';
+import { SessionService } from '../../../shared/services/session';
 
 @Component({
   // moduleId: module.id,
@@ -46,6 +47,7 @@ export class DetailsListComponent implements OnInit, AfterViewChecked {
   constructor(
     private toasterService: ToasterService,
     private builder: FormBuilder,
+    private session: SessionService,
     // private location: Location,
     private referenceService: ReferencesService,
     private lpcReportService: LPCReportService) {
@@ -70,21 +72,32 @@ export class DetailsListComponent implements OnInit, AfterViewChecked {
 
   getObjectTypes() {
     this.referenceService.getObjectTypes().subscribe(
-      data => { this.objectTypes = data; },
+      data => {
+        this.objectTypes = data;
+        this.session.set('objectTypes', data);
+      },
       err => this.pop(err, 'Error', 'error')
     );
+    return this.session.get('objectTypes');
   }
 
   getBoroughs() {
     this.referenceService.getBoroughs().subscribe(
-      data => { this.boroughs = data; },
+      data => {
+        this.boroughs = data;
+        this.session.set('boroughs', data);
+      },
       err => this.pop(err, 'Error', 'error')
     );
+    return this.session.get('boroughs');
   }
 
   ngOnInit() {
-    this.getObjectTypes();
-    this.getBoroughs();
+    let objectTypes = this.session.get('objectTypes');
+    this.objectTypes = (objectTypes) ? objectTypes : this.getObjectTypes();
+
+    let boroughs = this.session.get('boroughs');
+    this.boroughs = (boroughs) ? boroughs : this.getBoroughs();
   };
 
   ngAfterViewChecked() {
