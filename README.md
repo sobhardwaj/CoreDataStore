@@ -19,8 +19,13 @@ Visual Studio 2015 Update 3
 Visual Studio 2015 Tooling Preview 2
 
 ### Web Application
-nodejs_version: "6.x"    
+
+````
+nodejs version: 6.x    
 npm3
+ruby 
+gem install compass
+```
 
 ## Build Web Application
 

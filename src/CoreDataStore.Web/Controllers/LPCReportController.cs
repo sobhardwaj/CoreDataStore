@@ -71,7 +71,6 @@ namespace CoreDataStore.Web.Controllers
             if (result == null)
                 return NotFound();
 
-            model.Id = 998;
             _lpcReportService.UpdateLPCReport(model);
 
             return new NoContentResult();
@@ -95,7 +94,7 @@ namespace CoreDataStore.Web.Controllers
              {
                 PageSize = limit,
                 Page = page,
-                SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "name",
+                SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "lpcId",
                 SortOrder = !string.IsNullOrEmpty(query.Order) ? query.Order : "asc",
                 ParentStyleList = !string.IsNullOrEmpty(query.ParentStyles) ? query.ParentStyles.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList() : null,
                 Borough = query.Borough,
