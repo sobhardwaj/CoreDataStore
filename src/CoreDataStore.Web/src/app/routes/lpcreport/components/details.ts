@@ -19,6 +19,8 @@ import { ReferencesService } from '../../references/services/references';
 export class DetailsComponent implements OnInit, OnDestroy {
   public title: string;
   public details: any;
+  public latitude: any;
+  public longitude: any;
   public landmarkProperties: any = null;
   public sub: any = null;
 
