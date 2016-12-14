@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, AfterViewChecked, ChangeDetectionStrategy } from '@angular/core';
-import { Location } from '@angular/common';
+// import { Location } from '@angular/common';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { ToasterService, ToasterConfig } from 'angular2-toaster/angular2-toaster';
 
@@ -46,7 +46,7 @@ export class DetailsListComponent implements OnInit, AfterViewChecked {
   constructor(
     private toasterService: ToasterService,
     private builder: FormBuilder,
-    private location: Location,
+    // private location: Location,
     private referenceService: ReferencesService,
     private lpcReportService: LPCReportService) {
     this.form = this.builder.group({
@@ -122,7 +122,7 @@ export class DetailsListComponent implements OnInit, AfterViewChecked {
           (res) => {
             // console.log(res);
             this.pop(details.name + ' updated', '', 'success');
-            this.location.back();
+            // this.location.back();
           },
           err => this.pop(err, 'Error', 'error')
         );
