@@ -3,9 +3,9 @@ import { Location } from '@angular/common';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { ToasterService, ToasterConfig } from 'angular2-toaster/angular2-toaster';
 
+import { LPCReport } from '../models/lpcreport';
 import { LPCReportService } from '../services/lpcreport';
 import { ReferencesService } from '../../references/services/references';
-import { LPCReport } from '../models/lpcreport';
 
 @Component({
   // moduleId: module.id,
@@ -19,11 +19,11 @@ import { LPCReport } from '../models/lpcreport';
 export class DetailsListComponent implements OnInit, AfterViewChecked {
   // TOASTER
   toaster: any;
-  toasterConfig: any;
-  toasterconfig: ToasterConfig = new ToasterConfig({
-    positionClass: 'toast-bottom-right',
-    showCloseButton: true
-  });
+  // toasterConfig: any;
+  // toasterconfig: ToasterConfig = new ToasterConfig({
+  //   positionClass: 'toast-bottom-right',
+  //   showCloseButton: true
+  // });
 
   @Input() details: any;
 
@@ -101,7 +101,6 @@ export class DetailsListComponent implements OnInit, AfterViewChecked {
       title: title || '',
       text: message
     };
-    console.log(this.toaster);
     this.toasterService.pop(this.toaster.type, this.toaster.title, this.toaster.text);
   };
 
@@ -123,7 +122,7 @@ export class DetailsListComponent implements OnInit, AfterViewChecked {
           (res) => {
             // console.log(res);
             this.pop(details.name + ' updated', '', 'success');
-            // this.location.back();
+            this.location.back();
           },
           err => this.pop(err, 'Error', 'error')
         );
