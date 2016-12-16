@@ -1,0 +1,34 @@
+<!-- START Top Navbar-->
+<nav class="navbar topnavbar" role="navigation">
+  <!-- START navbar header-->
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#/">
+      <div class="brand-logo">
+        <a href="#">CoreDataStore</a>
+      </div>
+      <div class="brand-logo-collapsed">
+        <a href="#">CDS</a>
+      </div>
+    </a>
+  </div>
+  <!-- END navbar header-->
+  <!-- START Nav wrapper-->
+  <div class="nav-wrapper">
+    <!-- START Left navbar-->
+    <ul class="nav navbar-nav">
+      <li>
+        <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+        <a class="hidden-xs" trigger-resize="" (click)="toggleCollapsedSideabar()" *ngIf="!isCollapsedText()">
+          <em class="fa fa-navicon"></em>
+        </a>
+        <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
+        <a class="visible-xs sidebar-toggle" (click)="settings.layout.asideToggled =! settings.layout.asideToggled">
+          <em class="fa fa-navicon"></em>
+        </a>
+      </li>
+    </ul>
+    <!-- END Left navbar-->
+  </div>
+  <!-- END Nav wrapper-->
+</nav>
+<!-- END Top Navbar-->

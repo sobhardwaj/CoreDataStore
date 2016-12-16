@@ -1,0 +1,140 @@
+<div class="content-heading">Diagnostics</div>
+<div class="page-diagnostics">
+  <ol class="breadcrumb">
+    <li>
+      <a href="#/"><i class="icon-home"></i> Home</a>
+    </li>
+    <li class="active"><a [routerLink]="['/diagnostics']" asp-controller="Diagnostics">Diagnostics</a></li>
+  </ol>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Server<small>
+        Diagnostics
+    </small></h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-3">
+          <ul>
+            <li>Machine Name:</li>
+            <li>Machine Date Time:</li>
+            <li>Platform:</li>
+            <li>IP Addresses:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{diagnostics.machineName}}</li>
+            <li>{{diagnostics.machineDate}}</li>
+            <li>{{diagnostics.platform}}</li>
+            <li>{{diagnostics.ipAddressList}}</li>
+          </ul>
+        </div>
+      </div>
+      <h5>App Diagnostics</h5>
+      <div class="row">
+        <div class="col-md-3">
+          <ul>
+            <li>App Name:</li>
+            <li>App Version:</li>
+            <li>Environment:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{diagnostics.applicationName}}</li>
+            <li>{{diagnostics.applicationVersionNumber}}</li>
+            <li>{{diagnostics.environmentName}}</li>
+          </ul>
+        </div>
+      </div>
+      <h5>Culture Diagnostics</h5>
+      <div class="row">
+        <div class="col-md-3">
+          <ul>
+            <li>Culture:</li>
+            <li>Time Zone:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{diagnostics.machineCulture}}</li>
+            <li>{{diagnostics.machineTimeZone}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-green">
+    <div class="panel-heading">
+      <h3 class="panel-title">Client<small>
+        Diagnostics
+    </small></h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-3">
+          <ul>
+            <li>Configuration</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{build}}</li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <ul>
+            <li>Angular2 ENV</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{ng2ENV}}</li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <ul>
+            <li>Landmarks API:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{ApiEndpoint}}</li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <ul>
+            <li>Attractions API:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{ApiAttraction}}</li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <ul>
+            <li>Maps API:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{ApiMaps}}</li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <ul>
+            <li>Reports API:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{ApiReports}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--TODO: Page Needs to Refresh Every 1 Sec -->
