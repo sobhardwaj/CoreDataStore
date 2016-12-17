@@ -212,6 +212,7 @@ gulp.task("node_modules", () => {
         'angular2-toaster/**',
         'angular2-google-maps/**',
         'ng2-translate/**',
+        'ng2-table/**',
         'ng2-bootstrap/**',
         'screenfull/dist/screenfull.js',
         'jquery/dist/jquery.js',
