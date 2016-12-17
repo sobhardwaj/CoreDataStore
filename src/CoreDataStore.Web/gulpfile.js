@@ -14,6 +14,7 @@ const fs = require('fs'),
   tsc = require('gulp-typescript'),
   replace = require('gulp-replace'),
   jsMinify = require('gulp-uglify'),
+  ghPages = require('gulp-gh-pages'),
   tsconfig = require('gulp-ts-config'),
   coveralls = require('gulp-coveralls'),
   sourcemaps = require('gulp-sourcemaps'),
@@ -42,6 +43,11 @@ process.argv.forEach(function(val, index, array) {
  */
 gulp.task('clean', (cb) => {
   return del([buildDir, '.tmp'], cb);
+});
+
+gulp.task('ghpage', function() {
+  return gulp.src('./' + buildDir + '/**/*')
+    .pipe(ghPages());
 });
 
 /**
