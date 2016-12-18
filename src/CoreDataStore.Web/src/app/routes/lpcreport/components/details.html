@@ -11,7 +11,7 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <details-list [details]="details"></details-list>
+          <detail-form [details]="details"></detail-form>
         </div>
       </div>
       <div class="row">
@@ -28,7 +28,22 @@
       </div>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <landmarks-list [landmarks]="landmarkProperties"></landmarks-list>
+          <ng-table [config]="config"
+            (tableChanged)="onChangeTable(config)"
+            (cellClicked)="onCellClick($event)"
+            [rows]="rows" [columns]="columns">
+          </ng-table>
+          <pagination *ngIf="config.paging"
+                      class="pagination-sm"
+                      [(ngModel)]="page"
+                      [totalItems]="length"
+                      [itemsPerPage]="itemsPerPage"
+                      [maxSize]="maxSize"
+                      [boundaryLinks]="true"
+                      [rotate]="false"
+                      (pageChanged)="onChangeTable(config, $event)"
+                      (numPages)="numPages = $event">
+          </pagination>
         </div>
       </div>
     </div>

@@ -16,8 +16,7 @@ import { ReferencesComponent } from './references/components/references';
 import { ReferencesListComponent } from './references/components/referencesList';
 import { FilterSelectboxComponent } from './references/components/filterSelectbox';
 import { DetailsComponent } from './lpcreport/components/details';
-import { DetailsListComponent } from './lpcreport/components/detailsList';
-import { LandmarksListComponent } from './lpcreport/components/landmarksList';
+import { DetailFormComponent } from './lpcreport/components/detailForm';
 
 import { MapsComponent } from './maps/components/maps';
 
@@ -47,10 +46,8 @@ import appRoutes from './routes';
     FilterSelectboxComponent,
     ReferencesListComponent,
     DetailsComponent,
-    DetailsListComponent,
-    LandmarksListComponent,
+    DetailFormComponent,
     MapsComponent,
-
   ],
   providers: [],
   exports: [
@@ -66,7 +63,6 @@ import appRoutes from './routes';
     ReferencesListComponent,
     DetailsComponent,
     MapsComponent
-
   ]
 })
 

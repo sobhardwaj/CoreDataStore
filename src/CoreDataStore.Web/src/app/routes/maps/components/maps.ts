@@ -34,7 +34,7 @@ export class MapsComponent implements OnInit {
     );
   };
 
-  zoom: number = 14;
+  zoom: number = 12;
   scrollwheel = true;
   constructor(private mapsservice: MapsService) {}
 

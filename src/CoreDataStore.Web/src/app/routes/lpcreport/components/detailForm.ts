@@ -9,15 +9,11 @@ import { ReferencesService } from '../../references/services/references';
 import { SessionService } from '../../../shared/services/session';
 
 @Component({
-  // moduleId: module.id,
-  selector: 'details-list',
-  templateUrl: 'app/routes/lpcreport/components/detailsList.html',
-  //When using OnPush detectors, then the framework will check an OnPush 
-  //component when any of its input properties changes, when it fires 
-  //an event, or when an observable fires an event ~ Victor Savkin (Angular Team)
+  selector: 'detail-form',
+  templateUrl: 'app/routes/lpcreport/components/detailForm.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DetailsListComponent implements OnInit, AfterViewChecked {
+export class DetailFormComponent implements OnInit, AfterViewChecked {
   // TOASTER
   toaster: any;
   // toasterConfig: any;
