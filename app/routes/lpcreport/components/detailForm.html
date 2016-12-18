@@ -1,0 +1,78 @@
+<div class="page">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div *ngIf="details" class="table-responsive">
+        <form novalidate [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+          <table class="table property-details">
+            <tr>
+              <td rowspan="8">
+                <img class="img-thumbnail img-responsive" src="{{ details.photoURL }}" />
+              </td>
+              <td>Designation Report:</td>
+              <td [ngClass]="{'has-error': (!name.valid && name.touched), 'has-success': (name.valid && name.touched)}">
+                <input type="text" class="form-control" [formControl]="name" />
+                <span *ngIf="!name.valid && name.touched && name.errors.required" class="help-block sub-little-text">Designation Report should not be empty!</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Landmark Type:</td>
+              <td [ngClass]="{'has-error': (!objectType.valid && objectType.touched), 'has-success': (objectType.valid && objectType.touched)}">
+                <select class="form-control" [formControl]="objectType">
+                  <option *ngFor="let value of objectTypes" [value]="value">
+                    {{value}}
+                  </option>
+                </select>
+                <span *ngIf="!objectType.valid && objectType.touched && objectType.errors.required" class="help-block sub-little-text">Landmark Type should not be empty!</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Architect:</td>
+              <td [ngClass]="{'has-error': (!architect.valid && architect.touched), 'has-success': (architect.valid && architect.touched)}">
+                <input type="text" class="form-control" [formControl]="architect" />
+                <span *ngIf="!architect.valid && architect.touched && architect.errors.required" class="help-block sub-little-text">Architect should not be empty!</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Architectural Style:</td>
+              <td [ngClass]="{'has-error': (!style.valid && style.touched), 'has-success': (style.valid && style.touched)}">
+                <input type="text" class="form-control" [formControl]="style" />
+                <span *ngIf="!style.valid && style.touched && style.errors.required" class="help-block sub-little-text">Style should not be empty!</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Date of Designation:</td>
+              <td [ngClass]="{'has-error': (!dateDesignated.valid && dateDesignated.touched), 'has-success': (dateDesignated.valid && dateDesignated.touched)}">
+                <input type="text" class="form-control" [formControl]="dateDesignated" />
+                <span *ngIf="!dateDesignated.valid && dateDesignated.touched && dateDesignated.errors.required" class="help-block sub-little-text">Date should not be empty!</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Street:</td>
+              <td [ngClass]="{'has-error': (!street.valid && street.touched), 'has-success': (street.valid && street.touched)}">
+                <input type="text" class="form-control" [formControl]="street" />
+                <span *ngIf="!street.valid && street.touched && street.errors.required" class="help-block sub-little-text">Street should not be empty!</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Borough:</td>
+              <td [ngClass]="{'has-error': (!borough.valid && borough.touched), 'has-success': (borough.valid && borough.touched)}">
+                <select class="form-control" [formControl]="borough">
+                  <option *ngFor="let value of boroughs" [value]="value">
+                    {{value}}
+                  </option>
+                </select>
+                <span *ngIf="!borough.valid && borough.touched && borough.errors.required" class="help-block sub-little-text">Borough should not be empty!</span>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <button class="btn btn-success" type="submit" [disabled]="!form.valid">Submit</button>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

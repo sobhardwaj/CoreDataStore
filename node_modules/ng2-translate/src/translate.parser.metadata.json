@@ -1,0 +1,1 @@
+{"__symbolic":"module","version":1,"metadata":{"DefaultTranslateParser":{"__symbolic":"class","decorators":[{"__symbolic":"call","expression":{"__symbolic":"reference","module":"@angular/core","name":"Injectable"}}],"members":{"interpolate":[{"__symbolic":"method"}],"getValue":[{"__symbolic":"method"}]}}}}
