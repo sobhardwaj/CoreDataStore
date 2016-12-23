@@ -16,10 +16,9 @@ docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
 cd  CoreDataStore/
 docker build -f docker/windowsserver.dockerfile -t coredatastore_web  .
 docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
+
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <CONATINERID> 
 ````
-
-
-
 
 ### Docker Compose
 
@@ -53,8 +52,12 @@ docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
 ```bash 
     docker ps -a                    #All Containers
     docker ps                       #Running Containers 
+   
     docker stop <CONATINERID>       #Stop Running Container
+    docker stop $(docker ps -a -q)
+   
     docker rm  -f <CONATINERID>     #Remove Container
+    docker rm $(docker ps -a -q)
 ```
 
 ###Tag & Publish

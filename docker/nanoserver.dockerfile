@@ -1,0 +1,49 @@
+FROM microsoft/dotnet:1.1.0-sdk-projectjson-nanoserver
+MAINTAINER Stuart Shay
+LABEL version="1.0.1"
+
+## Install NodeJS
+
+#ADD docker/HybridInstaller.ps1 HybridInstaller.ps1
+#RUN powershell -executionpolicy bypass C:\HybridInstaller.ps1  -RunNative
+
+
+ENV NPM_CONFIG_LOGLEVEL info  
+ENV NODE_VERSION 6.9.2 
+ENV NODE_SHA256 9b2fcdd0d81e69a9764c3ce5a33087e02e94e8e23ea2b8c9efceebe79d49936e
+
+#RUN powershell -Command \
+#	$ErrorActionPreference = 'Stop'; \
+#	Invoke-WebRequest -Method Get -Uri  https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-x64.msi -OutFile c:\node.msi ; \
+#   if ((Get-FileHash node.msi -Algorithm sha256).Hash -ne $env:NODE_SHA256) {exit 1} ; \
+#	Start-Process c:\node.msi  msiexec -ArgumentList /i,/qn -Wait ; \
+#    Remove-Item c:\node.msi -Force
+
+## Install Ruby 
+ENV RUBY_VERSION  2.2.4
+ENV RUBY_SHA256 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+
+RUN powershell -Command \
+	$ErrorActionPreference = 'Stop'; \
+	Invoke-WebRequest -Method Get -Uri http://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-%RUBY_VERSION%-x64.exe -OutFile c:\ruby.exe ; \
+	Start-Process c:\ruby.exe -ArgumentList '/verysilent' -Wait ; \
+    Remove-Item c:\ruby.exe -Force
+
+#RUN gem install compass  
+
+## Copy SRC 
+COPY src /app
+WORKDIR /app
+
+RUN dotnet restore
+
+WORKDIR /app/CoreDataStore.Web
+#RUN npm install
+#RUN npm run build
+RUN dotnet build
+
+
+EXPOSE 5000/tcp
+#CMD [ "cmd" ]
+#ENTRYPOINT ["dotnet", "CoreDataStore.Web.dll"]
+ENTRYPOINT ["dotnet", "run"]
