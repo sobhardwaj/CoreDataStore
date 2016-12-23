@@ -1,11 +1,25 @@
 ## Docker 
 
-##### Build & Run container
+### Build & Run container
+
+### Linux
+
 ````
 cd  CoreDataStore/
 docker build -f docker/aspnetcore.dockerfile -t coredatastore_web  .
 docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
 ````
+
+### Windows 
+
+````
+cd  CoreDataStore/
+docker build -f docker/windowsserver.dockerfile -t coredatastore_web  .
+docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
+````
+
+
+
 
 ### Docker Compose
 
