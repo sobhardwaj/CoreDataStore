@@ -17,7 +17,7 @@ cd  CoreDataStore/
 docker build -f docker/windowsserver.dockerfile -t coredatastore_web  .
 docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
 
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <CONATINERID> 
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <CONTAINERID> 
 ````
 
 ### Docker Compose
@@ -53,10 +53,10 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <CO
     docker ps -a                    #All Containers
     docker ps                       #Running Containers 
    
-    docker stop <CONATINERID>       #Stop Running Container
+    docker stop <CONTAINERID>       #Stop Running Container
     docker stop $(docker ps -a -q)
    
-    docker rm  -f <CONATINERID>     #Remove Container
+    docker rm  -f <CONTAINERID>     #Remove Container
     docker rm $(docker ps -a -q)
 ```
 
@@ -95,6 +95,3 @@ docker logs <CONATINERID>
 # Examine Filesystem (bash shell)
 docker run -i -t --entrypoint /bin/bash <IMAGEID>  
 ```
-
-
-

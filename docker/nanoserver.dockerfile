@@ -4,22 +4,19 @@ LABEL version="1.0.1"
 
 ## Install NodeJS
 
-#ADD docker/HybridInstaller.ps1 HybridInstaller.ps1
-#RUN powershell -executionpolicy bypass C:\HybridInstaller.ps1  -RunNative
-
-
 ENV NPM_CONFIG_LOGLEVEL info  
 ENV NODE_VERSION 6.9.2 
 ENV NODE_SHA256 9b2fcdd0d81e69a9764c3ce5a33087e02e94e8e23ea2b8c9efceebe79d49936e
 
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
-	Invoke-WebRequest -Method Get -Uri  https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-x64.msi -OutFile c:\node.msi ; \
-    if ((Get-FileHash node.msi -Algorithm sha256).Hash -ne $env:NODE_SHA256) {exit 1} ; \
-	#Start-Process c:\node.msi  msiexec -ArgumentList /i,/qn -Wait ; \
-    #Start-Process -FilePath msiexec -ArgumentList /q, /i, node.msi : \
-    Start-Process -FilePath msiexec -ArgumentList /qn, /i, node.msi : \
-    Remove-Item c:\node.msi -Force
+	Invoke-WebRequest -Method Get -Uri https://nodejs.org/dist/v6.9.2/win-x64/node.exe -OutFile c:\node\node.exe ; 
+	#\  TODO - NEED TO FIX
+	#Start-Process c:\node.exe -ArgumentList '/verysilent' -Wait ; \
+    #Remove-Item c:\node.exe -Force
+
+RUN npm install -g npm3
+
 
 ## Install Ruby 
 ENV RUBY_VERSION  2.2.4
@@ -31,7 +28,7 @@ RUN powershell -Command \
 	Start-Process c:\ruby.exe -ArgumentList '/verysilent' -Wait ; \
     Remove-Item c:\ruby.exe -Force
 
-#RUN gem install compass  
+CMD [ "C:/Ruby22-x64/bin/gem install compass" ] 
 
 ## Copy SRC 
 COPY src /app
