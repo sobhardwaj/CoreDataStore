@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using CoreDataStore.Data.Filters;
+﻿using CoreDataStore.Data.Filters;
 using CoreDataStore.Service.Models;
 
 namespace CoreDataStore.Service.Interfaces

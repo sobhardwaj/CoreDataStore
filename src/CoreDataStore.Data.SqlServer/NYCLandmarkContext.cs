@@ -55,17 +55,11 @@ namespace CoreDataStore.Data.SqlServer
                 .WithMany(r => r.Landmarks)
                 .HasForeignKey(l => l.LP_NUMBER)
                 .HasPrincipalKey(r => r.LPNumber);
-                //.HasConstraintName("FK_Landmark_LPCReport");
+
+            builder.Entity<Pluto>().HasKey(m => m.Id);
 
             base.OnModelCreating(builder);
         }
-
-        //FluentModelBuilder
-        //https://github.com/Grinderofl/FluentModelBuilder/wiki/0.-Introduction
-
-        //http://stackoverflow.com/questions/34578573/entity-framework-7-audit-log
-        //http://stackoverflow.com/questions/37210914/changetracker-entries-currentvalue-equals-originalvalue-in-ef7-ef-core
-        //http://www.c-sharpcorner.com/article/shadow-properties-in-entity-framework-7/
 
         public override int SaveChanges()
         {
@@ -86,7 +80,7 @@ namespace CoreDataStore.Data.SqlServer
         public DbSet<LPCReport> LPCReports { get; set; }
 
         public DbSet<Landmark> Landmarks { get; set; }
-        
 
+        public DbSet<Pluto> Pluto { get; set; }
     }
 }

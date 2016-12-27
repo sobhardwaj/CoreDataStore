@@ -4,9 +4,9 @@ using CoreDataStore.Domain.Entities;
 
 namespace CoreDataStore.Data.Sqlite.Repositories
 {
-    public class LandmarkRepository : EntityBaseRepository<Landmark>, ILandmarkRepository
+    public class PlutoRepository : EntityBaseRepository<Pluto>, IPlutoRepository
     {
-        public LandmarkRepository(NYCLandmarkContext context) 
+        public PlutoRepository(NYCLandmarkContext context) 
             : base(context)
         {
         }

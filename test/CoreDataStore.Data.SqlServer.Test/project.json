@@ -7,24 +7,24 @@
 
 
   "dependencies": {
-    "dotnet-test-xunit": "1.0.0-*",
-    "FluentAssertions": "4.17.0",
     "GenFu": "1.2.1",
     "Microsoft.EntityFrameworkCore": "1.1.0",
     "Microsoft.EntityFrameworkCore.InMemory": "1.1.0",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
-    "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final",
     "Microsoft.Extensions.Configuration.Json": "1.1.0",
     "Microsoft.NETCore.App": "1.1.0",
-    "xunit": "2.2.0-beta2-build3300",
-    "xunit.runner.visualstudio": "2.2.0-beta1-build1144",
     "CoreDataStore.Common": "1.0.1-*",
     "CoreDataStore.Data": "1.0.1-*",
     "CoreDataStore.Data.SqlServer": "1.0.1-*",
     "CoreDataStore.Domain": "1.0.1-*",
     "CoreDataStore.Service": "1.0.1-*",
     "CoreDataStore.Web": "1.0.1-*",
-    "Microsoft.DotNet.InternalAbstractions": "1.0.0"
+    "dotnet-test-xunit": "2.2.0-preview2-build1029",
+    "FluentAssertions": "4.18.0",
+    "Microsoft.DotNet.InternalAbstractions": "1.0.500-preview2-1-003177",
+    "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final",
+    "xunit": "2.2.0-beta4-build3444",
+    "xunit.runner.visualstudio": "2.2.0-beta4-build1194"
   },
 
   "frameworks": {
@@ -53,12 +53,5 @@
     "defaultNamespace": "CoreDataStore.Data.SqlServer.Test"
   },
   "tools": {
-    "Microsoft.EntityFrameworkCore.Tools": {
-      "version": "1.0.0-preview2-final",
-      "imports": [
-        "portable-net45+win8+dnxcore50",
-        "portable-net45+win8"
-      ]
-    }
   }
 }

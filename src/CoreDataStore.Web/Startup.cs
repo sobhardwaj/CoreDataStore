@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
@@ -52,7 +51,6 @@ namespace CoreDataStore.Web
             services.AddCors();
             services.AddMvc();
 
-
             services.AddSwaggerGen();
             services.ConfigureSwaggerGen(options =>
             {
@@ -72,6 +70,7 @@ namespace CoreDataStore.Web
             // Services
             services.AddScoped<ILPCReportService, LPCReportService>();
             services.AddScoped<ILandmarkService, LandmarkService>();
+            services.AddScoped<IPlutoService, PlutoService>();
         }
 
         /// <summary>
@@ -90,12 +89,11 @@ namespace CoreDataStore.Web
             // Repositories
             services.AddScoped<ILPCReportRepository, Data.Sqlite.Repositories.LPCReportRepository>();
             services.AddScoped<ILandmarkRepository, Data.Sqlite.Repositories.LandmarkRepository>();
+            services.AddScoped<IPlutoRepository, Data.Sqlite.Repositories.PlutoRepository>();
             services.AddScoped<IReferenceRepository, Data.Sqlite.Repositories.ReferenceRepository>();
 
             ConfigService(services);
         }
-
-
 
 
         /// <summary>
@@ -123,6 +121,7 @@ namespace CoreDataStore.Web
             // Repositories
             services.AddScoped<ILPCReportRepository, Data.Postgre.Repositories.LPCReportRepository>();
             services.AddScoped<ILandmarkRepository, Data.Postgre.Repositories.LandmarkRepository>();
+            services.AddScoped<IPlutoRepository, Data.Postgre.Repositories.PlutoRepository>();
             services.AddScoped<IReferenceRepository, Data.Postgre.Repositories.ReferenceRepository>();
 
             ConfigService(services);
@@ -144,6 +143,7 @@ namespace CoreDataStore.Web
             // Repositories
             services.AddScoped<ILPCReportRepository, Data.SqlServer.Repositories.LPCReportRepository>();
             services.AddScoped<ILandmarkRepository, Data.SqlServer.Repositories.LandmarkRepository>();
+            services.AddScoped<IPlutoRepository, Data.SqlServer.Repositories.PlutoRepository>();
             services.AddScoped<IReferenceRepository, Data.SqlServer.Repositories.ReferenceRepository>();
 
             ConfigService(services);
@@ -206,7 +206,6 @@ namespace CoreDataStore.Web
             AppConfig(app, loggerFactory);
 
         }
-
 
         private void AppConfig(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {         

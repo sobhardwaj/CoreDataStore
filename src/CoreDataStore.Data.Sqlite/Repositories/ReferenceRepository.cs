@@ -14,13 +14,7 @@ namespace CoreDataStore.Data.Sqlite.Repositories
             list.Add(new ReferenceType { Name = "", Value = "" });
             list.Add(new ReferenceType { Name = "", Value = "" });
 
-
-            //list.Add("Historic District");
-            //list.Add("Scenic Landmark");
-            //list.Add("Interior Landmark");
-
-            return list;
-   
+            return list;   
         }
     }
 

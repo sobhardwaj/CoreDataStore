@@ -5,20 +5,19 @@
     "emitEntryPoint": true
   },
   "dependencies": {
-    "dotnet-test-xunit": "1.0.0-*",
-    "FluentAssertions": "4.17.0",
     "GenFu": "1.2.1",
     "Microsoft.EntityFrameworkCore": "1.1.0",
-    "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final",
     "Microsoft.Extensions.Configuration.Json": "1.1.0",
     "Microsoft.NETCore.App": "1.1.0",
     "Npgsql.EntityFrameworkCore.PostgreSQL": "1.1.0",
-    "xunit": "2.2.0-beta2-build3300",
-    "xunit.runner.visualstudio": "2.2.0-beta1-build1144",
-
     "CoreDataStore.Common": "1.0.1-*",
     "CoreDataStore.Data.Postgre": "1.0.1-*",
-    "CoreDataStore.Domain": "1.0.1-*"
+    "CoreDataStore.Domain": "1.0.1-*",
+    "FluentAssertions": "4.18.0",
+    "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final",
+    "xunit": "2.2.0-beta4-build3444",
+    "xunit.runner.visualstudio": "2.2.0-beta4-build1194",
+    "dotnet-test-xunit": "2.2.0-preview2-build1029"
   },
   "frameworks": {
     "netcoreapp1.0": {
@@ -45,12 +44,5 @@
   },
 
   "tools": {
-    "Microsoft.EntityFrameworkCore.Tools": {
-      "version": "1.0.0-preview2-final",
-      "imports": [
-        "portable-net45+win8+dnxcore50",
-        "portable-net45+win8"
-      ]
-    }
   }
 }

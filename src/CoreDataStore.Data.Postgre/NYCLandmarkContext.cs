@@ -53,11 +53,16 @@ namespace CoreDataStore.Data.Postgre
                 .HasForeignKey(l => l.LP_NUMBER)
                 .HasPrincipalKey(r => r.LPNumber);
 
+            builder.Entity<Pluto>().HasKey(m => m.Id);
+
             base.OnModelCreating(builder);
         }
 
         public DbSet<LPCReport> LPCReports { get; set; }
 
         public DbSet<Landmark> Landmarks { get; set; }
+
+        public DbSet<Pluto> Pluto { get; set; }
+
     }
 }

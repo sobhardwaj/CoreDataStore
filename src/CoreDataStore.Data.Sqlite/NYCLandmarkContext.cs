@@ -53,6 +53,8 @@ namespace CoreDataStore.Data.Sqlite
                 .HasForeignKey(l => l.LP_NUMBER)
                 .HasPrincipalKey(r => r.LPNumber);
 
+            builder.Entity<Pluto>().HasKey(m => m.Id);
+
             base.OnModelCreating(builder);
         }
 
@@ -60,6 +62,6 @@ namespace CoreDataStore.Data.Sqlite
 
         public DbSet<Landmark> Landmarks { get; set; }
 
-
+        public DbSet<Pluto> Pluto { get; set; }
     }
 }
