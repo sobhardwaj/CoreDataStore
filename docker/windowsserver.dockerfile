@@ -37,5 +37,5 @@ RUN npm run build
 RUN dotnet build
 
 #CMD [ "cmd" ]
-#EXPOSE 5000/tcp
+EXPOSE 5000/tcp
 ENTRYPOINT ["dotnet", "run"]
