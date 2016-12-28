@@ -16,14 +16,14 @@ RUN powershell -Command \
 RUN npm install -g npm3
 
 ## Install Ruby
-ENV RUBY_VERSION  2.2.4
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
-	Invoke-WebRequest -Method Get -Uri http://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-%RUBY_VERSION%-x64.exe -OutFile c:\ruby.exe ; \
-	Start-Process c:\ruby.exe -ArgumentList '/verysilent' -Wait ; \
-    Remove-Item c:\ruby.exe -Force
+	Invoke-WebRequest -Method Get -Uri https://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.3.3-x64.exe -OutFile c:\rubyinstaller.exe ; \
+	Start-Process c:\rubyinstaller.exe  -ArgumentList '/verysilent' -Wait ; \
+	Remove-Item c:\rubyinstaller.exe  -Force
 
-#RUN [ "C:/Ruby22-x64/bin/gem install compass" ]
+WORKDIR /Ruby23-x64/bin
+RUN gem install compass
 
 ## Copy SRC 
 COPY src /app
@@ -37,5 +37,5 @@ RUN npm run build
 RUN dotnet build
 
 #CMD [ "cmd" ]
-EXPOSE 5000/tcp
+#EXPOSE 5000/tcp
 ENTRYPOINT ["dotnet", "run"]
