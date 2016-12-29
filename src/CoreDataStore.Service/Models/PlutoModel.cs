@@ -10,6 +10,8 @@
 
         public int Lot { get; set; }
 
+        public string Address { get; set; }
+
         public string OwnerName { get; set; }
 
         public int LotArea { get; set; }
@@ -20,7 +22,7 @@
 
         public string HistDist { get; set; }
 
-        public int BBL { get; set; }
+        public long BBL { get; set; }
 
         public double XCoord { get; set; }
 

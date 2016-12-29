@@ -57,6 +57,9 @@ namespace CoreDataStore.Data.SqlServer
                 .HasPrincipalKey(r => r.LPNumber);
 
             builder.Entity<Pluto>().HasKey(m => m.Id);
+            builder.Entity<Pluto>().Property(t => t.BBL).HasPrecision(12, 2).IsRequired();
+            builder.Entity<Pluto>().Property(t => t.Latitude).HasPrecision(9, 6).IsRequired();
+            builder.Entity<Pluto>().Property(t => t.Longitude).HasPrecision(9, 6).IsRequired();
 
             base.OnModelCreating(builder);
         }
@@ -70,8 +73,8 @@ namespace CoreDataStore.Data.SqlServer
 
             foreach (EntityEntry<IAuditableEntity> entity in modifiedBidEntries)
             {
-               // entity.Property("Modified").CurrentValue = DateTime.UtcNow;
-              // entity.Property("ObjectType").CurrentValue = "XXXXXXXX";
+               //entity.Property("Modified").CurrentValue = DateTime.UtcNow;
+               //entity.Property("ObjectType").CurrentValue = "XXXXXXXX";
             }
 
             return base.SaveChanges();

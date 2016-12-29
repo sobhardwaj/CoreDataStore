@@ -10,16 +10,5 @@ namespace CoreDataStore.Data.Postgre.Repositories
             : base(context)
         { }
 
-        //private readonly NYCLandmarkContext _context;
-        //private readonly ILogger _logger;
-
-        //public LPCReportRepository(NYCLandmarkContext context, ILoggerFactory loggerFactory)
-        //{
-        //    _context = context;
-        //    _logger = loggerFactory.CreateLogger("ILPCReportRepository");
-        //}
-
-
-
     }
 }

@@ -12,6 +12,8 @@ namespace CoreDataStore.Domain.Entities
 
         public int Lot { get; set; }
 
+        public string Address { get; set; }
+
         public string OwnerName { get; set; }
 
         public int LotArea { get; set; }
@@ -22,14 +24,14 @@ namespace CoreDataStore.Domain.Entities
 
         public string HistDist { get; set; }
 
-        public int BBL { get; set; }
+        public decimal BBL { get; set; }
 
-        public double XCoord { get; set; }
+        public int XCoord { get; set; }
 
-        public double YCoord { get; set; }
+        public int YCoord { get; set; }
 
-        public double Latitude { get; set; }
+        public decimal Latitude { get; set; }
 
-        public double Longitude { get; set; }
+        public decimal Longitude { get; set; }
     }
 }
