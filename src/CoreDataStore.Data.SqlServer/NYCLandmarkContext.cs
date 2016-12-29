@@ -77,7 +77,8 @@ namespace CoreDataStore.Data.SqlServer
                //entity.Property("ObjectType").CurrentValue = "XXXXXXXX";
             }
 
-            return base.SaveChanges();
+            base.SaveChanges();
+            return 0;
         }
 
         public DbSet<LPCReport> LPCReports { get; set; }

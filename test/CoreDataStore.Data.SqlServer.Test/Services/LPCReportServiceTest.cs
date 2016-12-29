@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
+using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Repositories;
 using CoreDataStore.Service.Interfaces;
@@ -15,59 +16,47 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
 {
     public class LPCReportServiceTest
     {
-
-        private readonly IServiceProvider serviceProvider;
-        private readonly ILPCReportRepository lpcReportRepository;
-        private readonly ILPCReportService lbcReportService;
-        private readonly NYCLandmarkContext dbContext;
+        private readonly ILPCReportService _lpcReportService;
 
         public LPCReportServiceTest()
         {
-            var services = new ServiceCollection();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
 
-            var builder = new ConfigurationBuilder();
-            builder.SetBasePath(Directory.GetCurrentDirectory());
-            builder.AddJsonFile("appsettings.json").Build();
+            var dbonnection = builder.GetConnectionString("SqlServer");
 
-            var connectionStringConfig = builder.Build();
-            var dbonnection = connectionStringConfig.GetConnectionString("SqlServer");
+            var serviceProvider = new ServiceCollection()
+                .AddDbContext<NYCLandmarkContext>(options => options.UseSqlServer(dbonnection))
+                .AddScoped<ILPCReportRepository, LPCReportRepository>()
+                .AddScoped<ILPCReportService, LPCReportService>()
+                .BuildServiceProvider();
 
-            services.AddDbContext<NYCLandmarkContext>(options =>
-            options.UseSqlServer(dbonnection));
+            serviceProvider.GetRequiredService<NYCLandmarkContext>();
+            serviceProvider.GetRequiredService<ILPCReportRepository>();
 
-            services.AddScoped<ILPCReportRepository, LPCReportRepository>();
-            services.AddScoped<ILPCReportService, LPCReportService>();
-            serviceProvider = services.BuildServiceProvider();
-
-            dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            lpcReportRepository = serviceProvider.GetRequiredService<ILPCReportRepository>();
-            lbcReportService = serviceProvider.GetRequiredService<ILPCReportService>();
+            _lpcReportService = serviceProvider.GetRequiredService<ILPCReportService>();
 
             AutoMapperConfiguration.Configure();
         }
 
-        [Category("SQL-IntergrationTest")]
+        //[Fact]
         [Fact(Skip = "ci test")]
-        public void LPC_Reports_Exist()
+        [Category("SQL-IntergrationTest")]
+        public void Can_Get_Filtered_Paging_List()
         {
-            //var totalRecords = 0;
-            //var request = new LPCReportRequest
-            //{
-            //    PageSize = 20,
-            //    Page = 1,
-            //    SortColumn = "name",
-            //    SortOrder = "asc",
-            //};
+            //int count = 0;
+            var request = new LPCReportRequest
+            {
+                PageSize = 20,
+                Page = 1,
+                Borough = "Manhattan"
+            };
 
-            ////var results = lbcReportService.GetLPCReports(request, out totalRecords);
-
-            ////Assert.NotNull(results);
+            var results = _lpcReportService.GetLPCReports(request).Results;
+            Assert.Equal(request.PageSize, results.Count);
         }
-
-
-
-
-
 
     }
 }
