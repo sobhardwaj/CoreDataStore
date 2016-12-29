@@ -20,18 +20,15 @@ RUN powershell -Command \
 
 RUN npm install -g npm3
 
-## Install Ruby (TODO) 
-ENV RUBY_VERSION  2.2.4
-ENV RUBY_SHA256 31203696adbfdda6f2874a2de31f7c5a1f3bcb6628f4d1a241de21b158cd5c76
+## Install Ruby (TODO Nano Server Version)
+#RUN powershell -Command \
+#	$ErrorActionPreference = 'Stop'; \
+#	Invoke-WebRequest -Method Get -Uri https://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.3.3-x64.exe -OutFile c:\rubyinstaller.exe ; \
+#	Start-Process c:\rubyinstaller.exe  -ArgumentList '/verysilent' -Wait ; \
+#	Remove-Item c:\rubyinstaller.exe  -Force
 
-RUN powershell -Command \
-	$ErrorActionPreference = 'Stop'; \
-	Invoke-WebRequest -Method Get -Uri http://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-%RUBY_VERSION%-x64.exe -OutFile c:\ruby.exe ; \
-    # if ((Get-FileHash ruby.exe -Algorithm sha256).Hash -ne $env:RUBY_SHA256) {exit 1} ; \
-	Start-Process c:\ruby.exe -ArgumentList '/verysilent' -Wait ; \
-    Remove-Item c:\ruby.exe -Force
-
-#RUN gem install compass --platform=ruby
+#WORKDIR /Ruby23-x64/bin
+#RUN gem install compass
 
 ## Copy SRC 
 COPY src /app
@@ -39,12 +36,12 @@ WORKDIR /app
 
 RUN dotnet restore
 
-#WORKDIR /app/CoreDataStore.Web
+WORKDIR /app/CoreDataStore.Web
 RUN npm install
 RUN npm run build
 RUN dotnet build
 
 EXPOSE 5000/tcp
+
 #CMD [ "cmd" ]
-#ENTRYPOINT ["dotnet", "CoreDataStore.Web.dll"]
 ENTRYPOINT ["dotnet", "run"]
