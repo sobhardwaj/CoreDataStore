@@ -32,16 +32,16 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         }
 
 
-        [Fact]
-        // [Fact(Skip = "ci test")]
+        //[Fact]
+        [Fact(Skip = "ci test")]
         public void Pluto_Block_Lot_Exist()
         {
             var results = _plutoRepository.FindBy(x => x.Block == 1096 && x.Lot == 54);
             Assert.NotNull(results);
         }
 
-        [Fact]
-        // [Fact(Skip = "ci test")]
+        //[Fact]
+        [Fact(Skip = "ci test")]
         public void Pluto_BBL_Exist()
         {
             var results = _plutoRepository.FindBy(x => x.BBL == 5080500013);
