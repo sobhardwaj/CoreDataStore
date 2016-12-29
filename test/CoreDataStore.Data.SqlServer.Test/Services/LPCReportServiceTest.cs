@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.IO;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
