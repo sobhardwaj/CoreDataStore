@@ -6,29 +6,29 @@ LABEL version="1.0.1"
 
 ENV NPM_CONFIG_LOGLEVEL info  
 ENV NODE_VERSION 6.9.2 
-ENV NODE_SHA256 9b2fcdd0d81e69a9764c3ce5a33087e02e94e8e23ea2b8c9efceebe79d49936e
+ENV NODE_SHA256 3525201f28c2298953c4e0b03fe4fb080bf295ec9a722af2abbaa4ad53d3b491
 
 RUN powershell -Command \
-	$ErrorActionPreference = 'Stop'; \
-	Invoke-WebRequest -Method Get -Uri https://nodejs.org/dist/v6.9.2/win-x64/node.exe -OutFile c:\node\node.exe ; 
-	#\  TODO - NEED TO FIX
-	#Start-Process c:\node.exe -ArgumentList '/verysilent' -Wait ; \
-    #Remove-Item c:\node.exe -Force
+   Invoke-WebRequest $('https://nodejs.org/dist/v{0}/node-v{0}-win-x64.zip' -f $env:NODE_VERSION) -OutFile 'node.zip' -UseBasicParsing ; \
+   if ((Get-FileHash node.zip -Algorithm sha256).Hash -ne $env:NODE_SHA256) {exit 1} ; \
+   Expand-Archive node.zip -DestinationPath C:\ ; \
+   Rename-Item -Path $('C:\node-v{0}-win-x64' -f $env:NODE_VERSION) -NewName 'C:\nodejs' ; \
+   New-Item $($env:APPDATA + '\npm') ; \
+   $env:PATH = 'C:\nodejs;{0}\npm;{1}' -f $env:APPDATA, $env:PATH ; \
+   Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\' -Name Path -Value $env:PATH ; \
+   Remove-Item -Path node.zip
 
 RUN npm install -g npm3
 
+## Install Ruby (TODO Nano Server Version)
+#RUN powershell -Command \
+#	$ErrorActionPreference = 'Stop'; \
+#	Invoke-WebRequest -Method Get -Uri https://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.3.3-x64.exe -OutFile c:\rubyinstaller.exe ; \
+#	Start-Process c:\rubyinstaller.exe  -ArgumentList '/verysilent' -Wait ; \
+#	Remove-Item c:\rubyinstaller.exe  -Force
 
-## Install Ruby 
-ENV RUBY_VERSION  2.2.4
-ENV RUBY_SHA256 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
-
-RUN powershell -Command \
-	$ErrorActionPreference = 'Stop'; \
-	Invoke-WebRequest -Method Get -Uri http://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-%RUBY_VERSION%-x64.exe -OutFile c:\ruby.exe ; \
-	Start-Process c:\ruby.exe -ArgumentList '/verysilent' -Wait ; \
-    Remove-Item c:\ruby.exe -Force
-
-CMD [ "C:/Ruby22-x64/bin/gem install compass" ] 
+#WORKDIR /Ruby23-x64/bin
+#RUN gem install compass
 
 ## Copy SRC 
 COPY src /app
@@ -37,12 +37,11 @@ WORKDIR /app
 RUN dotnet restore
 
 WORKDIR /app/CoreDataStore.Web
-#RUN npm install
-#RUN npm run build
+RUN npm install
+RUN npm run build
 RUN dotnet build
 
-
 EXPOSE 5000/tcp
+
 #CMD [ "cmd" ]
-#ENTRYPOINT ["dotnet", "CoreDataStore.Web.dll"]
 ENTRYPOINT ["dotnet", "run"]
