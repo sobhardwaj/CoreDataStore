@@ -53,7 +53,18 @@ namespace CoreDataStore.Data.Postgre
                 .HasForeignKey(l => l.LP_NUMBER)
                 .HasPrincipalKey(r => r.LPNumber);
 
+            builder.Entity<Landmark>()
+                .HasOne(p => p.Pluto)
+                .WithOne(l => l.Landmark)
+                .HasForeignKey<Pluto>(p => p.BBL)
+                .HasPrincipalKey<Landmark>(l => l.BBL);
+
+            builder.Entity<Pluto>().ToTable("PLUTO");
             builder.Entity<Pluto>().HasKey(m => m.Id);
+            builder.Entity<Pluto>().Property(t => t.Id).HasColumnName("id");
+            builder.Entity<Pluto>().Property(t => t.BBL).IsRequired();
+            builder.Entity<Pluto>().Property(t => t.Latitude).HasPrecision(9, 6).IsRequired();
+            builder.Entity<Pluto>().Property(t => t.Longitude).HasPrecision(9, 6).IsRequired();
 
             base.OnModelCreating(builder);
         }

@@ -54,7 +54,9 @@ namespace CoreDataStore.Domain.Entities
         public bool VACANT_LOT { get; set; }
 
         public bool SECND_BLDG { get; set; }
-        
+
+        public Pluto Pluto { get; set; }
+
         public LPCReport LPCReport { get; set; }
     }
 }

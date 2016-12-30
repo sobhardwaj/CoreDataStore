@@ -31,5 +31,7 @@ namespace CoreDataStore.Domain.Entities
         public string PhotoURL  { get; set; }
 
         public List<Landmark> Landmarks { get; set; }
+
+
     }
 }

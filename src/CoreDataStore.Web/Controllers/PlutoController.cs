@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CoreDataStore.Service.Interfaces;
+using CoreDataStore.Service.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,15 +25,16 @@ namespace CoreDataStore.Web.Controllers
         }
 
 
-        // GET: api/values
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [Produces(typeof(IEnumerable<PlutoModel>))]
+        [ProducesResponseType(typeof(IEnumerable<PlutoModel>), 200)]
+        [HttpGet("{lpcNumber}")]
+        public IEnumerable<PlutoModel> Get(string lpcNumber)
         {
-            return new string[] { "value1", "value2" };
+            return _plutoService.GetPluto(lpcNumber);
         }
 
     }

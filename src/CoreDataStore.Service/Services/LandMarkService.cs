@@ -20,7 +20,6 @@ namespace CoreDataStore.Service.Services
             this._landmarktRepository = landmarktRepository;
         }
 
-
         public PagedResultModel<LandmarkModel> GetLandmarks(LandmarkRequest request)
         {
             var predicate = PredicateBuilder.True<Landmark>();
@@ -56,12 +55,4 @@ namespace CoreDataStore.Service.Services
         }
 
     }
-
-
-
-
-
-
-
-
 }

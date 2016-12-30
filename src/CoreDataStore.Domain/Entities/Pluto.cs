@@ -1,4 +1,5 @@
-﻿using CoreDataStore.Domain.Entities.Base;
+﻿using System.Collections.Generic;
+using CoreDataStore.Domain.Entities.Base;
 
 namespace CoreDataStore.Domain.Entities
 {
@@ -24,7 +25,7 @@ namespace CoreDataStore.Domain.Entities
 
         public string HistDist { get; set; }
 
-        public decimal BBL { get; set; }
+        public long BBL { get; set; }
 
         public int XCoord { get; set; }
 
@@ -33,5 +34,8 @@ namespace CoreDataStore.Domain.Entities
         public decimal Latitude { get; set; }
 
         public decimal Longitude { get; set; }
+
+        public Landmark Landmark { get; set; }
+
     }
 }

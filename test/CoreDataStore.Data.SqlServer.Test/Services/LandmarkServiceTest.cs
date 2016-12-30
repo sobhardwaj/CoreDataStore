@@ -38,9 +38,5 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
             AutoMapperConfiguration.Configure();
         }
 
-
-
-
-
     }
 }

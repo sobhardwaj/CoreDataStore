@@ -47,5 +47,14 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.NotNull(results);
         }
 
+        [Fact]
+        //[Fact(Skip = "ci test")]
+        public void Get_Pluto_By_LPCNumber()
+        {
+            var lpNumber = "LP-02039";
+
+            var results = _plutoRepository.FindBy(x => x.Landmark.LP_NUMBER == lpNumber).ToList();
+            Assert.NotNull(results);
+        }
     }
 }
