@@ -1,10 +1,16 @@
 {
   "version": "1.0.1-*",
 
-  "buildOptions": {
-    "emitEntryPoint": true
-  },
+  "testRunner": "xunit",
 
+  "buildOptions": {
+    "copyToOutput": {
+      "include": [
+        "xunit.runner.json",
+        "appsettings.json"
+      ]
+    }
+  },
 
   "dependencies": {
     "GenFu": "1.2.1",
@@ -46,8 +52,6 @@
     "win10-x64": {}
   },
 
-
-  "testRunner": "xunit",
 
   "tooling": {
     "defaultNamespace": "CoreDataStore.Data.SqlServer.Test"

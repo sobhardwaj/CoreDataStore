@@ -1,9 +1,17 @@
 {
   "version": "1.0.1-*",
 
+  "testRunner": "xunit",
+
   "buildOptions": {
-    "emitEntryPoint": true
+    "copyToOutput": {
+      "include": [
+        "xunit.runner.json",
+        "appsettings.json"
+      ]
+    }
   },
+
   "dependencies": {
     "GenFu": "1.2.1",
     "Microsoft.EntityFrameworkCore": "1.1.0",
@@ -38,7 +46,8 @@
     "win10-x64": {}
   },
 
-  "testRunner": "xunit",
+
+
   "tooling": {
     "defaultNamespace": "CoreDataStore.Data.Postgre.Test"
   },
