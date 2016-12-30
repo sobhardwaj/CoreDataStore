@@ -76,8 +76,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
         }
 
-        //[Fact(Skip = "ci test")]
-        [Fact]
+        [Fact(Skip = "ci test")]
+       // [Fact]
         public void Can_Get_Filtered_Paging_List()
         {
             var predicate = PredicateBuilder.True<Landmark>();
