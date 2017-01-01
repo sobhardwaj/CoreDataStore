@@ -18,13 +18,13 @@ namespace CoreDataStore.Data.Infrastructure
 
         Task<IEnumerable<T>> GetAllAsync();
 
-        T GetSingle(int id);
+        T GetSingle(long id);
 
         T GetSingle(Expression<Func<T, bool>> predicate);
 
         T GetSingle(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
 
-        Task<T> GetSingleAsync(int id);
+        Task<T> GetSingleAsync(long id);
 
         IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate);
 

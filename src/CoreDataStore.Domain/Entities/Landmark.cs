@@ -5,7 +5,7 @@ namespace CoreDataStore.Domain.Entities
 {
     public class Landmark  : IEntityBase
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public long BBL { get; set; }
 

@@ -4,7 +4,7 @@ namespace CoreDataStore.Service.Models
 {
     public class LPCReportModel
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public string Name { get; set; }
 

@@ -67,19 +67,12 @@ namespace CoreDataStore.Data.Helpers
                         LM_NAME    = row[6].Trim(),
                         PLUTO_ADDR = row.Length >= 7 && row[7] != null ? row[7].Trim() : null,
                         DESIG_ADDR = row[8] != null && row[8].Length > 0 ? row[8].Trim() : null,
-
                         DESIG_DATE = row[9] != null && row[9].Length > 0 ?  (DateTime?)DateTime.Parse(row[9]) : null,
                         CALEN_DATE = row[10] != null && row[10].Length > 0 ? (DateTime?)DateTime.Parse(row[10]) : null,
                         PUBLIC_HEA = row.Length >= 11 && row[11] != null ? row[11].Trim() : null,
                         LM_TYPE    = row.Length >= 12 && row[12] != null ? row[12].Trim() : null,
                         HIST_DISTR = row.Length >= 13 && row[13] != null ? row[13].Trim() : null,
-
                         OTHER_HEAR = row[14] != null && row[14].Length > 0 ? row[14].Trim() : null,
-
-
-
-
-
                         BOUNDARIES = row.Length >= 15 && row[15] != null ? row[15].Trim() : null,
                         MOST_CURRE = row.Length >= 16 && row[16].Trim() == "1",
                         STATUS     = row.Length >= 17 && row[17] != null ? row[17].Trim() : null,
@@ -108,11 +101,6 @@ namespace CoreDataStore.Data.Helpers
 
         public static string ReadFileString(string path)
         {
-
-
-
-
-
             byte[] byteArray = Encoding.UTF8.GetBytes(path);
             MemoryStream stream = new MemoryStream(byteArray);
 
@@ -121,12 +109,6 @@ namespace CoreDataStore.Data.Helpers
                 return reader.ReadToEnd();
             }
         }
-
-
-
-
-
-
 
     }
 }

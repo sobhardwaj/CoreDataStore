@@ -6,7 +6,7 @@ namespace CoreDataStore.Domain.Entities
 {
     public class LPCReport : IEntityBase, IAuditableEntity
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public string Name { get; set; }
 

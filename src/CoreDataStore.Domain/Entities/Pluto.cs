@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using CoreDataStore.Domain.Entities.Base;
+﻿using CoreDataStore.Domain.Entities.Base;
 
 namespace CoreDataStore.Domain.Entities
 {
     public class Pluto : IEntityBase
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public string Borough { get; set; }
 
