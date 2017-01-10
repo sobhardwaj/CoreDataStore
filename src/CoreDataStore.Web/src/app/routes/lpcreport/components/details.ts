@@ -2,7 +2,7 @@ import { Component, ViewContainerRef, ViewEncapsulation, OnInit, OnDestroy } fro
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
-import { DetailFormComponent } from './detailsList';
+import { DetailFormComponent } from './detailForm';
 import { LPCReportService } from '../services/lpcreport';
 import { ReferencesService } from '../../references/services/references';
 

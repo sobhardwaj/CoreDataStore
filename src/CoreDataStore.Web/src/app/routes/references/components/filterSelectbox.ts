@@ -8,8 +8,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
           <ng-select [allowClear]="true"
               [items]="items"
               [disabled]="disabled"
-              placeholder="Not selected"
               (data)="filterChanged($event)"
+              placeholder="Not selected"
               >
           </ng-select>
     </form>

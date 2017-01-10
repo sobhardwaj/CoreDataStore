@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UserblockService } from '../sidebar/userblock/userblock.service';
+
 import { SettingsService } from '../../core/settings/settings.service';
 
 import * as screenfull from 'screenfull';
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   isNavSearchVisible: boolean;
   @ViewChild('fsbutton') fsbutton; // the fullscreen button
 
-  constructor(private userblockService: UserblockService, private settings: SettingsService) {}
+  constructor(private settings: SettingsService) {}
 
   ngOnInit() {
     this.isNavSearchVisible = false;
@@ -25,7 +25,6 @@ export class HeaderComponent implements OnInit {
 
   toggleUserBlock(event) {
     event.preventDefault();
-    this.userblockService.toggleVisibility();
   }
 
   openNavSearch(event) {

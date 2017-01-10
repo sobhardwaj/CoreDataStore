@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+declare var $: any;
 
 import { SessionService } from '../../../shared/services/session';
 
 import { ReferencesService } from '../services/references';
 import { LPCReportService } from '../../lpcreport/services/lpcreport';
-// import { FilterTextboxComponent } from '../../components/filterTextbox';
-// import { FilterSelectboxComponent } from '../../components/filterSelectbox';
-// import { CustomersCardComponent } from './customersCard.component';
+
 import { ReferencesListComponent } from './referencesList';
 import { FilterSelectboxComponent } from './filterSelectbox';
 
@@ -34,7 +33,10 @@ export class ReferencesComponent implements OnInit {
   // displayMode: DisplayModeEnum;
   // displayModeEnum = DisplayModeEnum;
 
-  constructor(private session: SessionService, private referenceService: ReferencesService, private lpcReportService: LPCReportService) {
+  constructor(
+    private session: SessionService,
+    private referenceService: ReferencesService,
+    private lpcReportService: LPCReportService) {
     let page = this.session.get('page');
     this.page = (parseInt(page, 10) > 0) ? page : 1;
   }
@@ -55,7 +57,10 @@ export class ReferencesComponent implements OnInit {
 
   getLPCReports(page, limit, borough, objectType) {
     this.lpcReportService.getLPCReports(page, limit, borough, objectType).subscribe(
-      data => { this.properties = this.filteredReference = data; },
+      data => {
+        this.properties = this.filteredReference = data;
+        this.scrollTop();
+      },
       () => console.log('done loading getLPCReports')
     );
 
@@ -109,18 +114,22 @@ export class ReferencesComponent implements OnInit {
     this.getLPCReports(this.page, this.limit, this.borough, this.objectType);
   }
 
-  pageChanged(event: any) {
+  public pageChanged(event: any) {
     // console.log(event);
     this.page = event.page;
     this.session.set('page', this.page);
     this.getLPCReports(event.page, this.limit, this.borough, this.objectType);
   }
 
-  perPageChanged(limit: any) {
+  public perPageChanged(limit: any) {
     this.page = 1;
     this.limit = limit;
     this.session.set('page', this.page);
     this.getLPCReports(1, limit, this.borough, this.objectType);
+  }
+
+  private scrollTop() {
+    $(window).scrollTop(0, 0);
   }
 }
 

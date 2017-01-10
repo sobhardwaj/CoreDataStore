@@ -9,11 +9,5 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReferencesListComponent {
-
   @Input() properties: Object;
-
-  /*sort(prop: string) {
-      this.sorter.sort(this.properties, prop);
-  }*/
-
 }

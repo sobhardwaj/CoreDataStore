@@ -9,9 +9,9 @@ import { ToasterModule } from 'angular2-toaster/angular2-toaster';
 
 import { ColorsService } from './colors/colors.service';
 import { SessionService } from './services/session';
-import { CheckallDirective } from './directives/checkall/checkall.directive';
-import { NowDirective } from './directives/now/now.directive';
-import { ScrollableDirective } from './directives/scrollable/scrollable.directive';
+import { CheckallDirective } from './directives/checkall';
+import { NowDirective } from './directives/now';
+import { ScrollableDirective } from './directives/scrollable';
 
 import { CapitalizePipe } from './pipes/capitalize';
 import { TrimPipe } from './pipes/trim';
@@ -45,8 +45,10 @@ import { TrimPipe } from './pipes/trim';
     RouterModule,
     Ng2BootstrapModule,
     ToasterModule,
+
     TrimPipe,
     CapitalizePipe,
+
     CheckallDirective,
     NowDirective,
     ScrollableDirective
