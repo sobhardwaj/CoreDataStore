@@ -33,7 +33,7 @@ export class SettingsService {
       isCollapsed: false,
       isBoxed: false,
       isRTL: false,
-      horizontal: false,
+      horizontal: true,
       isFloat: false,
       asideHover: false,
       theme: null,
