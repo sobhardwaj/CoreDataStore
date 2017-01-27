@@ -17,7 +17,8 @@ const routes = [
       { path: 'diagnostics', component: DiagnosticsComponent },
       { path: 'references', component: ReferencesComponent },
       { path: 'details/:id', component: DetailsComponent },
-      { path: 'maps', component: MapsComponent }
+      { path: 'maps', component: MapsComponent },
+      { path: '**', redirectTo: 'home' }
     ]
 
   },
