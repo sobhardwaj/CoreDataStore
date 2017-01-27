@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'filter-selectbox',
@@ -8,6 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
           <ng-select [allowClear]="true"
               [items]="items"
               [disabled]="disabled"
+              [active]="selected"
               (data)="filterChanged($event)"
               placeholder="Not selected"
               >
@@ -17,19 +18,26 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   // directives: [FORM_DIRECTIVES, SELECT_DIRECTIVES]
 })
 
-export class FilterSelectboxComponent {
-  model: { filter: string } = { filter: null };
+export class FilterSelectboxComponent implements OnInit {
+  // model: { filter: string } = { filter: null };
+  selected: any = [];
+  constructor() {}
 
-  @Input()
-  public items: Array < string > = [];
+  ngOnInit() {
+    if (this.active && this.active !== '') {
+      this.selected.push({ id: this.active, text: this.active });
+    }
+  }
 
-  @Input()
-  label: string;
+  @Input() items: Array < string > = [];
+  @Input() label: string;
+  @Input() active: string;
 
   @Output()
   changed: EventEmitter < string > = new EventEmitter < string > ();
 
   filterChanged(event: any) {
+    // console.log(event);
     // event.preventDefault();
     this.changed.emit(Array.isArray(event) ? '' : event.id); //Raise changed event
   }
