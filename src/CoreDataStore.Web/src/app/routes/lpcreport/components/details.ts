@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DetailFormComponent } from './detailForm';
 import { LPCReportService } from '../services/lpcreport';
 import { ReferencesService } from '../../references/services/references';
+declare var $: any;
 
 @Component({
   selector: 'properties-details',
@@ -78,6 +79,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.onChangeTable(this.config);
+    $(window).scrollTop(0, 0);
   }
 
   ngOnDestroy() {
