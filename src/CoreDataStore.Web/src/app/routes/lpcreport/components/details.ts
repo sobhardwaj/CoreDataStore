@@ -4,22 +4,22 @@ import { ActivatedRoute } from '@angular/router';
 
 import { DetailFormComponent } from './detailForm';
 import { LPCReportService } from '../services/lpcreport';
+import { PlutoService } from '../services/pluto';
 import { ReferencesService } from '../../references/services/references';
 declare var $: any;
 
 @Component({
   selector: 'properties-details',
   templateUrl: 'app/routes/lpcreport/components/details.html',
-  providers: [LPCReportService, ReferencesService],
+  providers: [LPCReportService, ReferencesService, PlutoService],
   encapsulation: ViewEncapsulation.None
 })
 
 export class DetailsComponent implements OnInit, OnDestroy {
   public title: string;
   public details: any;
-  public latitude: any;
-  public longitude: any;
   public landmarkProperties: any = [];
+  public mapMarkers: any = [];
   public sub: any = null;
   // ng2Table
   private ng2TableData: Array < any > = [];
@@ -52,7 +52,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   /*@Inject(ActivatedRoute) */
   /*overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal*/
-  constructor(private lpcReportService: LPCReportService, private route: ActivatedRoute) {
+  constructor(private lpcReportService: LPCReportService, private plutoService: PlutoService, private route: ActivatedRoute) {
     // overlay.defaultViewContainer = vcRef;
     this.sub = this.route.params.subscribe(params => {
       let id = +params['id'];
@@ -60,8 +60,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
       this.lpcReportService.getLPCReport(id).subscribe(
         data => {
           this.details = data;
-          this.latitude = data.latitude;
-          this.longitude = data.longitude;
           this.title = data.name;
           this.lpcReportService.getLandmarkProperties(this.details.lpNumber).subscribe(
             data => {
@@ -70,6 +68,11 @@ export class DetailsComponent implements OnInit, OnDestroy {
               this.length = this.landmarkProperties.length;
             },
             err => console.log(err)
+          );
+          this.plutoService.getMapMarkers(this.details.lpNumber).subscribe(
+            data => {
+              this.mapMarkers = data;
+            }
           );
         },
         err => console.log(err)
