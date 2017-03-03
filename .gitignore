@@ -230,3 +230,4 @@ src/CoreDataStore.Web/wwwroot/app/utils/*.map
 .DS_Store
 data/nyclandmarks.sqlite
 .vscode/launch.json
+src/CoreDataStore\.Web/src/app/routes/appsettings\.ts
