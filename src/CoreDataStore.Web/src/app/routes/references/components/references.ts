@@ -58,20 +58,17 @@ export class ReferencesComponent implements OnInit {
   getLPCReports(page, limit, borough, objectType) {
     this.lpcReportService.getLPCReports(page, limit, borough, objectType).subscribe(
       data => {
-        this.properties = this.filteredReference = data;
+        this.properties = this.filteredReference = data.reports;
+        this.totalItems = data.total;
         this.scrollTop();
+
+        this.objectType = objectType;
+        this.borough = borough;
+        this.page = page;
+        this.fromItem = ((page - 1) * limit) + 1;
+        this.toItem = (this.totalItems < (page * limit)) ? this.totalItems : (page * limit);
       },
       () => console.log('done loading getLPCReports')
-    );
-          this.totalItems = data.total;
-
-          this.objectType = objectType;
-          this.borough = borough;
-          this.page = page;
-          this.fromItem = ((page - 1) * limit) + 1;
-          this.toItem = (this.totalItems  < (page * limit)) ? this.totalItems  : (page * limit);
-        },
-        () => console.log('done loading getLPCReports')
     );
   }
 
