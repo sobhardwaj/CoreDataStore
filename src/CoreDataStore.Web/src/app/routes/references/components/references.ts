@@ -19,6 +19,7 @@ export class ReferencesComponent implements OnInit {
   title: string;
   borough: string;
   objectType: string;
+  ignorePageChangedEvent: boolean = false;
   page: number = 1;
   limit: number = 20;
   perPage: any[] = [10, 20, 50, 100];
@@ -109,13 +110,17 @@ export class ReferencesComponent implements OnInit {
   }
 
   public pageChanged(event: any) {
-    // console.log(event);
-    this.page = event.page;
-    this.session.set('page', this.page);
-    this.getLPCReports(event.page, this.limit, this.borough, this.objectType);
+    if (!this.ignorePageChangedEvent) {
+      this.page = event.page;
+      this.session.set('page', this.page);
+      this.getLPCReports(event.page, this.limit, this.borough, this.objectType);
+    }
+    this.ignorePageChangedEvent = false;
   }
 
   public perPageChanged(limit: any) {
+    limit = parseInt(limit, 10);
+    this.ignorePageChangedEvent =  this.limit < limit; //Little workaround for paginator last page cornercase
     this.page = 1;
     this.limit = limit;
     this.session.set('page', this.page);
