@@ -27,7 +27,7 @@ Visual Studio 2015 Tooling Preview 2
 
 ### Web Application
 
-````
+```bash
 nodejs version: 6.x    
 npm3
 ruby 
@@ -73,8 +73,7 @@ Linux
 export NG_ENVIRONMENT Dev
 ```
 
-
-### Live reload Typescript ClientSide (not use dotnet watch)
+### Live reload Typescript ClientSide 
 > npm start
 
 Deploy clientside
@@ -82,19 +81,19 @@ Deploy clientside
 
 ##Docker   
 
+[Docker Hub](https://hub.docker.com/r/stuartshay/coredatastore/ )
 [Docker Commands](docker/README.md)      
 
-##Web Container
-
-[Docker Hub](https://hub.docker.com/r/stuartshay/coredatastore/ )
 
 ### Run from Docker Hub
-```
+```bash
 docker pull stuartshay/coredatastore
 docker run --rm --name coredatastore  -p 5000:5000  stuartshay/coredatastore
 ```
 
 ##Postgres Db
+
+Landmarks Reference Database    
 
 ```bash
 docker pull stuartshay/coredatastore-postgres:stable
