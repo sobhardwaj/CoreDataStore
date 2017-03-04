@@ -11,6 +11,7 @@ namespace CoreDataStore.Web.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [EnableCors("AllowAll")]
+    [Produces("application/json")]
     public class PlutoController : Controller
     {
         private readonly IPlutoService _plutoService;

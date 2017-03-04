@@ -4,6 +4,12 @@
 [![CircleCI](https://circleci.com/gh/stuartshay/CoreDataStore.svg?style=svg)](https://circleci.com/gh/stuartshay/CoreDataStore)
 [![Code Climate](https://codeclimate.com/github/stuartshay/CoreDataStore/badges/gpa.svg)](https://codeclimate.com/github/stuartshay/CoreDataStore)
 
+New York City Landmarks Reference Data     
+
+- [Landmarks Preservation Commission - NYC.gov](http://www1.nyc.gov/site/lpc/index.page)
+- [NYC OpenData](http://opendata.cityofnewyork.us/)   
+
+
 #### Demo
 http://informationcart.eastus2.cloudapp.azure.com    
 http://stuartshay.github.io/CoreDataStore/
@@ -44,9 +50,10 @@ dotnet restore
 
 Step 2: Build Web Site
 
-
 ```bash
 cd src/CoreDataStore.Web/
+dotnet build
+
 npm install
 npm run clean
 npm run build
@@ -73,24 +80,6 @@ export NG_ENVIRONMENT Dev
 Deploy clientside
 > npm run build
 
-
-##Website
-
-TODO: Enhance cmd - Use 1 win/bash Script (run.bat/run.sh)    
-
-| Environment   | Database Provider     | Port  | Windows cmd  | Linux/Mac cmd
-|---------------| ----------------------|:-----:|--------------|--------------
-| Development   | SQLite                | 5000  | dev.cmd      | ./dev.sh   
-| Staging       | PostgreSQL            | 5001  | stage.cmd    | ./stage.sh
-| Production    | SQL Server            | 5002  | prod.cmd     | TODO
-
-
-```bash
-dotnet restore
-dotnet build
-
-dotnet run
-```
 ##Docker   
 
 [Docker Commands](docker/README.md)      
@@ -104,7 +93,6 @@ dotnet run
 docker pull stuartshay/coredatastore
 docker run --rm --name coredatastore  -p 5000:5000  stuartshay/coredatastore
 ```
-
 
 ##Postgres Db
 
