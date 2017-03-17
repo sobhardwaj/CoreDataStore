@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <VersionPrefix>1.0.1</VersionPrefix>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <AssemblyName>CoreDataStore.Service</AssemblyName>
+    <PackageId>CoreDataStore.Service</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;dnxcore50;portable-net45+win8</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreDataStore.Data.Sqlite\CoreDataStore.Data.Sqlite.csproj" />
+    <ProjectReference Include="..\CoreDataStore.Domain\CoreDataStore.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="5.2.0" />
+    <PackageReference Include="FluentValidation" Version="6.4.0-rc4" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
+  </ItemGroup>
+
+</Project>

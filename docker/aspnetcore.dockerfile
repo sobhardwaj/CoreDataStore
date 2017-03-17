@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:1.1.0-sdk-projectjson
+FROM microsoft/dotnet:latest
 MAINTAINER Stuart Shay
 
 # Set environment variables
@@ -15,13 +15,15 @@ RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -y nodejs
 RUN npm install -g npm3
 
-COPY src /app
+
+COPY src /app/src
+COPY CoreDataStore.sln /app/CoreDataStore.sln
 COPY NuGet.config /app/NuGet.config
 WORKDIR /app
 
 RUN dotnet restore
 
-WORKDIR /app/CoreDataStore.Web
+WORKDIR /app/src/CoreDataStore.Web
 RUN npm install
 RUN npm run build
 RUN dotnet build

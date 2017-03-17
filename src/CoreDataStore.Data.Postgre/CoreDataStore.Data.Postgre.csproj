@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <VersionPrefix>1.0.1</VersionPrefix>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <AssemblyName>CoreDataStore.Data.Postgre</AssemblyName>
+    <PackageId>CoreDataStore.Data.Postgre</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;dnxcore50;portable-net45+win8</PackageTargetFallback>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreDataStore.Data\CoreDataStore.Data.csproj" />
+    <ProjectReference Include="..\CoreDataStore.Domain\CoreDataStore.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="1.1.0" />
+  </ItemGroup>
+
+</Project>

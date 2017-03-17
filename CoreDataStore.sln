@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Soultion Items", "Soultion Items", "{CC689212-7F5C-4CEC-BEEB-44B0B415959E}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,7 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Soultion Items", "Soultion 
 		build-helpers.ps1 = build-helpers.ps1
 		build.ps1 = build.ps1
 		circle.yml = circle.yml
-		global.json = global.json
 		NuGet.config = NuGet.config
 		README.md = README.md
 	EndProjectSection
@@ -19,26 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{16E0E7AC-094
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{03D6EAC4-7C2A-4737-9842-255C45C43CFC}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Common", "src\CoreDataStore.Common\CoreDataStore.Common.xproj", "{58E04204-164F-428D-923C-3EEFDDB8260C}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Domain", "src\CoreDataStore.Domain\CoreDataStore.Domain.xproj", "{1E6357BF-3D65-4D2E-B9B2-9ABB7B0DEB85}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Data", "src\CoreDataStore.Data\CoreDataStore.Data.xproj", "{AF96400D-09DF-48C0-821F-9A9A81072F49}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Data.SqlServer", "src\CoreDataStore.Data.SqlServer\CoreDataStore.Data.SqlServer.xproj", "{8D0845B8-3A2C-4991-A4BF-29101D475313}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Data.SqlServer.Test", "test\CoreDataStore.Data.SqlServer.Test\CoreDataStore.Data.SqlServer.Test.xproj", "{1369776F-A1B0-4ED5-AEDA-48141216C0A5}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Data.Postgre", "src\CoreDataStore.Data.Postgre\CoreDataStore.Data.Postgre.xproj", "{D276010D-7AF2-4C83-8DA8-1CE411F58480}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Data.Postgre.Test", "test\CoreDataStore.Data.Postgre.Test\CoreDataStore.Data.Postgre.Test.xproj", "{530C61CC-3BD1-417C-9B53-2945A3A4D809}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Data.Sqlite", "src\CoreDataStore.Data.Sqlite\CoreDataStore.Data.Sqlite.xproj", "{4AEA3544-5C8B-452C-9C36-0B8F2E0B1A02}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Service", "src\CoreDataStore.Service\CoreDataStore.Service.xproj", "{59A3B239-C840-4FFE-A81A-B1EEA0476DEC}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreDataStore.Web", "src\CoreDataStore.Web\CoreDataStore.Web.xproj", "{70417AE1-918D-4D47-9028-88238093D3CE}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{9CAE5C90-C078-449A-9855-6E797F9FE4ED}"
 	ProjectSection(SolutionItems) = preProject
 		docker\aspnetcore.dockerfile = docker\aspnetcore.dockerfile
@@ -46,6 +25,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{9CAE5C
 		docker\docker-compose-staging.yml = docker\docker-compose-staging.yml
 		docker\windowsserver.dockerfile = docker\windowsserver.dockerfile
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDataStore.Common", "src\CoreDataStore.Common\CoreDataStore.Common.csproj", "{58E04204-164F-428D-923C-3EEFDDB8260C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDataStore.Domain", "src\CoreDataStore.Domain\CoreDataStore.Domain.csproj", "{1E6357BF-3D65-4D2E-B9B2-9ABB7B0DEB85}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDataStore.Data", "src\CoreDataStore.Data\CoreDataStore.Data.csproj", "{AF96400D-09DF-48C0-821F-9A9A81072F49}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDataStore.Data.SqlServer", "src\CoreDataStore.Data.SqlServer\CoreDataStore.Data.SqlServer.csproj", "{8D0845B8-3A2C-4991-A4BF-29101D475313}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDataStore.Data.SqlServer.Test", "test\CoreDataStore.Data.SqlServer.Test\CoreDataStore.Data.SqlServer.Test.csproj", "{1369776F-A1B0-4ED5-AEDA-48141216C0A5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDataStore.Data.Postgre", "src\CoreDataStore.Data.Postgre\CoreDataStore.Data.Postgre.csproj", "{D276010D-7AF2-4C83-8DA8-1CE411F58480}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDataStore.Data.Postgre.Test", "test\CoreDataStore.Data.Postgre.Test\CoreDataStore.Data.Postgre.Test.csproj", "{530C61CC-3BD1-417C-9B53-2945A3A4D809}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDataStore.Data.Sqlite", "src\CoreDataStore.Data.Sqlite\CoreDataStore.Data.Sqlite.csproj", "{4AEA3544-5C8B-452C-9C36-0B8F2E0B1A02}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDataStore.Service", "src\CoreDataStore.Service\CoreDataStore.Service.csproj", "{59A3B239-C840-4FFE-A81A-B1EEA0476DEC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDataStore.Web", "src\CoreDataStore.Web\CoreDataStore.Web.csproj", "{70417AE1-918D-4D47-9028-88238093D3CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
