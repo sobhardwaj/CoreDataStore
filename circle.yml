@@ -12,7 +12,7 @@ dependencies:
     - sudo apt-get install dotnet-dev-1.0.1
     
   override:
-    - dotnet restore -v warning    
+    - dotnet restore 
     - ( cd src/CoreDataStore.Web ; npm i )    
 
   cache_directories:   
