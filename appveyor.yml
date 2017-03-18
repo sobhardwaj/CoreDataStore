@@ -1,6 +1,9 @@
 version: '1.0.{build}'
-
 image: Visual Studio 2017
+
+init:
+- dotnet --info
+
 install:
 - cmd: dotnet restore 
 
@@ -8,9 +11,8 @@ build_script:
 - cmd: dotnet publish .\src\CoreDataStore.Web
 
 
-test_script:
-- ps: foreach ($d in dir .\test |? {$_.PSIsContainer -eq $True}){ &"dotnet" "test" $d.FullName }
+#test_script:
+#- ps: foreach ($d in dir .\test |? {$_.PSIsContainer -eq $True}){ &"dotnet" "test" $d.FullName }
 
-
-artifacts:
-  path: .\src\CoreDataStore.Web\bin\Debug\netcoreapp1.0\publish
+#artifacts:
+#  path: .\src\CoreDataStore.Web\bin\Debug\netcoreapp1.0\publish
