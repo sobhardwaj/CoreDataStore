@@ -21,8 +21,8 @@ dependencies:
 
 test:
   override:    
-    - dotnet test test/CoreDataStore.Data.Postgre.Test
-    - dotnet test test/CoreDataStore.Data.SqlServer.Test
+    - dotnet test test/CoreDataStore.Data.Postgre.Test/CoreDataStore.Data.Postgre.Test.csproj
+    - dotnet test test/CoreDataStore.Data.SqlServer.Test/CoreDataStore.Data.SqlServer.Test.csproj
 
 deployment:
   staging:
