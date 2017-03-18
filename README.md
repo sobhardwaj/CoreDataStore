@@ -17,21 +17,19 @@ http://stuartshay.github.io/CoreDataStore/
 ## Prerequisites:
 
 ### .NET Core 
-.NET Core SDK 1.1  - November 16, 2016   
+.NET Core Runtime 1.1.1 -  March 7, 2017     
+.NET Core SDK 1.0.1 - March 7, 2017      
 https://www.microsoft.com/net/core  
 
-###Visual Studio  
+### Visual Studio MSBuild
 
-Visual Studio 2015 Update 3     
-Visual Studio 2015 Tooling Preview 2
+Visual Studio 2017 
 
 ### Web Application
 
 ```bash
 nodejs version: 6.x    
-npm3
-ruby 
-gem install compass
+npm3, gulp, typings 
 ```
 
 ## Build Web Application
