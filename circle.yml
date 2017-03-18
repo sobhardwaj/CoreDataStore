@@ -19,10 +19,7 @@ dependencies:
     - "~/.nuget"
     - "~/.npm"
 
-test:
-  override:    
-    - dotnet test test/CoreDataStore.Data.Postgre.Test
-    - dotnet test test/CoreDataStore.Data.SqlServer.Test
+
 
 
 deployment:
