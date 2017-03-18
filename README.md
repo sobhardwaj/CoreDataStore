@@ -77,7 +77,7 @@ export NG_ENVIRONMENT Dev
 Deploy clientside
 > npm run build
 
-##Docker   
+## Docker   
 
 [Docker Hub](https://hub.docker.com/r/stuartshay/coredatastore/ )       
 [Docker Commands](docker/README.md)      
@@ -89,7 +89,7 @@ docker pull stuartshay/coredatastore
 docker run --rm --name coredatastore  -p 5000:5000  stuartshay/coredatastore
 ```
 
-##Postgres Db
+## Postgres Db
 
 Landmarks Reference Database    
 
@@ -98,7 +98,7 @@ docker pull stuartshay/coredatastore-postgres:stable
 docker run --rm --name postgresdb -p 5432:5432  stuartshay/coredatastore-postgres:stable  
 ```
 
-##Entity Framework
+## Entity Framework
 
 ```bash
 cd /test/CoreDataStore.Data.Postgre.Test
