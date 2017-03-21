@@ -1,4 +1,4 @@
-FROM microsoft/aspnet:windowsservercore
+FROM microsoft/dotnet:1.1-sdk-msbuild
 MAINTAINER Stuart Shay
 LABEL version="1.0.1"
 
