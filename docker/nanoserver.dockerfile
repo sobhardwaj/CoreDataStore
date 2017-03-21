@@ -1,6 +1,6 @@
-FROM microsoft/dotnet:1.1.0-sdk-projectjson-nanoserver
+FROM microsoft/nanoserver
 MAINTAINER Stuart Shay
-LABEL version="1.0.1"
+LABEL version="1.1.1"
 
 ## Install NodeJS
 
@@ -18,25 +18,19 @@ RUN powershell -Command \
    Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\' -Name Path -Value $env:PATH ; \
    Remove-Item -Path node.zip
 
+RUN npm install -g gulp
+RUN npm install -g typings 
 RUN npm install -g npm3
 
-## Install Ruby (TODO Nano Server Version)
-#RUN powershell -Command \
-#	$ErrorActionPreference = 'Stop'; \
-#	Invoke-WebRequest -Method Get -Uri https://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.3.3-x64.exe -OutFile c:\rubyinstaller.exe ; \
-#	Start-Process c:\rubyinstaller.exe  -ArgumentList '/verysilent' -Wait ; \
-#	Remove-Item c:\rubyinstaller.exe  -Force
-
-#WORKDIR /Ruby23-x64/bin
-#RUN gem install compass
-
 ## Copy SRC 
-COPY src /app
+COPY src /app/src
+COPY CoreDataStore.sln /app/CoreDataStore.sln
+COPY NuGet.config /app/NuGet.config
 WORKDIR /app
 
 RUN dotnet restore
 
-WORKDIR /app/CoreDataStore.Web
+WORKDIR /app/src/CoreDataStore.Web
 RUN npm install
 RUN npm run build
 RUN dotnet build

@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:1.0.0-preview2-windowsservercore-sdk
+FROM microsoft/windowsservercore
 MAINTAINER Stuart Shay
 LABEL version="1.0.1"
 
@@ -13,25 +13,19 @@ RUN powershell -Command \
     Start-Process -FilePath msiexec -ArgumentList /q, /i, node.msi -Wait ; \
     Remove-Item -Path node.msi
 
+RUN npm install -g gulp
+RUN npm install -g typings 
 RUN npm install -g npm3
 
-## Install Ruby
-RUN powershell -Command \
-	$ErrorActionPreference = 'Stop'; \
-	Invoke-WebRequest -Method Get -Uri https://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.3.3-x64.exe -OutFile c:\rubyinstaller.exe ; \
-	Start-Process c:\rubyinstaller.exe  -ArgumentList '/verysilent' -Wait ; \
-	Remove-Item c:\rubyinstaller.exe  -Force
-
-WORKDIR /Ruby23-x64/bin
-RUN gem install compass
-
 ## Copy SRC 
-COPY src /app
+COPY src /app/src
+COPY CoreDataStore.sln /app/CoreDataStore.sln
+COPY NuGet.config /app/NuGet.config
 WORKDIR /app
 
 RUN dotnet restore
 
-WORKDIR /app/CoreDataStore.Web
+WORKDIR /app/src/CoreDataStore.Web
 RUN npm install
 RUN npm run build
 RUN dotnet build
