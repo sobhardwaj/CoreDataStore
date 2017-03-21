@@ -16,9 +16,9 @@ install:
 build_script:  
   - docker build -f docker/nanoserver.dockerfile -t stuartshay/coredatastore:nanoserver .
 
-deploy_script:  
-  - docker login -u="stuartshay" -p="Yankees2015"
-  - docker push stuartshay/coredatastore:nanoserver
+#deploy_script:  
+#  - docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
+#  - docker push stuartshay/coredatastore:nanoserver
 
 
 

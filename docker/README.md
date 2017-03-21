@@ -10,12 +10,12 @@ docker build -f docker/aspnetcore.dockerfile -t coredatastore_web  .
 docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
 ````
 
-### Windows 
+### Windows - Nano Server 
 
 ````
 cd  CoreDataStore/
-docker build -f docker/windowsserver.dockerfile -t coredatastore_web  .
-docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
+docker build -f docker/nanoserver.dockerfile -t coredatastore_web:nanoserver  .
+docker run -it --rm --name coredatastore_web:nanoserver -p 5000:5000 coredatastore_web:nanoserver
 
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <CONTAINERID> 
 ````
