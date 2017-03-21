@@ -14,7 +14,7 @@ install:
   - docker version
 
 build_script:  
-  - docker build -f docker/windowsserver.dockerfile -t stuartshay/coredatastore-windowsservercore  .
+  - docker build -f docker/windowsserver.dockerfile -t stuartshay/nanoserver.dockerfile  .
 
 deploy_script:  
   - docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
