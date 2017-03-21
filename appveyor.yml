@@ -5,8 +5,6 @@ init:
 - dotnet --info
 
 environment:  
-  DOCKER_EMAIL:
-    secure: 592XzJRPDp5Az4mOvztB4w==
   DOCKER_USER:
     secure: tuvYPlVYg0PZLnBt+UZnxw==
   DOCKER_PASS:
@@ -19,7 +17,7 @@ build_script:
   - docker build -f docker/nanoserver.dockerfile -t stuartshay/coredatastore:nanoserver .
 
 deploy_script:  
-  - docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
+  - docker login -u="stuartshay" -p="Yankees2015"
   - docker push stuartshay/coredatastore:nanoserver
 
 
