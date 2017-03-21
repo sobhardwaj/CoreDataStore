@@ -5,6 +5,8 @@ init:
 - dotnet --info
 
 environment:  
+  DOCKER_EMAIL:
+    secure: 592XzJRPDp5Az4mOvztB4w==
   DOCKER_USER:
     secure: tuvYPlVYg0PZLnBt+UZnxw==
   DOCKER_PASS:
@@ -17,7 +19,7 @@ build_script:
   - docker build -f docker/nanoserver.dockerfile -t stuartshay/coredatastore-windowsservercore  .
 
 deploy_script:  
-  - docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
+  - docker login -e="$env:DOCKER_EMAIL" -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
   - docker push stuartshay/coredatastore-windowsservercore
 
 
