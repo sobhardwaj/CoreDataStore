@@ -4,15 +4,23 @@ image: Visual Studio 2017
 init:
 - dotnet --info
 
+environment:  
+  DOCKER_EMAIL:
+    secure: 592XzJRPDp5Az4mOvztB4w==
+  DOCKER_USER:
+    secure: tuvYPlVYg0PZLnBt+UZnxw==
+  DOCKER_PASS:
+    secure: UTjxeq5UB9NSf1QUF3rUvw==
+
 install:  
   - docker version
 
 build_script:  
-  - docker build -f docker/nanoserver.dockerfile -t stuartshay/coredatastore:nanoserver  .
+  - docker build -f docker/nanoserver.dockerfile -t stuartshay/coredatastore:nanoserver .
 
 deploy_script:  
   - docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
-  - docker push stuartshay/stuartshay/coredatastore:nanoserver
+  - docker push stuartshay/coredatastore:nanoserver
 
 
 
