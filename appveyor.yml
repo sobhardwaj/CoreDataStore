@@ -4,11 +4,27 @@ image: Visual Studio 2017
 init:
 - dotnet --info
 
-install:
-- cmd: dotnet restore 
+environment:  
+  DOCKER_USER:
+    secure: tuvYPlVYg0PZLnBt+UZnxw==
+  DOCKER_PASS:
+    secure: UTjxeq5UB9NSf1QUF3rUvw==
 
-build_script:
-- cmd: dotnet publish .\src\CoreDataStore.Web
+install:  
+  - docker version
+
+build_script:  
+  - docker build -t docker/nanoserver.dockerfile .
+
+deploy_script:  
+  - docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
+  - docker push stuartshay/coredatastore-windowsservercore
+
+
+
+
+#build_script:
+#- cmd: dotnet publish .\src\CoreDataStore.Web
 
 
 #test_script:

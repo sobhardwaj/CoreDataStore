@@ -1,4 +1,4 @@
-FROM microsoft/nanoserver
+FROM microsoft/nanoserver:1.1-sdk-msbuild-nanoserver
 MAINTAINER Stuart Shay
 LABEL version="1.1.1"
 

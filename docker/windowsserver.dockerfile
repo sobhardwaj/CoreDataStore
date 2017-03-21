@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore
+FROM microsoft/aspnet:windowsservercore
 MAINTAINER Stuart Shay
 LABEL version="1.0.1"
 
