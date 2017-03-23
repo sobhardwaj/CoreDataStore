@@ -38,16 +38,16 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <CO
  docker-compose --file docker-compose-staging.yml  up
 ````
 
-##Usefull Commands 
+## Usefull Commands 
 
-###Images 
+### Images 
 
 ```bash 
     docker images                     #Get List of Images
     docker rmi  -f <IMAGEID>          #Remove Image 
 ```
 
-###Containers 
+### Containers 
 
 ```bash 
     docker ps -a                    #All Containers
