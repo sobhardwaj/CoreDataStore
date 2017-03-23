@@ -60,7 +60,7 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <CO
     docker rm $(docker ps -a -q)
 ```
 
-###Tag & Publish
+### Tag & Publish
 
 ```bash 
 docker tag <imageid> coredatastore_web:stable
@@ -69,21 +69,21 @@ docker tag coredatastore_web:stable  stuartshay/coredatastore:stable
 docker push stuartshay/coredatastore:stable
 ```
 
-###Run 
+### Run 
 
 ```bash 
    docker pull stuartshay/coredatastore
    docker run --rm --name <containername> -p 5000:5000 stuartshay/coredatastore
 ```
 
-###Volumes 
+### Volumes 
 
 ```bash 
    docker volume ls
    docker volume rm <VOLUMENAME>
 ```
 
-##Examine Containers
+## Examine Containers
 
 ```bash 
 # Get Created DateTime  
