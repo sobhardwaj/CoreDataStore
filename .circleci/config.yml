@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/
+  docker:
+    - image: node:6.10.0
+  steps:
+    - save_cache:
+      key: v1-coredatastore-{{ checksum "project.clj" }}
+      paths:
+        - ~/.caches
+    - checkout
+    - run: sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
+    - run: sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
+    - run: sudo apt-get update
+    - run: sudo apt-get install dotnet-dev-1.0.1
+    - run: dotnet restore 
+    - run: cd src/CoreDataStore.Web
+    - run: npm install
