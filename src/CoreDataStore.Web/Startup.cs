@@ -66,9 +66,10 @@ namespace CoreDataStore.Web
                 options.DescribeAllEnumsAsStrings();
                 options.IncludeXmlComments(GetXmlCommentsPath(PlatformServices.Default.Application));
 
-            }); 
+            });
 
             // Services
+            services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped<ILPCReportService, LPCReportService>();
             services.AddScoped<ILandmarkService, LandmarkService>();
             services.AddScoped<IPlutoService, PlutoService>();
@@ -118,7 +119,7 @@ namespace CoreDataStore.Web
                 stageConnection = config["CONNECTION_PostgreSQL"];
 
             services.AddDbContext<Data.Postgre.NYCLandmarkContext>(options => options.UseNpgsql(stageConnection));
-            
+
             // Repositories
             services.AddScoped<ILPCReportRepository, Data.Postgre.Repositories.LPCReportRepository>();
             services.AddScoped<ILandmarkRepository, Data.Postgre.Repositories.LandmarkRepository>();
@@ -189,7 +190,7 @@ namespace CoreDataStore.Web
                                         await context.Response.WriteAsync(error.Error.Message).ConfigureAwait(false);
                                     }
                                 });
-                          }); 
+                          });
 
             AppConfig(app, loggerFactory);
         }
@@ -209,7 +210,7 @@ namespace CoreDataStore.Web
         }
 
         private void AppConfig(IApplicationBuilder app, ILoggerFactory loggerFactory)
-        {         
+        {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
@@ -221,7 +222,7 @@ namespace CoreDataStore.Web
             app.UseResponseHeaderMiddleware();
             app.UseMvc(ConfigureRoutes);
 
-            app.UseSwagger();  
+            app.UseSwagger();
             app.UseSwaggerUi();
 
         }

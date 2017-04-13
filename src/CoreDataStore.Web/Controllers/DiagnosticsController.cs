@@ -8,6 +8,7 @@ using CoreDataStore.Web.ViewModels;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System.Linq;
 using System.Net.Sockets;
 
@@ -17,18 +18,23 @@ namespace CoreDataStore.Web.Controllers
     /// <summary>
     /// Server Status API Controller
     /// </summary>
+    /// 
+    [EnableCors("AllowAll")]
     [Route("api/[controller]")]
     public class DiagnosticsController : Controller
     {
         private readonly IHostingEnvironment _env;
+        private readonly IConfiguration _configuration;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="env"></param>
-        public DiagnosticsController(IHostingEnvironment env)
+        /// <param name="configuration"></param>
+        public DiagnosticsController(IHostingEnvironment env, IConfiguration configuration)
         {
             this._env = env;
+            this._configuration = configuration;
         }
 
 
@@ -45,8 +51,8 @@ namespace CoreDataStore.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [EnableCors("AllowAll")]
         [ProducesResponseType(typeof(ServerDiagnostics), 200)]
+        [Produces("application/json", Type = typeof(ServerDiagnostics))]
         public ServerDiagnostics Get()
         {
             var diagnostics = new ServerDiagnostics
@@ -80,6 +86,6 @@ namespace CoreDataStore.Web.Controllers
             diagnostics.IpAddressList = ipList;
 
             return diagnostics;
-        } 
+        }
     }
 }
