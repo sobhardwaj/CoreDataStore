@@ -26,11 +26,12 @@ jobs:
       - run: apt update
       - run: apt install -y dotnet-dev-1.0.1 nodejs
       - run: dotnet restore
+      - run: dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp1.1 -r debian.8-x64
       - run: ( cd src/CoreDataStore.Web ; npm i; npm run clean ; npm run build )
       # build and push Docker image
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
-          docker build -f docker/aspnetcore.dockerfile -t stuartshay/coredatastore:$TAG .
+          docker build -f docker/runtime.dockerfile -t stuartshay/coredatastore:$TAG .
           docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker push stuartshay/coredatastore:$TAG
       - save_cache:
