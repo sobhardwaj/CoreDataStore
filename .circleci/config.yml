@@ -1,19 +1,39 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/
-  docker:
-    - image: node:6.10.0
-  steps:
-    - save_cache:
-      key: v1-coredatastore-{{ checksum "project.clj" }}
-      paths:
-        - ~/.caches
-    - checkout
-    - run: sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
-    - run: sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
-    - run: sudo apt-get update
-    - run: sudo apt-get install dotnet-dev-1.0.1
-    - run: dotnet restore 
-    - run: cd src/CoreDataStore.Web
-    - run: npm install
+    docker:
+      - image: ubuntu:16.04
+    working_directory: ~/src/CoreDataStore.Web
+    steps:
+      - checkout
+      - run: ls -la
+      - run: apt update
+      - run: apt install -y curl
+      - setup_remote_docker
+      # use a primary image that already has Docker (recommended)
+      # or install it during a build like we do here
+      - run:
+          name: Install Docker client
+          command: |
+            set -x
+            VER="17.03.0-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
+      - run: curl -sL https://deb.nodesource.com/setup_6.x | bash -
+      - run: sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
+      - run: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
+      - run: apt update
+      - run: apt install -y dotnet-dev-1.0.1 nodejs
+      - run: dotnet restore
+      - run: ( cd src/CoreDataStore.Web ; npm i; npm run clean ; npm run build )
+      # build and push Docker image
+      - run: |
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -f docker/aspnetcore.dockerfile -t stuartshay/coredatastore:$TAG .
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+          docker push stuartshay/coredatastore:$TAG
+      - save_cache:
+          key: v1-coredatastore-{{ checksum ".circleci/config.yml" }}
+          paths:
+            - ~/.caches
