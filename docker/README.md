@@ -4,11 +4,29 @@
 
 ### Linux
 
-````
+#### Publish Build Artifacts 
+
+```
+cd  CoreDataStore/
+dotnet restore
+
+dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj \
+-c Release -f netcoreapp1.1 -r debian.8-x64
+
+docker build -f docker/runtime.dockerfile -t coredatastore-runtime  .
+```
+
+#### Build in Container
+```
 cd  CoreDataStore/
 docker build -f docker/aspnetcore.dockerfile -t coredatastore_web  .
+```
+
+#### Run
+```
 docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
-````
+```
+
 
 ### Windows - Nano Server 
 
