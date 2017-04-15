@@ -43,5 +43,5 @@ jobs:
           key: v1-coredatastore-{{ checksum ".circleci/config.yml" }}
           paths:
             - ~/.caches
-            - "~/.nuget"
-            - "~/.npm"
+            - ~/.nuget
+            - ~/.npm
