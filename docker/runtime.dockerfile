@@ -13,6 +13,6 @@ EXPOSE 5000
 WORKDIR /app
 COPY src/CoreDataStore.Web/bin/Release/netcoreapp1.1/debian.8-x64/publish .
 COPY src/CoreDataStore.Web/bin/Release/netcoreapp1.1/debian.8-x64/CoreDataStore.Web.xml .
-COPY src/CoreDataStore.Web/wwwroot .
+COPY src/CoreDataStore.Web/wwwroot ./wwwroot
 
 ENTRYPOINT ["dotnet", "CoreDataStore.Web.dll"]
