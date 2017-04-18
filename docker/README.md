@@ -6,12 +6,14 @@
 
 #### Publish Build Artifacts 
 
+
 ```
 cd  CoreDataStore/
 dotnet restore
 
 dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj \
 -c Release -f netcoreapp1.1 -r debian.8-x64
+
 
 docker build -f docker/runtime.dockerfile -t coredatastore-runtime  .
 ```
@@ -30,9 +32,30 @@ docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
 
 ### Windows - Nano Server 
 
+#### Web Assets 
+```
+cd CoreDataStore.Web
+npm i; npm run clean ; npm run build
+```
+
+
+#### Web Assets 
 ````
 cd  CoreDataStore/
-docker build -f docker/nanoserver.dockerfile -t coredatastore_web:nanoserver  .
+dotnet restore
+
+dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj \
+-c Release -f netcoreapp1.1 -r win10-x64
+
+docker build -f docker/runtime.dockerfile -t coredatastore-runtime  .
+````
+
+
+
+
+
+
+````
 docker run -it --rm --name coredatastore_web:nanoserver -p 5000:5000 coredatastore_web:nanoserver
 
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <CONTAINERID> 
