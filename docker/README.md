@@ -39,11 +39,6 @@ docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
 
 ### Windows - Nano Server 
 
-
-
-
-
-#### Web Assets 
 ````
 cd  CoreDataStore/
 dotnet restore
@@ -51,14 +46,10 @@ dotnet restore
 dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj \
 -c Release -f netcoreapp1.1 -r win10-x64
 
-docker build -f docker/runtime.dockerfile -t coredatastore-runtime  .
+docker build -f docker/runtime-nanoserver.dockerfile -t coredatastore-runtime  .
 ````
 
-
-
-
-
-
+#### Run
 ````
 docker run -it --rm --name coredatastore_web:nanoserver -p 5000:5000 coredatastore_web:nanoserver
 
