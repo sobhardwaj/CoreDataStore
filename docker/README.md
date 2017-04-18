@@ -1,5 +1,16 @@
 ## Docker 
 
+Build Instructions for Docker Images      
+
+### Web Assets 
+
+```
+cd CoreDataStore.Web
+npm i
+npm run clean  
+npm run build
+```
+
 ### Linux
 
 #### Publish Build Artifacts 
@@ -28,11 +39,8 @@ docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
 
 ### Windows - Nano Server 
 
-#### Web Assets 
-```
-cd CoreDataStore.Web
-npm i; npm run clean ; npm run build
-```
+
+
 
 
 #### Web Assets 
