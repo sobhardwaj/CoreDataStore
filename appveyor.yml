@@ -23,6 +23,8 @@ install:
   - dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp1.1 -r win10-x64
   - ps: Install-Product node $env:nodejs_version
   - npm install -g npm@3
+  
+build_script:  
   - cd src/CoreDataStore.Web
   - npm i
   - npm run clean
@@ -34,10 +36,8 @@ test_script:
   - npm --version
   - docker version
 
-build_script:  
-  - ps: docker build -f docker/runtime-nanoserver.dockerfile -t "stuartshay/coredatastore:nanoserver-$env:APPVEYOR_BUILD_NUMBER" .
-
 deploy_script:  
+ - ps: docker build -f docker/runtime-nanoserver.dockerfile -t "stuartshay/coredatastore:nanoserver-$env:APPVEYOR_BUILD_NUMBER" .
  - ps: docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
  - ps: docker push "stuartshay/coredatastore:nanoserver-$env:APPVEYOR_BUILD_NUMBER"
 
