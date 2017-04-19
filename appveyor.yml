@@ -14,8 +14,8 @@ environment:
 
 cache:
   - src/CoreDataStore.Web/node_modules
-  - '%APPDATA%\npm-cache'             # npm cache
-  - '%USERPROFILE%\.nuget\packages    # package cache
+  - '%APPDATA%\npm-cache'              # npm cache
+  - '%USERPROFILE%\.nuget\packages'    # package cache
 
 install:
   - dir
