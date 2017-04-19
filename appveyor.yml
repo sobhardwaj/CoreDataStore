@@ -46,7 +46,6 @@ test_script:
   - dotnet test C:\projects\coredatastore\test\CoreDataStore.Data.SqlServer.Test\CoreDataStore.Data.SqlServer.Test.csproj
 
 deploy_script:  
- - cd C:\projects\coredatastore
  - ps: docker build -f docker/runtime-nanoserver.dockerfile -t "stuartshay/coredatastore:nanoserver-$env:APPVEYOR_BUILD_NUMBER" .
  - ps: docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
  - ps: docker push "stuartshay/coredatastore:nanoserver-$env:APPVEYOR_BUILD_NUMBER"
