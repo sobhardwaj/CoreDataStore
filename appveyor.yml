@@ -3,28 +3,47 @@ image: Visual Studio 2017
 
 init:
 - dotnet --info
+- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
-environment:  
+environment:
+  nodejs_version: "6"
   DOCKER_USER:
-    secure: tuvYPlVYg0PZLnBt+UZnxw==
+    secure: 3KiV+zYEcvwJrrLP+jZRjhY7+3s/SWUNdM8mRH4d8Kw=
   DOCKER_PASS:
-    secure: UTjxeq5UB9NSf1QUF3rUvw==
+    secure: TctN/Vl+j8edPvq1b86mDG4D8CS6DSTWMNyq1TXbB54=
 
-install:  
+cache:
+  - src/CoreDataStore.Web/node_modules
+  - '%APPDATA%\npm-cache'              # npm cache
+  - '%USERPROFILE%\.nuget\packages'    # package cache
+
+install:
+  - dir
+  - dotnet restore
+  - dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp1.1 -r win10-x64
+  - ps: Install-Product node $env:nodejs_version
+  - npm install -g npm@3
+  
+build_script:  
+  - cd src/CoreDataStore.Web
+  - npm i
+  - npm run clean
+  - npm run build
+  - cd ../..
+
+test_script:
+  - node --version
+  - npm --version
   - docker version
 
-build_script:  
-  - docker build -f docker/nanoserver.dockerfile -t stuartshay/coredatastore:nanoserver .
+deploy_script:  
+ - ps: docker build -f docker/runtime-nanoserver.dockerfile -t "stuartshay/coredatastore:nanoserver-$env:APPVEYOR_BUILD_NUMBER" .
+ - ps: docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
+ - ps: docker push "stuartshay/coredatastore:nanoserver-$env:APPVEYOR_BUILD_NUMBER"
 
-#deploy_script:  
-#  - docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
-#  - docker push stuartshay/coredatastore:nanoserver
+#on_finish:
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
-
-
-
-#build_script:
-#- cmd: dotnet publish .\src\CoreDataStore.Web
 
 
 #test_script:
