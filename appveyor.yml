@@ -14,8 +14,8 @@ environment:
 
 cache:
   - src/CoreDataStore.Web/node_modules
-  - '%APPDATA%\npm-cache'               # npm cache
-  - '%USERPROFILE%\.nuget\packages -> **\project.json'  # project.json cache
+  - '%APPDATA%\npm-cache'             # npm cache
+  - '%USERPROFILE%\.nuget\packages    # package cache
 
 install:
   - dir
@@ -41,8 +41,9 @@ deploy_script:
  - ps: docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
  - ps: docker push "stuartshay/coredatastore:nanoserver-$env:APPVEYOR_BUILD_NUMBER"
 
-#on_finish:
-#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
 
 
 #test_script:
