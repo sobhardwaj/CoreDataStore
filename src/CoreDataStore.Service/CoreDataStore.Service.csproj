@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="5.2.0" />
-    <PackageReference Include="FluentValidation" Version="6.4.0-rc4" />
+    <PackageReference Include="FluentValidation" Version="7.0.0-beta2" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
   </ItemGroup>
 
