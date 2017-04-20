@@ -28,8 +28,8 @@ Visual Studio 2017
 ### Web Application
 
 ```bash
-nodejs version: 6.x    
-npm3, gulp, typings 
+nodejs version: >= 4.x
+npm version: >= 3
 ```
 
 ## Build Web Application
