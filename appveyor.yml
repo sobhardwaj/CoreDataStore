@@ -20,7 +20,6 @@ cache:
 services:
   - mssql2016
 
-
 install:
   - dir
   - dotnet restore
@@ -43,6 +42,7 @@ test_script:
   - node --version
   - npm --version
   - docker version
+  - dotnet test C:\projects\coredatastore\test\CoreDataStore.Data.SqlServer.Test\CoreDataStore.Data.SqlServer.Test.csproj
 
 deploy_script:  
  - cd C:\projects\coredatastore
