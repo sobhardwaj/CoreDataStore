@@ -1,7 +1,7 @@
 /// <binding BeforeBuild='build' />
 "use strict";
 
-const fs = require('fs'),
+var fs = require('fs'),
   del = require('del'),
   path = require('path'),
   gulp = require('gulp'),
@@ -21,10 +21,10 @@ const fs = require('fs'),
   cssPrefixer = require('gulp-autoprefixer'),
   merge = require('merge-stream');
 
-const SystemBuilder = require('systemjs-builder');
-const tsProject = tsc.createProject('tsconfig.json');
+var SystemBuilder = require('systemjs-builder');
+var tsProject = tsc.createProject('tsconfig.json');
 
-const buildDir = "wwwroot";
+var buildDir = "wwwroot";
 var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || '';
 var BUILD = process.env.BUILD || 'local';
 var LANDMARK = process.env.LANDMARK || '/api/';
