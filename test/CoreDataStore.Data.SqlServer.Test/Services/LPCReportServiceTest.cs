@@ -40,9 +40,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
             AutoMapperConfiguration.Configure();
         }
 
-        //[Fact]
-        [Fact(Skip = "ci test")]
-        [Category("SQL-IntergrationTest")]
+
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Filtered_Paging_List()
         {
             //int count = 0;
