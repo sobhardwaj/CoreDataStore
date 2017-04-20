@@ -53,11 +53,3 @@ deploy_script:
 #on_finish:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
-
-
-
-#test_script:
-#- ps: foreach ($d in dir .\test |? {$_.PSIsContainer -eq $True}){ &"dotnet" "test" $d.FullName }
-
-#artifacts:
-#  path: .\src\CoreDataStore.Web\bin\Debug\netcoreapp1.0\publish
