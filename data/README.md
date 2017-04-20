@@ -1,5 +1,8 @@
 ## SQL Server Data-tier
 
+### NycLandmarks.dacpac    
+Landmarks Database Schema
+
 ### NycLandmarks.bacpac     
 Landmarks Database Schema & Data  
 
@@ -9,8 +12,4 @@ Click on SQL Server Database Folder in Mangement Studio
 Select Import Data-Tier Application          
 Except Defaults       
 
-## Appveyor
-
-### Running Mangement Studio
-SQL Server 2014 => SQL Server Management Studio
-
+![SQL Server EM](../assets/SQL-DT.png)
