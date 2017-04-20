@@ -15,6 +15,10 @@
     "tsc:w": "./node_modules/.bin/tsc -w",
     "typings": "./node_modules/.bin/typings"
   },
+  "engines": {
+    "node": ">=4",
+    "npm": ">=3"
+  },
   "dependencies": {
     "@angular/common": "^2.0.1",
     "@angular/compiler": "^2.0.1",
