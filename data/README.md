@@ -12,4 +12,7 @@ Click on SQL Server Database Folder in Mangement Studio
 Select Import Data-Tier Application          
 Except Defaults       
 
-![SQL Server EM](../assets/SQL-DT.png)
+### SQL Database Files 
+NycLandmarks.zip => MDF, LOG Files   
+
+

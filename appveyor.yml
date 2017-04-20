@@ -17,6 +17,10 @@ cache:
   - '%APPDATA%\npm-cache'              # npm cache
   - '%USERPROFILE%\.nuget\packages'    # package cache
 
+services:
+  - mssql2016
+
+
 install:
   - dir
   - dotnet restore
