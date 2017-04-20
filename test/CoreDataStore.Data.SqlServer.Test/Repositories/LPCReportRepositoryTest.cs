@@ -69,7 +69,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        [Fact, Trait("Category", "Intergration")]
+        //[Fact]
+        [Fact(Skip = "ci test")]
         public void Can_Get_Included_Fields()
         {
             var lpNumber = "LP-00871";
