@@ -32,7 +32,7 @@
       // 'ng2-dnd': 'libs:ng2-dnd/bundles/index.umd.js',
       'angular2-toaster': 'libs:angular2-toaster',
       'angular2-google-maps': 'libs:angular2-google-maps/core/index.js',
-      'ng2-bootstrap': 'libs:ng2-bootstrap',
+      'ngx-bootstrap': 'libs:ngx-bootstrap',
       'ng2-table': 'libs:ng2-table',
       'ng2-select': 'libs:ng2-select'
 
@@ -42,7 +42,9 @@
       app: { main: 'main.js', defaultExtension: 'js' },
       rxjs: { defaultExtension: 'js' },
       'ng2-select': { defaultExtension: 'js' },
-      'ng2-bootstrap': { defaultExtension: 'js' },
+      'ngx-bootstrap/collapse': { main: 'index.js', defaultExtension: 'js' },
+      'ngx-bootstrap/datepicker': { main: 'index.js', defaultExtension: 'js' },
+      'ngx-bootstrap/pagination': { main: 'index.js', defaultExtension: 'js' },
       'angular2-in-memory-web-api': { main: './index.js', defaultExtension: 'js' }
     }
   });
