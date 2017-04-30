@@ -53,12 +53,12 @@ gulp.task('ghpage', function() {
 /**
  * Compile all SASS files.
  */
-gulp.task('sass', function() {
-  return gulp.src('src/sass/app.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(cssmin())
-    .pipe(gulp.dest(path.join(buildDir, "css")));
-});
+// gulp.task('sass', function() {
+//   return gulp.src('src/sass/app.scss')
+//     .pipe(sass().on('error', sass.logError))
+//     .pipe(cssmin())
+//     .pipe(gulp.dest(path.join(buildDir, "css")));
+// });
 
 /**
  * Compile all Less files.
@@ -76,8 +76,10 @@ gulp.task("less", function() {
  */
 gulp.task('tslint', () => {
   return gulp.src("src/**/*.ts")
-    .pipe(tslint())
-    .pipe(tslint.report('prose'));
+    .pipe(tslint({
+      formatter: "verbose"
+    }))
+    .pipe(tslint.report());
 });
 
 
@@ -100,11 +102,9 @@ gulp.task('shims', () => {
 gulp.task('tsc', ['tslint'], () => {
   var tsDest = (NG_ENVIRONMENT === 'Dev') ? (buildDir + '/app') : '.tmp';
   var tsProject = tsc.createProject('tsconfig.json'),
-    tsResult = tsProject.src()
-    .pipe(tsc(tsProject));
+    tsResult = tsProject.src().pipe(tsProject());
 
-  return tsResult.js
-    .pipe(gulp.dest(tsDest));
+  return tsResult.js.pipe(gulp.dest(tsDest));
 });
 
 gulp.task('compile', ['tsc'], () => {

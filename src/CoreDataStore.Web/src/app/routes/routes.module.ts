@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 // import { DndModule } from 'ng2-dnd';
-import { InfiniteScrollModule } from 'angular2-infinite-scroll';
-import { AgmCoreModule } from 'angular2-google-maps';
+// import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+// import { AgmCoreModule } from 'angular2-google-maps';
 import { SelectModule } from 'ng2-select/ng2-select';
-import { Ng2TableModule } from 'ng2-table/ng2-table';
+// import { Ng2TableModule } from 'ng2-table/ng2-table';
 
 import { MenuService } from '../core/menu/menu.service';
 
@@ -28,14 +28,14 @@ import appRoutes from './routes';
 @NgModule({
   imports: [
     SharedModule,
-    Ng2TableModule,
+    // Ng2TableModule,
     SelectModule,
     // DndModule.forRoot(),
-    InfiniteScrollModule,
+    // InfiniteScrollModule,
     RouterModule.forRoot(appRoutes, { useHash: true }),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyA8okzgfpEduXDLlebJtrgw6cmexiGNoN0'
-    })
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyA8okzgfpEduXDLlebJtrgw6cmexiGNoN0'
+    // })
   ],
   declarations: [
     HomeComponent,
@@ -51,9 +51,9 @@ import appRoutes from './routes';
   exports: [
     RouterModule,
     // DndModule,
-    Ng2TableModule,
-    AgmCoreModule,
-    InfiniteScrollModule,
+    // Ng2TableModule,
+    // AgmCoreModule,
+    // InfiniteScrollModule,
     HomeComponent,
     DiagnosticsComponent,
     FilterSelectboxComponent,
