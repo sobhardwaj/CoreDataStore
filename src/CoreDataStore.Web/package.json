@@ -46,7 +46,7 @@
     "reflect-metadata": "^0.1.10",
     "systemjs": "^0.20.12",
     "rxjs": "5.3.0",
-    "zone.js": "^0.8.8"
+    "zone.js": "^0.8.8",
     "angular2-google-maps": "^0.16.0",
     "ng2-translate": "^4.2.0"
   },
