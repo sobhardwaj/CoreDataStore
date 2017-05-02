@@ -119,7 +119,7 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
     return [(mm.length === 2 && '0') + mm, (dd.length === 2 && '0') + dd, date.getFullYear()].join('/'); // padding
   };
 
-  public onSubmit(values: Object) {
+  public onSubmit(values: LPCReport) {
     this.submitted = true;
     if (this.form.valid) {
       let details: LPCReport = values;

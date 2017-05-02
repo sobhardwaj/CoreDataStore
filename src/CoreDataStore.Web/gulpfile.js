@@ -1,7 +1,7 @@
 /// <binding BeforeBuild='build' />
 "use strict";
 
-const fs = require('fs'),
+var fs = require('fs'),
   del = require('del'),
   path = require('path'),
   gulp = require('gulp'),
@@ -21,10 +21,10 @@ const fs = require('fs'),
   cssPrefixer = require('gulp-autoprefixer'),
   merge = require('merge-stream');
 
-const SystemBuilder = require('systemjs-builder');
-const tsProject = tsc.createProject('tsconfig.json');
+var SystemBuilder = require('systemjs-builder');
+var tsProject = tsc.createProject('tsconfig.json');
 
-const buildDir = "wwwroot";
+var buildDir = "wwwroot";
 var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || '';
 var BUILD = process.env.BUILD || 'local';
 var LANDMARK = process.env.LANDMARK || '/api/';
@@ -53,12 +53,12 @@ gulp.task('ghpage', function() {
 /**
  * Compile all SASS files.
  */
-gulp.task('sass', function() {
-  return gulp.src('src/sass/app.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(cssmin())
-    .pipe(gulp.dest(path.join(buildDir, "css")));
-});
+// gulp.task('sass', function() {
+//   return gulp.src('src/sass/app.scss')
+//     .pipe(sass().on('error', sass.logError))
+//     .pipe(cssmin())
+//     .pipe(gulp.dest(path.join(buildDir, "css")));
+// });
 
 /**
  * Compile all Less files.
@@ -76,8 +76,10 @@ gulp.task("less", function() {
  */
 gulp.task('tslint', () => {
   return gulp.src("src/**/*.ts")
-    .pipe(tslint())
-    .pipe(tslint.report('prose'));
+    .pipe(tslint({
+      formatter: "verbose"
+    }))
+    .pipe(tslint.report());
 });
 
 
@@ -100,11 +102,9 @@ gulp.task('shims', () => {
 gulp.task('tsc', ['tslint'], () => {
   var tsDest = (NG_ENVIRONMENT === 'Dev') ? (buildDir + '/app') : '.tmp';
   var tsProject = tsc.createProject('tsconfig.json'),
-    tsResult = tsProject.src()
-    .pipe(tsc(tsProject));
+    tsResult = tsProject.src().pipe(tsProject());
 
-  return tsResult.js
-    .pipe(gulp.dest(tsDest));
+  return tsResult.js.pipe(gulp.dest(tsDest));
 });
 
 gulp.task('compile', ['tsc'], () => {
