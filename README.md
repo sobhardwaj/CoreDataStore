@@ -6,8 +6,8 @@ Build
 [![Build Status](https://travis-ci.org/AngularVN/CoreDataStore.svg?branch=master)](https://travis-ci.org/AngularVN/CoreDataStore)
 
 Dependencies      
-[![dependencies Status](https://david-dm.org/stuartshay/CoreDataStore/status.svg)](https://david-dm.org/AngularVN/CoreDataStore)
-[![devDependencies Status](https://david-dm.org/stuartshay/CoreDataStore/dev-status.svg)](https://david-dm.org/AngularVN/CoreDataStore?type=dev)
+[![dependencies Status](https://david-dm.org/stuartshay/CoreDataStore/status.svg)](https://david-dm.org/stuartshay/CoreDataStore)
+[![devDependencies Status](https://david-dm.org/stuartshay/CoreDataStore/dev-status.svg)](https://david-dm.org/stuartshay/CoreDataStore?type=dev)
 [![Code Climate](https://codeclimate.com/github/AngularVN/CoreDataStore/badges/gpa.svg)](https://codeclimate.com/github/AngularVN/CoreDataStore)
 
 
