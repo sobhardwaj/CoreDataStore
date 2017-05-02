@@ -26,13 +26,11 @@ Environment Linux/Unix
 ```bash
 export NG_ENVIRONMENT=Dev
 export LANDMARK=http://informationcart.eastus2.cloudapp.azure.com:80/api/
-export MAPSAPI=http://informationcart.eastus2.cloudapp.azure.com:82/api/
 ```
 Environment Windows
 ```bash
 set NG_ENVIRONMENT=Dev
 set LANDMARK=http://informationcart.eastus2.cloudapp.azure.com:80/api/
-set MAPSAPI=http://informationcart.eastus2.cloudapp.azure.com:82/api/
 ```
 
 Build the project:
