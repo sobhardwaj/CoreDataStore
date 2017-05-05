@@ -1,6 +1,6 @@
+declare var $: any;
 import { Component, ViewEncapsulation, HostBinding, OnInit } from '@angular/core';
 import { SettingsService } from './core/settings/settings.service';
-declare var $: any;
 
 @Component({
   selector: 'app-root',
