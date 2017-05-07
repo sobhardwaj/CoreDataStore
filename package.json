@@ -1,6 +1,6 @@
 {
   "name": "CoreDataStore",
-  "version": "1.0.10",
+  "version": "1.0.0",
   "description": "CoreDataStore Angular2 with TypeScript and Gulp",
   "private": true,
   "scripts": {
