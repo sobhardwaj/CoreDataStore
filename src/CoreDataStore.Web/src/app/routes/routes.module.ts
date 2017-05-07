@@ -5,7 +5,7 @@ import { AgGridModule } from 'ag-grid-angular';
 // import { AgmCoreModule } from '@agm/core';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { SelectModule } from 'ng2-select/ng2-select';
-// import { Ng2TableModule } from 'ng2-table/ng2-table';
+import { Ng2TableModule } from 'ng2-table/ng2-table';
 
 import { MenuService } from '../core/menu/menu.service';
 
@@ -27,7 +27,7 @@ import appRoutes from './routes';
 @NgModule({
   imports: [
     SharedModule,
-    // Ng2TableModule,
+    Ng2TableModule,
     SelectModule,
 
     RouterModule.forRoot(appRoutes, { useHash: true }),
