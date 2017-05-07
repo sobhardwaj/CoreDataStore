@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule, Http } from '@angular/http';
-import { SelectModule } from 'ng2-select/ng2-select';
-import { ToasterModule } from 'angular2-toaster/angular2-toaster';
+import { ToasterModule } from 'angular2-toaster';
 
-import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { DatepickerModule } from 'ngx-bootstrap/datepicker';
-import { PaginationModule } from 'ngx-bootstrap/pagination';
+// import { CollapseModule } from 'ngx-bootstrap/collapse';
+// import { DatepickerModule } from 'ngx-bootstrap/datepicker';
+// import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { CollapseModule, PaginationModule } from 'ngx-bootstrap';
 
 import { ColorsService } from './colors/colors.service';
 import { SessionService } from './services/session';
@@ -25,8 +25,10 @@ import { TrimPipe } from './pipes/trim';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    DatepickerModule.forRoot(), PaginationModule.forRoot(), CollapseModule.forRoot(),
-    SelectModule,
+    // DatepickerModule.forRoot(),
+    PaginationModule.forRoot(),
+    CollapseModule.forRoot(),
+
     ToasterModule
   ],
   providers: [
@@ -46,7 +48,10 @@ import { TrimPipe } from './pipes/trim';
     ReactiveFormsModule,
     HttpModule,
     RouterModule,
-    DatepickerModule, PaginationModule, CollapseModule,
+
+    // DatepickerModule,
+    PaginationModule,
+    CollapseModule,
     ToasterModule,
 
     TrimPipe,

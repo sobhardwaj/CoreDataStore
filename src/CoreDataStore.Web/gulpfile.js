@@ -22,7 +22,6 @@ var fs = require('fs'),
   merge = require('merge-stream');
 
 var SystemBuilder = require('systemjs-builder');
-var tsProject = tsc.createProject('tsconfig.json');
 
 var buildDir = "wwwroot";
 var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || '';
@@ -110,7 +109,7 @@ gulp.task('tsc', ['tslint'], () => {
 gulp.task('compile', ['tsc'], () => {
   if (NG_ENVIRONMENT !== 'Dev') {
     var builder = new SystemBuilder();
-    return builder.loadConfig('systemjs.config.js')
+    return builder.loadConfig('systemjs.build.js')
       .then(() => builder.buildStatic('app', path.join(buildDir, 'js', 'bundle.js')));
   }
   return;
@@ -211,9 +210,8 @@ gulp.task("node_modules", () => {
         'angular2-infinite-scroll/**',
         'angular2-toaster/**',
         'angular2-google-maps/**',
-        'ng2-translate/**',
         'ng2-table/**',
-        'ng2-bootstrap/**',
+        'ngx-bootstrap/**',
         'screenfull/dist/screenfull.js',
         'jquery/dist/jquery.js',
         'jquery.browser/dist/jquery.browser.js',
