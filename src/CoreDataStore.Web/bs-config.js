@@ -1,6 +1,6 @@
 var proxyMiddleware = require('http-proxy-middleware');
 var fallbackMiddleware = require('connect-history-api-fallback');
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 5000;
 var ApiEndpoint = process.env.APIENDPOINT || 'localhost';
 var PortEndpoint = process.env.PORTENDPOINT || 5000;
 module.exports = {
