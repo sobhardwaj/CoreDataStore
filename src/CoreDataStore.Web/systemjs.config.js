@@ -34,13 +34,19 @@
       'ngx-bootstrap': 'npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.js',
       // 'ngx-bootstrap': 'npm:ngx-bootstrap',
       'ng2-table': 'npm:ng2-table',
-      'ng2-select': 'npm:ng2-select'
+      'ng2-select': 'npm:ng2-select',
+      // ag libraries
+      'ag-grid-angular': 'npm:ag-grid-angular',
+      'ag-grid-ng2': 'npm:ag-grid-ng2',
+      'ag-grid': 'npm:ag-grid',
 
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
       app: { main: 'main.js', defaultExtension: 'js' },
       rxjs: { defaultExtension: 'js' },
+      'ag-grid': { main: 'main.js', defaultExtension: 'js' },
+      'ag-grid-ng2': { main: 'main.js', defaultExtension: 'js' },
       'ng2-select': { defaultExtension: 'js' },
       'ng2-table': { defaultExtension: 'js' },
       'angular2-in-memory-web-api': { main: './index.js', defaultExtension: 'js' }
