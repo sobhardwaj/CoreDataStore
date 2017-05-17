@@ -1,7 +1,9 @@
+import * as moment from 'moment';
+
 import { Component, Input, OnInit, AfterViewChecked, ChangeDetectionStrategy } from '@angular/core';
 // import { Location } from '@angular/common';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
-// import { ToasterService, ToasterConfig } from 'angular2-toaster/angular2-toaster';
+import { ToasterService, ToasterConfig } from 'angular2-toaster';
 
 import { LPCReport } from '../models/lpcreport';
 import { LPCReportService } from '../services/lpcreport';
@@ -16,11 +18,11 @@ import { SessionService } from '../../../shared/services/session';
 export class DetailFormComponent implements OnInit, AfterViewChecked {
   // TOASTER
   toaster: any;
-  // toasterConfig: any;
-  // toasterconfig: ToasterConfig = new ToasterConfig({
-  //   positionClass: 'toast-bottom-right',
-  //   showCloseButton: true
-  // });
+  toasterConfig: any;
+  toasterconfig: ToasterConfig = new ToasterConfig({
+    positionClass: 'toast-bottom-right',
+    showCloseButton: true
+  });
 
   @Input() details: any;
 
@@ -38,16 +40,17 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
 
   public submitted: boolean = false;
   public formInitted: boolean = false;
-
+  public isCollapsed: boolean = true;
+  public dt: any;
 
   constructor(
-    // private toasterService: ToasterService,
+    private toasterService: ToasterService,
     private builder: FormBuilder,
     private session: SessionService,
     // private location: Location,
     private referenceService: ReferencesService,
     private lpcReportService: LPCReportService
-    ) {
+  ) {
     this.form = this.builder.group({
       'name': ['', Validators.compose([Validators.required])],
       'objectType': ['', Validators.compose([Validators.required])],
@@ -101,6 +104,7 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
     if (this.details && !this.formInitted) {
       this.form.patchValue(this.details, { onlySelf: true });
       this.formInitted = true;
+      this.dt = moment(this.details.dateDesignated);
     }
   };
 
@@ -111,7 +115,7 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
       title: title || '',
       text: message
     };
-    // this.toasterService.pop(this.toaster.type, this.toaster.title, this.toaster.text);
+    this.toasterService.pop(this.toaster.type, this.toaster.title, this.toaster.text);
   };
 
   getDateFormatted(date) {
@@ -119,6 +123,13 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
     var dd = date.getDate();
     return [(mm.length === 2 && '0') + mm, (dd.length === 2 && '0') + dd, date.getFullYear()].join('/'); // padding
   };
+
+  dateChanged(date: any) {
+    let dt = moment(date);
+    if (dt.isValid()) {
+      this.form.controls['dateDesignated'].setValue(dt.format('YYYY-MM-DD'));
+    }
+  }
 
   public onSubmit(values: LPCReport) {
     this.submitted = true;

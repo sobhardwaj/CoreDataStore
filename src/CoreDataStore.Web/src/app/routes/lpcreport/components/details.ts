@@ -1,12 +1,15 @@
+declare var $: any;
+import * as _ from 'lodash';
 import { Component, ViewContainerRef, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { GridOptions } from 'ag-grid';
+
 
 import { DetailFormComponent } from './detailForm';
 import { LPCReportService } from '../services/lpcreport';
 import { PlutoService } from '../services/pluto';
 import { ReferencesService } from '../../references/services/references';
-declare var $: any;
 
 @Component({
   selector: 'properties-details',
@@ -18,6 +21,7 @@ declare var $: any;
 export class DetailsComponent implements OnInit, OnDestroy {
   public title: string;
   public details: any;
+  public gridOptions: any;
   public landmarkProperties: any = [];
   public mapMarkers: any = [];
   public sub: any = null;
@@ -25,16 +29,16 @@ export class DetailsComponent implements OnInit, OnDestroy {
   private ng2TableData: Array < any > = [];
   public rows: Array < any > = [];
   public columns: Array < any > = [
-    { title: 'Id', name: 'id', sort: 'asc' },
-    { title: 'BLL', name: 'bbl' },
-    { title: 'BIN_NUMBER', name: 'binNumber' },
-    { title: 'BoroughID', name: 'boroughId' },
-    { title: 'BLOCK', name: 'block' },
-    { title: 'LOT', name: 'lot' },
-    { title: 'LP_NUMBER', name: 'lpNumber' },
-    { title: 'LM_NAME', name: 'name' },
-    { title: 'PLUTO_ADDR', name: 'designatedAddress' },
-    { title: 'DESIG_ADDR', name: 'plutoAddress' }
+    { headerName: 'Id', field: 'id', sort: 'asc', width: 80 },
+    { headerName: 'BLL', field: 'bbl', width: 120 },
+    { headerName: 'BIN_NUMBER', field: 'binNumber', width: 120 },
+    { headerName: 'BoroughID', field: 'boroughId', width: 100 },
+    { headerName: 'BLOCK', field: 'block', width: 100 },
+    { headerName: 'LOT', field: 'lot', width: 80 },
+    { headerName: 'LP_NUMBER', field: 'lpNumber', width: 150 },
+    { headerName: 'LM_NAME', field: 'name', width: 180 },
+    { headerName: 'PLUTO_ADDR', field: 'designatedAddress', width: 180 },
+    { headerName: 'DESIG_ADDR', field: 'plutoAddress', width: 180 }
   ];
   public page: number = 1;
   public itemsPerPage: number = 10;
@@ -49,6 +53,9 @@ export class DetailsComponent implements OnInit, OnDestroy {
     // filtering: { filterString: '' },
     className: ['table-striped', 'table-bordered']
   };
+  resizeEvent = 'resize.ag-grid';
+  $win = $(window);
+
 
   /*@Inject(ActivatedRoute) */
   /*overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal*/
@@ -64,8 +71,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
           this.lpcReportService.getLandmarkProperties(this.details.lpNumber).subscribe(
             data => {
               this.landmarkProperties = data || [];
-              this.ng2TableData = this.landmarkProperties;
+              // this.ng2TableData = this.landmarkProperties;
               this.length = this.landmarkProperties.length;
+              this.gridOptions.api.setRowData(this.landmarkProperties);
+              // this.gridOptions.api.sizeColumnsToFit();
             },
             err => console.log(err)
           );
@@ -78,6 +87,19 @@ export class DetailsComponent implements OnInit, OnDestroy {
         err => console.log(err)
       );
     });
+
+    // ag-grid
+    this.gridOptions = < GridOptions > {
+      columnDefs: this.columns,
+      rowData: null,
+      gridReady: (params) => {
+        // params.api.sizeColumnsToFit();
+        // this.$win.on(this.resizeEvent, () => {
+        //   setTimeout(() => { params.api.sizeColumnsToFit(); });
+        // });
+      }
+    };
+
   }
 
   ngOnInit() {
@@ -87,6 +109,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+    this.$win.off(this.resizeEvent);
   }
 
   public changePage(page: any, data: Array < any > = this.ng2TableData): Array < any > {

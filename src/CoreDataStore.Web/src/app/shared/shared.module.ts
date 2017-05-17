@@ -8,7 +8,7 @@ import { ToasterModule } from 'angular2-toaster';
 // import { CollapseModule } from 'ngx-bootstrap/collapse';
 // import { DatepickerModule } from 'ngx-bootstrap/datepicker';
 // import { PaginationModule } from 'ngx-bootstrap/pagination';
-import { CollapseModule, PaginationModule } from 'ngx-bootstrap';
+import { CollapseModule, DatepickerModule, PaginationModule } from 'ngx-bootstrap';
 
 import { ColorsService } from './colors/colors.service';
 import { SessionService } from './services/session';
@@ -25,7 +25,7 @@ import { TrimPipe } from './pipes/trim';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    // DatepickerModule.forRoot(),
+    DatepickerModule.forRoot(),
     PaginationModule.forRoot(),
     CollapseModule.forRoot(),
 
@@ -49,7 +49,7 @@ import { TrimPipe } from './pipes/trim';
     HttpModule,
     RouterModule,
 
-    // DatepickerModule,
+    DatepickerModule,
     PaginationModule,
     CollapseModule,
     ToasterModule,
