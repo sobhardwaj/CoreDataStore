@@ -14,7 +14,10 @@
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
       '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
+      '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
+      '@angular/animations/browser': 'npm:@angular/animations/bundles/animations-browser.umd.js',
       '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
+      '@angular/platform-browser/animations': 'npm:@angular/platform-browser/bundles/platform-browser-animations.umd.js',
       '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
       '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
@@ -29,12 +32,11 @@
       'jquery': 'npm:jquery/dist/jquery.js',
       'jquery.browser': 'npm:jquery.browser/dist/jquery.browser.js',
       'screenfull': 'npm:screenfull/dist/screenfull.js',
-      'angular2-toaster': 'npm:angular2-toaster/bundles/angular2-toaster.umd.js',
       'angular2-google-maps/core': 'npm:angular2-google-maps/core/core.umd.js',
       // 'ngx-bootstrap': 'npm:ngx-bootstrap',
       'ngx-bootstrap': 'npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js',
       'ngx-bootstrap/*': 'npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js',
-      'ngx-bootstrap/sortable.js': 'npm:ngx-bootstrap/sortable/index.js',
+      'ng2-toastr': 'npm:ng2-toastr',
       'ng2-table': 'npm:ng2-table',
       'ng2-select': 'npm:ng2-select',
       // ag libraries
@@ -51,6 +53,7 @@
       'ag-grid': { main: 'main.js', defaultExtension: 'js' },
       'ag-grid-ng2': { main: 'main.js', defaultExtension: 'js' },
       'ng2-select': { defaultExtension: 'js' },
+      'ng2-toastr': { defaultExtension: 'js' },
       'ng2-table': { defaultExtension: 'js' },
       'angular2-in-memory-web-api': { main: './index.js', defaultExtension: 'js' }
     }
