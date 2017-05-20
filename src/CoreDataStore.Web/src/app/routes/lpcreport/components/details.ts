@@ -55,6 +55,11 @@ export class DetailsComponent implements OnInit, OnDestroy {
           this.lpcReportService.getLandmarkProperties(this.details.lpNumber).subscribe(
             data => {
               this.landmarkProperties = data || [];
+              if (this.landmarkProperties.length > 1) {
+                this.setWidthAndHeight('100%', '100%');
+              } else {
+                this.setWidthAndHeight('100%', '70px');
+              }
               this.gridOptions.api.setRowData(this.landmarkProperties);
             },
             err => console.log(err)
@@ -81,11 +86,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
       enableSorting: true,
       enableFilter: true,
       gridReady: (params) => {
-        if (this.landmarkProperties.length > 1) {
-          this.setWidthAndHeight('100%', '100%');
-        } else {
-          this.setWidthAndHeight('100%', '70px');
-        }
         //   params.api.setWidthAndHeight('100%','100%');
         //   params.api.sizeColumnsToFit();
         //   this.$win.on(this.resizeEvent, () => {
