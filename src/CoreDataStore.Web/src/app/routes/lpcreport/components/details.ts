@@ -1,6 +1,5 @@
 declare var $: any;
-import * as _ from 'lodash';
-import { Component, ViewContainerRef, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, ViewContainerRef, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { GridOptions } from 'ag-grid';
@@ -25,9 +24,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public landmarkProperties: any = [];
   public mapMarkers: any = [];
   public sub: any = null;
-  // ng2Table
-  private ng2TableData: Array < any > = [];
-  public rows: Array < any > = [];
   public columns: Array < any > = [
     { headerName: 'Id', field: 'id', sort: 'asc', width: 80 },
     { headerName: 'BLL', field: 'bbl', width: 120 },
@@ -40,26 +36,14 @@ export class DetailsComponent implements OnInit, OnDestroy {
     { headerName: 'PLUTO_ADDR', field: 'designatedAddress', width: 180 },
     { headerName: 'DESIG_ADDR', field: 'plutoAddress', width: 180 }
   ];
-  public page: number = 1;
-  public itemsPerPage: number = 10;
-  public maxSize: number = 5;
-  public numPages: number = 1;
-  public length: number = 0;
-
-
-  public config: any = {
-    paging: true,
-    sorting: { columns: this.columns },
-    // filtering: { filterString: '' },
-    className: ['table-striped', 'table-bordered']
-  };
-  resizeEvent = 'resize.ag-grid';
-  $win = $(window);
-
 
   /*@Inject(ActivatedRoute) */
   /*overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal*/
-  constructor(private lpcReportService: LPCReportService, private plutoService: PlutoService, private route: ActivatedRoute) {
+  constructor(
+    private lpcReportService: LPCReportService,
+    private plutoService: PlutoService,
+    private elem: ElementRef,
+    private route: ActivatedRoute) {
     // overlay.defaultViewContainer = vcRef;
     this.sub = this.route.params.subscribe(params => {
       let id = +params['id'];
@@ -71,10 +55,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
           this.lpcReportService.getLandmarkProperties(this.details.lpNumber).subscribe(
             data => {
               this.landmarkProperties = data || [];
-              // this.ng2TableData = this.landmarkProperties;
-              this.length = this.landmarkProperties.length;
               this.gridOptions.api.setRowData(this.landmarkProperties);
-              // this.gridOptions.api.sizeColumnsToFit();
             },
             err => console.log(err)
           );
@@ -92,119 +73,42 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.gridOptions = < GridOptions > {
       columnDefs: this.columns,
       rowData: null,
+      // pagination: true,
+      // paginationAutoPageSize: true,
+      // paginationPageSize: 100,
+      // paginationStartPage: 1,
+      enableColResize: true,
+      enableSorting: true,
+      enableFilter: true,
       gridReady: (params) => {
-        // params.api.sizeColumnsToFit();
-        // this.$win.on(this.resizeEvent, () => {
-        //   setTimeout(() => { params.api.sizeColumnsToFit(); });
-        // });
+        if (this.landmarkProperties.length > 1) {
+          this.setWidthAndHeight('100%', '100%');
+        } else {
+          this.setWidthAndHeight('100%', '70px');
+        }
+        //   params.api.setWidthAndHeight('100%','100%');
+        //   params.api.sizeColumnsToFit();
+        //   this.$win.on(this.resizeEvent, () => {
+        //     setTimeout(() => { params.api.sizeColumnsToFit(); });
+        //   });
       }
     };
-
   }
 
   ngOnInit() {
-    this.onChangeTable(this.config);
     $(window).scrollTop(0, 0);
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-    this.$win.off(this.resizeEvent);
   }
 
-  public changePage(page: any, data: Array < any > = this.ng2TableData): Array < any > {
-    let start = (page.page - 1) * page.itemsPerPage;
-    let end = page.itemsPerPage > -1 ? (start + page.itemsPerPage) : data.length;
-    return (data && data.length) ? data.slice(start, end) : data;
-  }
+  public changePage(page: any) {}
 
-  public changeSort(data: any, config: any): any {
-    if (!config.sorting) {
-      return data;
-    }
-
-    let columns = this.config.sorting.columns || [];
-    let columnName: string = void 0;
-    let sort: string = void 0;
-
-    for (let i = 0; i < columns.length; i++) {
-      if (columns[i].sort !== '' && columns[i].sort !== false) {
-        columnName = columns[i].name;
-        sort = columns[i].sort;
-      }
-    }
-
-    if (!columnName) {
-      return data;
-    }
-
-    // simple sorting
-    if (data) {
-      return data.sort((previous: any, current: any) => {
-        if (previous[columnName] > current[columnName]) {
-          return sort === 'desc' ? -1 : 1;
-        } else if (previous[columnName] < current[columnName]) {
-          return sort === 'asc' ? -1 : 1;
-        }
-        return 0;
-      });
-    } else {
-      return data;
-    }
-  }
-
-  public changeFilter(data: any, config: any): any {
-    let filteredData: Array < any > = data;
-    this.columns.forEach((column: any) => {
-      if (column.filtering) {
-        filteredData = filteredData.filter((item: any) => {
-          return item[column.name].match(column.filtering.filterString);
-        });
-      }
-    });
-
-    if (!config.filtering) {
-      return filteredData;
-    }
-
-    if (config.filtering.columnName) {
-      return filteredData.filter((item: any) =>
-        item[config.filtering.columnName].match(this.config.filtering.filterString));
-    }
-
-    let tempArray: Array < any > = [];
-    filteredData.forEach((item: any) => {
-      let flag = false;
-      this.columns.forEach((column: any) => {
-        if (item[column.name].toString().match(this.config.filtering.filterString)) {
-          flag = true;
-        }
-      });
-      if (flag) {
-        tempArray.push(item);
-      }
-    });
-    filteredData = tempArray;
-
-    return filteredData;
-  }
-
-  public onChangeTable(config: any, page: any = { page: this.page, itemsPerPage: this.itemsPerPage }): any {
-    if (config.filtering) {
-      ( < any > Object).assign(this.config.filtering, config.filtering);
-    }
-
-    if (config.sorting) {
-      ( < any > Object).assign(this.config.sorting, config.sorting);
-    }
-
-    let filteredData = this.changeFilter(this.ng2TableData, this.config);
-    let sortedData = this.changeSort(filteredData, this.config);
-    this.rows = page && config.paging ? this.changePage(page, sortedData) : sortedData;
-    this.length = (sortedData && sortedData.length) ? sortedData.length : 0;
-  }
-
-  public onCellClick(data: any): any {
-    console.log(data);
+  setWidthAndHeight(width: string = '100%', height: string = '100%') {
+    var grid = this.elem.nativeElement.querySelector('#ag-grid');
+    grid.style.width = width;
+    grid.style.height = height;
+    this.gridOptions.api.doLayout();
   }
 }

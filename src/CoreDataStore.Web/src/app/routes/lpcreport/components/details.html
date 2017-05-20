@@ -31,12 +31,8 @@
       </div>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<!--           <ng-table [config]="config" (tableChanged)="onChangeTable(config)" (cellClicked)="onCellClick($event)" [rows]="rows" [columns]="columns">
-          </ng-table> -->
-          <ag-grid-ng2 #agGrid class="ag-bootstrap" style="width: 100%; height: 100px" [gridOptions]="gridOptions" (gridReady)="gridOptions.gridReady($event)">
+          <ag-grid-ng2 #agGrid id="ag-grid" class="ag-bootstrap" [gridOptions]="gridOptions" (gridReady)="gridOptions.gridReady($event)">
           </ag-grid-ng2>
-          <pagination *ngIf="config.paging" class="pagination-sm" [(ngModel)]="page" [totalItems]="length" [itemsPerPage]="itemsPerPage" [maxSize]="maxSize" [boundaryLinks]="true" [rotate]="false" (pageChanged)="onChangeTable(config, $event)" (numPages)="numPages = $event">
-          </pagination>
         </div>
       </div>
     </div>
