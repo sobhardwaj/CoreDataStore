@@ -19,16 +19,6 @@
 @background_color_14: rgba(255,255,255,0.5);
 @background_color_15: #e6e6e6;
 
-#ag-grid {
-	width: 100%;
-<<<<<<< bugs/conflict-typescript-compile
-	// height: 70px;
-=======
-	height: 70px;
->>>>>>> update: LPC Details #50
-	min-height: 70px;
-}
-
 @-moz-keyframes "ag-shake-left-to-right" {
 	from {
 		padding-left: 6px;

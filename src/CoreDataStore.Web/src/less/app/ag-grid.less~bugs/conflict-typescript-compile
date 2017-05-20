@@ -21,11 +21,7 @@
 
 #ag-grid {
 	width: 100%;
-<<<<<<< bugs/conflict-typescript-compile
 	// height: 70px;
-=======
-	height: 70px;
->>>>>>> update: LPC Details #50
 	min-height: 70px;
 }
 

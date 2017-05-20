@@ -101,7 +101,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-    this.$win.off(this.resizeEvent);
   }
 
   public changePage(page: any) {}
