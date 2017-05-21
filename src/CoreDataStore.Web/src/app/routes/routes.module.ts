@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import { AgGridModule } from 'ag-grid-ng2';
 // import { AgmCoreModule } from '@agm/core';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { SelectModule } from 'ng2-select/ng2-select';
@@ -32,7 +33,8 @@ import appRoutes from './routes';
     RouterModule.forRoot(appRoutes, { useHash: true }),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA8okzgfpEduXDLlebJtrgw6cmexiGNoN0'
-    })
+    }),
+    AgGridModule.withComponents([DetailsComponent])
   ],
   declarations: [
     // HomeComponent,
