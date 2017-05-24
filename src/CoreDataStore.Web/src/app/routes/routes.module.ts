@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { AgGridModule } from 'ag-grid-ng2';
+import { AgGridModule } from 'ag-grid-angular';
 // import { AgmCoreModule } from '@agm/core';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { SelectModule } from 'ng2-select/ng2-select';
