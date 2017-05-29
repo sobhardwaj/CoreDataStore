@@ -1,6 +1,19 @@
   System.config({
     defaultExtensions: 'js',
-    module: "commonjs",
+    typescriptOptions: {
+      "target": "es2017",
+      "lib": [
+        "es2017",
+        "dom"
+      ],
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "removeComments": false,
+      "noImplicitAny": false
+    },
     paths: {
       // paths serve as alias
       'npm:': 'node_modules/'
