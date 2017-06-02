@@ -83,8 +83,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
       // paginationPageSize: 100,
       // paginationStartPage: 1,
       enableColResize: true,
-      enableSorting: true,
-      enableFilter: true,
+      // enableSorting: true,
+      // enableFilter: true,
       gridReady: (params) => {
         //   params.api.setWidthAndHeight('100%','100%');
         //   params.api.sizeColumnsToFit();
