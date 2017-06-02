@@ -36,7 +36,7 @@
       'angular2-google-maps/core': 'npm:angular2-google-maps/core/core.umd.js',
       'ngx-bootstrap': 'npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.js',
       // 'ngx-bootstrap': 'npm:ngx-bootstrap',
-      'ng2-toastr': 'npm:ng2-toastr/bundles/ng2-toastr.js',
+      'ng2-toastr': 'npm:ng2-toastr',
       'ng2-table': 'npm:ng2-table',
       'ng2-select': 'npm:ng2-select',
       // ag libraries
@@ -51,8 +51,10 @@
       rxjs: { defaultExtension: 'js' },
       'ag-grid': { main: 'main.js', defaultExtension: 'js' },
       'ag-grid-ng2': { main: 'main.js', defaultExtension: 'js' },
+      'ag-grid-angular': { main: 'main.js', defaultExtension: 'js' },
       'ng2-select': { defaultExtension: 'js' },
-      'ng2-table': { defaultExtension: 'js' },
+      'ng2-toastr': { defaultExtension: 'js' },
       'angular2-in-memory-web-api': { main: './index.js', defaultExtension: 'js' }
     }
   });
+
