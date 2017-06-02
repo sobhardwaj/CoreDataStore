@@ -14,6 +14,7 @@
       "removeComments": false,
       "noImplicitAny": false
     },
+    transpiler: "typescript",
     paths: {
       // paths serve as alias
       'npm:': 'node_modules/'
