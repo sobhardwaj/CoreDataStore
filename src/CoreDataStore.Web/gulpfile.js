@@ -66,6 +66,7 @@ gulp.task("less", function() {
   return gulp
     .src(["src/less/*.less", "src/less/themes/*.less"])
     .pipe(less())
+    .pipe(cssPrefixer('last 2 versions'))
     .pipe(cssmin())
     .pipe(gulp.dest(path.join(buildDir, "css")));
 });
