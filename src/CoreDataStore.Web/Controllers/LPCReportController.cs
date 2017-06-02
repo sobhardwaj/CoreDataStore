@@ -138,5 +138,25 @@ namespace CoreDataStore.Web.Controllers
             return records.Results;
         }
 
+
+        /// <summary>
+        /// Get Landmark Street List
+        /// </summary>
+        /// <param name="lpcNumber"></param>
+        /// <returns></returns>
+        [Produces(typeof(IEnumerable<string>))]
+        [ProducesResponseType(typeof(IEnumerable<string>), 200)]
+        [HttpGet("landmark/streets/{lpcNumber}")]
+        public IEnumerable<string> GetStreets(string lpcNumber)
+        {
+            var list = new List<string>();
+            list.Add("Street 1");
+            list.Add("Street 2");
+            list.Add("Street 3");
+
+            return list;
+        }
+
+
     }
 }
