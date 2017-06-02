@@ -1,6 +1,6 @@
   System.config({
     defaultExtensions: 'js',
-    module: "commonjs",
+    transpiler: "typescript",
     paths: {
       // paths serve as alias
       'npm:': 'node_modules/'
