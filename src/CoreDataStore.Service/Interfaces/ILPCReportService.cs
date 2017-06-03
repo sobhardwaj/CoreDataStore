@@ -10,8 +10,10 @@ namespace CoreDataStore.Service.Interfaces
 
         List<LPCReportModel> GetLPCReports();
 
+        List<string> GetAddresses(string lpcNumber);
+
         LPCReportModel UpdateLPCReport(LPCReportModel model);
 
-        PagedResultModel<LPCReportModel>  GetLPCReports(LPCReportRequest request);
+        PagedResultModel<LPCReportModel> GetLPCReports(LPCReportRequest request);
     }
 }

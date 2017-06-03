@@ -149,12 +149,8 @@ namespace CoreDataStore.Web.Controllers
         [HttpGet("landmark/streets/{lpcNumber}")]
         public IEnumerable<string> GetStreets(string lpcNumber)
         {
-            var list = new List<string>();
-            list.Add("Street 1");
-            list.Add("Street 2");
-            list.Add("Street 3");
-
-            return list;
+            var results = _lpcReportService.GetAddresses(lpcNumber);
+            return results;
         }
 
 
