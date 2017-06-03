@@ -42,7 +42,15 @@
             <tr>
               <td>Date of Designation:</td>
               <td [ngClass]="{'has-error': (!dateDesignated.valid && dateDesignated.touched), 'has-success': (dateDesignated.valid && dateDesignated.touched)}">
-                <input type="text" class="form-control" [formControl]="dateDesignated" />
+                <div class="input-group">
+                  <input type="text" class="form-control" [formControl]="dateDesignated" />
+                  <div class="input-group-btn">
+                    <button class="btn btn-lg btn-default" type="button" (click)="isCollapsed = !isCollapsed"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </div>
+                </div>
+                <div [collapse]="isCollapsed" style="position: absolute; z-index: 999999">
+                  <datepicker [(ngModel)]="dt" [ngModelOptions]="{standalone: true}" (ngModelChange)="dateChanged($event)" [showWeeks]="false"></datepicker>
+                </div>
                 <span *ngIf="!dateDesignated.valid && dateDesignated.touched && dateDesignated.errors.required" class="help-block sub-little-text">Date should not be empty!</span>
               </td>
             </tr>
