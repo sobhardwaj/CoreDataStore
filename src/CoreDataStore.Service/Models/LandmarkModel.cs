@@ -28,6 +28,18 @@ namespace CoreDataStore.Service.Models
 
         public string DesignatedAddress { get; set; }
 
+        public string Number
+        {
+            get
+            {
+                var number = !string.IsNullOrWhiteSpace(this.PlutoAddress) && this.PlutoAddress.Any(char.IsDigit)
+                    ? this.PlutoAddress.Split(' ')[0].Trim()
+                    : null;
+
+                return number;
+            }
+        }
+
         public string Street
         {
             get

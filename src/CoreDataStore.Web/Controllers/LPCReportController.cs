@@ -135,7 +135,8 @@ namespace CoreDataStore.Web.Controllers
             totalRecords = records.Total;
             HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", "X-InlineCount");
             HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
-            return records.Results;
+
+            return records.Results.OrderBy(x => x.Street).ThenBy(x => x.Number);
         }
 
 
