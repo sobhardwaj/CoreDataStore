@@ -41,6 +41,12 @@ INNER JOIN PLUTO p ON l.BBL = p.BBL
 WHERE l.LP_NUMBER = 'LP-02039'
 
 
+SELECT  l.* FROM Landmark l 
+WHERE l.LP_NUMBER = 'LP-02039'
+
+
+
+
 
 SELECT  p.* FROM PLUTO p 
 INNER JOIN Landmark l  ON l.BBL = p.BBL

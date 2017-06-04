@@ -56,13 +56,12 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             Assert.NotNull(result);
         }
 
-
         [Fact(Skip = "ci test")]
         //[Fact]
         public void Can_Get_Filtered_Paging_List()
         {
             var predicate = PredicateBuilder.True<Landmark>();
-            var request = new LandmarkRequest() 
+            var request = new LandmarkRequest()
             {
                 PageSize = 20,
                 Page = 1,

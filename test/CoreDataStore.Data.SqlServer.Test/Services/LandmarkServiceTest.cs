@@ -7,6 +7,7 @@ using CoreDataStore.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Xunit;
 
 namespace CoreDataStore.Data.SqlServer.Test.Services
 {
@@ -36,6 +37,16 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
             _landmarkService = serviceProvider.GetRequiredService<ILandmarkService>();
 
             AutoMapperConfiguration.Configure();
+        }
+
+
+        [Fact, Trait("Category", "Intergration")]
+        public void Can_Get_Street_List()
+        {
+            string lpNumber = "LP-02039";
+
+            var results = _landmarkService.GetLandmarkStreets(lpNumber);
+            Assert.NotNull(results);
         }
 
     }

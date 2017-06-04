@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using AutoMapper;
 using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Extensions;
@@ -13,12 +14,35 @@ namespace CoreDataStore.Service.Services
 {
     public class LandmarkService : ILandmarkService
     {
-        private readonly ILandmarkRepository  _landmarktRepository;
+        private readonly ILandmarkRepository _landmarktRepository;
 
         public LandmarkService(ILandmarkRepository landmarktRepository)
         {
             this._landmarktRepository = landmarktRepository;
         }
+
+        public List<string> GetLandmarkStreets(string lpcNumber)
+        {
+            var predicate = PredicateBuilder.True<Landmark>();
+            predicate = predicate.And(x => x.LP_NUMBER == lpcNumber);
+
+            var results = _landmarktRepository.FindBy(predicate).Select(x => x.PLUTO_ADDR).ToList()
+                          .Select(x => new
+                          {
+                              x = !string.IsNullOrWhiteSpace(x) && x.Any(char.IsDigit)
+                             ? Regex.Replace(x, @"[\d-]", string.Empty).Trim() : x,
+                          }).Distinct().ToList();
+
+            var list = new List<string>();
+            foreach (var i in results)
+            {
+                list.Add(i.x);
+            }
+
+            var sortedList = list.OrderBy(x => x).ToList();
+            return sortedList;
+        }
+
 
         public PagedResultModel<LandmarkModel> GetLandmarks(LandmarkRequest request)
         {
