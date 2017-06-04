@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:1.0.4-sdk-1.0.1-nanoserver
+FROM microsoft/dotnet:1.1.2-sdk-1.0.4-nanoserver
 MAINTAINER Stuart Shay
 LABEL version="1.1.1"
 
