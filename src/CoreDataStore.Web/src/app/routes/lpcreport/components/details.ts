@@ -25,16 +25,19 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public mapMarkers: any = [];
   public sub: any = null;
   public columns: Array < any > = [
-    { headerName: 'Id', field: 'id', sort: 'asc', width: 80 },
+    { headerName: 'Id', field: 'id', width: 50 },
+    { headerName: 'Street', field: 'street', width: 200,sort: 'asc' },
+    { headerName: 'Address', field: 'designatedAddress', width: 180 },
+    { headerName: 'Block', field: 'block', width: 100 },
+    { headerName: 'Lot', field: 'lot', width: 80 },
+    { headerName: 'Building', field: 'isBuilding', width: 80 },
     { headerName: 'BLL', field: 'bbl', width: 120 },
-    { headerName: 'BIN_NUMBER', field: 'binNumber', width: 120 },
-    { headerName: 'BoroughID', field: 'boroughId', width: 100 },
-    { headerName: 'BLOCK', field: 'block', width: 100 },
-    { headerName: 'LOT', field: 'lot', width: 80 },
-    { headerName: 'LP_NUMBER', field: 'lpNumber', width: 150 },
-    { headerName: 'LM_NAME', field: 'name', width: 180 },
-    { headerName: 'PLUTO_ADDR', field: 'designatedAddress', width: 180 },
-    { headerName: 'DESIG_ADDR', field: 'plutoAddress', width: 180 }
+    { headerName: 'BIN', field: 'binNumber', width: 120 },
+    { headerName: 'PLUTO Address', field: 'plutoAddress', width: 180 },
+    { headerName: 'LandMark', field: 'name', width: 200 },
+    { headerName: 'LP Number', field: 'lpNumber', width: 150 },
+    { headerName: 'Type', field: 'objectType', width: 125 },
+    { headerName: 'Borough', field: 'boroughId', width: 75 }
   ];
 
   /*@Inject(ActivatedRoute) */
