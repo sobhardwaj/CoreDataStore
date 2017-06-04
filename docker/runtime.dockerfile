@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:1.1.1-runtime
+FROM microsoft/dotnet:1.1.2-runtime
 MAINTAINER Stuart Shay
 
 # Set environment variables

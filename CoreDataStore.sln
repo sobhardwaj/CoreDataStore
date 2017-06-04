@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Soultion Items", "Soultion Items", "{CC689212-7F5C-4CEC-BEEB-44B0B415959E}"
 	ProjectSection(SolutionItems) = preProject
@@ -23,6 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{9CAE5C
 		docker\aspnetcore.dockerfile = docker\aspnetcore.dockerfile
 		docker\docker-compose-development.yml = docker\docker-compose-development.yml
 		docker\docker-compose-staging.yml = docker\docker-compose-staging.yml
+		docker\runtime.dockerfile = docker\runtime.dockerfile
 		docker\windowsserver.dockerfile = docker\windowsserver.dockerfile
 	EndProjectSection
 EndProject
