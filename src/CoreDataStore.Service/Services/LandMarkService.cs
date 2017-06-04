@@ -30,7 +30,9 @@ namespace CoreDataStore.Service.Services
                           .Select(x => new
                           {
                               x = !string.IsNullOrWhiteSpace(x) && x.Any(char.IsDigit)
-                             ? Regex.Replace(x, @"[\d-]", string.Empty).Trim() : x,
+                             ? Regex.Replace(x, @"^[\d-]*\s*", "", RegexOptions.Multiline)
+                             //Regex.Replace(x, @"[\d-]", string.Empty).Trim() 
+                             : x,
                           }).Distinct().ToList();
 
             var list = new List<string>();
