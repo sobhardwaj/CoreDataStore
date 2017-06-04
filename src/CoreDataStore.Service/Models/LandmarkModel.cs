@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace CoreDataStore.Service.Models
 {
@@ -9,7 +11,7 @@ namespace CoreDataStore.Service.Models
         public string Name { get; set; }
 
         public string LPNumber { get; set; }
-   
+
         public long BBL { get; set; }
 
         public long BinNumber { get; set; }
@@ -25,6 +27,18 @@ namespace CoreDataStore.Service.Models
         public string PlutoAddress { get; set; }
 
         public string DesignatedAddress { get; set; }
+
+        public string Street
+        {
+            get
+            {
+                var street = !string.IsNullOrWhiteSpace(this.PlutoAddress) && this.PlutoAddress.Any(char.IsDigit)
+                    ? Regex.Replace(this.PlutoAddress.Trim(), @"^[\d-]*\s*", "", RegexOptions.Multiline)
+                    : this.PlutoAddress;
+
+                return street;
+            }
+        }
 
         public DateTime? DesignatedDate { get; set; }
 
