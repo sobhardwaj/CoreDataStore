@@ -144,12 +144,16 @@ namespace CoreDataStore.Web.Controllers
         /// </summary>
         /// <param name="lpcNumber"></param>
         /// <returns></returns>
-        [Produces(typeof(IEnumerable<string>))]
+        [Produces("application/json", Type = typeof(IEnumerable<string>))]
         [ProducesResponseType(typeof(IEnumerable<string>), 200)]
         [HttpGet("landmark/streets/{lpcNumber}")]
         public IEnumerable<string> GetStreets(string lpcNumber)
         {
-            var results = _lpcReportService.GetAddresses(lpcNumber);
+            var results = _landmarkService.GetLandmarkStreets(lpcNumber);
+            var totalRecords = results.Count;
+            HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", "X-InlineCount");
+            HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
+
             return results;
         }
 
