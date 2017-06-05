@@ -25,8 +25,8 @@ http://stuartshay.github.io/CoreDataStore/
 ## Prerequisites:
 
 ### .NET Core 
-.NET Core Runtime 1.1.2 - May 9, 2017 
-.NET Core SDK 1.0.4 - March 9, 2017      
+.NET Core Runtime 1.1.2 - May 9, 2017        
+.NET Core SDK 1.0.4 - March 9, 2017            
 https://www.microsoft.com/net/core  
 
 ### Visual Studio MSBuild
