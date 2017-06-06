@@ -1,7 +1,10 @@
-import { Component, Input, OnInit, AfterViewChecked, ChangeDetectionStrategy } from '@angular/core';
+import * as moment from 'moment';
+
+import { Component, Input, OnInit, AfterViewChecked, ChangeDetectionStrategy, ViewContainerRef } from '@angular/core';
 // import { Location } from '@angular/common';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
-import { ToasterService, ToasterConfig } from 'angular2-toaster/angular2-toaster';
+
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { LPCReport } from '../models/lpcreport';
 import { LPCReportService } from '../services/lpcreport';
@@ -14,14 +17,6 @@ import { SessionService } from '../../../shared/services/session';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DetailFormComponent implements OnInit, AfterViewChecked {
-  // TOASTER
-  toaster: any;
-  // toasterConfig: any;
-  // toasterconfig: ToasterConfig = new ToasterConfig({
-  //   positionClass: 'toast-bottom-right',
-  //   showCloseButton: true
-  // });
-
   @Input() details: any;
 
   public objectTypes: Object;
@@ -38,15 +33,19 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
 
   public submitted: boolean = false;
   public formInitted: boolean = false;
-
+  public isCollapsed: boolean = true;
+  public dt: any;
 
   constructor(
-    private toasterService: ToasterService,
+    private toastr: ToastsManager, vRef: ViewContainerRef,
     private builder: FormBuilder,
     private session: SessionService,
     // private location: Location,
     private referenceService: ReferencesService,
-    private lpcReportService: LPCReportService) {
+    private lpcReportService: LPCReportService
+  ) {
+    this.toastr.setRootViewContainerRef(vRef);
+
     this.form = this.builder.group({
       'name': ['', Validators.compose([Validators.required])],
       'objectType': ['', Validators.compose([Validators.required])],
@@ -72,7 +71,7 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
         this.objectTypes = data;
         this.session.set('objectTypes', data);
       },
-      err => this.pop(err, 'Error', 'error')
+      err => this.toastr.error('Error', 'error')
     );
     return this.session.get('objectTypes');
   }
@@ -83,7 +82,7 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
         this.boroughs = data;
         this.session.set('boroughs', data);
       },
-      err => this.pop(err, 'Error', 'error')
+      err => this.toastr.error('Error', 'error')
     );
     return this.session.get('boroughs');
   }
@@ -100,18 +99,10 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
     if (this.details && !this.formInitted) {
       this.form.patchValue(this.details, { onlySelf: true });
       this.formInitted = true;
+      this.dt = moment(this.details.dateDesignated);
     }
   };
 
-  // TOSATER METHOD
-  pop(message: string, title ? : string, type ? : string) {
-    this.toaster = {
-      type: type || 'info',
-      title: title || '',
-      text: message
-    };
-    this.toasterService.pop(this.toaster.type, this.toaster.title, this.toaster.text);
-  };
 
   getDateFormatted(date) {
     var mm = date.getMonth() + 1; // getMonth() is zero-based
@@ -119,7 +110,14 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
     return [(mm.length === 2 && '0') + mm, (dd.length === 2 && '0') + dd, date.getFullYear()].join('/'); // padding
   };
 
-  public onSubmit(values: Object) {
+  dateChanged(date: any) {
+    let dt = moment(date);
+    if (dt.isValid()) {
+      this.form.controls['dateDesignated'].setValue(dt.format('YYYY-MM-DD'));
+    }
+  }
+
+  public onSubmit(values: LPCReport) {
     this.submitted = true;
     if (this.form.valid) {
       let details: LPCReport = values;
@@ -129,11 +127,16 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
       this.lpcReportService.putLPCReport(this.details.id, values)
         .subscribe(
           (res) => {
-            // console.log(res);
-            this.pop(details.name + ' updated', '', 'success');
-            // this.location.back();
+            let errors: Array < any > = res.json() || [];
+            if (errors.length) {
+              errors.forEach(err => {
+                this.toastr.error(err.errorMessage, 'Error');
+              });
+            } else {
+              this.toastr.success(details.name + ' updated', 'Success')
+            }
           },
-          err => this.pop(err, 'Error', 'error')
+          err => this.toastr.error('Error', 'error')
         );
     }
   }

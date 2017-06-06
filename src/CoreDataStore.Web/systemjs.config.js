@@ -1,8 +1,9 @@
   System.config({
-    defaultJSExtensions: true,
+    defaultExtensions: 'js',
+    transpiler: "typescript",
     paths: {
       // paths serve as alias
-      'libs:': 'node_modules/'
+      'npm:': 'node_modules/'
     },
     // map tells the System loader where to look for things
     map: {
@@ -10,39 +11,50 @@
       app: '.tmp',
 
       // angular bundles
-      '@angular/core': 'libs:@angular/core/bundles/core.umd.js',
-      '@angular/common': 'libs:@angular/common/bundles/common.umd.js',
-      '@angular/compiler': 'libs:@angular/compiler/bundles/compiler.umd.js',
-      '@angular/platform-browser': 'libs:@angular/platform-browser/bundles/platform-browser.umd.js',
-      '@angular/platform-browser-dynamic': 'libs:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
-      '@angular/http': 'libs:@angular/http/bundles/http.umd.js',
-      '@angular/router': 'libs:@angular/router/bundles/router.umd.js',
-      '@angular/forms': 'libs:@angular/forms/bundles/forms.umd.js',
-      '@angular/upgrade': 'libs:@angular/upgrade/bundles/upgrade.umd.js',
-      "@angular/core/src/facade/lang": "libs:@angular/core/src/facade/lang.js",
+      '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
+      '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
+      '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
+      '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
+      '@angular/animations/browser': 'npm:@angular/animations/bundles/animations-browser.umd.js',
+      '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
+      '@angular/platform-browser/animations': 'npm:@angular/platform-browser/bundles/platform-browser-animations.umd.js',
+      '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
+      '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
+      '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
+      '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
+      '@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
+      "@angular/core/src/facade/lang": "npm:@angular/core/src/facade/lang.js",
       // other libraries
-      'rxjs': 'libs:rxjs',
-      'angular2-in-memory-web-api': 'libs:angular2-in-memory-web-api',
+      'rxjs': 'npm:rxjs',
+      'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
 
-      'moment': 'libs:moment/moment.js',
-      'jquery': 'libs:jquery/dist/jquery.js',
-      'jquery.browser': 'libs:jquery.browser/dist/jquery.browser.js',
-      'screenfull': 'libs:screenfull/dist/screenfull.js',
-      'angular2-infinite-scroll': 'libs:angular2-infinite-scroll/angular2-infinite-scroll.js',
-      // 'ng2-dnd': 'libs:ng2-dnd/bundles/index.umd.js',
-      'angular2-toaster': 'libs:angular2-toaster',
-      'angular2-google-maps': 'libs:angular2-google-maps/core/index.js',
-      'ng2-bootstrap': 'libs:ng2-bootstrap',
-      'ng2-table': 'libs:ng2-table',
-      'ng2-select': 'libs:ng2-select'
+      'moment': 'npm:moment/moment.js',
+      'jquery': 'npm:jquery/dist/jquery.js',
+      'jquery.browser': 'npm:jquery.browser/dist/jquery.browser.js',
+      'screenfull': 'npm:screenfull/dist/screenfull.js',
+      // 'angular2-toaster': 'npm:angular2-toaster/bundles/angular2-toaster.umd.js',
+      'angular2-google-maps/core': 'npm:angular2-google-maps/core/core.umd.js',
+      'ngx-bootstrap': 'npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.js',
+      // 'ngx-bootstrap': 'npm:ngx-bootstrap',
+      'ng2-toastr': 'npm:ng2-toastr',
+      'ng2-table': 'npm:ng2-table',
+      'ng2-select': 'npm:ng2-select',
+      // ag libraries
+      'ag-grid-angular': 'npm:ag-grid-angular',
+      'ag-grid-ng2': 'npm:ag-grid-ng2',
+      'ag-grid': 'npm:ag-grid',
 
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
       app: { main: 'main.js', defaultExtension: 'js' },
       rxjs: { defaultExtension: 'js' },
+      'ag-grid': { main: 'main.js', defaultExtension: 'js' },
+      'ag-grid-ng2': { main: 'main.js', defaultExtension: 'js' },
+      'ag-grid-angular': { main: 'main.js', defaultExtension: 'js' },
       'ng2-select': { defaultExtension: 'js' },
-      'ng2-bootstrap': { defaultExtension: 'js' },
+      'ng2-toastr': { defaultExtension: 'js' },
       'angular2-in-memory-web-api': { main: './index.js', defaultExtension: 'js' }
     }
   });
+

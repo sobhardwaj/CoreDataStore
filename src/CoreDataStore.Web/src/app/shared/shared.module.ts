@@ -3,9 +3,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule, Http } from '@angular/http';
-import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { SelectModule } from 'ng2-select/ng2-select';
-import { ToasterModule } from 'angular2-toaster/angular2-toaster';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+
+// import { CollapseModule } from 'ngx-bootstrap/collapse';
+// import { DatepickerModule } from 'ngx-bootstrap/datepicker';
+// import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { CollapseModule, DatepickerModule, PaginationModule } from 'ngx-bootstrap';
 
 import { ColorsService } from './colors/colors.service';
 import { SessionService } from './services/session';
@@ -22,9 +28,13 @@ import { TrimPipe } from './pipes/trim';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    Ng2BootstrapModule,
-    SelectModule,
-    ToasterModule
+    BrowserAnimationsModule,
+
+    DatepickerModule.forRoot(),
+    PaginationModule.forRoot(),
+    CollapseModule.forRoot(),
+
+    ToastModule.forRoot()
   ],
   providers: [
     ColorsService,
@@ -43,8 +53,11 @@ import { TrimPipe } from './pipes/trim';
     ReactiveFormsModule,
     HttpModule,
     RouterModule,
-    Ng2BootstrapModule,
-    ToasterModule,
+
+    DatepickerModule,
+    PaginationModule,
+    CollapseModule,
+    ToastModule,
 
     TrimPipe,
     CapitalizePipe,

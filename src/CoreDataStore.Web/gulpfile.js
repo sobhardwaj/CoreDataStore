@@ -1,7 +1,7 @@
 /// <binding BeforeBuild='build' />
 "use strict";
 
-const fs = require('fs'),
+var fs = require('fs'),
   del = require('del'),
   path = require('path'),
   gulp = require('gulp'),
@@ -21,10 +21,9 @@ const fs = require('fs'),
   cssPrefixer = require('gulp-autoprefixer'),
   merge = require('merge-stream');
 
-const SystemBuilder = require('systemjs-builder');
-const tsProject = tsc.createProject('tsconfig.json');
+var SystemBuilder = require('systemjs-builder');
 
-const buildDir = "wwwroot";
+var buildDir = "wwwroot";
 var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || '';
 var BUILD = process.env.BUILD || 'local';
 var LANDMARK = process.env.LANDMARK || '/api/';
@@ -53,12 +52,12 @@ gulp.task('ghpage', function() {
 /**
  * Compile all SASS files.
  */
-gulp.task('sass', function() {
-  return gulp.src('src/sass/app.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(cssmin())
-    .pipe(gulp.dest(path.join(buildDir, "css")));
-});
+// gulp.task('sass', function() {
+//   return gulp.src('src/sass/app.scss')
+//     .pipe(sass().on('error', sass.logError))
+//     .pipe(cssmin())
+//     .pipe(gulp.dest(path.join(buildDir, "css")));
+// });
 
 /**
  * Compile all Less files.
@@ -67,6 +66,7 @@ gulp.task("less", function() {
   return gulp
     .src(["src/less/*.less", "src/less/themes/*.less"])
     .pipe(less())
+    .pipe(cssPrefixer('last 2 versions'))
     .pipe(cssmin())
     .pipe(gulp.dest(path.join(buildDir, "css")));
 });
@@ -76,8 +76,10 @@ gulp.task("less", function() {
  */
 gulp.task('tslint', () => {
   return gulp.src("src/**/*.ts")
-    .pipe(tslint())
-    .pipe(tslint.report('prose'));
+    .pipe(tslint({
+      formatter: "verbose"
+    }))
+    .pipe(tslint.report());
 });
 
 
@@ -100,17 +102,15 @@ gulp.task('shims', () => {
 gulp.task('tsc', ['tslint'], () => {
   var tsDest = (NG_ENVIRONMENT === 'Dev') ? (buildDir + '/app') : '.tmp';
   var tsProject = tsc.createProject('tsconfig.json'),
-    tsResult = tsProject.src()
-    .pipe(tsc(tsProject));
+    tsResult = tsProject.src().pipe(tsProject());
 
-  return tsResult.js
-    .pipe(gulp.dest(tsDest));
+  return tsResult.js.pipe(gulp.dest(tsDest));
 });
 
 gulp.task('compile', ['tsc'], () => {
   if (NG_ENVIRONMENT !== 'Dev') {
     var builder = new SystemBuilder();
-    return builder.loadConfig('systemjs.config.js')
+    return builder.loadConfig('systemjs.build.js')
       .then(() => builder.buildStatic('app', path.join(buildDir, 'js', 'bundle.js')));
   }
   return;
@@ -206,14 +206,13 @@ gulp.task("node_modules", () => {
         'core-js/**',
         'zone.js/dist/**',
         'systemjs/dist/**',
-        'ng2-select/**',
-        'ng2-dnd/**',
-        'angular2-infinite-scroll/**',
-        'angular2-toaster/**',
         'angular2-google-maps/**',
-        'ng2-translate/**',
-        'ng2-table/**',
-        'ng2-bootstrap/**',
+        'ng2-select/**',
+        'ng2-toastr/**',
+        'ngx-bootstrap/**',
+        'ag-grid/**',
+        'ag-grid-ng2/**',
+        'ag-grid-angular/**',
         'screenfull/dist/screenfull.js',
         'jquery/dist/jquery.js',
         'jquery.browser/dist/jquery.browser.js',

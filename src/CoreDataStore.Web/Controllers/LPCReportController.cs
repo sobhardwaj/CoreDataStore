@@ -39,9 +39,9 @@ namespace CoreDataStore.Web.Controllers
         /// </summary>
         /// <param name="id">Id</param>
         /// <returns></returns>
-        [Produces(typeof(LPCReportModel))]
-        [ProducesResponseType(typeof(LPCReportModel), 200)]
         [HttpGet("{id}")]
+        [Produces("application/json", Type = typeof(LPCReportModel))]
+        [ProducesResponseType(typeof(LPCReportModel), 200)]
         public IActionResult Get(int id)
         {
             var result = _lpcReportService.GetLPCReport(id);
@@ -84,14 +84,14 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="limit">Records per Page</param>
         /// <param name="page">Page Number</param>
         /// <returns></returns>
-        [Produces(typeof(IEnumerable<LPCReportModel>))]
-        [ProducesResponseType(typeof(IEnumerable<LPCReportModel>), 200)]
         [HttpGet("{limit:int}/{page:int}")]
+        [Produces("application/json", Type = typeof(IEnumerable<LPCReportModel>))]
+        [ProducesResponseType(typeof(IEnumerable<LPCReportModel>), 200)]
         public IEnumerable<LPCReportModel> Get([FromQuery]LPCReportRequestModel query, int limit, int page)
         {
             long totalRecords = 0;
             var request = new LPCReportRequest
-             {
+            {
                 PageSize = limit,
                 Page = page,
                 SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "lpcId",
@@ -116,7 +116,7 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="limit">Records per Page</param>
         /// <param name="page">Page Number</param>
         /// <returns></returns>
-        [Produces(typeof(IEnumerable<LandmarkModel>))]
+        [Produces("application/json", Type = typeof(IEnumerable<LandmarkModel>))]
         [ProducesResponseType(typeof(IEnumerable<LandmarkModel>), 200)]
         [HttpGet("landmark/{limit:int}/{page:int}")]
         public IEnumerable<LandmarkModel> GetLandmarks([FromQuery]LandmarkRequestModel query, int limit, int page)
@@ -135,8 +135,29 @@ namespace CoreDataStore.Web.Controllers
             totalRecords = records.Total;
             HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", "X-InlineCount");
             HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
-            return records.Results;
+
+            return records.Results.OrderBy(x => x.Street).ThenBy(x => x.Number);
         }
+
+
+        /// <summary>
+        /// Get Landmark Street List
+        /// </summary>
+        /// <param name="lpcNumber"></param>
+        /// <returns></returns>
+        [Produces("application/json", Type = typeof(IEnumerable<string>))]
+        [ProducesResponseType(typeof(IEnumerable<string>), 200)]
+        [HttpGet("landmark/streets/{lpcNumber}")]
+        public IEnumerable<string> GetStreets(string lpcNumber)
+        {
+            var results = _landmarkService.GetLandmarkStreets(lpcNumber);
+            var totalRecords = results.Count;
+            HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", "X-InlineCount");
+            HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
+
+            return results;
+        }
+
 
     }
 }
