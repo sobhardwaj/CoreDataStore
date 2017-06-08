@@ -97,8 +97,8 @@ namespace CoreDataStore.Web.Controllers
                 SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "lpcId",
                 SortOrder = !string.IsNullOrEmpty(query.Order) ? query.Order : "asc",
                 ParentStyleList = !string.IsNullOrEmpty(query.ParentStyles) ? query.ParentStyles.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList() : null,
-                Borough = query.Borough,
-                ObjectType = query.ObjectType
+                Borough = query.Borough.Trim(),
+                ObjectType = query.ObjectType.Trim()
             };
 
             var records = _lpcReportService.GetLPCReports(request);
