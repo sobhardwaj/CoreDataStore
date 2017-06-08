@@ -63,7 +63,7 @@ namespace CoreDataStore.Service.Models
             get
             {
                 string baseUrl = null;
-                if (this.ObjectType != "Historic District" && string.IsNullOrWhiteSpace(this.Street) && string.IsNullOrWhiteSpace(this.Borough))
+                if (this.ObjectType != "Historic District" && !string.IsNullOrWhiteSpace(this.Street) && !string.IsNullOrWhiteSpace(this.Borough))
                     baseUrl = string.Format("http://maps.nyc.gov/doitt/nycitymap/?searchType=AddressSearch&street={0}&borough={1}", this.Street, this.Borough);
 
                 return baseUrl;
