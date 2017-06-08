@@ -26,9 +26,22 @@ namespace CoreDataStore.Service.Models
 
         public bool PhotoStatus { get; set; }
 
+        /// <summary>
+        /// LPC Web Site Photo Url
+        /// </summary>
         public string PhotoURL { get; set; }
 
-  
+        /// <summary>
+        /// LPC Designation Report Link
+        /// </summary>
+        public string PdfURL
+        {
+            get
+            {
+                string baseUrl = string.Format("http://s-media.nyc.gov/agencies/lpc/lp/{0}.pdf", this.LPCId);
+                return baseUrl;
+            }
+        }
 
     }
 }
