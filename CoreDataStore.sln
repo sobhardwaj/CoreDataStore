@@ -25,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{9CAE5C
 		docker\docker-compose-staging.yml = docker\docker-compose-staging.yml
 		docker\nanoserver.dockerfile = docker\nanoserver.dockerfile
 		docker\runtime.dockerfile = docker\runtime.dockerfile
+		docker\ui.dockerfile = docker\ui.dockerfile
 		docker\windowsserver.dockerfile = docker\windowsserver.dockerfile
 	EndProjectSection
 EndProject
