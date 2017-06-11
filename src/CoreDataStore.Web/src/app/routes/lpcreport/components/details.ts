@@ -26,18 +26,18 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public sub: any = null;
   public columns: Array < any > = [
     { headerName: 'Id', field: 'id', width: 50 },
-    { headerName: 'Street', field: 'street', width: 200,sort: 'asc' },
-    { headerName: 'Address', field: 'designatedAddress', width: 180 },
-    { headerName: 'Block', field: 'block', width: 100 },
-    { headerName: 'Lot', field: 'lot', width: 80 },
-    { headerName: 'Building', field: 'isBuilding', width: 80 },
-    { headerName: 'BLL', field: 'bbl', width: 120 },
-    { headerName: 'BIN', field: 'binNumber', width: 120 },
-    { headerName: 'PLUTO Address', field: 'plutoAddress', width: 180 },
-    { headerName: 'LandMark', field: 'name', width: 200 },
-    { headerName: 'LP Number', field: 'lpNumber', width: 150 },
-    { headerName: 'Type', field: 'objectType', width: 125 },
-    { headerName: 'Borough', field: 'boroughId', width: 75 }
+    { headerName: 'Street', field: 'street', width: 200, editable: true, sort: 'asc' },
+    { headerName: 'Address', field: 'designatedAddress', editable: true, width: 180 },
+    { headerName: 'Block', field: 'block', editable: true, width: 100 },
+    { headerName: 'Lot', field: 'lot', editable: true, width: 80 },
+    { headerName: 'Building', field: 'isBuilding', editable: true, width: 80 },
+    { headerName: 'BLL', field: 'bbl', editable: true, width: 120 },
+    { headerName: 'BIN', field: 'binNumber', editable: true, width: 120 },
+    { headerName: 'PLUTO Address', field: 'plutoAddress', editable: true, width: 180 },
+    { headerName: 'LandMark', field: 'name', editable: true, width: 200 },
+    { headerName: 'LP Number', field: 'lpNumber', editable: true, width: 150 },
+    { headerName: 'Type', field: 'objectType', editable: true, width: 125 },
+    { headerName: 'Borough', field: 'boroughId', editable: true, width: 75 }
   ];
 
   /*@Inject(ActivatedRoute) */
