@@ -11,7 +11,7 @@ environment:
     secure: 3KiV+zYEcvwJrrLP+jZRjhY7+3s/SWUNdM8mRH4d8Kw=
   DOCKER_PASS:
     secure: TctN/Vl+j8edPvq1b86mDG4D8CS6DSTWMNyq1TXbB54=
-  NG_ENVIRONMENT: "Dev"
+  NG_ENVIRONMENT: "Stage"
 
 cache:
   - src/CoreDataStore.Web/node_modules

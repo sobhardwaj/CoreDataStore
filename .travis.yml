@@ -1,6 +1,6 @@
 sudo: false
 env:
-  NG_ENVIRONMENT=Dev
+  NG_ENVIRONMENT=Stage
 language: node_js
 node_js:
 - '4'
