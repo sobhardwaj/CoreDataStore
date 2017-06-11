@@ -17,6 +17,18 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="panel panel-default">
             <div class="panel-body">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <tabset>
+            <tab heading="Landmarks">
+              <ag-grid-angular #agGrid id="ag-grid" class="ag-blue" [gridOptions]="gridOptions" (gridReady)="gridOptions.gridReady($event)">
+              </ag-grid-angular>
+            </tab>
+            <tab heading="Pluto" active="true">
               <sebm-google-map *ngIf="mapMarkers.length" [latitude]="mapMarkers[0]?.latitude" [longitude]="mapMarkers[0]?.longitude" [zoom]="14" [scrollwheel]="true" class="gmap">
                 <sebm-google-map-marker *ngFor="let marker of mapMarkers" [latitude]="marker.latitude" [longitude]="marker.longitude" [openInfoWindow]="true">
                   <sebm-google-map-info-window>
@@ -25,14 +37,8 @@
                   </sebm-google-map-info-window>
                 </sebm-google-map-marker>
               </sebm-google-map>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <ag-grid-angular #agGrid id="ag-grid" class="ag-blue" [gridOptions]="gridOptions" (gridReady)="gridOptions.gridReady($event)">
-          </ag-grid-angular>
+            </tab>
+          </tabset>
         </div>
       </div>
     </div>
