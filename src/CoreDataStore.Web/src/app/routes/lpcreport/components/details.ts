@@ -43,18 +43,18 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   public columnsPluto: Array < any > = [
     { headerName: 'Id', field: 'id', width: 50 },
-    { headerName: 'Address', field: 'address', editable: true, width: 180 },
-    { headerName: 'Borough', field: 'borough', width: 200, editable: true },
+    { headerName: 'Address', field: 'address', editable: true, width: 200 },
+    { headerName: 'Borough', field: 'borough', width: 80, editable: true },
     { headerName: 'Block', field: 'block', editable: true, width: 50 },
-    { headerName: 'HistDist', field: 'histDist', editable: true, width: 120 },
+    { headerName: 'HistDist', field: 'histDist', editable: true, width: 200 },
     { headerName: 'Latitude', field: 'latitude', editable: true, width: 80 },
     { headerName: 'Longitude', field: 'longitude', editable: true, width: 80 },
     { headerName: 'Lot', field: 'lot', editable: true, width: 50 },
     { headerName: 'lotArea', field: 'lotArea', editable: true, width: 80 },
     { headerName: 'numBldgs', field: 'numBldgs', editable: true, width: 80 },
     { headerName: 'Owner Name', field: 'ownerName', editable: true, width: 200 },
-    { headerName: 'xCoord', field: 'xCoord', editable: true, width: 50 },
-    { headerName: 'yCoord', field: 'yCoord', editable: true, width: 50 },
+    { headerName: 'xCoord', field: 'xCoord', editable: true, width: 70 },
+    { headerName: 'yCoord', field: 'yCoord', editable: true, width: 70 },
     { headerName: 'year', field: 'yearBuilt', editable: true, width: 50 }
   ];
 
