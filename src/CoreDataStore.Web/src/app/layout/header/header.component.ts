@@ -67,4 +67,14 @@ export class HeaderComponent implements OnInit {
       el.children('em').removeClass('fa-compress').addClass('fa-expand');
     }
   }
+
+  openNav() {
+      document.getElementById("mySidenav").style.width = "50%";
+      document.getElementsByTagName("body")[0].style.overflowY = "hidden";
+  }
+
+  closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementsByTagName("body")[0].style.overflowY = "auto";
+  }
 }
