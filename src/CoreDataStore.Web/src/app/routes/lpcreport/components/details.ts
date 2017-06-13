@@ -20,24 +20,42 @@ import { ReferencesService } from '../../references/services/references';
 export class DetailsComponent implements OnInit, OnDestroy {
   public title: string;
   public details: any;
-  public gridOptions: any;
+  public gridOptionsPluto: any;
+  public gridOptionsLandmarks: any;
   public landmarkProperties: any = [];
   public mapMarkers: any = [];
   public sub: any = null;
-  public columns: Array < any > = [
+  public columnsLandmarks: Array < any > = [
     { headerName: 'Id', field: 'id', width: 50 },
-    { headerName: 'Street', field: 'street', width: 200,sort: 'asc' },
-    { headerName: 'Address', field: 'designatedAddress', width: 180 },
-    { headerName: 'Block', field: 'block', width: 100 },
-    { headerName: 'Lot', field: 'lot', width: 80 },
-    { headerName: 'Building', field: 'isBuilding', width: 80 },
-    { headerName: 'BLL', field: 'bbl', width: 120 },
-    { headerName: 'BIN', field: 'binNumber', width: 120 },
-    { headerName: 'PLUTO Address', field: 'plutoAddress', width: 180 },
-    { headerName: 'LandMark', field: 'name', width: 200 },
-    { headerName: 'LP Number', field: 'lpNumber', width: 150 },
-    { headerName: 'Type', field: 'objectType', width: 125 },
-    { headerName: 'Borough', field: 'boroughId', width: 75 }
+    { headerName: 'Street', field: 'street', width: 200, editable: true, sort: 'asc' },
+    { headerName: 'Address', field: 'designatedAddress', editable: true, width: 180 },
+    { headerName: 'Block', field: 'block', editable: true, width: 100 },
+    { headerName: 'Lot', field: 'lot', editable: true, width: 80 },
+    { headerName: 'Building', field: 'isBuilding', editable: true, width: 80 },
+    { headerName: 'BLL', field: 'bbl', editable: true, width: 120 },
+    { headerName: 'BIN', field: 'binNumber', editable: true, width: 120 },
+    { headerName: 'PLUTO Address', field: 'plutoAddress', editable: true, width: 180 },
+    { headerName: 'LandMark', field: 'name', editable: true, width: 200 },
+    { headerName: 'LP Number', field: 'lpNumber', editable: true, width: 150 },
+    { headerName: 'Type', field: 'objectType', editable: true, width: 125 },
+    { headerName: 'Borough', field: 'boroughId', editable: true, width: 75 }
+  ];
+
+  public columnsPluto: Array < any > = [
+    { headerName: 'Id', field: 'id', width: 50 },
+    { headerName: 'Address', field: 'address', editable: true, width: 180 },
+    { headerName: 'Borough', field: 'borough', width: 200, editable: true },
+    { headerName: 'Block', field: 'block', editable: true, width: 50 },
+    { headerName: 'HistDist', field: 'histDist', editable: true, width: 120 },
+    { headerName: 'Latitude', field: 'latitude', editable: true, width: 80 },
+    { headerName: 'Longitude', field: 'longitude', editable: true, width: 80 },
+    { headerName: 'Lot', field: 'lot', editable: true, width: 50 },
+    { headerName: 'lotArea', field: 'lotArea', editable: true, width: 80 },
+    { headerName: 'numBldgs', field: 'numBldgs', editable: true, width: 80 },
+    { headerName: 'Owner Name', field: 'ownerName', editable: true, width: 200 },
+    { headerName: 'xCoord', field: 'xCoord', editable: true, width: 50 },
+    { headerName: 'yCoord', field: 'yCoord', editable: true, width: 50 },
+    { headerName: 'year', field: 'yearBuilt', editable: true, width: 50 }
   ];
 
   /*@Inject(ActivatedRoute) */
@@ -59,17 +77,23 @@ export class DetailsComponent implements OnInit, OnDestroy {
             data => {
               this.landmarkProperties = data || [];
               if (this.landmarkProperties.length > 1) {
-                this.setWidthAndHeight('100%', '100%');
+                this.setWidthAndHeight('#ag-gridLandmarks', '100%', '100%');
               } else {
-                this.setWidthAndHeight('100%', '70px');
+                this.setWidthAndHeight('#ag-gridLandmarks', '100%', '70px');
               }
-              this.gridOptions.api.setRowData(this.landmarkProperties);
+              this.gridOptionsLandmarks.api.setRowData(this.landmarkProperties);
             },
             err => console.log(err)
           );
           this.plutoService.getMapMarkers(this.details.lpNumber).subscribe(
             data => {
               this.mapMarkers = data;
+              if (this.mapMarkers.length > 1) {
+                this.setWidthAndHeight('#ag-gridPluto', '100%', '100%');
+              } else {
+                this.setWidthAndHeight('#ag-gridPluto', '100%', '70px');
+              }
+              this.gridOptionsPluto.api.setRowData(this.mapMarkers);
             }
           );
         },
@@ -77,9 +101,9 @@ export class DetailsComponent implements OnInit, OnDestroy {
       );
     });
 
-    // ag-grid
-    this.gridOptions = < GridOptions > {
-      columnDefs: this.columns,
+    // ag-grid gridOptionsLandmarks
+    this.gridOptionsLandmarks = < GridOptions > {
+      columnDefs: this.columnsLandmarks,
       rowData: null,
       // pagination: true,
       // paginationAutoPageSize: true,
@@ -96,6 +120,26 @@ export class DetailsComponent implements OnInit, OnDestroy {
         //   });
       }
     };
+
+    // ag-grid gridOptionsLandmarks
+    this.gridOptionsPluto = < GridOptions > {
+      columnDefs: this.columnsPluto,
+      rowData: null,
+      // pagination: true,
+      // paginationAutoPageSize: true,
+      // paginationPageSize: 100,
+      // paginationStartPage: 1,
+      enableColResize: true,
+      // enableSorting: true,
+      // enableFilter: true,
+      // gridReady: (params) => {
+      //   params.api.setWidthAndHeight('100%','100%');
+      //   params.api.sizeColumnsToFit();
+      //   this.$win.on(this.resizeEvent, () => {
+      //     setTimeout(() => { params.api.sizeColumnsToFit(); });
+      //   });
+      // }
+    };
   }
 
   ngOnInit() {
@@ -108,10 +152,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   public changePage(page: any) {}
 
-  setWidthAndHeight(width: string = '100%', height: string = '100%') {
-    var grid = this.elem.nativeElement.querySelector('#ag-grid');
+  setWidthAndHeight(divId: string = '#ag-gridLandmarks', width: string = '100%', height: string = '100%') {
+    var grid = this.elem.nativeElement.querySelector(divId);
     grid.style.width = width;
     grid.style.height = height;
-    this.gridOptions.api.doLayout();
+    this.gridOptionsLandmarks.api.doLayout();
   }
 }
