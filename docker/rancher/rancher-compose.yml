@@ -1,3 +1,5 @@
+coredatastore-api:
+  scale: 3
 coredatastore-lb:
   scale: 1
   load_balancer_config:
@@ -6,13 +8,8 @@ coredatastore-lb:
     port: 42
     interval: 2000
     unhealthy_threshold: 3
-    healthy_threshold: 2
+    strategy: recreate
     response_timeout: 2000
-coredatastore-web-lattest:
-  scale: 3
-coredatastore-web:
-  scale: 3
-coredatastore-web-staging:
-  scale: 3
+    healthy_threshold: 2
 database:
   scale: 1
