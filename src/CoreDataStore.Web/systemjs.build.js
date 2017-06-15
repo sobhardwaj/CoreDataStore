@@ -1,5 +1,19 @@
   System.config({
     defaultExtensions: 'js',
+    typescriptOptions: {
+      "target": "es2017",
+      "lib": [
+        "es2017",
+        "dom"
+      ],
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "removeComments": false,
+      "noImplicitAny": false
+    },
     transpiler: "typescript",
     paths: {
       // paths serve as alias
