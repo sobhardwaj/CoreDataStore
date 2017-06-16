@@ -5,7 +5,6 @@ MAINTAINER Stuart Shay
 ENV LANDMARK="http://informationcart.eastus2.cloudapp.azure.com:80/api/"
 ENV MAPSAPI="http://informationcart.eastus2.cloudapp.azure.com:82/api/"
 
-
 # Create and copy app directory
 RUN mkdir -p /app
 WORKDIR /app
