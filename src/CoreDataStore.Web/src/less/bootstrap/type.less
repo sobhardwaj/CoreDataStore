@@ -145,9 +145,66 @@ mark,
 // -------------------------
 
 .page-header {
-  padding-bottom: ((@line-height-computed / 2) - 1);
-  margin: (@line-height-computed * 2) 0 @line-height-computed;
-  border-bottom: 1px solid @page-header-border-color;
+  padding-bottom: 0 !important;
+  margin: 0 !important;
+  border-bottom-width: 0 !important;
+  background-color: #008cba;
+}
+
+.page-header a {
+  color: #fff !important;
+}
+
+.page-header a:hover {
+  color: #eee !important;
+}
+
+.navbar-header .btn {
+  padding: 12px;
+  font-size: 18px;
+}
+
+.sidenav {
+    text-align: center;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1001;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 20px 0px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #000;
+    display: block;
+    border-width: 90%;
+    border-bottom: solid 1px #cfcdcd;
+    margin: 0 20px;
+    transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus, .sidenav .closebtn:hover {
+    color: #333 !important;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    padding: 0;
+    top: 10px;
+    right: 10px;
+    font-size: 36px;
+    margin-left: 50px;
+    border-width: 0;
+    margin: 0;
+    text-decoration: none;
+    color: black !important;
 }
 
 
