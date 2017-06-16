@@ -1,0 +1,14 @@
+{
+  "name": "CoreDataStore",
+  "version": "1.0.0",
+  "description": "CoreDataStore Angular2 with TypeScript and Gulp",
+  "license": "Private",
+  "dependencies": {
+    "express": "^4.10.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  },
+  "readme": "FIX: No README data found!"
+}

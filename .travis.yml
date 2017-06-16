@@ -4,6 +4,8 @@ services:
 env:
   matrix:
   - NG_ENVIRONMENT=Stage
+  - LANDMARK=http://informationcart.eastus2.cloudapp.azure.com:80/api/
+  - MAPSAPI=http://informationcart.eastus2.cloudapp.azure.com:82/api/
   global:
   - secure: jm2AKgkxzwOM05AJPN8NfTNZ0zcOf80brh6/mgOj0AhfptGVlGBE9IbcB2pjv+vZbHwDk9mtmt0M8ZRgfXYDBxLmTUAOZPeoalxrH2MWFc8t07lyyBB63FVlQZDqwPogKt1lJXy7t4Zb07RwHKFWV6VMWs8p24MHNC1hK9mVgRO/3S6M95YUqJvSs6/4jYoSJuF2hgXU1Kr5WaE43MFl3Fr1A/wbYavMGy+ZVzd+/PiRzxxpBtJ1rN1l2l5pOf8+NouBkgW4IBCfYaZzkBIkmfrJieayDrn1KCw9OC2pPDamIwvJ2lk1HBlCLCJ7SYDwxmtoL6EBEJBisxwLnoqapdob699bDZao282FHL19K6wGpehljt8jYza4xW/ELOt10lYyY/egSQBX8h61+bt2cniDhhQdNFaA0huaOrwN4HkZj88qXMA7mIbyu5TkQMRvazlzEu0tzvGEu/RiVXwIFoYoveHugy3YBkk4BXw3NqIg1kxMh6TdF+SPQPwHZrC8eUQW1QCghF0ImpBU5UwDWMCwZQ6z7kwrmWPrVfv9DlzFfeZAohF8O39opUq7aFOYOvAnZKTp0FjO+ombCZJXx9q2z2VV/tSbPV3SRXF474u+J9CRJyOwfUERzRK8M4ezVwKkEq9H7tHwJUBs/RhhqaGQF0co6O8S6x1IxSRvIRw=
 language: node_js
@@ -18,12 +20,12 @@ cache:
   - .nuget
 
 before_install:
-  - sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
-  - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
-  - sudo apt update
-  - sudo apt install -y dotnet-dev-1.0.4
-  - dotnet restore
-  - dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp1.1 -r debian.8-x64
+  # - sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
+  # - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
+  # - sudo apt update
+  # - sudo apt install -y dotnet-dev-1.0.4
+  # - dotnet restore
+  # - dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp1.1 -r debian.8-x64
   - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
   - cd src/CoreDataStore.Web
 
@@ -33,12 +35,12 @@ script:
 
 after_success:
   - cd ../..
-  - docker build -f docker/runtime.dockerfile -t stuartshay/coredatastore:$TRAVIS_NODE_VERSION .
-  - docker run -d -p 5000:5000 stuartshay/coredatastore:$TRAVIS_NODE_VERSION
+  - docker build -f docker/node.dockerfile -t stuartshay/coredatastore:node$TRAVIS_NODE_VERSION .
+  - docker run -d -p 5000:5000 stuartshay/coredatastore:node$TRAVIS_NODE_VERSION
   - docker ps -a
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push stuartshay/coredatastore:$TRAVIS_NODE_VERSION;
+    docker push stuartshay/coredatastore:node$TRAVIS_NODE_VERSION;
     fi
 notifications:
   slack: leduong:8FHnajypcfOykiQS6Hn6QBB5
