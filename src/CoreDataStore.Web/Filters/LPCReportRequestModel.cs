@@ -14,7 +14,7 @@ namespace CoreDataStore.Web.Filters
 
 
         /// <summary>
-        /// Borough
+        /// NYC Borough
         /// </summary>
         public string Borough { get; set; }
 

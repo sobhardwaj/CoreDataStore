@@ -23,6 +23,8 @@ namespace CoreDataStore.Service.Services
 
         public List<string> GetLandmarkStreets(string lpcNumber)
         {
+
+
             var predicate = PredicateBuilder.True<Landmark>();
             predicate = predicate.And(x => x.LP_NUMBER == lpcNumber);
 

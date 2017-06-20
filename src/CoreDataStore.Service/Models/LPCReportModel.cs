@@ -26,9 +26,49 @@ namespace CoreDataStore.Service.Models
 
         public bool PhotoStatus { get; set; }
 
+        public bool MapStatus
+        {
+            get
+            {
+                if (this.ObjectType != "Historic District")
+                    return true;
+
+                return false;
+            }
+
+        }
+
+        /// <summary>
+        /// LPC Web Site Photo Url
+        /// </summary>
         public string PhotoURL { get; set; }
 
-  
+        /// <summary>
+        /// LPC Designation Report Link
+        /// </summary>
+        public string PdfURL
+        {
+            get
+            {
+                string baseUrl = string.Format("http://s-media.nyc.gov/agencies/lpc/lp/{0}.pdf", this.LPCId);
+                return baseUrl;
+            }
+        }
+
+        /// <summary>
+        /// NYCity Map
+        /// </summary>
+        public string MapURL
+        {
+            get
+            {
+                string baseUrl = null;
+                if (this.ObjectType != "Historic District" && !string.IsNullOrWhiteSpace(this.Street) && !string.IsNullOrWhiteSpace(this.Borough))
+                    baseUrl = string.Format("http://maps.nyc.gov/doitt/nycitymap/?searchType=AddressSearch&street={0}&borough={1}", this.Street, this.Borough);
+
+                return baseUrl;
+            }
+        }
 
     }
 }

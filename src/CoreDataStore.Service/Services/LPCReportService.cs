@@ -33,15 +33,6 @@ namespace CoreDataStore.Service.Services
             return Mapper.Map<IEnumerable<LPCReport>, IEnumerable<LPCReportModel>>(results).ToList();
         }
 
-        public List<string> GetAddresses(string lpcNumber)
-        {
-            var list = new List<string>();
-            list.Add("Street 1");
-            list.Add("Street 2");
-            list.Add("Street 3");
-
-            return list;
-        }
 
         public LPCReportModel UpdateLPCReport(LPCReportModel model)
         {
@@ -80,7 +71,6 @@ namespace CoreDataStore.Service.Services
                 .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList);
 
             var modelData = Mapper.Map<IEnumerable<LPCReport>, IEnumerable<LPCReportModel>>(results).ToList();
-
             var pagedResult = new PagedResultModel<LPCReportModel>
             {
                 Total = totalCount,

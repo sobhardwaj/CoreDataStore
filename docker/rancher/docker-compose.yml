@@ -1,65 +1,34 @@
-# Stack Name CoreDataStore
-
+coredatastore-api:
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: io.rancher.host.type=worker
+  tty: true
+  image: stuartshay/coredatastore:latest
+  links:
+  - 'database:'
+  stdin_open: true
 coredatastore-lb:
   ports:
   - 80:5000
   labels:
     io.rancher.loadbalancer.target.endpoint: /
-    # Host MUST have the label `io.rancher.host.type=manager`
     io.rancher.scheduler.affinity:host_label: io.rancher.host.type=manager
   tty: true
   image: rancher/load-balancer-service
   links:
-    - endpoint:endpoint
+  - endpoint:endpoint
   stdin_open: true
-
 endpoint:
   image: rancher/dns-service
   links:
-    - coredatastore-web:coredatastore-web
-
-coredatastore-web:
-  labels:
-    io.rancher.container.pull_image: always
-    io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-    # Host MUST have the label `io.rancher.host.type=worker`
-    io.rancher.scheduler.affinity:host_label: io.rancher.host.type=worker
-  tty: true
-  image: stuartshay/coredatastore:stable
-  stdin_open: true
-  links:
-    - database:database
-
-coredatastore-web-lattest:
-  labels:
-    io.rancher.container.pull_image: always
-    io.rancher.scheduler.affinity:host_label: io.rancher.host.type=worker
-    io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-  tty: true
-  image: stuartshay/coredatastore
-  stdin_open: true
-  links:
-    - database:database
-
-coredatastore-web-staging:
-  labels:
-    io.rancher.container.pull_image: always
-    io.rancher.scheduler.affinity:host_label: io.rancher.host.type=worker
-    io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-  tty: true
-  image: stuartshay/coredatastore:staging
-  stdin_open: true
-  links:
-    - database:database
-
+  - coredatastore-api:coredatastore-api
 database:
   environment:
     POSTGRES_PASSWORD: password
   labels:
     io.rancher.container.pull_image: always
-    io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-    # Host MUST have the label `io.rancher.host.type=worker`
     io.rancher.scheduler.affinity:host_label: io.rancher.host.type=worker
+    io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
   tty: true
   image: stuartshay/coredatastore-postgres:stable
   stdin_open: true

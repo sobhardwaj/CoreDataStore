@@ -13,6 +13,7 @@ import { DiagnosticsService } from '../services/diagnostics';
 export class DiagnosticsComponent implements OnInit {
   private timer;
   build: string = AppSettings.build;
+  buildId: string = AppSettings.buildId;
   ApiEndpoint: string = AppSettings.ApiEndpoint;
   ApiAttraction: string = AppSettings.ApiAttraction;
   ApiMaps: string = AppSettings.ApiMaps;

@@ -17,10 +17,11 @@ Running
 
 Install dependencies:
 
-> cd src/CoreDataStore.Web
-> npm install
-
-`node_modules` and `typings` directories should be created during the install.
+```bash
+cd src/CoreDataStore.Web         
+npm install
+```
+`node_modules` and `typings` directories will be created during install.         
 
 Environment Linux/Unix
 ```bash
