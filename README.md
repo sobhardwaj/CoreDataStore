@@ -10,17 +10,15 @@ Dependencies
 [![devDependencies Status](https://david-dm.org/stuartshay/CoreDataStore/dev-status.svg)](https://david-dm.org/stuartshay/CoreDataStore?type=dev)
 [![Code Climate](https://codeclimate.com/github/stuartshay/CoreDataStore/badges/gpa.svg)](https://codeclimate.com/github/stuartshay/CoreDataStore)
 
-
+#### Demo
+http://informationcart.eastus2.cloudapp.azure.com    
+http://stuartshay.github.io/CoreDataStore/
 
 New York City Landmarks Reference Data     
 
 - [Landmarks Preservation Commission - NYC.gov](http://www1.nyc.gov/site/lpc/index.page)
 - [NYC OpenData](http://opendata.cityofnewyork.us/)   
 
-
-#### Demo
-http://informationcart.eastus2.cloudapp.azure.com    
-http://stuartshay.github.io/CoreDataStore/
 
 ## Prerequisites:
 
