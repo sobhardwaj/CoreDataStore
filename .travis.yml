@@ -26,13 +26,13 @@ script:
   - npm run build
 
 after_success:
-  - cd ../..
-  - docker build -f docker/node.dockerfile -t stuartshay/coredatastore:node$TRAVIS_NODE_VERSION .
-  - docker run -d -p 3000:3000 stuartshay/coredatastore:node$TRAVIS_NODE_VERSION
-  - docker ps -a
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+  - if [ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_NODE_VERSION" == "6" ]; then
+    cd ../..;
+    docker build -f docker/node.dockerfile -t stuartshay/coredatastore:build-$TRAVIS_BUILD_ID .;
+    docker run -d -p 3000:3000 stuartshay/coredatastore:build-$TRAVIS_BUILD_ID;
+    docker ps -a;
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push stuartshay/coredatastore:node$TRAVIS_NODE_VERSION;
+    docker push stuartshay/coredatastore:build-$TRAVIS_BUILD_ID;
     fi
 notifications:
   slack: leduong:8FHnajypcfOykiQS6Hn6QBB5

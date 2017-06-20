@@ -21,11 +21,13 @@ var fs = require('fs'),
   cssPrefixer = require('gulp-autoprefixer'),
   merge = require('merge-stream');
 
+var pkg = require('./package.json');
 var SystemBuilder = require('systemjs-builder');
 
 var buildDir = "wwwroot";
 var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || '';
 var BUILD = process.env.BUILD || 'local';
+var TRAVIS_BUILD_ID = process.env.TRAVIS_BUILD_ID || '';
 var LANDMARK = process.env.LANDMARK || '/api/';
 var ATTRACTION = process.env.ATTRACTION || '/api/attraction';
 var MAPSAPI = process.env.MAPSAPI || '/api/maps';
@@ -157,13 +159,17 @@ gulp.task('watch', () => {
 });
 
 gulp.task('appsettings', function(cb) {
+  var version = pkg.version.split('.');
+
   var build = 'build: ' + BUILD;
   var ng2ENV = '\nng2ENV: ' + NG_ENVIRONMENT;
+  var buildId = '\nbuildId: ' + (TRAVIS_BUILD_ID ? [version[0], version[1], TRAVIS_BUILD_ID].join('.') : pkg.version);
   var landmark = '\nApiEndpoint: ' + LANDMARK;
   var maps = '\nApiMaps: ' + MAPSAPI;
   var reports = '\nApiReports: ' + REPORTSAPI;
   var attraction = '\nApiAttraction: ' + ATTRACTION;
-  return fs.writeFile('appsettings.yml', build + ng2ENV + landmark + maps + reports + attraction, cb);
+
+  return fs.writeFile('appsettings.yml', build + buildId + ng2ENV + landmark + maps + reports + attraction, cb);
 });
 
 gulp.task('api', function() {
