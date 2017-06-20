@@ -40,7 +40,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
         }
 
 
-        // [Fact, Trait("Category", "Intergration")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Street_List()
         {
             string lpNumber = "LP-02039";
