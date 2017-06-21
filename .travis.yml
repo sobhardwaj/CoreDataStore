@@ -30,12 +30,12 @@ script:
 
 after_success:
   - cd ../..
-  - docker build -f docker/node.dockerfile -t stuartshay/coredatastore:travis$TRAVIS_BUILD_NUMBER-$TRAVIS_NODE_VERSION .
-  - docker run -d -p 3000:3000 stuartshay/coredatastore:travis$TRAVIS_BUILD_NUMBER-$TRAVIS_NODE_VERSION
+  - docker build -f docker/node.dockerfile -t stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER .
+  - docker run -d -p 3000:3000 stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER
   - docker ps -a
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push stuartshay/coredatastore:travis$TRAVIS_BUILD_NUMBER-$TRAVIS_NODE_VERSION;
+    docker push stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER;
     fi
 notifications:
   slack: leduong:8FHnajypcfOykiQS6Hn6QBB5
