@@ -65,7 +65,6 @@
     "gulp-if": "^2.0.2",
     "gulp-less": "^3.3.0",
     "gulp-replace": "^0.5.4",
-    "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-ts-config": "^1.0.15",
     "gulp-tslint": "^8.0.0",
