@@ -18,7 +18,7 @@ if (username && accessKey) {
   usingServer(urlSaucelabs).
   build();
 
-  driver.get("http://localhost:3000/#/diagnostics");
+  driver.get("http://127.0.0.1:3000/#/diagnostics");
 
   driver.getTitle().then(function(title) {
     console.log("title is: " + title);
