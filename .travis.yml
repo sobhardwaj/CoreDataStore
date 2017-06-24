@@ -35,6 +35,8 @@ after_success:
 - if [ "$TRAVIS_BRANCH" == "master" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
   docker push stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER;
   fi
+- npm i selenium-webdriver
+- npm run selenium
 notifications:
   slack: leduong:8FHnajypcfOykiQS6Hn6QBB5
 

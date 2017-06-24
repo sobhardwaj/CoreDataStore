@@ -4,6 +4,7 @@
   "description": "CoreDataStore Angular2 with TypeScript and Gulp",
   "private": true,
   "scripts": {
+    "selenium": "node selenium.test.js",
     "clean": "./node_modules/.bin/gulp clean",
     "compile": "./node_modules/.bin/gulp compile",
     "build": "./node_modules/.bin/gulp build",
