@@ -1,5 +1,6 @@
 var username = process.env.SAUCE_USERNAME || '';
 var accessKey = process.env.SAUCE_ACCESS_KEY || '';
+var TRAVIS_JOB_NUMBER = process.env.TRAVIS_JOB_NUMBER;
 
 var webdriver = require('selenium-webdriver'),
   urlSaucelabs,
@@ -13,7 +14,8 @@ if (username && accessKey) {
     'platform': 'Windows 7',
     'version': '59.0.',
     'username': username,
-    'accessKey': accessKey
+    'accessKey': accessKey,
+    'tunnelIdentifier': TRAVIS_JOB_NUMBER
   }).
   usingServer(urlSaucelabs).
   build();
