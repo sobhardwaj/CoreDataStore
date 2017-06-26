@@ -46,6 +46,11 @@ jobs:
             dotnet restore
             dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp1.1 -r debian.8-x64
       - run:
+          name: Pull and Test coredatastore-postgres
+          command: |
+            docker pull stuartshay/coredatastore-postgres:stable
+            dotnet test test/CoreDataStore.Data.Postgre.Test/CoreDataStore.Data.Postgre.Test.csproj
+      - run:
           name: Build and bundle from source
           command: |
             ( cd src/CoreDataStore.Web ; npm i; npm run clean ; npm run build )
