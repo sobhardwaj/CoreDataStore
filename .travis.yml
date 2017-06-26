@@ -11,8 +11,6 @@ env:
   - secure: X2vqYqJcV+ZM9Ypy4c2iRgS+uXrqQZrsxvj0NBz+P6ZNfu5DEIDqz5zPYPABmYeOxV04Xi5riHoygQhF6NAUqtQdjQRogRmyA1g+97tHgiJIPHaKmWWmu/Ob2JuXXKO1Y7qgDDYL4sD2vCqkgHjlnpfR4tVjnUSqjpbx7qiaz0fUhE0AMwArEu+QpwhZmw9GbWwWrGQ4iUJNbE7RY1SBpB/8dYGSLz7bLVXDfUdjCulCxNIhRlue6LiDu+tcwqiN03iabjQmJKYAmsfOTfjhEvugzOcR9e0Cvh4h/bd0P9ymWpRqMGYMGaXCpnr414VL0ikH3BbRAqp1Y6AOo009YMAd/rFTgphAouRN9upqMQ32dD9v1aumMz3pLfkKbEliHuZ3Y/nlxGbIThDJtn1Xcsl/SCzWsw58Wv73A5lUyt4yaKBJLuLkL7ZFVxoICB6ydtacfyb8FzP2irejY2EwGgWjiTF5M3OgyovnFHNiCQGcLoXSZocDWls4xCBqd+ysm1SH+BBtxh5FuyPUvdhty+jvyBDLXbW2za2/QmmRBF+R8gxvL4CjLJPZUpcLjbUXO7Mg2Ve9OmjT5WOpjk9DbxXCco8cxrDjcFvEsplk2l6TXvcbreYmvpSD9nAe3Voi6RIXBBmIwIjs1i2x2r3aGk+/HIyjlDe7E3RRmnsTOow=
 language: node_js
 node_js:
-- '4'
-- '5'
 - '6'
 - '7'
 addons:
@@ -31,7 +29,8 @@ after_success:
 - docker build -f docker/node.dockerfile -t stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER .
 - docker run -d -p 3000:3000 stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER
 - docker ps -a
-- if [ "$TRAVIS_BRANCH" == "master" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+- if [ "$TRAVIS_BRANCH" == "master" ]; then
+  docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
   docker push stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER;
   fi
 - npm i selenium-webdriver
