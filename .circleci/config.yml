@@ -5,10 +5,11 @@ jobs:
       - image: ubuntu:16.04
     working_directory: ~/src/CoreDataStore.Web
     environment:
-      - LANDMARK : "http://informationcart.eastus2.cloudapp.azure.com:80/api/"
+      - NG_ENVIRONMENT: "Stage"
+      - LANDMARK : "https://coredatastore.com"
       - ATTRACTION : "http://informationcart.eastus2.cloudapp.azure.com:83/api/"
       - MAPSAPI : "http://informationcart.eastus2.cloudapp.azure.com:82/api/"
-      - REPORTSAPI: "http://informationcart.eastus2.cloudapp.azure.com:84/api/"
+      - REPORTSAPI: "https://reports.coredatastore.com"
     steps:
       - checkout
       - run: 
