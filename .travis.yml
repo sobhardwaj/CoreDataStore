@@ -27,13 +27,13 @@ script:
 after_success:
 - cd ../..
 - docker build -f docker/node.dockerfile -t stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER .
-- docker run -d -p 3000:3000 stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER
+- docker run --env-file ./env.staging -d -p 3000:3000 stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER
 - docker ps -a
 - if [ "$TRAVIS_BRANCH" == "master" ]; then
   docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
   docker push stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER;
   fi
-- npm i selenium-webdriver
+- npm i selenium-webdriver assert mocha
 - npm run selenium
 notifications:
   slack: leduong:8FHnajypcfOykiQS6Hn6QBB5

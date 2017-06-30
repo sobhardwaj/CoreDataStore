@@ -3,10 +3,11 @@ var accessKey = process.env.SAUCE_ACCESS_KEY || '';
 var TRAVIS_JOB_NUMBER = process.env.TRAVIS_JOB_NUMBER;
 
 const { Builder, By, until } = require('selenium-webdriver');
+var assert = require('assert');
 var urlSaucelabs, browser;
 
 if (username && accessKey) {
-  urlSaucelabs = ["http://", username, ":", accessKey, "@ondemand.saucelabs.com:80/wd/hub"].join('');
+  urlSaucelabs = ['http://', username, ':', accessKey, '@ondemand.saucelabs.com:80/wd/hub'].join('');
   browser = new Builder().
   withCapabilities({
     'browserName': 'safari',
@@ -20,14 +21,32 @@ if (username && accessKey) {
   usingServer(urlSaucelabs).
   build();
 
-  browser.get("http://127.0.0.1:3000/#/diagnostics");
+  browser.get('http://127.0.0.1:3000/');
 
   browser.wait(findLink('#/references'), 2000).then(clickLink);
+  browser.wait(findLink('#/maps'), 2000).then(clickLink);
 
   browser.wait(findLink('#/diagnostics'), 2000).
   then(clickLink).
   then(logTitle).
   then(closeBrowser, handleFailure);
+
+  // describe('testing javascript in the browser', function() {
+  //   beforeEach(function() {
+  //     return browser.get('http://127.0.0.1:3000/');
+  //   });
+
+  //   afterEach(function() {
+  //     return closeBrowser();
+  //   });
+
+  //   it('test title', function(done) {
+  //     browser.getTitle().then(function(title) {
+  //       assert.equal(title, 'CoreDataStore');
+  //       done();
+  //     });
+  //   });
+  // });
 
 }
 
