@@ -12,6 +12,8 @@ declare var $: any;
 })
 export class HeaderComponent implements OnInit {
   isNavSearchVisible: boolean;
+  isMobile: boolean = false;
+  locationEnabled: boolean = false;
   @ViewChild('fsbutton') fsbutton; // the fullscreen button
 
   constructor(private settings: SettingsService) {}
@@ -21,6 +23,17 @@ export class HeaderComponent implements OnInit {
     if (browser.msie) { // Not supported under IE
       this.fsbutton.nativeElement.style.display = 'none';
     }
+    
+    if(navigator.geolocation) {
+      this.locationEnabled = true;
+    } else {
+      this.locationEnabled = false;
+    }
+
+    if(window.innerWidth < 768) {
+      this.isMobile = true;
+    }
+    console.log(this.isMobile +":"+this.locationEnabled);
   }
 
   toggleUserBlock(event) {
@@ -67,4 +80,12 @@ export class HeaderComponent implements OnInit {
       el.children('em').removeClass('fa-compress').addClass('fa-expand');
     }
   }
+
+  onResize(event) {
+    if(window.innerWidth < 768) {
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
+  }  
 }
