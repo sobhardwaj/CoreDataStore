@@ -25,6 +25,7 @@ script:
 - npm run clean
 - npm run build
 after_success:
+- rm -f wwwroot/index.html
 - cd ../..
 - docker build -f docker/node.dockerfile -t stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER .
 - docker run --env-file ./env.staging -d -p 3000:3000 stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER

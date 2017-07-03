@@ -19,7 +19,7 @@ app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'wwwroot')));
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+app.get('/', function(req, res, next) {
   res.render('index', {
     'LANDMARK': LANDMARK,
     'MAPSAPI': MAPSAPI,
