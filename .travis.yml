@@ -11,8 +11,8 @@ language: node_js
 node_js:
 - '6'
 - '7'
-#addons:
-#  sauce_connect: true
+addons:
+  sauce_connect: true
 cache:
   directories:
   - node_modules
@@ -28,10 +28,10 @@ after_success:
 - docker build -f docker/node.dockerfile -t stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER .
 - docker run --env-file docker/env.staging -d -p 3000:3000 stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER
 - docker ps -a
-#- if [ "$TRAVIS_BRANCH" == "master" ]; then
+- if [ "$TRAVIS_BRANCH" == "node/envURL" ]; then
   docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
   docker push stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER;
-#  fi
+  fi
 #- npm i selenium-webdriver assert mocha
 #- npm run selenium
 notifications:
