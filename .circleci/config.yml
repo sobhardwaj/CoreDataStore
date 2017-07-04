@@ -58,13 +58,6 @@ jobs:
       - run:
           name: Build and bundle from source
           command: |
-            docker pull stuartshay/coredatastore-postgres:stable
-            docker run -d -p 5432:5432 stuartshay/coredatastore-postgres:stable
-            docker ps
-            dotnet test test/CoreDataStore.Data.Postgre.Test/CoreDataStore.Data.Postgre.Test.csproj
-      - run:
-          name: Build and bundle from source
-          command: |
             ( cd src/CoreDataStore.Web ; npm i; npm run clean ; npm run build )
       - run:
           name: Build and push Docker image
