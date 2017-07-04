@@ -80,6 +80,16 @@ GROUP BY BBL
 ORDER BY COUNT(*) DESC
 
 
+//LPC Lamppost
+SELECT Id, PostId, "Type", SubType, Block, Lot, Borough, Located, Latitude, Longitude
+FROM NycLandmarks.dbo.LPCLamppost;
+
+
+
+
+
+
+
  
 SELECT [x].[Id], [x].[Address], [x].[BBL], [x].[Block], [x].[Borough], [x].[HistDist], [x].[Latitude], [x].[Longitude], [x].[Lot], [x].[LotArea], [x].[NumBldgs], [x].[OwnerName], [x].[XCoord], [x].[YCoord], [x].[YearBuilt]
 FROM [Pluto] AS [x]
