@@ -90,8 +90,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
                 SortOrder = !string.IsNullOrEmpty(request.SortOrder) ? request.SortOrder : null
             };
 
-            var sortingList = new List<SortModel>();
-            sortingList.Add(sortModel);
+            var sortingList = new List<SortModel>{sortModel};
 
             var results = _landmarkRepository
                 .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList);
