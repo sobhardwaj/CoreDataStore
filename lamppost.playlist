@@ -1,1 +1,0 @@
-<Playlist Version="1.0"><Add Test="CoreDataStore.Data.SqlServer.Test.Repositories.LPCLamppostRepositoryTest.Can_Get_Lamppost" /><Add Test="CoreDataStore.Data.SqlServer.Test.Repositories.LPCLamppostRepositoryTest.Get_LPC_Lamppost_List" /></Playlist>
