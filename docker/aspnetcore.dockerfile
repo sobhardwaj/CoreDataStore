@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.0.0-preview1-sdk
+FROM microsoft/dotnet:2.0.0-preview2-sdk
 MAINTAINER Stuart Shay
 
 # Set environment variables
