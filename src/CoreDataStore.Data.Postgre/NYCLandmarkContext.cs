@@ -9,6 +9,11 @@ namespace CoreDataStore.Data.Postgre
         public NYCLandmarkContext(DbContextOptions<NYCLandmarkContext> options) : base(options)
         { }
 
+        public NYCLandmarkContext()
+        {
+            
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 

@@ -5,6 +5,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>CoreDataStore.Data.Sqlite</AssemblyName>
     <PackageId>CoreDataStore.Data.Sqlite</PackageId>
+    <Version>1.0.8</Version>
   </PropertyGroup>
 
   <ItemGroup>

@@ -34,17 +34,11 @@ namespace CoreDataStore.Data.SqlServer
             builder.Entity<LPCReport>().Property(t => t.LPCId).HasMaxLength(10).IsRequired();
             builder.Entity<LPCReport>().Property(t => t.PhotoURL).HasMaxLength(500);
             builder.Entity<LPCReport>().Property(t => t.Style).HasMaxLength(100);
-            
 
             //Shadow Properties
             //builder.Entity<LPCReport>().Property<DateTime>("Modified");
 
-            builder.Entity<LPCReport>()
-                .HasOne(p => p.LPCLocation)
-                .WithOne(l => l.LPCReport)
-                .HasForeignKey<LPCLocation>(p => p.LPNumber)
-                .HasPrincipalKey<LPCReport>(l => l.LPNumber);
-
+   
 
             builder.Entity<LPCLocation>().HasKey(m => m.Id);
             builder.Entity<LPCLocation>().Property(t => t.LPNumber).HasMaxLength(10).IsRequired();
