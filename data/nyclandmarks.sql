@@ -10,6 +10,21 @@ ALTER TABLE [dbo].[Landmark]
 DROP CONSTRAINT FK_Landmark_LPCReport
 
 */
+    ALTER TABLE [dbo].[Landmark]
+    ADD CONSTRAINT [FK_Landmark_LPCReport_LP_NUMBER] FOREIGN KEY ([LP_NUMBER]) REFERENCES [dbo].[LPCReport] ([LPNumber])
+   
+   
+    ALTER TABLE [dbo].[Landmark]
+	ADD CONSTRAINT [AK_Landmark_BBL] UNIQUE NONCLUSTERED ([BBL] ASC)
+
+	SELECT BBL, COUNT(*)  FROM [dbo].[Landmark]
+	GROUP BY BBL
+    HAVING COUNT(*) > 1
+	
+	SELECT *  FROM [dbo].[Landmark]
+	WHERE BBL = 4007990040
+
+
 
 SELECT Name, Street, * FROM [dbo].[LPCReport]
 WHERE Borough = 'Queens'

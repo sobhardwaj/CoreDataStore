@@ -32,7 +32,7 @@ namespace CoreDataStore.Domain.Entities
 
         public decimal? Longitude { get; set; }
 
-        public LPCReport LPCReport { get; set; }
+        //public LPCReport LPCReport { get; set; }
 
     }
 }
