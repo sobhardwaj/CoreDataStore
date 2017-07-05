@@ -103,12 +103,3 @@ Landmarks Reference Database
 docker pull stuartshay/coredatastore-postgres:stable
 docker run --rm --name postgresdb -p 5432:5432  stuartshay/coredatastore-postgres:stable  
 ```
-
-## Entity Framework
-
-```bash
-cd /test/CoreDataStore.Data.Postgre.Test
-
-dotnet ef migrations add <MigrationName>
-dotnet ef database update
-```
