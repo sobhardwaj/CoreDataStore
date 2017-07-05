@@ -24,8 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{9CAE5C
 		docker\docker-compose-development.yml = docker\docker-compose-development.yml
 		docker\docker-compose-staging.yml = docker\docker-compose-staging.yml
 		docker\nanoserver.dockerfile = docker\nanoserver.dockerfile
+		docker\node.dockerfile = docker\node.dockerfile
 		docker\runtime.dockerfile = docker\runtime.dockerfile
-		docker\ui.dockerfile = docker\ui.dockerfile
 		docker\windowsserver.dockerfile = docker\windowsserver.dockerfile
 	EndProjectSection
 EndProject
@@ -51,9 +51,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDataStore.Web", "src\Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{EB9B4D99-1CF2-4AF7-8C62-C3D1750B6766}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDataStore.Data.SqlServer.EF", "tools\CoreDataStore.Data.SqlServer.EF\CoreDataStore.Data.SqlServer.EF.csproj", "{655C4BFD-FD9E-44A3-B80B-E9D7DA9123A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDataStore.Data.SqlServer.EF", "tools\CoreDataStore.Data.SqlServer.EF\CoreDataStore.Data.SqlServer.EF.csproj", "{655C4BFD-FD9E-44A3-B80B-E9D7DA9123A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDataStore.Data.Postgre.EF", "tools\CoreDataStore.Data.Postgre.EF\CoreDataStore.Data.Postgre.EF.csproj", "{4A1C325D-75FF-49A4-9C05-5E70AE85A86A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDataStore.Data.Postgre.EF", "tools\CoreDataStore.Data.Postgre.EF\CoreDataStore.Data.Postgre.EF.csproj", "{4A1C325D-75FF-49A4-9C05-5E70AE85A86A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

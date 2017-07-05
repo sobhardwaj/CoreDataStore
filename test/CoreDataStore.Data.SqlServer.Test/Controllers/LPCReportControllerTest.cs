@@ -32,7 +32,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
         public LPCReportControllerTest()
         {
             var services = new ServiceCollection();
-            services.AddDbContext<NYCLandmarkContext>(options => options.UseTransientInMemoryDatabase());
+            services.AddDbContext<NYCLandmarkContext>(options => options.UseInMemoryDatabase());
 
             //Repositories
             services.AddScoped<ILPCReportRepository, LPCReportRepository>();

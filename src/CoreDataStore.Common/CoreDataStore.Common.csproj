@@ -15,7 +15,7 @@
   <ItemGroup>
     <PackageReference Include="System.ComponentModel.Primitives" Version="4.3.0" />
     <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
-    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.4.0-preview1-25305-02" />
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.4.0-preview2-25405-01" />
     <PackageReference Include="System.Runtime" Version="4.3.0" />
   </ItemGroup>
 
