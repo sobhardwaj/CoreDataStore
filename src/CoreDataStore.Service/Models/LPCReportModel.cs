@@ -45,7 +45,10 @@ namespace CoreDataStore.Service.Models
         {
             get
             {
-                string baseUrl = string.Format("https://corecdn.azureedge.net/images/{0}.jpg", this.LPCId);
+                string baseUrl = null;
+                if (this.PhotoStatus)
+                    baseUrl = string.Format("https://corecdn.azureedge.net/images/{0}.jpg", this.LPCId);
+
                 return baseUrl;
             }
         }
