@@ -41,7 +41,14 @@ namespace CoreDataStore.Service.Models
         /// <summary>
         /// LPC Web Site Photo Url
         /// </summary>
-        public string PhotoURL { get; set; }
+        public string PhotoURL
+        {
+            get
+            {
+                string baseUrl = string.Format("https://corecdn.azureedge.net/images/{0}.jpg", this.LPCId);
+                return baseUrl;
+            }
+        }
 
         /// <summary>
         /// LPC Designation Report Link
