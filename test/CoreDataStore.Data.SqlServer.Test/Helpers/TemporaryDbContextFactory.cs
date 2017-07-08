@@ -1,10 +1,4 @@
-﻿using System.Reflection;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Configuration;
-using System;
-
-namespace CoreDataStore.Data.SqlServer.Test.Helpers
+﻿namespace CoreDataStore.Data.SqlServer.Test.Helpers
 {
     //public class TemporaryDbContextFactory : IDbContextFactory<NYCLandmarkContext>
     //{

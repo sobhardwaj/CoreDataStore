@@ -2,7 +2,6 @@
 using System.Linq;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.Postgre.Repositories;
-using CoreDataStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

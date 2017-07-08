@@ -1,8 +1,4 @@
-﻿using System.Reflection;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-
-namespace CoreDataStore.Data.Postgre.Test.Helpers
+﻿namespace CoreDataStore.Data.Postgre.Test.Helpers
 {
     //public class TemporaryDbContextFactory : IDbContextFactory<NYCLandmarkContext>
     //{

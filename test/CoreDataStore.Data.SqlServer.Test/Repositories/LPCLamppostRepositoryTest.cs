@@ -32,6 +32,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
             _dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
             _lamppostRepository = serviceProvider.GetRequiredService<ILPCLamppostRepository>(); 
+
         }
 
 
@@ -54,6 +55,19 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
             Assert.Equal(postId, result);
         }
+
+
+        [Fact, Trait("Category", "Intergration")]
+        public void Can_Update_Lamppost_Properties()
+        {
+            var postId = 10;
+            var result = _lamppostRepository.GetSingle(x => x.PostId == postId);
+            result.Borough = "Manhattan";
+
+            _lamppostRepository.UserId = "Unit Test";
+            _lamppostRepository.UpdateDbEntryAsync(result, d => d.Borough);
+        }
+
 
 
     }

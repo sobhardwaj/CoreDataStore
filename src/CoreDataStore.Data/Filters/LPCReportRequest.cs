@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CoreDataStore.Data.Sqlite.Filters.Base;
 
 namespace CoreDataStore.Data.Filters

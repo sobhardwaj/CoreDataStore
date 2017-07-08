@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Models;
-using System;
 
 namespace CoreDataStore.Service.Mappings
 {

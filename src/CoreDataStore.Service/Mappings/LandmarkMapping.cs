@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Models;
 

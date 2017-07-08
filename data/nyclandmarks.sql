@@ -88,8 +88,10 @@ OFFSET (0) ROWS FETCH NEXT (20) ROWS ONLY
 
 
 /** LPC Location **/
+
 SELECT r.LPNumber as r, l.LPNumber As l, * FROM [LPCReport] r
 INNER JOIN [LPCLocation] l ON r.LPNumber = l.LPNumber
+
 
 SELECT r.LPNumber as r, l.LPNumber As l, * FROM [LPCReport] r
 LEFT OUTER JOIN [LPCLocation] l ON r.LPNumber = l.LPNumber
@@ -107,13 +109,18 @@ SELECT COUNT(*) FROM PLUTO
 
 SELECT TOP 10 * FROM PLUTO
 
+
+
+
+
 SELECT BBL, COUNT(*) FROM PLUTO
 GROUP BY BBL 
 ORDER BY COUNT(*) DESC
 
 /** LPC Lamppost **/
 SELECT Id, PostId, "Type", SubType, Block, Lot, Borough, Located, Latitude, Longitude
-FROM NycLandmarks.dbo.LPCLamppost;
+FROM NycLandmarks.dbo.LPCLamppost
+WHERE PostId = 10;
 
 
 SELECT [x].[Id], [x].[Address], [x].[BBL], [x].[Block], [x].[Borough], [x].[HistDist], [x].[Latitude], [x].[Longitude], [x].[Lot], [x].[LotArea], [x].[NumBldgs], [x].[OwnerName], [x].[XCoord], [x].[YCoord], [x].[YearBuilt]

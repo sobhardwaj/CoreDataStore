@@ -12,8 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 using System.Linq;
 using CoreDataStore.Domain.Enum;
-using CoreDataStore.Service.Models;
-using CoreDataStore.Web.Filters;
 using FluentAssertions;
 using GenFu;
 using Microsoft.AspNetCore.Mvc;

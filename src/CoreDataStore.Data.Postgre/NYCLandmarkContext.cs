@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Data.Conventions;
+using CoreDataStore.Domain.Entities.Base;
 
 namespace CoreDataStore.Data.Postgre
 {
@@ -92,6 +93,15 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<Pluto>().Property(t => t.Latitude).HasPrecision(9, 6).IsRequired();
             builder.Entity<Pluto>().Property(t => t.Longitude).HasPrecision(9, 6).IsRequired();
 
+            builder.Entity<AuditLog>().ToTable("AuditLog");
+            builder.Entity<AuditLog>().HasKey(m => m.Id);
+            builder.Entity<AuditLog>().Property(t => t.UserName).HasColumnType("varchar").HasMaxLength(50);
+            builder.Entity<AuditLog>().Property(t => t.ImportType).HasColumnType("varchar").HasMaxLength(50);
+            builder.Entity<AuditLog>().Property(t => t.EventType).HasColumnType("varchar").HasMaxLength(50).IsRequired();
+            builder.Entity<AuditLog>().Property(t => t.TableName).HasColumnType("varchar").HasMaxLength(50).IsRequired();
+            builder.Entity<AuditLog>().Property(t => t.ColumnName).HasColumnType("varchar").HasMaxLength(50).IsRequired();
+
+
             base.OnModelCreating(builder);
         }
 
@@ -104,6 +114,9 @@ namespace CoreDataStore.Data.Postgre
         public DbSet<Landmark> Landmarks { get; set; }
 
         public DbSet<Pluto> Pluto { get; set; }
+
+        public DbSet<AuditLog> AuditLog { get; set; }
+
 
     }
 }

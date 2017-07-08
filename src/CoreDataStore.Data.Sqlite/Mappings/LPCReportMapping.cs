@@ -1,8 +1,4 @@
-﻿using CoreDataStore.Data.Conventions;
-using CoreDataStore.Domain.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace CoreDataStore.Data.Sqlite.Mappings
+﻿namespace CoreDataStore.Data.Sqlite.Mappings
 {
     //public class LPCReportMapping : EntityMappingConfiguration<LPCReport>
     //{
