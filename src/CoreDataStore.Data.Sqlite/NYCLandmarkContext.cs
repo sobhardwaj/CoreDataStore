@@ -61,6 +61,7 @@ namespace CoreDataStore.Data.Sqlite
 
             builder.Entity<Pluto>().HasKey(m => m.Id);
             builder.Entity<Pluto>().Property(t => t.BBL).IsRequired();
+            builder.Entity<Pluto>().Property(t => t.LandmarkName).HasColumnName("Landmark").HasMaxLength(100);
             builder.Entity<Pluto>().Property(t => t.Latitude).HasPrecision(9, 6).IsRequired();
             builder.Entity<Pluto>().Property(t => t.Longitude).HasPrecision(9, 6).IsRequired();
             builder.Entity<Pluto>().Property(t => t.ZipCode).HasMaxLength(5);

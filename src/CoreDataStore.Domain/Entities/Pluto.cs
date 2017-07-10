@@ -22,6 +22,8 @@ namespace CoreDataStore.Domain.Entities
 
         public int YearBuilt { get; set; }
 
+        public string LandmarkName { get; set; }
+
         public string HistDist { get; set; }
 
         public long BBL { get; set; }

@@ -113,6 +113,7 @@ namespace CoreDataStore.Data.SqlServer
             builder.Entity<Pluto>().HasKey(m => m.Id);
             builder.Entity<Pluto>().Property(t => t.Borough).HasMaxLength(2).IsRequired();
             builder.Entity<Pluto>().Property(t => t.Block).IsRequired();
+            builder.Entity<Pluto>().Property(t => t.LandmarkName).HasColumnName("Landmark").HasMaxLength(100);
             builder.Entity<Pluto>().Property(t => t.Lot).IsRequired();
             builder.Entity<Pluto>().Property(t => t.BBL).IsRequired();
             builder.Entity<Pluto>().Property(t => t.Latitude).HasPrecision(9, 6).IsRequired();

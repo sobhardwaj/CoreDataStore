@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>CoreDataStore.Domain</AssemblyName>
     <PackageId>CoreDataStore.Domain</PackageId>
-    <Version>1.0.10</Version>
+    <Version>1.0.11</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Stuart Shay</Authors>
     <RepositoryUrl>https://github.com/stuartshay/CoreDataStore</RepositoryUrl>

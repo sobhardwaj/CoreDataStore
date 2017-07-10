@@ -87,12 +87,14 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<Pluto>().ToTable("PLUTO");
             builder.Entity<Pluto>().HasKey(m => m.Id);
             builder.Entity<Pluto>().Property(t => t.Id).HasColumnName("id");
+            builder.Entity<Pluto>().Property(t => t.LandmarkName).HasColumnName("Landmark").HasMaxLength(100);
             builder.Entity<Pluto>().Property(t => t.BBL).IsRequired();
             builder.Entity<Pluto>().Property(t => t.Address).HasMaxLength(28);
             builder.Entity<Pluto>().Property(t => t.ZipCode).HasMaxLength(5);
             builder.Entity<Pluto>().Property(t => t.Latitude).HasPrecision(9, 6).IsRequired();
             builder.Entity<Pluto>().Property(t => t.Longitude).HasPrecision(9, 6).IsRequired();
 
+           
             builder.Entity<AuditLog>().ToTable("AuditLog");
             builder.Entity<AuditLog>().HasKey(m => m.Id);
             builder.Entity<AuditLog>().Property(t => t.UserName).HasColumnType("varchar").HasMaxLength(50);
