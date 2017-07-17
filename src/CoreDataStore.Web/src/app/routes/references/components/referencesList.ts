@@ -2,6 +2,12 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'references-list',
+  styles: [
+    `.search-results {
+      height: 20rem;
+      overflow: scroll;
+    }`
+  ],
   templateUrl: 'app/routes/references/components/referencesList.html',
   //When using OnPush detectors, then the framework will check an OnPush 
   //component when any of its input properties changes, when it fires 
@@ -24,5 +30,9 @@ export class ReferencesListComponent {
     } else {
       this.mobileFlag = false;
     }
+  }
+
+  onScroll() {
+    console.log("scroll");
   }
 }

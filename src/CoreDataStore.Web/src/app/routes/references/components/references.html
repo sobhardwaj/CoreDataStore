@@ -1,4 +1,4 @@
-<div class="page">
+<div class="page" (window:resize)="onResize($event)">
   <div class="panel panel-default">
     <ol class="breadcrumb">
       <li>
@@ -16,11 +16,11 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" (window:scroll)="onScroll($event)">
           <references-list [properties]="filteredReference"></references-list>
         </div>
       </div>
-      <div class="table-footer" ng-show="items.total > 0">
+       <div class="table-footer" *ngIf="isMobile == false">
         <div class="row">
           <div class="col-md-6 col-sm-6 page-num-info">
             <div class="inline">
@@ -43,7 +43,7 @@
             </pagination>
           </div>
         </div>
-      </div>
+      </div> 
     </div>
   </div>
 </div>

@@ -30,6 +30,8 @@ export class ReferencesComponent implements OnInit {
   objectTypes: string[] = [];
   properties: any[] = []; // LPCReports list;
   filteredReference: any[] = [];
+  scrollPosition: number = 0;
+  isMobile: boolean = false;
 
   // displayMode: DisplayModeEnum;
   // displayModeEnum = DisplayModeEnum;
@@ -47,6 +49,12 @@ export class ReferencesComponent implements OnInit {
     this.getObjectTypes();
     this.getBoroughs();
 
+    if(window.innerWidth < 768) {
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
+
     let objectType = this.session.get('objectType');
     this.objectType = (objectType) ? objectType : '';
 
@@ -61,7 +69,8 @@ export class ReferencesComponent implements OnInit {
       data => {
         this.properties = this.filteredReference = data.reports;
         this.totalItems = data.total;
-        this.scrollTop();
+        if(!this.isMobile)
+          this.scrollTop();
 
         this.objectType = objectType;
         this.borough = borough;
@@ -129,6 +138,23 @@ export class ReferencesComponent implements OnInit {
 
   private scrollTop() {
     $(window).scrollTop(0, 0);
+  }
+
+  private onResize(event) {
+    if(window.innerWidth < 768) {
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
+  }
+
+  private onScroll(event) {
+    if(this.isMobile == true && $(window).scrollTop() + $(window).height() == $(document).height()) {
+      this.session.set('page', this.page);
+      this.limit += 20;
+      this.scrollPosition = $(document).height();
+      this.getLPCReports(this.page, this.limit, this.borough, this.objectType);
+    }
   }
 }
 

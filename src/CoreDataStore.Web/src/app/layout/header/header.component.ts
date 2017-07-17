@@ -33,7 +33,6 @@ export class HeaderComponent implements OnInit {
     if(window.innerWidth < 768) {
       this.isMobile = true;
     }
-    console.log(this.isMobile +":"+this.locationEnabled);
   }
 
   toggleUserBlock(event) {
