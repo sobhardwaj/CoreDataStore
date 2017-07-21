@@ -9,8 +9,6 @@ using Xunit;
 using CoreDataStore.Data.Filters;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
-using CoreDataStore.Common.Helpers;
-using CoreDataStore.Data.Helpers;
 
 namespace CoreDataStore.Data.SqlServer.Test.Repositories
 {
@@ -63,9 +61,19 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         public void Can_Get_LPCReport()
         {
             var lpNumber = "LP-00871";
-            var landmark = _dbContext.LPCReports.Where(x => x.LPNumber == lpNumber).Select(x => x.LPNumber).First();
+            var lpcReportNumber = _dbContext.LPCReports.Where(x => x.LPNumber == lpNumber).Select(x => x.LPNumber).First();
 
-            Assert.Equal(lpNumber, landmark);
+            Assert.Equal(lpNumber, lpcReportNumber);
+        }
+
+
+        [Fact, Trait("Category", "Intergration")]
+        public void Can_Get_LPCReport_Location()
+        {
+            var lpNumber = "LP-00871";
+            var lpcReportNumber = _dbContext.LPCReports.Where(x => x.LPNumber == lpNumber).Select(x => x.LPCLocation).First();
+
+            Assert.Equal(lpNumber, lpcReportNumber.LPNumber);
         }
 
 
@@ -112,40 +120,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         {
             var results = _dbContext.LPCLamppost.ToList();
             Assert.NotNull(results);
-        }
-
-        [Fact(Skip = "ci test")]
-        public void Can_Load_LPC_Report()
-        {
-            var lpcReports = DataLoader.LoadLPCReports(@"./../../data/LPCReport.csv");
-
-            _dbContext.LPCReports.AddRange(lpcReports);
-            _dbContext.SaveChanges();
-        }
-
-
-        [Fact(Skip = "ci test")]
-        public void Can_Load_Landmarks()
-        {
-            int batchSize = 10000;
-
-            var landmarks = DataLoader.LoadLandmarks(@"./../../data/Landmarks.csv").ToList();
-            foreach (var list in landmarks.Batch(batchSize))
-            {
-                foreach (var mark in list)
-                {
-                    var exsiting = _dbContext.LPCReports.Where(l => l.LPNumber == mark.LP_NUMBER);
-                    if (exsiting.Any())
-                    {
-                        _dbContext.Landmarks.AddRange(mark);
-                    }
-                }
-
-                if (_dbContext.Landmarks.Any())
-                {
-                    _dbContext.SaveChanges();
-                }
-            }
         }
 
     }

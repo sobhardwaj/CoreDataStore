@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>CoreDataStore.Common</AssemblyName>
     <PackageId>CoreDataStore.Common</PackageId>
-    <Version>1.0.11</Version>
+    <Version>1.0.18</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>CoreDataStore Common Library
 </Description>

@@ -10,21 +10,8 @@ ALTER TABLE [dbo].[Landmark]
 DROP CONSTRAINT FK_Landmark_LPCReport
 
 */
-    ALTER TABLE [dbo].[Landmark]
-    ADD CONSTRAINT [FK_Landmark_LPCReport_LP_NUMBER] FOREIGN KEY ([LP_NUMBER]) REFERENCES [dbo].[LPCReport] ([LPNumber])
-   
-   
-    ALTER TABLE [dbo].[Landmark]
-	ADD CONSTRAINT [AK_Landmark_BBL] UNIQUE NONCLUSTERED ([BBL] ASC)
 
-	SELECT BBL, COUNT(*)  FROM [dbo].[Landmark]
-	GROUP BY BBL
-    HAVING COUNT(*) > 1
-	
-	SELECT *  FROM [dbo].[Landmark]
-	WHERE BBL = 4007990040
-
-
+/** LPC Report **/
 
 SELECT Name, Street, * FROM [dbo].[LPCReport]
 WHERE Borough = 'Queens'
@@ -40,6 +27,20 @@ ORDER BY Count ([Style]) DESC
 SELECT  [Style] FROM [dbo].[LPCReport]
 GROUP BY [Style]
 ORDER BY [Style] ASC
+
+SELECT 
+CASE WHEN LEN(PhotoURL) <> 0 
+THEN 1
+  ELSE 0 
+ END Status
+ FROM [dbo].[LPCReport]
+ ORDER BY ID
+
+ UPDATE
+    [dbo].[LPCReport]
+    SET [PhotoStatus] =  CASE WHEN LEN(PhotoURL) <> 0 
+						  THEN 1 ELSE 0 END 
+    FROM [dbo].[LPCReport]
 
 SELECT * FROM [dbo].[Landmark]
 
@@ -87,11 +88,33 @@ ORDER BY Id
 OFFSET (0) ROWS FETCH NEXT (20) ROWS ONLY
 
 
+    ALTER TABLE [dbo].[Landmark]
+    ADD CONSTRAINT [FK_Landmark_LPCReport_LP_NUMBER] FOREIGN KEY ([LP_NUMBER]) REFERENCES [dbo].[LPCReport] ([LPNumber])
+   
+   
+    ALTER TABLE [dbo].[Landmark]
+	ADD CONSTRAINT [AK_Landmark_BBL] UNIQUE NONCLUSTERED ([BBL] ASC)
+
+	SELECT BBL, COUNT(*)  FROM [dbo].[Landmark]
+	GROUP BY BBL
+    HAVING COUNT(*) > 1
+	
+	SELECT *  FROM [dbo].[Landmark]
+	WHERE BBL = 4007990040
+
+
+
+
 /** LPC Location **/
 
-SELECT r.LPNumber as r, l.LPNumber As l, * FROM [LPCReport] r
+SELECT r.LPNumber as r, l.LPNumber As l, 
+r.Name as RNAME, l.Name As LNAME,
+r.Id as RID, l.Id as IID,  * FROM [LPCReport] r
 INNER JOIN [LPCLocation] l ON r.LPNumber = l.LPNumber
-
+WHERE 1 = 1 
+--AND r.Id <> l.Id
+--AND r.Name <> l.Name
+ORDER BY r.LPNumber 
 
 SELECT r.LPNumber as r, l.LPNumber As l, * FROM [LPCReport] r
 LEFT OUTER JOIN [LPCLocation] l ON r.LPNumber = l.LPNumber
@@ -103,15 +126,31 @@ CREATE UNIQUE INDEX UNQ_LPCLocation_LPNumber
 ON [LPCLocation] (LPNumber); 
 
 
+/** Landmark **/
+
+SELECT COUNT(*) FROM [dbo].[Landmark]
+
+
+
+
+
 
 /**** Pluto ****/
+SELECT p.*
+FROM Landmark l
+INNER JOIN PLUTO p ON 
+l.BLOCK = p.Block AND  l.LOT = p.Lot  AND  l.BoroughID = p.Borough
+WHERE 1 = 1
+AND l.LP_NUMBER = 'LP-02039'
+
+
+
+
+
+
 SELECT COUNT(*) FROM PLUTO
 
 SELECT TOP 10 * FROM PLUTO
-
-
-
-
 
 SELECT BBL, COUNT(*) FROM PLUTO
 GROUP BY BBL 

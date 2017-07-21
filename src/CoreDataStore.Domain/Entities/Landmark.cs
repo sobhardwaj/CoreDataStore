@@ -11,6 +11,8 @@ namespace CoreDataStore.Domain.Entities
 
         public long BIN_NUMBER { get; set; }
 
+        public long? OBJECTID { get; set; }
+
         public string BoroughID { get; set; }
 
         public int BLOCK { get; set; }
@@ -55,7 +57,11 @@ namespace CoreDataStore.Domain.Entities
 
         public bool SECND_BLDG { get; set; }
 
-        public Pluto Pluto { get; set; }
+        public decimal? Latitude { get; set; }
+
+        public decimal? Longitude { get; set; }
+
+        //public Pluto Pluto { get; set; }
 
         public LPCReport LPCReport { get; set; }
     }

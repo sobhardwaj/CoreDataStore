@@ -12,7 +12,13 @@ namespace CoreDataStore.Domain.Entities
 
         public long? BBL { get; set; }
 
+        public long? BIN { get; set; }
+
+        public long? ObjectId { get; set; }
+
         public string ObjectType { get; set; }
+
+        public string LocationType { get; set; }
 
         public string Street { get; set; }
 
@@ -32,7 +38,7 @@ namespace CoreDataStore.Domain.Entities
 
         public decimal? Longitude { get; set; }
 
-        //public LPCReport LPCReport { get; set; }
+        public LPCReport LPCReport { get; set; }
 
     }
 }

@@ -23,8 +23,6 @@ namespace CoreDataStore.Service.Services
 
         public List<string> GetLandmarkStreets(string lpcNumber)
         {
-
-
             var predicate = PredicateBuilder.True<Landmark>();
             predicate = predicate.And(x => x.LP_NUMBER == lpcNumber);
 
@@ -33,7 +31,6 @@ namespace CoreDataStore.Service.Services
                           {
                               x = !string.IsNullOrWhiteSpace(x) && x.Any(char.IsDigit)
                              ? Regex.Replace(x, @"^[\d-]*\s*", "", RegexOptions.Multiline)
-                             //Regex.Replace(x, @"[\d-]", string.Empty).Trim() 
                              : x,
                           }).Distinct().ToList();
 

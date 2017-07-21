@@ -4,7 +4,6 @@ using System.Linq;
 using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
-using CoreDataStore.Data.Helpers;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Repositories;
 using CoreDataStore.Domain.Entities;
@@ -51,27 +50,27 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        [Fact, Trait("Category", "Intergration")]
-        public void Can_Get_Included_Fields()
-        {
-            var lpNumber = "LP-02039";
-            var landmarks = _dbContext.Landmarks.Include(x => x.Pluto).Where(x => x.LP_NUMBER == lpNumber).Select(x => x).ToList();
+        //[Fact, Trait("Category", "Intergration")]
+        //public void Can_Get_Included_Fields()
+        //{
+        //    var lpNumber = "LP-02039";
+        //    var landmarks = _dbContext.Landmarks.Include(x => x.Pluto).Where(x => x.LP_NUMBER == lpNumber).Select(x => x).ToList();
 
-            var landmark = landmarks.First();
-            Assert.Equal(lpNumber, landmark.LP_NUMBER);
-        }
+        //    var landmark = landmarks.First();
+        //    Assert.Equal(lpNumber, landmark.LP_NUMBER);
+        //}
 
 
-        [Fact, Trait("Category", "Intergration")]
-        public void Can_Get_Included_Pluto_Fields()
-        {
-            var lpNumber = "LP-02039";
-            var landmarks = _dbContext.Landmarks.Where(x => x.LP_NUMBER == lpNumber).Select(x => x.Pluto).ToList();
+        //[Fact, Trait("Category", "Intergration")]
+        //public void Can_Get_Included_Pluto_Fields()
+        //{
+        //    var lpNumber = "LP-02039";
+        //    var landmarks = _dbContext.Landmarks.Where(x => x.LP_NUMBER == lpNumber).Select(x => x.Pluto).ToList();
 
-            var pluto = landmarks.First();
-            Assert.IsType<Pluto>(pluto);
+        //    var pluto = landmarks.First();
+        //    Assert.IsType<Pluto>(pluto);
 
-        }
+        //}
 
 
         [Fact, Trait("Category", "Intergration")]
@@ -97,20 +96,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
             Assert.NotNull(results);
 
-        }
-
-
-        [Fact(Skip = "ci test")]
-        public void Can_Load_Landmarks()
-        {
-            int batchSize = 1000;
-
-            var landmarks = DataLoader.LoadLandmarks(@"./../../data/Landmarks.csv").ToList();
-            foreach (var list in landmarks.Batch(batchSize))
-            {
-                _dbContext.Landmarks.AddRange(list);
-                _dbContext.SaveChanges();
-            }
         }
 
     }

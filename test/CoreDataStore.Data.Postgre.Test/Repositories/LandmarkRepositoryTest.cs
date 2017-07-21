@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
-using CoreDataStore.Data.Helpers;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.Postgre.Repositories;
 using CoreDataStore.Domain.Entities;
@@ -75,18 +73,6 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         }
 
 
-        [Fact(Skip = "ci test")]
-        public void Can_Load_Landmarks()
-        {
-            int batchSize = 1000;
-
-            var landmarks = DataLoader.LoadLandmarks(@"./../../data/Landmarks.csv").ToList();
-            foreach (var list in landmarks.Batch(batchSize))
-            {
-                _dbContext.Landmarks.AddRange(list);
-                _dbContext.SaveChanges();
-            }
-        }
 
     }
 }

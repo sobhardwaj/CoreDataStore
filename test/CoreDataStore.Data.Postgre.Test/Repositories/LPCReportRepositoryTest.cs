@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
-using CoreDataStore.Data.Helpers;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.Postgre.Repositories;
 using CoreDataStore.Common.Helpers;
@@ -98,15 +97,6 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             Assert.NotEqual(0, count);
         }
 
-
-        [Fact(Skip = "ci test")]
-        public void Can_Load_LPC_Report()
-        {
-            var lpcReports = DataLoader.LoadLPCReports(@"./../../data/LPCReport.csv");
-
-            _dbContext.LPCReports.AddRange(lpcReports);
-            _dbContext.SaveChanges();
-        }
 
     }
 }

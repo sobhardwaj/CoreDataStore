@@ -24,6 +24,8 @@ namespace CoreDataStore.Data.Postgre
         {
             builder.RemovePluralizingTableNameConvention();
 
+            #region LPC Report
+
             builder.Entity<LPCReport>().HasKey(m => m.Id);
             builder.Entity<LPCReport>().Property(t => t.Architect).HasColumnType("varchar").HasMaxLength(200);  
             builder.Entity<LPCReport>().Property(t => t.Borough).HasColumnType("varchar").HasMaxLength(20);
@@ -35,6 +37,16 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<LPCReport>().Property(t => t.Style).HasColumnType("varchar").HasMaxLength(100);
             builder.Entity<LPCReport>().Property(t => t.DateDesignated); //.HasColumnType("NpgsqlDate");
 
+            // One to One LPCReport => LPCLocation
+            builder.Entity<LPCReport>()
+                .HasOne(t => t.LPCLocation)
+                .WithOne(t => t.LPCReport)
+                .HasPrincipalKey<LPCReport>(t => t.LPNumber)
+                .HasForeignKey<LPCLocation>(t => t.LPNumber);
+
+            #endregion
+
+            #region LPC Location
 
             builder.Entity<LPCLocation>().HasKey(m => m.Id);
             builder.Entity<LPCLocation>().Property(t => t.Name).HasColumnType("varchar").HasMaxLength(200).IsRequired();
@@ -42,20 +54,26 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<LPCLocation>().Property(t => t.Borough).HasColumnType("varchar").HasMaxLength(13);
             builder.Entity<LPCLocation>().Property(t => t.ZipCode).HasColumnType("varchar").HasMaxLength(5);
             builder.Entity<LPCLocation>().Property(t => t.ObjectType).HasColumnType("varchar").HasMaxLength(50);
+            builder.Entity<LPCLocation>().Property(t => t.LocationType).HasColumnType("varchar").HasMaxLength(50);
+            builder.Entity<LPCLocation>().Property(t => t.Neighborhood).HasColumnType("varchar").HasMaxLength(200);
+            builder.Entity<LPCLocation>().Property(t => t.Street).HasColumnType("varchar").HasMaxLength(200);
+            builder.Entity<LPCLocation>().Property(t => t.Address).HasColumnType("varchar").HasMaxLength(200);
             builder.Entity<LPCLocation>().Property(t => t.Latitude).HasPrecision(9, 6);
             builder.Entity<LPCLocation>().Property(t => t.Longitude).HasPrecision(9, 6);
 
+            //builder.Entity<LPCLocation>()
+            //    .HasOne(t => t.LPCReport)
+            //    .WithOne(t => t.LPCLocation)
+            //    .HasPrincipalKey<LPCLocation>(t => t.LPNumber)
+            //    .HasForeignKey<LPCReport>(t => t.LPNumber);
 
-            builder.Entity<LPCLamppost>().HasKey(m => m.Id);
-            builder.Entity<LPCLamppost>().Property(t => t.Type).HasColumnType("varchar").HasMaxLength(50);
-            builder.Entity<LPCLamppost>().Property(t => t.SubType).HasColumnType("varchar").HasMaxLength(50);
-            builder.Entity<LPCLamppost>().Property(t => t.Borough).HasColumnType("varchar").HasMaxLength(20);
-            builder.Entity<LPCLamppost>().Property(t => t.Latitude).HasPrecision(9, 6);
-            builder.Entity<LPCLamppost>().Property(t => t.Longitude).HasPrecision(9, 6);
+            #endregion
 
+            #region Landmark
 
             builder.Entity<Landmark>().HasKey(m => m.Id);
             builder.Entity<Landmark>().Property(t => t.BoroughID).HasColumnType("varchar").HasMaxLength(2).IsRequired();
+            builder.Entity<Landmark>().Property(t => t.OBJECTID).IsRequired();
             builder.Entity<Landmark>().Property(t => t.BOUNDARIES).HasColumnType("varchar").HasMaxLength(50).IsRequired();
             builder.Entity<Landmark>().Property(t => t.DESIG_ADDR).HasColumnType("varchar").HasMaxLength(200);
             builder.Entity<Landmark>().Property(t => t.HIST_DISTR).HasColumnType("varchar").HasMaxLength(200);
@@ -71,18 +89,19 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<Landmark>().Property(t => t.STATUS_NOT).HasColumnType("varchar").HasMaxLength(200);
             builder.Entity<Landmark>().Property(t => t.CALEN_DATE).HasColumnType("date");
             builder.Entity<Landmark>().Property(t => t.DESIG_DATE).HasColumnType("date");
+            builder.Entity<Landmark>().Property(t => t.Latitude).HasPrecision(9, 6).IsRequired();
+            builder.Entity<Landmark>().Property(t => t.Longitude).HasPrecision(9, 6).IsRequired();
 
+            //LPC Report(One) =>  Landmark(Many) 
             builder.Entity<Landmark>()
                 .HasOne(l => l.LPCReport)
                 .WithMany(r => r.Landmarks)
                 .HasForeignKey(l => l.LP_NUMBER)
                 .HasPrincipalKey(r => r.LPNumber);
 
-            builder.Entity<Landmark>()
-                .HasOne(p => p.Pluto)
-                .WithOne(l => l.Landmark)
-                .HasForeignKey<Pluto>(p => p.BBL)
-                .HasPrincipalKey<Landmark>(l => l.BBL);
+            #endregion
+
+            #region Pluto
 
             builder.Entity<Pluto>().ToTable("PLUTO");
             builder.Entity<Pluto>().HasKey(m => m.Id);
@@ -94,7 +113,20 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<Pluto>().Property(t => t.Latitude).HasPrecision(9, 6).IsRequired();
             builder.Entity<Pluto>().Property(t => t.Longitude).HasPrecision(9, 6).IsRequired();
 
-           
+            #endregion
+
+            #region Lamppost
+
+            builder.Entity<LPCLamppost>().HasKey(m => m.Id);
+            builder.Entity<LPCLamppost>().Property(t => t.Type).HasColumnType("varchar").HasMaxLength(50);
+            builder.Entity<LPCLamppost>().Property(t => t.SubType).HasColumnType("varchar").HasMaxLength(50);
+            builder.Entity<LPCLamppost>().Property(t => t.Borough).HasColumnType("varchar").HasMaxLength(20);
+            builder.Entity<LPCLamppost>().Property(t => t.Latitude).HasPrecision(9, 6);
+            builder.Entity<LPCLamppost>().Property(t => t.Longitude).HasPrecision(9, 6);
+
+            #endregion
+
+
             builder.Entity<AuditLog>().ToTable("AuditLog");
             builder.Entity<AuditLog>().HasKey(m => m.Id);
             builder.Entity<AuditLog>().Property(t => t.UserName).HasColumnType("varchar").HasMaxLength(50);

@@ -38,7 +38,7 @@ namespace CoreDataStore.Domain.Entities
 
         public decimal Longitude { get; set; }
 
-        public Landmark Landmark { get; set; }
+      //  public Landmark Landmark { get; set; }
 
     }
 }

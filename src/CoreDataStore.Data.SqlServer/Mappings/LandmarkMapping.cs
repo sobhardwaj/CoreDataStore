@@ -29,10 +29,10 @@ namespace CoreDataStore.Data.SqlServer.Mappings
                 .HasForeignKey(l => l.LP_NUMBER)
                 .HasPrincipalKey(r => r.LPNumber);
 
-            builder.HasOne(p => p.Pluto)
-                .WithOne(l => l.Landmark)
-                .HasForeignKey<Pluto>(p => p.BBL)
-                .HasPrincipalKey<Landmark>(l => l.BBL);
+            //builder.HasOne(p => p.Pluto)
+            //    .WithOne(l => l.Landmark)
+            //    .HasForeignKey<Pluto>(p => p.BBL)
+            //    .HasPrincipalKey<Landmark>(l => l.BBL);
         }
     }
 }
