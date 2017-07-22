@@ -1,6 +1,6 @@
 
 psql nyclandmarks postgres
-pg_restore -U postgres -d nyclandmarks  /data/dump-nyclandmarks-201707101640.backup
+pg_restore -U postgres -d nyclandmarks  /data/dump-nyclandmarks-201707200843.backup
 
 SELECT * FROM pg_catalog.pg_tables
 WHERE schemaname = 'public';
