@@ -8,6 +8,7 @@ using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreDataStore.Service.Services
 {
@@ -50,6 +51,9 @@ namespace CoreDataStore.Service.Services
         {
             var predicate = PredicateBuilder.True<LPCReport>();
 
+            if (!string.IsNullOrEmpty(request.Neighborhood))
+                predicate = predicate.And(x => x.LPCLocation.Neighborhood == request.Neighborhood);
+
             if (!string.IsNullOrEmpty(request.Borough))
                 predicate = predicate.And(x => x.Borough == request.Borough);
 
@@ -62,13 +66,12 @@ namespace CoreDataStore.Service.Services
                 SortOrder = !string.IsNullOrEmpty(request.SortOrder) ? request.SortOrder : null
             };
 
-            var sortingList = new List<SortModel>();
-            sortingList.Add(sortModel);
+            var sortingList = new List<SortModel>{sortModel};
 
             int totalCount = _lpcReportRepository.FindBy(predicate).Count();
 
             var results = _lpcReportRepository
-                .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList);
+                .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList).Include(x => x.LPCLocation);
 
             var modelData = Mapper.Map<IEnumerable<LPCReport>, IEnumerable<LPCReportModel>>(results).ToList();
             var pagedResult = new PagedResultModel<LPCReportModel>

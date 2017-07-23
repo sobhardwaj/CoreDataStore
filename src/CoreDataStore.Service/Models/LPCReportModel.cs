@@ -38,6 +38,8 @@ namespace CoreDataStore.Service.Models
 
         }
 
+        public string Neighborhood { get; set; }
+
         /// <summary>
         /// LPC Web Site Photo Url
         /// </summary>

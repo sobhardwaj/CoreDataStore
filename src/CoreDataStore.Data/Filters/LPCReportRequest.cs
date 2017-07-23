@@ -18,6 +18,12 @@ namespace CoreDataStore.Data.Filters
 
 
         /// <summary>
+        /// Borough
+        /// </summary>
+        public string Neighborhood { get; set; }
+
+
+        /// <summary>
         /// Parent Style List
         /// </summary>
         public List<string> ParentStyleList { get; set; }

@@ -20,9 +20,38 @@ ADD CONSTRAINT "FK_LPCReport_LPCLocation_LPNumber" FOREIGN KEY ("LPNumber") REFE
 ALTER TABLE  public."LPCReport" ALTER COLUMN  "Style" TYPE varchar(100) ;
 
 
-SELECT "Id", "Architect", "Borough", "DateDesignated", "LPCId", "LPNumber", "Name", "ObjectType", "PhotoStatus", "PhotoURL", "Street", "Style"
+SELECT "Id", "PhotoURL", "LPNumber", "Name", "Architect", "Borough", "DateDesignated", "LPCId",  "ObjectType", "PhotoStatus", "PhotoURL", "Street", "Style"
 FROM public."LPCReport"
-ORDER BY "LPNumber";
+WHERE 1 = 1  
+AND "PhotoStatus" = false
+--AND "PhotoURL" IsNull
+ORDER BY "LPNumber" DESC;
+
+
+SELECT "Id", "PhotoStatus", "PhotoURL", "LPCId" ,length("LPCId"), "LPNumber", "Name" FROM  public."LPCReport"
+WHERE length("PhotoURL")  > 0 
+
+UPDATE public."LPCReport"
+SET   "PhotoStatus" = TRUE
+WHERE "Id" IN (
+1670,
+1631,
+1630
+)
+
+UPDATE public."LPCReport"
+SET   "PhotoURL" = 'http://www1.nyc.gov/assets/lpc/images/content/designations/2280.jpg'
+WHERE "Id" = 497
+
+
+SELECT "Id",  "Street" ,length("Street"), "LPNumber", "Name" FROM  public."LPCReport"
+WHERE 1 =1 
+--AND length("Street") < 5 
+--AND "Street" = NULL
+ORDER BY "LPNumber"
+
+
+
 
 
 -- ########### Landmarks #####################

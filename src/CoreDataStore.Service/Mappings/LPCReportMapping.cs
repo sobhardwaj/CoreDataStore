@@ -9,7 +9,9 @@ namespace CoreDataStore.Service.Mappings
         public LPCReportMapping()
             : base("LPCReportMapping")
         {
-            CreateMap<LPCReport, LPCReportModel>();
+            CreateMap<LPCReport, LPCReportModel>()
+                .ForMember(dest => dest.Neighborhood, opt => opt.MapFrom(src => src.LPCLocation.Neighborhood))                
+                ;
 
             CreateMap<LPCReportModel, LPCReport>()
                  .ForMember(dest => dest.LPCId, opt => opt.Ignore())
