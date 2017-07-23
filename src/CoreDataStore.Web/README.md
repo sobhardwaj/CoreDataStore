@@ -26,13 +26,13 @@ npm install
 Environment Linux/Unix
 ```bash
 export NG_ENVIRONMENT=Dev
-export LANDMARK=http://informationcart.eastus2.cloudapp.azure.com:80/api/
+export LANDMARK=https://api.coredatastore.com/api/
 export MAPSAPI=http://informationcart.eastus2.cloudapp.azure.com:82/api/
 ```
 Environment Windows
 ```bash
 set NG_ENVIRONMENT=Dev
-set LANDMARK=http://informationcart.eastus2.cloudapp.azure.com:80/api/
+set LANDMARK=https://api.coredatastore.com/api/
 set MAPSAPI=http://informationcart.eastus2.cloudapp.azure.com:82/api/
 ```
 
