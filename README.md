@@ -11,7 +11,7 @@ Dependencies
 [![Code Climate](https://codeclimate.com/github/stuartshay/CoreDataStore/badges/gpa.svg)](https://codeclimate.com/github/stuartshay/CoreDataStore)
 
 #### Demo
-http://informationcart.eastus2.cloudapp.azure.com    
+https://coredatastore.com 
 http://stuartshay.github.io/CoreDataStore/
 
 New York City Landmarks Reference Data     
