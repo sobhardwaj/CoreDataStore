@@ -2,7 +2,7 @@
 // export LANDMARK=http://informationcart.eastus2.cloudapp.azure.com:80/api/
 // export MAPSAPI=http://informationcart.eastus2.cloudapp.azure.com:82/api/
 
-const LANDMARK = process.env.LANDMARK || 'http://informationcart.eastus2.cloudapp.azure.com:80/api/';
+const LANDMARK = process.env.LANDMARK || 'https://coredatastore.com/api/';
 const MAPSAPI = process.env.MAPSAPI || 'http://informationcart.eastus2.cloudapp.azure.com:82/api/';
 const NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || '';
 
