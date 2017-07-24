@@ -13,7 +13,7 @@
     </div>
     <div class="panel-body">
       <div class="row">
-        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
           <div class="panel panel-default">
             <div class="panel-body">
               <sebm-google-map [latitude]="markers[0].lat" [longitude]="markers[0].lng" [zoom]="zoom" [scrollwheel]="scrollwheel" class="gmap">
@@ -23,12 +23,12 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
           <div *ngFor="let p of features; let i=index" class="row">
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
               <img src="{{p.properties.photoUrl}}" width="{{p.properties.width}}" height="{{p.properties.height}}" class="img-thumbnail img-responsive img100" />
             </div>
-            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
               <div><b>{{i+1}} - {{p.properties.title}}</b></div>
               <div>{{p.properties.objectType | lowercase | capitalize}}</div>
               <div>{{p.geometry.coordinates[0]}} {{p.geometry.coordinates[1]}}</div>

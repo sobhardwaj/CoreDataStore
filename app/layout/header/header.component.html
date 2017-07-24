@@ -1,36 +1,29 @@
-<!-- START Top Navbar-->
-<nav class="navbar topnavbar" role="navigation">
-  <!-- START navbar header-->
-  <div class="navbar-header">
-    <a class="navbar-brand" href="#/">
-      <div class="brand-logo">
-        <a href="#">CoreDataStore</a>
-      </div>
-      <div class="brand-logo-collapsed">
-        <a href="#">CDS</a>
-      </div>
-    </a>
-  </div>
-  <!-- END navbar header-->
-  <!-- START Nav wrapper-->
-  <div class="nav-wrapper">
-    <!-- START Left navbar-->
-    <ul class="nav navbar-nav">
-      <li>
-        <a routerLink="/references">LPC Reports</a>
-      </li>
-      <li>
-        <a routerLink="/maps">Maps</a>
-      </li>
-      <li>
-        <a routerLink="/diagnostics">Diagnostics</a>
-      </li>
-      <li>
-        <a href="/swagger/ui/index.html">Swagger</a>
-      </li>
-    </ul>
-    <!-- END Left navbar-->
-  </div>
-  <!-- END Nav wrapper-->
+<nav class="page-header">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-target="#myNavbar" align="center" data-toggle="collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>         
+        <a class="btn" href="#">CoreDataStore</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar" align="center">
+        <ul class="nav navbar-nav navbar-right">      
+            <li><a routerLink="/references">LPC Reports</a></li>
+            <li><a routerLink="/maps">Maps</a></li> 
+            <li><a routerLink="/diagnostics">Diagnostics</a></li>
+            <li><a href="/swagger/ui/index.html">Swagger</a></li>
+        </ul>
+    </div>
 </nav>
-<!-- END Top Navbar-->
+<div id="mySidenav" class="sidenav">
+    <div class="page-header">
+        <a href="javascript:void(0)" class="closebtn">&times;</a>
+    </div>
+    <div class="first-menu-style"> 
+        <a routerLink="/references">LPC Reports</a>
+        <a routerLink="/maps">Maps</a>
+        <a routerLink="/diagnostics">Diagnostics</a>
+        <a href="/swagger/ui/index.html">Swagger</a>
+    </div>
+</div>

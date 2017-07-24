@@ -1,9 +1,9 @@
-<div *ngFor="let property of properties" class="property_wrapper">
-  <table class="table table-striped table-hover property-details">
+<div *ngFor="let property of properties" class="property_wrapper" (window:resize)="onResize($event)">
+  <table class="table table-striped table-hover property-details" *ngIf="!mobileFlag">
     <tr>
-      <td><a href="{{ property.pdfURL || '#/references' }}">Designation Report:</a></td>
+      <td><a href="{{ property.pdfURL || '#/references' }}" target="_blank">Designation Report:</a></td>
       <td><a [routerLink]="['/details', property.id]">{{ property.name | capitalize }}</a></td>
-      <td rowspan="7"><img class="img-thumbnail img-responsive" src="{{property.photoURL}}" /></td>
+      <td rowspan="7"><img class="img-thumbnail img-responsive" src="{{property.photoURL}}"/></td>
     </tr>
     <tr>
       <td>Landmark Type:</td>
@@ -31,6 +31,19 @@
         <br />{{ property.borough }}</td>
     </tr>
   </table>
+  <div class="panel panel-default" *ngIf="mobileFlag">
+    <div class="col-xs-12">
+      <h4>{{ property.name | capitalize }}</h4>    
+      <a [routerLink]="['/details', property.id]"><img class="img-thumbnail img-responsive" src="{{property.photoURL}}"/></a>
+      <hr>
+      <p>Landmark Type: <b>{{ property.objectType }}</b></p>
+      <p>Landmark Number: <b>{{ property.lpNumber }}</b></p>
+      <p>Architect: <b>{{ property.architect }}</b></p>
+      <p>Architectural Style: <b>{{ property.style }}</b></p>
+      <p>Date of Designation: <b>{{ property.dateDesignated | date: 'MM/dd/yyyy' }}</b></p>
+      <p>Address: <b>{{ property.street }}, {{ property.borough }}</b></p>
+    </div>
+  </div>
 </div>
 <div *ngIf="!properties.length">
   No Records Found
