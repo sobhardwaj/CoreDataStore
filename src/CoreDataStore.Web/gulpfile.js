@@ -202,8 +202,12 @@ gulp.task('bundle', function() {
     bundleTpl = '<script type="text/javascript" src="js/bundle.js"></script>';
   }
 
+  
   return gulp.src('src/index.html')
     .pipe(replace('<--bundleTpl-->', bundleTpl))
+    .pipe(replace('#{ApiEndpoint}', LANDMARK))
+    .pipe(replace('#{ApiMaps}', MAPSAPI))
+    .pipe(replace('#{ng2ENV}', NG_ENVIRONMENT))
     .pipe(gulp.dest(buildDir));
 });
 
