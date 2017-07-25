@@ -2,8 +2,8 @@ FROM node:6.10.2
 MAINTAINER Stuart Shay
 
 # Set Default environment variables (Temp Placeholder)
-ENV LANDMARK="http://informationcart.eastus2.cloudapp.azure.com:80/api/"
-ENV MAPSAPI="http://informationcart.eastus2.cloudapp.azure.com:82/api/"
+ENV LANDMARK="https://api.coredatastore.com/api/"
+ENV MAPSAPI="https://api-maps.navigatorglass.com/api/"
 
 # Create and copy app directory
 RUN mkdir -p /app
