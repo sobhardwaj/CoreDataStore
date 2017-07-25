@@ -94,11 +94,13 @@ namespace CoreDataStore.Web.Controllers
             {
                 PageSize = limit,
                 Page = page,
-                SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "lpcId",
+                SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "LPNumber",
                 SortOrder = !string.IsNullOrEmpty(query.Order) ? query.Order : "asc",
                 ParentStyleList = !string.IsNullOrEmpty(query.ParentStyles) ? query.ParentStyles.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList() : null,
+                Neighborhood = !string.IsNullOrWhiteSpace(query.Neighborhood) ? query.Neighborhood.Trim() : null,
                 Borough = !string.IsNullOrWhiteSpace(query.Borough) ? query.Borough.Trim() : null,
                 ObjectType = !string.IsNullOrWhiteSpace(query.ObjectType) ? query.ObjectType.Trim() : null,
+
             };
 
             var records = _lpcReportService.GetLPCReports(request);

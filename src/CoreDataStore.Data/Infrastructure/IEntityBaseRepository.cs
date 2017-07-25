@@ -10,6 +10,8 @@ namespace CoreDataStore.Data.Infrastructure
 {
     public interface IEntityBaseRepository<T> where T : class, IEntityBase, new()
     {
+        string UserId { get; set; }
+
         IEnumerable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties);
 
         Task<IEnumerable<T>> AllIncludingAsync(params Expression<Func<T, object>>[] includeProperties);
@@ -39,6 +41,8 @@ namespace CoreDataStore.Data.Infrastructure
         void Delete(T entity);
 
         void Edit(T entity);
+
+        Task<bool> UpdateDbEntryAsync(T entity, params Expression<Func<T, object>>[] properties);
 
         void Commit();
     

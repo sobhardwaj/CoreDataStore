@@ -11,6 +11,7 @@ namespace CoreDataStore.Service.Services
     public class PlutoService : IPlutoService
     {
         private readonly IPlutoRepository _plutoRepository;
+      
 
         public PlutoService(IPlutoRepository plutoRepository)
         {
@@ -19,8 +20,9 @@ namespace CoreDataStore.Service.Services
 
         public List<PlutoModel> GetPluto(string lpcNumber)
         {
-            var results = _plutoRepository.FindBy(x => x.Landmark.LP_NUMBER == lpcNumber).ToList();
+            var results = _plutoRepository.GetPluto(lpcNumber);
             return Mapper.Map<IEnumerable<Pluto>, IEnumerable<PlutoModel>>(results).ToList();
         }
+
     }
 }

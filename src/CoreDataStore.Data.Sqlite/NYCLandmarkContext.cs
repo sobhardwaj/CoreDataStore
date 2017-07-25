@@ -26,10 +26,19 @@ namespace CoreDataStore.Data.Sqlite
             builder.Entity<LPCReport>().Property(t => t.LPNumber).HasMaxLength(10).IsRequired();
             builder.Entity<LPCReport>().Property(t => t.LPCId).HasMaxLength(10).IsRequired();
             builder.Entity<LPCReport>().Property(t => t.PhotoURL).HasMaxLength(500);
+            builder.Entity<LPCReport>().Property(t => t.Street).HasMaxLength(500);
             builder.Entity<LPCReport>().Property(t => t.Style).HasMaxLength(100);
 
             //Shadow Properties
             //builder.Entity<LPCReport>().Property<DateTime>("Modified");
+
+            // One to One LPCReport => LPCLocation
+            builder.Entity<LPCReport>()
+                .HasOne(t => t.LPCLocation)
+                .WithOne(t => t.LPCReport)
+                .HasPrincipalKey<LPCLocation>(t => t.LPNumber)
+                .HasForeignKey<LPCLocation>(t => t.LPNumber);
+
 
             builder.Entity<Landmark>().HasKey(m => m.Id);
             builder.Entity<Landmark>().Property(t => t.BoroughID).HasMaxLength(2).IsRequired();
@@ -53,16 +62,18 @@ namespace CoreDataStore.Data.Sqlite
                 .HasForeignKey(l => l.LP_NUMBER)
                 .HasPrincipalKey(r => r.LPNumber);
 
-            builder.Entity<Landmark>()
-                .HasOne(p => p.Pluto)
-                .WithOne(l => l.Landmark)
-                .HasForeignKey<Pluto>(p => p.BBL)
-                .HasPrincipalKey<Landmark>(l => l.BBL);
+            //builder.Entity<Landmark>()
+            //    .HasOne(p => p.Pluto)
+            //    .WithOne(l => l.Landmark)
+            //    .HasForeignKey<Pluto>(p => p.BBL)
+            //    .HasPrincipalKey<Landmark>(l => l.BBL);
 
             builder.Entity<Pluto>().HasKey(m => m.Id);
             builder.Entity<Pluto>().Property(t => t.BBL).IsRequired();
+            builder.Entity<Pluto>().Property(t => t.LandmarkName).HasColumnName("Landmark").HasMaxLength(100);
             builder.Entity<Pluto>().Property(t => t.Latitude).HasPrecision(9, 6).IsRequired();
             builder.Entity<Pluto>().Property(t => t.Longitude).HasPrecision(9, 6).IsRequired();
+            builder.Entity<Pluto>().Property(t => t.ZipCode).HasMaxLength(5);
 
             base.OnModelCreating(builder);
         }

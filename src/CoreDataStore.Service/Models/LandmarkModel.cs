@@ -16,6 +16,8 @@ namespace CoreDataStore.Service.Models
 
         public long BinNumber { get; set; }
 
+        public long ObjectId { get; set; }
+
         public string BoroughId { get; set; }
 
         public string ObjectType { get; set; }
@@ -79,6 +81,10 @@ namespace CoreDataStore.Service.Models
         public bool IsVacantLot { get; set; }
 
         public bool IsSecondaryBuilding { get; set; }
+
+        public decimal Latitude { get; set; }
+
+        public decimal Longitude { get; set; }
 
         public LPCReportModel LPCReport { get; set; }
 

@@ -7,7 +7,7 @@ var fs = require('fs'),
   gulp = require('gulp'),
   iF = require('gulp-if'),
   less = require('gulp-less'),
-  sass = require('gulp-sass'),
+  // sass = require('gulp-sass'),
   concat = require('gulp-concat'),
   cssmin = require('gulp-cssmin'),
   tslint = require('gulp-tslint'),
@@ -21,13 +21,13 @@ var fs = require('fs'),
   cssPrefixer = require('gulp-autoprefixer'),
   merge = require('merge-stream');
 
-var pkg = require('./package.json');
 var SystemBuilder = require('systemjs-builder');
 
 var buildDir = "wwwroot";
 var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || '';
 var BUILD = process.env.BUILD || 'local';
-var TRAVIS_BUILD_ID = process.env.TRAVIS_BUILD_ID || '';
+var TRAVIS_BUILD_NUMBER = process.env.TRAVIS_BUILD_NUMBER || '';
+var CIRCLE_BUILD_NUM = process.env.CIRCLE_BUILD_NUM || '';
 var LANDMARK = process.env.LANDMARK || '/api/';
 var ATTRACTION = process.env.ATTRACTION || '/api/attraction';
 var MAPSAPI = process.env.MAPSAPI || '/api/maps';
@@ -44,6 +44,21 @@ process.argv.forEach(function(val, index, array) {
  */
 gulp.task('clean', (cb) => {
   return del([buildDir, '.tmp'], cb);
+});
+
+gulp.task('package', () => {
+  var pkg = require('./package.json');
+  var version = pkg.version.split('.');
+  if (TRAVIS_BUILD_NUMBER) {
+    pkg.buildtype = 'TravisCI';
+    pkg.version = [version[0], version[1], TRAVIS_BUILD_NUMBER].join('.');
+  }
+  if (CIRCLE_BUILD_NUM) {
+    pkg.buildtype = 'CircleCI';
+    pkg.version = [version[0], version[1], CIRCLE_BUILD_NUM].join('.');
+  }
+  var json = JSON.stringify(pkg);
+  return fs.writeFile('./package.json', json, 'utf8');
 });
 
 gulp.task('ghpage', function() {
@@ -152,18 +167,17 @@ gulp.task('watch', () => {
   });
   gulp.watch(['src/**/**.less'], ['less']).on('change', function(e) {
     console.log('LESS file ' + e.path + ' has been changed. Updating.');
-  }); 
+  });
   // gulp.watch(['src/**/**.scss'], ['less']).on('change', function(e) {
   //   console.log('SASS file ' + e.path + ' has been changed. Updating.');
   // });
 });
 
 gulp.task('appsettings', function(cb) {
-  var version = pkg.version.split('.');
-
+  var pkg = require('./package.json');
   var build = 'build: ' + BUILD;
   var ng2ENV = '\nng2ENV: ' + NG_ENVIRONMENT;
-  var buildId = '\nbuildId: ' + (TRAVIS_BUILD_ID ? [version[0], version[1], TRAVIS_BUILD_ID].join('.') : pkg.version);
+  var buildId = '\nbuildId: ' + pkg.version;
   var landmark = '\nApiEndpoint: ' + LANDMARK;
   var maps = '\nApiMaps: ' + MAPSAPI;
   var reports = '\nApiReports: ' + REPORTSAPI;
@@ -188,8 +202,12 @@ gulp.task('bundle', function() {
     bundleTpl = '<script type="text/javascript" src="js/bundle.js"></script>';
   }
 
+  
   return gulp.src('src/index.html')
     .pipe(replace('<--bundleTpl-->', bundleTpl))
+    .pipe(replace('#{ApiEndpoint}', LANDMARK))
+    .pipe(replace('#{ApiMaps}', MAPSAPI))
+    .pipe(replace('#{ng2ENV}', NG_ENVIRONMENT))
     .pipe(gulp.dest(buildDir));
 });
 
@@ -234,6 +252,7 @@ gulp.task("node_modules", () => {
  * Build the project.
  */
 gulp.task("build", [
+  'package',
   'appsettings',
   'api',
   'compile',

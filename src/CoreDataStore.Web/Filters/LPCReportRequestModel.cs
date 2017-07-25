@@ -14,10 +14,15 @@ namespace CoreDataStore.Web.Filters
 
 
         /// <summary>
+        /// Neighborhood
+        /// </summary>
+        public string Neighborhood { get; set; }
+
+
+        /// <summary>
         /// NYC Borough
         /// </summary>
         public string Borough { get; set; }
-
 
         /// <summary>
         /// Parent Styles List Comma Separated 

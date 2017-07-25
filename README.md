@@ -11,7 +11,7 @@ Dependencies
 [![Code Climate](https://codeclimate.com/github/stuartshay/CoreDataStore/badges/gpa.svg)](https://codeclimate.com/github/stuartshay/CoreDataStore)
 
 #### Demo
-http://informationcart.eastus2.cloudapp.azure.com    
+https://coredatastore.com         
 http://stuartshay.github.io/CoreDataStore/
 
 New York City Landmarks Reference Data     
@@ -23,13 +23,14 @@ New York City Landmarks Reference Data
 ## Prerequisites:
 
 ### .NET Core 
-.NET Core Runtime 1.1.2 - May 9, 2017        
-.NET Core SDK 1.0.4 - May 9, 2017            
-https://www.microsoft.com/net/core  
+.NET Core Runtime 2.0.0-preview2-25407-01 - June 27, 2017            
+.NET Core SDK 2.0.0-preview2-006497  - June 28, 2017              
+https://www.microsoft.com/net/core/preview     
 
 ### Visual Studio MSBuild
 
-Visual Studio 2017 
+Visual Studio 2017 Preview version 15.3            
+https://www.visualstudio.com/vs/preview/    
 
 ### Web Application
 
@@ -100,15 +101,6 @@ docker run --rm --name coredatastore  -p 5000:5000  stuartshay/coredatastore
 Landmarks Reference Database    
 
 ```bash
-docker pull stuartshay/coredatastore-postgres:stable
-docker run --rm --name postgresdb -p 5432:5432  stuartshay/coredatastore-postgres:stable  
-```
-
-## Entity Framework
-
-```bash
-cd /test/CoreDataStore.Data.Postgre.Test
-
-dotnet ef migrations add <MigrationName>
-dotnet ef database update
+docker pull stuartshay/coredatastore-postgres:staging 
+docker run --rm --name postgresdb -p 5432:5432  stuartshay/coredatastore-postgres:staging 
 ```

@@ -30,6 +30,8 @@ namespace CoreDataStore.Domain.Entities
 
         public string PhotoURL  { get; set; }
 
+        public LPCLocation LPCLocation { get; set; }
+
         public List<Landmark> Landmarks { get; set; }
 
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CoreDataStore.Data.Sqlite.Filters.Base;
 
 namespace CoreDataStore.Data.Filters
@@ -16,6 +15,12 @@ namespace CoreDataStore.Data.Filters
         /// Borough
         /// </summary>
         public string Borough { get; set; }
+
+
+        /// <summary>
+        /// Borough
+        /// </summary>
+        public string Neighborhood { get; set; }
 
 
         /// <summary>

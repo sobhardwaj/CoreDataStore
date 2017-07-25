@@ -19,6 +19,8 @@ namespace CoreDataStore.Data.Infrastructure
 
         private readonly OrderBy<T> DefaultOrderBy = new OrderBy<T>(qry => qry.OrderBy(e => e.Id));
 
+        public string UserId { get; set; }
+
 
         #region Properties
         public EntityBaseRepository(DbContext context)
@@ -123,6 +125,19 @@ namespace CoreDataStore.Data.Infrastructure
         {
             EntityEntry dbEntityEntry = _context.Entry<T>(entity);
             dbEntityEntry.State = EntityState.Deleted;
+        }
+
+        public virtual async Task<bool> UpdateDbEntryAsync(T entity, params Expression<Func<T, object>>[] properties) 
+        {
+            var entry = _context.Entry<T>(entity);
+            _context.Set<T>().Attach(entity);
+
+                foreach (var property in properties)
+                    entry.Property(property).IsModified = true;
+
+             var userId = this.UserId;
+             await _context.SaveChangesAsync();
+             return true;
         }
 
         public virtual void Commit()
