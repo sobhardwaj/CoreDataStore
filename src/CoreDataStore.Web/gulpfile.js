@@ -195,6 +195,8 @@ gulp.task('api', function() {
 
 gulp.task('bundle', function() {
   var bundleTpl;
+  var pkg = require('./package.json');
+
   if (NG_ENVIRONMENT === 'Dev') {
     bundleTpl = '<script src="systemjs.config.js"></script>' +
       '<script>System.import(\'app\').catch(function(err) {console.error(err);});</script>';
@@ -202,12 +204,13 @@ gulp.task('bundle', function() {
     bundleTpl = '<script type="text/javascript" src="js/bundle.js"></script>';
   }
 
-  
+
   return gulp.src('src/index.html')
     .pipe(replace('<--bundleTpl-->', bundleTpl))
     .pipe(replace('#{ApiEndpoint}', LANDMARK))
     .pipe(replace('#{ApiMaps}', MAPSAPI))
     .pipe(replace('#{ng2ENV}', NG_ENVIRONMENT))
+    .pipe(replace('#{BuildId}', pkg.version))
     .pipe(gulp.dest(buildDir));
 });
 
