@@ -13,7 +13,7 @@ if (username && accessKey) {
     'browserName': 'safari',
     'platform': 'iOS 10.2',
     'version': '10.0.',
-    'device': 'iPad Simulator',
+    'device': 'iPhone 6s Simulator',
     'username': username,
     'accessKey': accessKey,
     'tunnelIdentifier': TRAVIS_JOB_NUMBER
@@ -22,10 +22,10 @@ if (username && accessKey) {
   build();
 
   browser.get('http://127.0.0.1:3000/');
+  browser.wait(findId('navBtn'), 20000).then(clickLink);
 
   browser.wait(findLink('#/references'), 2000).then(clickLink);
   browser.wait(findLink('#/maps'), 2000).then(clickLink);
-
   browser.wait(findLink('#/diagnostics'), 2000).
   then(clickLink).
   then(logTitle).
@@ -64,6 +64,12 @@ function clickLink(link) {
 function findLink(link) {
   link = ['[href="', link, '"]'].join('');
   return browser.findElements(By.css(link)).then((res) => {
+    return res[0];
+  });
+}
+
+function findId(id) {
+  return browser.findElement(By.id(id)).then((res) => {
     return res[0];
   });
 }
