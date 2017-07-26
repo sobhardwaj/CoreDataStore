@@ -14,7 +14,14 @@ DROP CONSTRAINT FK_Landmark_LPCReport
 /** LPC Report **/
 
 SELECT Name, Street, * FROM [dbo].[LPCReport]
-WHERE Borough = 'Queens'
+ WHERE 1 = 1 
+ --AND Borough = 'Queens'
+ ORDER BY LPNumber
+
+
+
+
+
 
 SELECT DISTINCT [Style] FROM [dbo].[LPCReport]
 
@@ -128,7 +135,7 @@ ON [LPCLocation] (LPNumber);
 
 /** Landmark **/
 
-SELECT COUNT(*) FROM [dbo].[Landmark]
+ 
 
 
 
@@ -136,12 +143,19 @@ SELECT COUNT(*) FROM [dbo].[Landmark]
 
 
 /**** Pluto ****/
-SELECT p.*
+SELECT DISTINCT(p.Id), p.*
 FROM Landmark l
 INNER JOIN PLUTO p ON 
 l.BLOCK = p.Block AND  l.LOT = p.Lot  AND  l.BoroughID = p.Borough
 WHERE 1 = 1
 AND l.LP_NUMBER = 'LP-02039'
+ORDER BY p.Id
+
+
+SELECT [p].[Id], [p].[Address], [p].[BBL], [p].[Block], [p].[Borough], [p].[HistDist], [p].[Landmark], [p].[Latitude], [p].[Longitude], [p].[Lot], [p].[LotArea], [p].[NumBldgs], [p].[OwnerName], [p].[XCoord], [p].[YCoord], [p].[YearBuilt], [p].[ZipCode]
+FROM [Landmark] AS [l]
+INNER JOIN [Pluto] AS [p] ON (([l].[LOT] = [p].[Lot]) AND ([l].[BLOCK] = [p].[Block])) AND ([l].[BoroughID] = [p].[Borough])
+WHERE [l].[LP_NUMBER] = N'LP-02039'
 
 
 

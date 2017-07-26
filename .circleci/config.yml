@@ -7,9 +7,10 @@ jobs:
     environment:
       - NG_ENVIRONMENT: "Stage"
       - LANDMARK : "https://coredatastore.com/api/"
-      - ATTRACTION : "http://informationcart.eastus2.cloudapp.azure.com:83/api/"
-      - MAPSAPI : "http://informationcart.eastus2.cloudapp.azure.com:82/api/"
+      - ATTRACTION : "https://api-attractions.navigatorglass.com/api/"
+      - MAPSAPI : "https://api-maps.navigatorglass.com/"
       - REPORTSAPI: "https://reports.coredatastore.com/api/"
+      - LOCATIONAPI: "https://api-location.coredatastore.com/api/"
     steps:
       - checkout
       - run: 

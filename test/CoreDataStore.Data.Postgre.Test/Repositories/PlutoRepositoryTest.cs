@@ -45,6 +45,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             Assert.Equal(lot, result.Lot);
         }
 
+
         [Fact, Trait("Category", "Intergration")]
         public void Pluto_BBL_Exist()
         {

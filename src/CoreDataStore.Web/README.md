@@ -1,7 +1,5 @@
-Angular2 with TypeScript and Gulp
+Angular with TypeScript and Gulp
 =================================
-
-A basic Angular2 application with Gulp as build system.
 
 Prerequisites
 -------------
@@ -12,7 +10,7 @@ Prerequisites
 - typescript
 - ts-node
 
-Running
+Development Setup      
 -------
 
 Install dependencies:
@@ -23,31 +21,31 @@ npm install
 ```
 `node_modules` and `typings` directories will be created during install.         
 
-Environment Linux/Unix
+Environment Linux
 ```bash
 export NG_ENVIRONMENT=Dev
 export LANDMARK=https://api.coredatastore.com/api/
-export MAPSAPI=http://informationcart.eastus2.cloudapp.azure.com:82/api/
+export MAPSAPI=https://api-maps.navigatorglass.com/api/
+export LOCATIONAPI=https://api-location.coredatastore.com/api/
 ```
+
 Environment Windows
 ```bash
 set NG_ENVIRONMENT=Dev
 set LANDMARK=https://api.coredatastore.com/api/
-set MAPSAPI=http://informationcart.eastus2.cloudapp.azure.com:82/api/
+set MAPSAPI=https://api-maps.navigatorglass.com/api/
+set LOCATIONAPI=https://api-location.coredatastore.com/api/
 ```
 
-Build the project:
+Build:     
 
 ```bash
 npm run clean
 npm run build
 ```
 
-`build` directory should be created during the build
+Run:      
+```bash
+npm start
+```
 
-> npm start
-
-The application should be displayed in the browser.
-
-> dotnet run
-Start webservice with dotnet

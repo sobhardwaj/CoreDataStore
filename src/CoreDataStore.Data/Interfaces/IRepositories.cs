@@ -15,6 +15,7 @@ namespace CoreDataStore.Data.Interfaces
     public interface IPlutoRepository : IEntityBaseRepository<Pluto>
     {
         List<Pluto> GetPluto(string lpcNumber);
+        int GetPlutoCount(string lpcNumber);
     }
 
 }
