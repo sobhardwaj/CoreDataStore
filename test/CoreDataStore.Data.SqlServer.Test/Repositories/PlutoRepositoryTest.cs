@@ -48,7 +48,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             var lpcNumber = "LP-02039";
             var result = _plutoRepository.GetPlutoCount(lpcNumber);
 
-            Assert.NotNull(result);
             Assert.NotEqual(0, result);
         }
 
