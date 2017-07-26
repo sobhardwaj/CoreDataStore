@@ -22,7 +22,7 @@ if (username && accessKey) {
   build();
 
   browser.get('http://127.0.0.1:3000/');
-  browser.wait(findId('navBtn'), 20000).then(clickLink);
+  browser.findElement(By.id('navBtn')).click();
 
   browser.wait(findLink('#/references'), 2000).then(clickLink);
   browser.wait(findLink('#/maps'), 2000).then(clickLink);
