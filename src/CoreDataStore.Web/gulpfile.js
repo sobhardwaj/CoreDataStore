@@ -19,6 +19,7 @@ var fs = require('fs'),
   coveralls = require('gulp-coveralls'),
   sourcemaps = require('gulp-sourcemaps'),
   cssPrefixer = require('gulp-autoprefixer'),
+  xml2json = require('xml2json'),
   merge = require('merge-stream');
 
 var SystemBuilder = require('systemjs-builder');
@@ -59,6 +60,18 @@ gulp.task('package', () => {
   }
   var json = JSON.stringify(pkg);
   return fs.writeFile('./package.json', json, 'utf8');
+});
+
+gulp.task('CircleCI', () => {
+  if (CIRCLE_BUILD_NUM) {
+    pkg.buildtype = 'CircleCI';
+    pkg.version = [version[0], version[1], version[2], CIRCLE_BUILD_NUM].join('.');
+    fs.readFile('./CoreDataStore.Web.csproj', function(err, data) {
+      var json = xml2json.toJson(data);
+      json.AssemblyVersion = pkg.version;
+    });
+    return fs.writeFile('./CoreDataStore.Web.csproj', xml2json.toXml(json), 'utf8');
+  }
 });
 
 gulp.task('ghpage', function() {
@@ -195,6 +208,8 @@ gulp.task('api', function() {
 
 gulp.task('bundle', function() {
   var bundleTpl;
+  var pkg = require('./package.json');
+
   if (NG_ENVIRONMENT === 'Dev') {
     bundleTpl = '<script src="systemjs.config.js"></script>' +
       '<script>System.import(\'app\').catch(function(err) {console.error(err);});</script>';
@@ -202,12 +217,13 @@ gulp.task('bundle', function() {
     bundleTpl = '<script type="text/javascript" src="js/bundle.js"></script>';
   }
 
-  
+
   return gulp.src('src/index.html')
     .pipe(replace('<--bundleTpl-->', bundleTpl))
     .pipe(replace('#{ApiEndpoint}', LANDMARK))
     .pipe(replace('#{ApiMaps}', MAPSAPI))
     .pipe(replace('#{ng2ENV}', NG_ENVIRONMENT))
+    .pipe(replace('#{BuildId}', pkg.version))
     .pipe(gulp.dest(buildDir));
 });
 
@@ -253,6 +269,7 @@ gulp.task("node_modules", () => {
  */
 gulp.task("build", [
   'package',
+  'CircleCI',
   'appsettings',
   'api',
   'compile',

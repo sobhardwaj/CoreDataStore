@@ -28,7 +28,7 @@
     <tr>
       <td>Address:</td>
       <td>{{ property.street }}
-        <br />{{ property.borough }}</td>
+        <br />{{ property.neighborhood }}, {{ property.borough }}</td>
     </tr>
   </table>
   <div class="panel panel-default" *ngIf="mobileFlag">
@@ -36,12 +36,15 @@
       <h4>{{ property.name | capitalize }}</h4>    
       <a [routerLink]="['/details', property.id]"><img class="img-thumbnail img-responsive" src="{{property.photoURL}}"/></a>
       <hr>
+      <p>
+        <b>{{ property.street }}</b><br/>
+        <b>{{ property.neighborhood }}, {{ property.borough }}</b>
+      </p>
       <p>Landmark Type: <b>{{ property.objectType }}</b></p>
       <p>Landmark Number: <b>{{ property.lpNumber }}</b></p>
       <p>Architect: <b>{{ property.architect }}</b></p>
       <p>Architectural Style: <b>{{ property.style }}</b></p>
       <p>Date of Designation: <b>{{ property.dateDesignated | date: 'MM/dd/yyyy' }}</b></p>
-      <p>Address: <b>{{ property.street }}, {{ property.borough }}</b></p>
     </div>
   </div>
 </div>

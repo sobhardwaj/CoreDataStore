@@ -6,7 +6,7 @@ ENV NG_ENVIRONMENT="Dev"
 ENV ASPNETCORE_URLS="http://*:5000"
 ENV ASPNETCORE_ENVIRONMENT="Staging"
 ENV CONNECTION_PostgreSQL="User ID=nyclandmarks;Password=nyclandmarks;Server=database;Port=5432;Database=nyclandmarks;Integrated Security=true;Pooling=true;"
-ENV MAPSAPI="http://informationcart.eastus2.cloudapp.azure.com:82/api/"
+ENV MAPSAPI="https://api-maps.navigatorglass.com/api/"
 
 # Open up port
 EXPOSE 5000

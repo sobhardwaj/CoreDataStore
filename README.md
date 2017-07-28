@@ -19,7 +19,6 @@ New York City Landmarks Reference Data
 - [Landmarks Preservation Commission - NYC.gov](http://www1.nyc.gov/site/lpc/index.page)
 - [NYC OpenData](http://opendata.cityofnewyork.us/)   
 
-
 ## Prerequisites:
 
 ### .NET Core 

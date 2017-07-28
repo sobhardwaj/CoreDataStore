@@ -1,9 +1,7 @@
 // export NG_ENVIRONMENT=Dev
-// export LANDMARK=http://informationcart.eastus2.cloudapp.azure.com:80/api/
-// export MAPSAPI=http://informationcart.eastus2.cloudapp.azure.com:82/api/
 
 const LANDMARK = process.env.LANDMARK || 'https://api.coredatastore.com/api/';
-const MAPSAPI = process.env.MAPSAPI || 'http://informationcart.eastus2.cloudapp.azure.com:82/api/';
+const MAPSAPI = process.env.MAPSAPI || 'https://api-maps.navigatorglass.com/api/';
 const NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || '';
 
 var path = require('path');

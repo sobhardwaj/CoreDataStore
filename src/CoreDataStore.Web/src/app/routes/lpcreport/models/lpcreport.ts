@@ -7,6 +7,7 @@ export interface LPCReport {
     architect: string;
     style: string;
     street: string;
+    neighborhood: string;
     borough: string;
     dateDesignated: string;
     photoStatus: boolean;

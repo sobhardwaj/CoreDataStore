@@ -28,5 +28,19 @@ namespace CoreDataStore.Data.Sqlite.Repositories
 
             return results;
         }
+
+        public int GetPlutoCount(string lpcNumber)
+        {
+            var results = (from l in _context.Landmarks
+                join p in _context.Pluto on
+                new { Lot = l.LOT, Block = l.BLOCK, Borough = l.BoroughID }
+                equals
+                new { p.Lot, p.Block, p.Borough }
+                where l.LP_NUMBER == lpcNumber
+                select p).Count();
+
+            return results;
+        }
+
     }
 }
