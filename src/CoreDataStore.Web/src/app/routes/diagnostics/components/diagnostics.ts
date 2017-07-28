@@ -31,8 +31,7 @@ export class DiagnosticsComponent implements OnInit {
     this.getLocation();
     this.diagnosticsService.getDiagnostics().subscribe(
       data => { this.diagnostics = data; },
-      err => console.error(err),
-      () => console.log('done loading diagnostics')
+      // err => console.error(err),
     );
   }
   ngOnInit() {
@@ -57,13 +56,11 @@ export class DiagnosticsComponent implements OnInit {
     this.lng = position.coords.longitude;
     this.diagnosticsService.getUserRange(this.lat, this.lng).subscribe(
       data => { this.userRange = data; },
-      err => console.error(err),
-      () => console.log('done loading diagnostics')
+      // err => console.error(err),
     );
     this.diagnosticsService.getUserLocation(this.lat, this.lng).subscribe(
       data => { this.userLocation = data; },
-      err => console.error(err),
-      () => console.log('done loading diagnostics')
+      // err => console.error(err),
     );
   }
 }

@@ -1,8 +1,8 @@
-<div class="page">
+<div class="page" (window:resize)="onResize($event)">
   <div class="panel panel-default">
     <div class="panel-body">
       <div *ngIf="details" class="table-responsive">
-        <form novalidate [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+        <form novalidate [formGroup]="form" (ngSubmit)="onSubmit(form.value)" *ngIf="!isMobile">
           <table class="table property-details">
             <tr>
               <td rowspan="8">
@@ -80,6 +80,43 @@
             </tr>
           </table>
         </form>
+        <div class="row lpc-mobile-form" *ngIf="isMobile">
+          <div class="col-xs-12">
+            <img class="img-thumbnail img-responsive" src="{{ details.photoURL }}"/>
+          </div>
+          <div class="col-xs-12">
+            <span>Designation Report:</span>
+            <input class="no-editable form-control" [formControl]="name" disabled/>
+          </div>
+          <div class="col-xs-12">
+            <span>Landmark Type:</span>
+            <select class="form-control" [formControl]="objectType" disabled>
+              <option *ngFor="let value of objectTypes" [value]="value">
+                {{value}}
+              </option>
+            </select>
+          </div>
+          <div class="col-xs-12">
+            <span>Architect:</span>
+            <input class="no-editable form-control" [formControl]="architect" disabled/>
+          </div>
+          <div class="col-xs-12">
+            <span>Architectural Style:</span>
+            <input class="no-editable form-control" [formControl]="style" disabled/>
+          </div>
+          <div class="col-xs-12">
+            <span>Date of Designation:</span>
+            <input class="no-editable form-control" [formControl]="dateDesignated" disabled/>
+          </div>
+          <div class="col-xs-12">
+            <span>Street:</span>
+            <input class="no-editable form-control" [formControl]="street" disabled/>
+          </div>
+          <div class="col-xs-12">
+            <span>Borough:</span>
+            <input class="no-editable form-control" [formControl]="borough" disabled/>
+          </div>
+        </div>
       </div>
     </div>
   </div>

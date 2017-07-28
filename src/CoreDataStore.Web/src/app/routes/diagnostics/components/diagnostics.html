@@ -154,7 +154,7 @@
           <ul>
             <li>{{browserEnabled}}</li>
             <li>{{userRange}}</li>
-            <li>Lat: {{userLocation.latitude}}, Lon:{{userLocation.longitude}}</li>
+            <li *ngIf="userLocation.coords.latitude && userLocation.coords.longitude">Lat: {{userLocation.coords.latitude}}, Lon:{{userLocation.coords.longitude}}</li>
           </ul>
         </div>
       </div>
