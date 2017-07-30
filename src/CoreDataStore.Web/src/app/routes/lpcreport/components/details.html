@@ -1,4 +1,4 @@
-<div class="page" (window:resize)="onResize($event)">
+<div class="page">
   <div class="panel panel-primary">
     <ol class="breadcrumb">
       <li>
@@ -22,11 +22,10 @@
                 <div>Owner: {{marker.ownerName}}</div>
               </sebm-google-map-info-window>
             </sebm-google-map-marker>
-            <sebm-google-map-marker *ngIf="isMobile" [latitude]="userPos.coords.latitude" [longitude]="userPos.coords.longitude" [label]="'User'"></sebm-google-map-marker>
           </sebm-google-map>
         </div>
       </div>
-      <div class="row" *ngIf="!isMobile">
+      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <tabset>
             <tab heading="Landmarks">

@@ -81,7 +81,7 @@
           <ul>
             <li>{{build}}</li>
           </ul>
-        </div>        
+        </div>
         <div class="col-md-3">
           <ul>
             <li>Angular2 ENV</li>
@@ -90,16 +90,6 @@
         <div class="col-md-9">
           <ul>
             <li>{{ng2ENV}}</li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <ul>
-            <li>Client Build</li>
-          </ul>
-        </div>
-        <div class="col-md-9">
-          <ul>
-            <li>XXXXXX</li>
           </ul>
         </div>
         <div class="col-md-3">
@@ -142,16 +132,6 @@
             <li>{{ApiReports}}</li>
           </ul>
         </div>
-        <div class="col-md-3">
-          <ul>
-            <li>Location API:</li>
-          </ul>
-        </div>
-        <div class="col-md-9">
-          <ul>
-            <li>XXXXXX</li>
-          </ul>
-        </div>
       </div>
     </div>
   </div>
@@ -174,12 +154,8 @@
           <ul>
             <li>{{browserEnabled}}</li>
             <li>{{userRange}}</li>
-            <li *ngIf="userLocation.coords.latitude && userLocation.coords.longitude">Lat: {{userLocation.coords.latitude}}, Lon:{{userLocation.coords.longitude}}</li>
-            <li>Accuracy</li>
-            <li>Altitude</li>
-            <li>Altitude Accuracy</li>
-            <li>Heading</li>
-            <li>Speed</li>          </ul>
+            <li>Lat: {{userLocation.latitude}}, Lon:{{userLocation.longitude}}</li>
+          </ul>
         </div>
       </div>
     </div>

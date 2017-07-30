@@ -58,9 +58,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
     { headerName: 'year', field: 'yearBuilt', editable: true, width: 50 }
   ];
 
-  public isMobile: boolean;
-  public userPos: any;
-
   /*@Inject(ActivatedRoute) */
   /*overlay: Overlay, vcRef: ViewContainerRef, public modal: Modal*/
   constructor(
@@ -69,7 +66,40 @@ export class DetailsComponent implements OnInit, OnDestroy {
     private elem: ElementRef,
     private route: ActivatedRoute) {
     // overlay.defaultViewContainer = vcRef;
-    this.getGridData();
+    this.sub = this.route.params.subscribe(params => {
+      let id = +params['id'];
+      // console.log(id);
+      this.lpcReportService.getLPCReport(id).subscribe(
+        data => {
+          this.details = data;
+          this.title = data.name;
+          this.lpcReportService.getLandmarkProperties(this.details.lpNumber).subscribe(
+            data => {
+              this.landmarkProperties = data || [];
+              if (this.landmarkProperties.length > 1) {
+                this.setWidthAndHeight('#ag-gridLandmarks', '100%', '100%');
+              } else {
+                this.setWidthAndHeight('#ag-gridLandmarks', '100%', '70px');
+              }
+              this.gridOptionsLandmarks.api.setRowData(this.landmarkProperties);
+            },
+            err => console.log(err)
+          );
+          this.plutoService.getMapMarkers(this.details.lpNumber).subscribe(
+            data => {
+              this.mapMarkers = data;
+              if (this.mapMarkers.length > 1) {
+                this.setWidthAndHeight('#ag-gridPluto', '100%', '100%');
+              } else {
+                this.setWidthAndHeight('#ag-gridPluto', '100%', '70px');
+              }
+              this.gridOptionsPluto.api.setRowData(this.mapMarkers);
+            }
+          );
+        },
+        err => console.log(err)
+      );
+    });
 
     // ag-grid gridOptionsLandmarks
     this.gridOptionsLandmarks = < GridOptions > {
@@ -110,18 +140,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
       //   });
       // }
     };
-
-    if(window.innerWidth < 768) {
-      this.isMobile = true;
-    } else {
-      this.isMobile = false;
-    }
-
-    if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        this.userPos = pos;
-      });
-    }
   }
 
   ngOnInit() {
@@ -139,52 +157,5 @@ export class DetailsComponent implements OnInit, OnDestroy {
     grid.style.width = width;
     grid.style.height = height;
     this.gridOptionsLandmarks.api.doLayout();
-  }
-
-  getGridData() {
-    this.sub = this.route.params.subscribe(params => {
-      let id = +params['id'];
-      // console.log(id);
-      this.lpcReportService.getLPCReport(id).subscribe(
-        data => {
-          this.details = data;
-          this.title = data.name;
-          this.lpcReportService.getLandmarkProperties(this.details.lpNumber).subscribe(
-            data => {
-              this.landmarkProperties = data || [];
-              if (this.landmarkProperties.length > 1) {
-                this.setWidthAndHeight('#ag-gridLandmarks', '100%', '100%');
-              } else {
-                this.setWidthAndHeight('#ag-gridLandmarks', '100%', '70px');
-              }
-              this.gridOptionsLandmarks.api.setRowData(this.landmarkProperties);
-            },
-            err => console.log(err)
-          );
-          this.plutoService.getMapMarkers(this.details.lpNumber).subscribe(
-            data => {
-              this.mapMarkers = data;
-              if (this.mapMarkers.length > 1) {
-                this.setWidthAndHeight('#ag-gridPluto', '100%', '100%');
-              } else {
-                this.setWidthAndHeight('#ag-gridPluto', '100%', '70px');
-              }
-              this.gridOptionsPluto.api.setRowData(this.mapMarkers);
-            }
-          );
-        },
-        err => console.log(err)
-      );
-    });
-  }
-
-  onResize(event) {
-    if(window.innerWidth < 768) {
-      this.isMobile = true;
-    } else {
-      this.isMobile = false;
-    }
-
-    this.getGridData();
   }
 }

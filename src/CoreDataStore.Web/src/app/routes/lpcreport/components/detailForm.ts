@@ -36,8 +36,6 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
   public isCollapsed: boolean = true;
   public dt: any;
 
-  public isMobile: boolean;
-
   constructor(
     private toastr: ToastsManager, vRef: ViewContainerRef,
     private builder: FormBuilder,
@@ -65,12 +63,6 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
     this.dateDesignated = this.form.controls['dateDesignated'];
     this.street = this.form.controls['street'];
     this.borough = this.form.controls['borough'];
-
-    if(window.innerWidth < 768) {
-      this.isMobile = true;
-    } else {
-      this.isMobile = false;
-    }
   };
 
   getObjectTypes() {
@@ -146,14 +138,6 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
           },
           err => this.toastr.error('Error', 'error')
         );
-    }
-  }
-
-  onResize(event) {
-    if(window.innerWidth < 768) {
-      this.isMobile = true;
-    } else {
-      this.isMobile = false;
     }
   }
 };
