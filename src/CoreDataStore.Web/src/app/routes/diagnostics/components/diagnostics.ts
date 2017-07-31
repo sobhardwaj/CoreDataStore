@@ -54,12 +54,16 @@ export class DiagnosticsComponent implements OnInit {
     this.browserEnabled = true;
     this.lat = position.coords.latitude;
     this.lng = position.coords.longitude;
+    this.userLocation = position;
+    
     this.diagnosticsService.getUserRange(this.lat, this.lng).subscribe(
       data => { this.userRange = data; },
       // err => console.error(err),
     );
     this.diagnosticsService.getUserLocation(this.lat, this.lng).subscribe(
-      data => { this.userLocation = data; },
+      data => { 
+        // this.userLocation = data; 
+      },
       // err => console.error(err),
     );
   }
