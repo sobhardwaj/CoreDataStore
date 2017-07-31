@@ -67,8 +67,6 @@ gulp.task('CircleCI', () => {
   var regex2 = /\d{1,2}\.\d{1,2}\.\d{1,2}\.\d{1,3}/;
   var text = '';
   if (CIRCLE_BUILD_NUM) {
-    pkg.buildtype = 'CircleCI';
-    pkg.version = [version[0], version[1], version[2], CIRCLE_BUILD_NUM].join('.');
     fs.readFile('./CoreDataStore.Web.csproj', 'utf8', (err, data) => {
       text = data;
       var match1 = text.match(regex1);
