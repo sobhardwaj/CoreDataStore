@@ -19,7 +19,7 @@ var fs = require('fs'),
   coveralls = require('gulp-coveralls'),
   sourcemaps = require('gulp-sourcemaps'),
   cssPrefixer = require('gulp-autoprefixer'),
-  xml2json = require('xml2json'),
+  // xml2json = require('xml2json'),
   merge = require('merge-stream');
 
 var SystemBuilder = require('systemjs-builder');
@@ -63,15 +63,15 @@ gulp.task('package', () => {
 });
 
 gulp.task('CircleCI', () => {
-  if (CIRCLE_BUILD_NUM) {
-    pkg.buildtype = 'CircleCI';
-    pkg.version = [version[0], version[1], version[2], CIRCLE_BUILD_NUM].join('.');
-    fs.readFile('./CoreDataStore.Web.csproj', function(err, data) {
-      var json = xml2json.toJson(data);
-      json.AssemblyVersion = pkg.version;
-    });
-    return fs.writeFile('./CoreDataStore.Web.csproj', xml2json.toXml(json), 'utf8');
-  }
+  // if (CIRCLE_BUILD_NUM) {
+  //   pkg.buildtype = 'CircleCI';
+  //   pkg.version = [version[0], version[1], version[2], CIRCLE_BUILD_NUM].join('.');
+  //   fs.readFile('./CoreDataStore.Web.csproj', function(err, data) {
+  //     var json = xml2json.toJson(data);
+  //     json.AssemblyVersion = pkg.version;
+  //   });
+  //   return fs.writeFile('./CoreDataStore.Web.csproj', xml2json.toXml(json), 'utf8');
+  // }
 });
 
 gulp.task('ghpage', function() {
@@ -269,7 +269,7 @@ gulp.task("node_modules", () => {
  */
 gulp.task("build", [
   'package',
-  'CircleCI',
+  // 'CircleCI',
   'appsettings',
   'api',
   'compile',
