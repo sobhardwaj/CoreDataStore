@@ -19,7 +19,7 @@ var fs = require('fs'),
   coveralls = require('gulp-coveralls'),
   sourcemaps = require('gulp-sourcemaps'),
   cssPrefixer = require('gulp-autoprefixer'),
-  xml2json = require('xml2json'),
+  // xml2json = require('xml2json'),
   merge = require('merge-stream');
 
 var SystemBuilder = require('systemjs-builder');
@@ -63,14 +63,21 @@ gulp.task('package', () => {
 });
 
 gulp.task('CircleCI', () => {
+  var regex1 = /<AssemblyVersion>(.*)<\/AssemblyVersion>/;
+  var regex2 = /\d{1,2}\.\d{1,2}\.\d{1,2}\.\d{1,3}/;
+  var text = '';
   if (CIRCLE_BUILD_NUM) {
-    pkg.buildtype = 'CircleCI';
-    pkg.version = [version[0], version[1], version[2], CIRCLE_BUILD_NUM].join('.');
-    fs.readFile('./CoreDataStore.Web.csproj', function(err, data) {
-      var json = xml2json.toJson(data);
-      json.AssemblyVersion = pkg.version;
+    fs.readFile('./CoreDataStore.Web.csproj', 'utf8', (err, data) => {
+      text = data;
+      var match1 = text.match(regex1);
+      var match2 = match1[0].match(regex2);
+      var version = match2[0].split('.');
+      var AssemblyVersion = [version[0], version[1], version[2], CIRCLE_BUILD_NUM].join('.');
+      var value = ['<AssemblyVersion>', AssemblyVersion, '</AssemblyVersion>'].join('');
+      var outtext = text.replace(match1[0], value);
+      console.log(outtext);
+      return fs.writeFile('./CoreDataStore.Web.csproj', outtext, 'utf8');
     });
-    return fs.writeFile('./CoreDataStore.Web.csproj', xml2json.toXml(json), 'utf8');
   }
 });
 
