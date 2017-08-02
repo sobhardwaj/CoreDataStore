@@ -16,7 +16,7 @@ export class AppSettings {
     return localStorage.getItem("ApiMaps") || "";
   }
   public static get ApiReports(): string {
-    return "/api/reports";
+    return localStorage.getItem("ApiReport") || "";
   }
   public static get ApiAttraction(): string {
     return "/api/attraction";
