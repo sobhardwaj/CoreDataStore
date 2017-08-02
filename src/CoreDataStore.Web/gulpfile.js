@@ -62,24 +62,24 @@ gulp.task('package', () => {
   return fs.writeFile('./package.json', json, 'utf8');
 });
 
-gulp.task('CircleCI', () => {
-  var regex1 = /<AssemblyVersion>(.*)<\/AssemblyVersion>/;
-  var regex2 = /\d{1,2}\.\d{1,2}\.\d{1,2}\.\d{1,3}/;
-  var text = '';
-  if (CIRCLE_BUILD_NUM) {
-    fs.readFile('./CoreDataStore.Web.csproj', 'utf8', (err, data) => {
-      text = data;
-      var match1 = text.match(regex1);
-      var match2 = match1[0].match(regex2);
-      var version = match2[0].split('.');
-      var AssemblyVersion = [version[0], version[1], version[2], CIRCLE_BUILD_NUM].join('.');
-      var value = ['<AssemblyVersion>', AssemblyVersion, '</AssemblyVersion>'].join('');
-      var outtext = text.replace(match1[0], value);
-      console.log(outtext);
-      return fs.writeFile('./CoreDataStore.Web.csproj', outtext, 'utf8');
-    });
-  }
-});
+// gulp.task('CircleCI', () => {
+//   var regex1 = /<AssemblyVersion>(.*)<\/AssemblyVersion>/;
+//   var regex2 = /\d{1,2}\.\d{1,2}\.\d{1,2}\.\d{1,3}/;
+//   var text = '';
+//   if (CIRCLE_BUILD_NUM) {
+//     fs.readFile('./CoreDataStore.Web.csproj', 'utf8', (err, data) => {
+//       text = data;
+//       var match1 = text.match(regex1);
+//       var match2 = match1[0].match(regex2);
+//       var version = match2[0].split('.');
+//       var AssemblyVersion = [version[0], version[1], version[2], CIRCLE_BUILD_NUM].join('.');
+//       var value = ['<AssemblyVersion>', AssemblyVersion, '</AssemblyVersion>'].join('');
+//       var outtext = text.replace(match1[0], value);
+//       console.log(outtext);
+//       return fs.writeFile('./CoreDataStore.Web.csproj', outtext, 'utf8');
+//     });
+//   }
+// });
 
 gulp.task('ghpage', function() {
   return gulp.src('./' + buildDir + '/**/*')
@@ -276,7 +276,7 @@ gulp.task("node_modules", () => {
  */
 gulp.task("build", [
   'package',
-  'CircleCI',
+  // 'CircleCI',
   'appsettings',
   'api',
   'compile',
