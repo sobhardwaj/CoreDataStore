@@ -216,7 +216,11 @@ gulp.task('api', function() {
 gulp.task('bundle', function() {
   var bundleTpl;
   var pkg = require('./package.json');
-
+  var version = pkg.version.split('.');
+  if (TRAVIS_BUILD_NUMBER) {
+    pkg.buildtype = 'TravisCI';
+    pkg.version = [version[0], version[1], TRAVIS_BUILD_NUMBER].join('.');
+  }
   if (NG_ENVIRONMENT === 'Dev') {
     bundleTpl = '<script src="systemjs.config.js"></script>' +
       '<script>System.import(\'app\').catch(function(err) {console.error(err);});</script>';
