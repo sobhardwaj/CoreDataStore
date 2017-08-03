@@ -1,7 +1,7 @@
 // export NG_ENVIRONMENT=Dev
 
 const LANDMARK = process.env.LANDMARK || 'https://api.coredatastore.com/api/';
-const REPORTAPI = process.env.REPORTAPI || 'https://report.coredatastore.com/';
+const REPORTSAPI = process.env.REPORTSAPI || 'https://report.coredatastore.com/';
 const MAPSAPI = process.env.MAPSAPI || 'https://api-maps.navigatorglass.com/api/';
 const NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || '';
 
@@ -22,7 +22,7 @@ app.get('/', function(req, res, next) {
   res.render('index', {
     'LANDMARK': LANDMARK,
     'MAPSAPI': MAPSAPI,
-    'REPORTAPI': REPORTAPI,
+    'REPORTSAPI': REPORTSAPI,
     'ng2ENV': NG_ENVIRONMENT
   });
 });
