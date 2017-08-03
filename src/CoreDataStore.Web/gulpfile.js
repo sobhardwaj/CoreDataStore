@@ -158,7 +158,7 @@ gulp.task('compile', ['tsc'], () => {
  * Copy all resources that are not TypeScript files into build directory.
  */
 gulp.task("resources", () => {
-  return gulp.src(["!src/index.html", "!src/less", "!src/less/**/*", "!**/*.ts", "src/**/*"])
+  return gulp.src(["!src/index.html", "!src/index.jade", "!src/less", "!src/less/**/*", "!**/*.ts", "src/**/*"])
     .pipe(gulp.dest(buildDir));
 });
 
@@ -218,10 +218,9 @@ gulp.task('bundle', function() {
   var pkg = require('./package.json');
   var version = pkg.version.split('.');
   if (TRAVIS_BUILD_NUMBER) {
-    pkg.buildtype = 'TravisCI';
-    pkg.version = [version[0], version[1], TRAVIS_BUILD_NUMBER].join('.');
+    pkg.version = ;
     gulp.src('src/index.jade')
-      .pipe(replace('#{BuildId}', pkg.version))
+      .pipe(replace('{BuildId}', [version[0], version[1], TRAVIS_BUILD_NUMBER].join('.')))
       .pipe(gulp.dest(buildDir));
   }
 
@@ -235,6 +234,7 @@ gulp.task('bundle', function() {
   return gulp.src('src/index.html')
     .pipe(replace('<--bundleTpl-->', bundleTpl))
     .pipe(replace('#{ApiEndpoint}', LANDMARK))
+    .pipe(replace('#{ApiReport}', REPORTSAPI))
     .pipe(replace('#{ApiMaps}', MAPSAPI))
     .pipe(replace('#{ng2ENV}', NG_ENVIRONMENT))
     .pipe(gulp.dest(buildDir));
