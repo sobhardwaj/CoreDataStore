@@ -218,7 +218,6 @@ gulp.task('bundle', function() {
   var pkg = require('./package.json');
   var version = pkg.version.split('.');
   if (TRAVIS_BUILD_NUMBER) {
-    pkg.version = ;
     gulp.src('src/index.jade')
       .pipe(replace('{BuildId}', [version[0], version[1], TRAVIS_BUILD_NUMBER].join('.')))
       .pipe(gulp.dest(buildDir));
