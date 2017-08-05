@@ -62,7 +62,7 @@ export class DiagnosticsComponent implements OnInit {
       // err => console.error(err),
     );
     this.diagnosticsService.getUserLocation(this.lat, this.lng).subscribe(
-
+      data => {
         // this.userLocation = data; 
       },
       // err => console.error(err),
