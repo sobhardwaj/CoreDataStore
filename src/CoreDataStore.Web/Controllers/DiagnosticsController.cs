@@ -72,7 +72,8 @@ namespace CoreDataStore.Web.Controllers
             };
 
             diagnostics.MachineTimeZone = TimeZoneInfo.Local.IsDaylightSavingTime(diagnostics.MachineDate) ? TimeZoneInfo.Local.DaylightName : TimeZoneInfo.Local.StandardName;
-            diagnostics.ApplicationVersionNumber = GetType().GetTypeInfo().Assembly.GetName().Version.ToString();
+            diagnostics.ApplicationVersionNumber = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+                //GetType().GetTypeInfo().Assembly.GetName().Version.ToString();
 
             var ipAddresses = Dns.GetHostAddressesAsync(diagnostics.DnsHostName).Result.Where(x => x.AddressFamily == AddressFamily.InterNetwork).ToList().Distinct();
 

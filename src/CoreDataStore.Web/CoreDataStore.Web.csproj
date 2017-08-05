@@ -1,5 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <VersionPrefix>1.0.1</VersionPrefix>
     <TargetFramework>netcoreapp2.0</TargetFramework>
@@ -8,13 +7,12 @@
     <AssemblyName>CoreDataStore.Web</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>CoreDataStore.Web</PackageId>
-    <RuntimeIdentifiers>debian.8-x64;ubuntu.16.04-x64;osx.10.12-x64;win81-x64;win10-x64</RuntimeIdentifiers>
+    <RuntimeIdentifiers>debian.8-x64;ubuntu.16.04-x64;osx.10.12-x64;win10-x64</RuntimeIdentifiers>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
-    <Version>1.0.19</Version>
+    <Version>0.1.2-beta0002</Version>
     <AssemblyVersion>1.0.19.2</AssemblyVersion>
     <FileVersion>1.0.19.3</FileVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\CoreDataStore.Data.Postgre\CoreDataStore.Data.Postgre.csproj" />
     <ProjectReference Include="..\CoreDataStore.Data.Sqlite\CoreDataStore.Data.Sqlite.csproj" />
@@ -22,8 +20,11 @@
     <ProjectReference Include="..\CoreDataStore.Domain\CoreDataStore.Domain.csproj" />
     <ProjectReference Include="..\CoreDataStore.Service\CoreDataStore.Service.csproj" />
   </ItemGroup>
-
   <ItemGroup>
+    <DotNetCliToolReference Include="dotnet-setversion" Version="*" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="dotnet-setversion" Version="1.0.1" />
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="2.0.0-preview2-final" />
@@ -48,5 +49,4 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0-preview2-final" />
     <PackageReference Include="System.Runtime" Version="4.3.0" />
   </ItemGroup>
-
 </Project>

@@ -19,7 +19,7 @@ var fs = require('fs'),
   coveralls = require('gulp-coveralls'),
   sourcemaps = require('gulp-sourcemaps'),
   cssPrefixer = require('gulp-autoprefixer'),
-  xml2json = require('xml2json'),
+  // xml2json = require('xml2json'),
   merge = require('merge-stream');
 
 var SystemBuilder = require('systemjs-builder');
@@ -62,17 +62,24 @@ gulp.task('package', () => {
   return fs.writeFile('./package.json', json, 'utf8');
 });
 
-gulp.task('CircleCI', () => {
-  if (CIRCLE_BUILD_NUM) {
-    pkg.buildtype = 'CircleCI';
-    pkg.version = [version[0], version[1], version[2], CIRCLE_BUILD_NUM].join('.');
-    fs.readFile('./CoreDataStore.Web.csproj', function(err, data) {
-      var json = xml2json.toJson(data);
-      json.AssemblyVersion = pkg.version;
-    });
-    return fs.writeFile('./CoreDataStore.Web.csproj', xml2json.toXml(json), 'utf8');
-  }
-});
+// gulp.task('CircleCI', () => {
+//   var regex1 = /<AssemblyVersion>(.*)<\/AssemblyVersion>/;
+//   var regex2 = /\d{1,2}\.\d{1,2}\.\d{1,2}\.\d{1,3}/;
+//   var text = '';
+//   if (CIRCLE_BUILD_NUM) {
+//     fs.readFile('./CoreDataStore.Web.csproj', 'utf8', (err, data) => {
+//       text = data;
+//       var match1 = text.match(regex1);
+//       var match2 = match1[0].match(regex2);
+//       var version = match2[0].split('.');
+//       var AssemblyVersion = [version[0], version[1], version[2], CIRCLE_BUILD_NUM].join('.');
+//       var value = ['<AssemblyVersion>', AssemblyVersion, '</AssemblyVersion>'].join('');
+//       var outtext = text.replace(match1[0], value);
+//       console.log(outtext);
+//       return fs.writeFile('./CoreDataStore.Web.csproj', outtext, 'utf8');
+//     });
+//   }
+// });
 
 gulp.task('ghpage', function() {
   return gulp.src('./' + buildDir + '/**/*')
@@ -151,7 +158,7 @@ gulp.task('compile', ['tsc'], () => {
  * Copy all resources that are not TypeScript files into build directory.
  */
 gulp.task("resources", () => {
-  return gulp.src(["!src/index.html", "!src/less", "!src/less/**/*", "!**/*.ts", "src/**/*"])
+  return gulp.src(["!src/index.html", "!src/index.jade", "!src/less", "!src/less/**/*", "!**/*.ts", "src/**/*"])
     .pipe(gulp.dest(buildDir));
 });
 
@@ -209,6 +216,12 @@ gulp.task('api', function() {
 gulp.task('bundle', function() {
   var bundleTpl;
   var pkg = require('./package.json');
+  var version = pkg.version.split('.');
+  if (TRAVIS_BUILD_NUMBER) {
+    gulp.src('src/index.jade')
+      .pipe(replace('{BuildId}', [version[0], version[1], TRAVIS_BUILD_NUMBER].join('.')))
+      .pipe(gulp.dest(buildDir));
+  }
 
   if (NG_ENVIRONMENT === 'Dev') {
     bundleTpl = '<script src="systemjs.config.js"></script>' +
@@ -217,13 +230,12 @@ gulp.task('bundle', function() {
     bundleTpl = '<script type="text/javascript" src="js/bundle.js"></script>';
   }
 
-
   return gulp.src('src/index.html')
     .pipe(replace('<--bundleTpl-->', bundleTpl))
     .pipe(replace('#{ApiEndpoint}', LANDMARK))
+    .pipe(replace('#{ApiReport}', REPORTSAPI))
     .pipe(replace('#{ApiMaps}', MAPSAPI))
     .pipe(replace('#{ng2ENV}', NG_ENVIRONMENT))
-    .pipe(replace('#{BuildId}', pkg.version))
     .pipe(gulp.dest(buildDir));
 });
 
@@ -269,7 +281,7 @@ gulp.task("node_modules", () => {
  */
 gulp.task("build", [
   'package',
-  'CircleCI',
+  // 'CircleCI',
   'appsettings',
   'api',
   'compile',

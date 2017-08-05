@@ -13,6 +13,7 @@ import { DiagnosticsService } from '../services/diagnostics';
 export class DiagnosticsComponent implements OnInit {
   private timer;
   build: string = AppSettings.build;
+  buildId: string = AppSettings.buildId;
   ApiEndpoint: string = AppSettings.ApiEndpoint;
   ApiAttraction: string = AppSettings.ApiAttraction;
   ApiMaps: string = AppSettings.ApiMaps;
@@ -31,7 +32,8 @@ export class DiagnosticsComponent implements OnInit {
     this.getLocation();
     this.diagnosticsService.getDiagnostics().subscribe(
       data => { this.diagnostics = data; },
-      // err => console.error(err),
+      err => console.error(err),
+      () => console.log('done loading diagnostics')
     );
   }
   ngOnInit() {
@@ -58,13 +60,15 @@ export class DiagnosticsComponent implements OnInit {
     
     this.diagnosticsService.getUserRange(this.lat, this.lng).subscribe(
       data => { this.userRange = data; },
-      // err => console.error(err),
+      err => console.error(err),
+      () => console.log('done loading diagnostics')
     );
     this.diagnosticsService.getUserLocation(this.lat, this.lng).subscribe(
       data => { 
         // this.userLocation = data; 
       },
-      // err => console.error(err),
+      err => console.error(err),
+      () => console.log('done loading diagnostics')
     );
   }
 }
