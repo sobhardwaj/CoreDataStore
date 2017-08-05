@@ -108,6 +108,7 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
       this.form.patchValue(this.details, { onlySelf: true });
       this.formInitted = true;
       this.dt = moment(this.details.dateDesignated);
+      this.form.controls['dateDesignated'].setValue(this.dt.format('YYYY-MM-DD'));
     }
   };
 

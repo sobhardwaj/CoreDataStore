@@ -1,7 +1,7 @@
 <div class="page" (window:resize)="onResize($event)">
   <div class="panel panel-default">
     <div class="panel-body">
-      <div *ngIf="details" class="table-responsive">
+      <div *ngIf="details" class="table-responsive details-form">
         <form novalidate [formGroup]="form" (ngSubmit)="onSubmit(form.value)" *ngIf="!isMobile">
           <table class="table property-details">
             <tr>
