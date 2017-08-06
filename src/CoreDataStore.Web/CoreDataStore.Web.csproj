@@ -25,7 +25,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="dotnet-setversion" Version="1.0.1" />
-    <PackageReference Include="GitVersionTask" Version="4.0.0-beta0012" />
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="2.0.0-preview2-final" />
