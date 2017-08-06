@@ -58,9 +58,9 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <CO
 ### NodeJS Website Image
 
 ```
-
+cd  CoreDataStore/
+docker build -f docker/node.dockerfile -t coredatastore_nodeweb  .
 ```
-
 
 
 ### Docker Compose
