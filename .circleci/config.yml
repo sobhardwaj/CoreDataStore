@@ -16,7 +16,7 @@ jobs:
       - STACK_NAME: 'CoreDataStore-QA'
       - DOCKER_COMPOSE: 'docker/rancher-qa-stack/docker-compose.yml'
       - RANCHER_COMPOSE: 'docker/rancher-qa-stack/rancher-compose.yml'
-      - UPGRADE_SERVICES: 'coredatastore-reporting-api'
+      - UPGRADE_SERVICES: 'coredatastore-api'
     steps:
       - checkout
       - run: 
@@ -94,7 +94,7 @@ jobs:
             rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} up -d
 
       - run:
-          name: Perform services upgrade (coredatastore-reporting-api)
+          name: Perform services upgrade (coredatastore-api)
           command: |
             rancher-compose \
               -f ${DOCKER_COMPOSE} \
