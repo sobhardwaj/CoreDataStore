@@ -1,0 +1,96 @@
+version: '2'
+volumes:
+  database:
+    external: true
+    driver: rancher-nfs
+  database-export:
+    external: true
+    driver: rancher-nfs
+services:
+  database:
+    image: stuartshay/coredatastore-postgres:development
+    environment:
+      POSTGRES_PASSWORD: password
+    stdin_open: true
+    volumes:
+      - database:/var/lib/postgresql/data
+      - database-export:/export
+    tty: true
+    logging:
+      driver: fluentd
+      options:
+        tag: docker.coredatastore.postgres
+    ports:
+      - 5434:5432/tcp
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  endpoint:
+    image: rancher/dns-service
+    links:
+      - coredatastore-api:coredatastore-api
+  coredatastore-api:
+    image: stuartshay/coredatastore:2.0-runtime
+    stdin_open: true
+    tty: true
+    links:
+      - database:database
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  phppgadmin:
+    image: zhajor/docker-phppgadmin
+    environment:
+      DB_HOST: database
+      DB_PORT: '5432'
+    stdin_open: true
+    volumes:
+      - database-export:/export
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  node-ui:
+    image: stuartshay/coredatastore:node-ui-build
+    environment:
+      MAPSAPI: https://api-maps.navigatorglass.com/api/
+      LANDMARK: https://api.coredatastore.com/api/
+      REPORTSAPI: https://reports.coredatastore.com/api/
+      LOCATIONAPI: https://api-location.coredatastore.com/api/
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  coredatastore-reporting-api:
+    image: stuartshay/coredatastore-reporting-api:2.0-runtime
+    stdin_open: true
+    tty: true
+    links:
+      - database:database
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  reporting:
+    image: rancher/dns-service
+    links:
+      - coredatastore-reporting-api:coredatastore-reporting-api
+  coredatastore-location-api:
+    image: stuartshay/coredatastore-location-api:2.0-runtime
+    environment:
+      ASPNETCORE_URLS: http://*:5200
+      ASPNETCORE_ENVIRONMENT: Staging
+    stdin_open: true
+    tty: true
+    links:
+      - database:database
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  coredatastore-internal-tools:
+    image: stuartshay/coredatastore-internal-tools
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
