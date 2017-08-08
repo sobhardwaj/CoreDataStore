@@ -100,7 +100,7 @@ jobs:
               -f ${DOCKER_COMPOSE} \
               -r ${RANCHER_COMPOSE} \
               -p ${STACK_NAME} \
-              --verbose up --upgrade --pull -d ${UPGRADE_SERVICES}
+              --verbose up --upgrade --pull -d --confirm-upgrade ${UPGRADE_SERVICES}
 
       - save_cache:
           key: v1-coredatastore-{{ checksum ".circleci/config.yml" }}
