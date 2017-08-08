@@ -11,6 +11,11 @@ env:
   - secure: CmkRPUtnQU2oIgGGVfEZreKCwrS7OQzqyW4qG0NSgibQCxO+If64U9xEllVLJ96/mQbGA/o9dwk/ZCM4wmBT40sKvZJam4iT6jg3AxFYjIwKzd3WajK+lWv3NA6JJ4BO0sxrQhxEbaf3l6xSscqWMuWAEpv2DhcpWbGKJEil6rKChzJk4P2KLUct1DL0cJfbrQ1zGBEJZ+b7C9TiR1e0KWmaVRFjvr+hvtXzd2k21zG7BDzg0Lfl8dOwDNca403OHPEXAuoilcGAaCiad2o1BXjPkXPK7Xrb8UQFBMwgdmrBFafbd00Z5DrXPKXuVWtjPEBzTFX6X3tCLJQdfWGzeC6Hmb5yyLk/vG0G2yEN3oqc8jEFPI336pIl/uRKPgTcpP7Md0UCIh25r9ewu24aOvyVDISUga6V9jdJ6c3XLLaJ7mdw5Om4J213uS893MEcAB25px6IzfWCG0JqWDFYaqHDEnBSBxwuL4JhBKSz500a+73FtFE8r83jq0xjFGuad6HFCLVtx8W+hb50vGCqlpaWgW9tcpj/vqluj+vttnO4NXFfXLuzSCX9mzVqbENkfnRwE/Y4avNen7WuhpyYr/ZenTzqrO2fSLnoFe0q23KbIMXteyxvaTDAoy9fhx6rGdBPcwFk15yYsXv0DxFqp8ik9UeoPM6eK6ATFTtckbY=
   - secure: DXAfsvGluO/APAMOpic3SP3GqAVBuVGamygD0NW4e8dU2dK01hGUw/3V4OSUZJR4/gmUiG+r+1ChLOXPrS3bMxBvFNF/V0aaOYCpK3tG5k86kQGAmaalaB7lK7LUKec3xvWTxLu1X9zuTXj6CbLZafguZY/nKk2GRsBF9+qdDz6z+McNIb2rbP/JTiiC6kYna+rkvSzUP9la6qkgw1sfPLhDrfy84QBOt56d+hw2m0Mp8cmhT9tY8tBv6NDopTkHaA4kZCzBff7YzAaP9ONtLIY8s1J3fMCPvP/F8SwiV2o1zdAAO89zLbl+TaYxulBgT0Q6oSuuqwW016OxApGOTOz/Y/755mKseXvL4sns97gelojx+kDJrjarMeywz4E4s261a45mikvfdKp1isz7LGqRTHATdRSL3nBRMuwLa961jjnxAKFZ+qTsR4elsgEsuXwQ4kNloKkTIf3XcmZgazt0BhTgQGVditnd5uYJj0WCxJmYorcjLPcaW4yl3TnYZkYW28B7KWgQfIIIxuyokvJXbUNGfqsyMbyS49WP+ZkRgj27IVjjTeKgUeYadWZeK88ci/BxVcETR65H4dAXDYPWwaWS3wz58j9bkWGQD56LK6G8TYFNji1Cg+lwSlwmDysuphCJVDuv3Mkrdd72BIKhfQjxn6Vph/kMlOhx/z4=
   - secure: Ahgvk00sJhkRxhFCn98S9soG3to7lSzL8705719bb1+bjxg6d7UPtknTIz/+cLxnr3iUbsyxkl6wmk4DjD9m6N3HZJKiThoCLDODK4B/LMnCmV28njn5w+bvQ6deaHx93iVfHKbqCgpS8dcOE4aZi1ChKF8yrd2fDo2gHetmed6iaZh6wF7MekisTSYfsuBGGaCl2vBKjJyIyjir7dsU6621P+Adl+PoTOlfyWYZeG9PogiHy2bFyuGsP/mmcXESmDltVDB5o1CvzyrS/1PP1hcrhxB6u9tIWLcdi2XthA7TPC+Sx8hDpb+6gr5kfNI/Di/UgXac1Ca4VY3riLsdEL8WoXjgqIrMMFN/g69oVYdK6EE8O8VSJejusOsCmI7KNEC83fIZpaHjL8IOBxrVunT1uqC4mPRy9R1XTsRpvoXF325+7rFKeFPG33VECwWtwNDlIyqtJG6jFTd+hmF61EEUIavefwe7/AoyVssJh3j5zKH9M5IlZ763W2XEVSGay8nAwLS1ufpeJS4vyU7uqcIxwwCK9QB2lYNAs/zQX7Vicp59PldDZV0v4VqVDol7pCIlkFHVJ9vXLaG6XKMJddWU5NOBTXrvPdGlDJkksdmsm014eMiXHiOedZV8nsJOGVwLwxfmsoBRESw7xO+0OrAITQ8KbcQyehBAq3pA3iM=
+  - RANCHER_COMPOSE_VERSION="0.12.5"
+  - STACK_NAME="CoreDataStore-QA"
+  - DOCKER_COMPOSE="docker/rancher-qa-stack/docker-compose.yml"
+  - RANCHER_COMPOSE="docker/rancher-qa-stack/rancher-compose.yml"
+  - UPGRADE_SERVICES="node-ui"
 language: node_js
 node_js:
 - '6'
@@ -35,6 +40,13 @@ after_success:
 - if [ "$TRAVIS_BRANCH" == "master" ]; then
   docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
   docker push stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER;
+  fi
+- if [ "$TRAVIS_BRANCH" == "master" ]; then
+  curl -sSL https://github.com/rancher/rancher-compose/releases/download/v${RANCHER_COMPOSE_VERSION}/rancher-compose-linux-amd64-v${RANCHER_COMPOSE_VERSION}.tar.gz | tar -zxf - --strip-components=2 -C /usr/local/bin;
+  rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} create;
+  rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} up -d;
+  rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} --verbose up --upgrade --pull -d ${UPGRADE_SERVICES};
+  rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} --verbose up -d --confirm-upgrade ${UPGRADE_SERVICES};
   fi
 # - npm i selenium-webdriver assert mocha
 # - npm run selenium
