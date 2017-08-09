@@ -51,7 +51,7 @@ services:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
   node-ui:
-    image: stuartshay/coredatastore:node-ui-build
+    image: stuartshay/coredatastore:${NODE_UI_TAG}
     environment:
       MAPSAPI: https://api-maps.navigatorglass.com/api/
       LANDMARK: https://api.coredatastore.com/api/
