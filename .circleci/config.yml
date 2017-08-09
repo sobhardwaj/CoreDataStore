@@ -102,7 +102,7 @@ jobs:
               -f ${DOCKER_COMPOSE} \
               -r ${RANCHER_COMPOSE} \
               -p ${STACK_NAME} \
-              --verbose up --upgrade --pull -d ${UPGRADE_SERVICES}
+              --verbose up --upgrade --force-upgrade --pull -d ${UPGRADE_SERVICES}
 
       - run:
           name: Finish services upgrade (coredatastore-api)

@@ -46,7 +46,7 @@ after_success:
   export NODE_UI_TAG=node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER;
   ./rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} create;
   ./rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} up -d;
-  ./rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} --verbose up --upgrade --pull -d ${UPGRADE_SERVICES};
+  ./rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} --verbose up --upgrade --force-upgrade --pull -d ${UPGRADE_SERVICES};
   ./rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} --verbose up -d --confirm-upgrade ${UPGRADE_SERVICES};
   fi
 # - npm i selenium-webdriver assert mocha
