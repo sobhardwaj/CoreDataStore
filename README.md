@@ -40,12 +40,6 @@ npm version: >= 3
 
 ## Build Web Application
 
-### Clone
-
-```bash
-git clone https://github.com/stuartshay/CoreDataStore.git
-```
-
 Step 1: .NET Core Restore
 ```bash
 cd  CoreDataStore/
