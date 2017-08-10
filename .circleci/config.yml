@@ -17,7 +17,6 @@ jobs:
       - DOCKER_COMPOSE: 'docker/rancher-qa-stack/docker-compose.yml'
       - RANCHER_COMPOSE: 'docker/rancher-qa-stack/rancher-compose.yml'
       - UPGRADE_SERVICES: 'coredatastore-api'
-
       - NODE_UI_TAG: 'node-ui-build'
     steps:
       - checkout
