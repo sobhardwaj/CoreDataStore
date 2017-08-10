@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.0.0-preview2-runtime
+FROM microsoft/aspnetcore:2.0.0-preview2
 MAINTAINER Stuart Shay
 
 # Set environment variables
@@ -11,7 +11,6 @@ EXPOSE 5000
 
 WORKDIR /app
 COPY src/CoreDataStore.Web/bin/Release/netcoreapp2.0/debian.8-x64/publish .
-COPY src/CoreDataStore.Web/bin/Release/netcoreapp2.0/debian.8-x64/CoreDataStore.Web.xml .
 COPY src/CoreDataStore.Web/wwwroot ./wwwroot
 
 ENTRYPOINT ["dotnet", "CoreDataStore.Web.dll"]
