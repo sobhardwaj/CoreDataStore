@@ -14,7 +14,7 @@ global.base = __dirname;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'wwwroot'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 app.use(express.static(path.join(__dirname, 'wwwroot')));
 
