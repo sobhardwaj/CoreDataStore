@@ -2,8 +2,6 @@
 
 set -ex
 
-if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
-cd src/CoreDataStore.Web
 npm run clean
 npm run build
 
