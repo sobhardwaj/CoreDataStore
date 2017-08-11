@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -ex
 
 if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
 cd src/CoreDataStore.Web
