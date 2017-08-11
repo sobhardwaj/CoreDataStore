@@ -32,10 +32,10 @@ jobs:
       before_install:
         - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
         - cd src/CoreDataStore.Web
-      script: ./travis_build.sh
+      script: $TRAVIS_BUILD_DIR/travis_build.sh
 
     - stage: "Deploy"
-      script: ./travis_deploy.sh
+      script: $TRAVIS_BUILD_DIR/travis_deploy.sh
 
 # - npm i selenium-webdriver assert mocha
 # - npm run selenium
