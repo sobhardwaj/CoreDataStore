@@ -9,15 +9,15 @@ export class DiagnosticsService {
 
   constructor(private http: Http) {}
   getDiagnostics() {
-    return this.http.get(`${AppSettings.ApiEndpoint}Diagnostics`).map((res: Response) => res.json());
+    return this.http.get(`${AppSettings.ApiLocation}Diagnostics`).map((res: Response) => res.json());
   }
 
   getUserRange(lat, lng) {
-  	return this.http.post(`${AppSettings.ApiEndpoint}Location/api/Location/validate`,  {coords:{"latitude": lat, "longitude": lng}}).map((res: Response) => res.json());
+  	return this.http.post(`${AppSettings.ApiLocation}Location/api/Location/validate`,  {coords:{"latitude": lat, "longitude": lng}}).map((res: Response) => res.json());
   }
 
   getUserLocation(lat, lng) {
-  	return this.http.post(`${AppSettings.ApiEndpoint}Location`, {coords:{"latitude": lat, "longitude": lng}}).map((res: Response) => res.json());
+  	return this.http.post(`${AppSettings.ApiLocation}Location`, {coords:{"latitude": lat, "longitude": lng}}).map((res: Response) => res.json());
   }
 
 }
