@@ -8,20 +8,18 @@ services:
   coredatastore-api:
     scale: 3
     start_on_create: true
-  phppgadmin:
-    scale: 1
-    start_on_create: true
   node-ui:
     scale: 1
     start_on_create: true
   coredatastore-reporting-api:
-    scale: 3
+    scale: 1
     start_on_create: true
   reporting:
-    start_on_create: true
-  coredatastore-location-api:
-    scale: 3
     start_on_create: true
   coredatastore-internal-tools:
     scale: 1
     start_on_create: true
+  coredatastore-location-api:
+    scale: 3
+    start_on_create: true
+
