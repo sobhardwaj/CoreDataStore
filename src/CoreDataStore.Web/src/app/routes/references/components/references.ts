@@ -19,6 +19,7 @@ export class ReferencesComponent implements OnInit {
   title: string;
   borough: string;
   objectType: string;
+  neighborhood: string;
   ignorePageChangedEvent: boolean = false;
   page: number = 1;
   limit: number = 20;
@@ -28,6 +29,8 @@ export class ReferencesComponent implements OnInit {
   toItem: number = 20;
   boroughs: string[] = [];
   objectTypes: string[] = [];
+  neighborhoods: string[] = [];
+  tempNeighbors: any[] = [];
   properties: any[] = []; // LPCReports list;
   filteredReference: any[] = [];
   scrollPosition: number = 0;
@@ -48,6 +51,7 @@ export class ReferencesComponent implements OnInit {
     this.title = 'LPC Reports';
     this.getObjectTypes();
     this.getBoroughs();
+    this.getNeighborhoods();
 
     if(window.innerWidth < 768) {
       this.isMobile = true;
@@ -61,11 +65,14 @@ export class ReferencesComponent implements OnInit {
     let borough = this.session.get('borough');
     this.borough = (borough) ? borough : '';
 
-    this.getLPCReports(this.page, this.limit, this.borough, this.objectType);
+    let neighborhood = this.session.get('neighborhood');
+    this.neighborhood = (neighborhood) ? neighborhood : '';
+
+    this.getLPCReports(this.page, this.limit, this.borough, this.objectType, this.neighborhood);
   }
 
-  getLPCReports(page, limit, borough, objectType) {
-    this.lpcReportService.getLPCReports(page, limit, borough, objectType).subscribe(
+  getLPCReports(page, limit, borough, objectType, neighborhood) {
+    this.lpcReportService.getLPCReports(page, limit, borough, objectType, neighborhood).subscribe(
       data => {
         this.properties = this.filteredReference = data.reports;
         this.totalItems = data.total;
@@ -74,6 +81,7 @@ export class ReferencesComponent implements OnInit {
 
         this.objectType = objectType;
         this.borough = borough;
+        this.neighborhood = neighborhood;
         this.page = page;
         this.fromItem = ((page - 1) * limit) + 1;
         this.toItem = (this.totalItems < (page * limit)) ? this.totalItems : (page * limit);
@@ -96,6 +104,18 @@ export class ReferencesComponent implements OnInit {
     );
   }
 
+  getNeighborhoods() {
+    this.referenceService.getNeighborhoods().subscribe(
+      data => { 
+        this.tempNeighbors = data; 
+        this.tempNeighbors.map(temp => {
+          this.neighborhoods.push(temp.name);
+        });
+      },
+      err => console.error(err)
+    );
+  }
+
   /*changeDisplayMode(mode: DisplayModeEnum) {
       this.displayMode = mode;
   }*/
@@ -103,10 +123,16 @@ export class ReferencesComponent implements OnInit {
   boroughChanged(data: string) {
     // console.log(data);
     this.borough = data;
+    this.neighborhoods = [];
+    this.tempNeighbors.map(temp => {
+      if(temp.location == this.borough) {
+        this.neighborhoods.push(temp.name);
+      }
+    });
     this.session.set('borough', data);
     this.page = 1;
     this.session.set('page', this.page);
-    this.getLPCReports(this.page, this.limit, this.borough, this.objectType);
+    this.getLPCReports(this.page, this.limit, this.borough, this.objectType, this.neighborhood);
   }
 
   objectTypeChanged(data: string) {
@@ -115,14 +141,22 @@ export class ReferencesComponent implements OnInit {
     this.session.set('objectType', data);
     this.page = 1;
     this.session.set('page', this.page);
-    this.getLPCReports(this.page, this.limit, this.borough, this.objectType);
+    this.getLPCReports(this.page, this.limit, this.borough, this.objectType, this.neighborhood);
+  }
+
+  neighborhoodChanged(data: string) {
+    this.neighborhood = data;
+    this.session.set('neighborhood', data);
+    this.page = 1;
+    this.session.set('page', this.page);
+    this.getLPCReports(this.page, this.limit, this.borough, this.objectType, this.neighborhood);
   }
 
   public pageChanged(event: any) {
     if (!this.ignorePageChangedEvent) {
       this.page = event.page;
       this.session.set('page', this.page);
-      this.getLPCReports(event.page, this.limit, this.borough, this.objectType);
+      this.getLPCReports(event.page, this.limit, this.borough, this.objectType, this.neighborhood);
     }
     this.ignorePageChangedEvent = false;
   }
@@ -133,7 +167,7 @@ export class ReferencesComponent implements OnInit {
     this.page = 1;
     this.limit = limit;
     this.session.set('page', this.page);
-    this.getLPCReports(1, limit, this.borough, this.objectType);
+    this.getLPCReports(1, limit, this.borough, this.objectType, this.neighborhood);
   }
 
   private scrollTop() {
@@ -153,7 +187,7 @@ export class ReferencesComponent implements OnInit {
       this.session.set('page', this.page);
       this.limit += 20;
       this.scrollPosition = $(document).height();
-      this.getLPCReports(this.page, this.limit, this.borough, this.objectType);
+      this.getLPCReports(this.page, this.limit, this.borough, this.objectType, this.neighborhood);
     }
   }
 }
