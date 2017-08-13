@@ -9,7 +9,7 @@ export class DiagnosticsService {
 
   constructor(private http: Http) {}
   getDiagnostics() {
-    return this.http.get(`${AppSettings.ApiLocation}Diagnostics`).map((res: Response) => res.json());
+    return this.http.get(`${AppSettings.ApiEndpoint}Diagnostics`).map((res: Response) => res.json());
   }
 
   getUserRange(lat, lng) {
