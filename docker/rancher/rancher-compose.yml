@@ -1,15 +1,24 @@
-coredatastore-api:
-  scale: 3
-coredatastore-lb:
-  scale: 1
-  load_balancer_config:
-    haproxy_config: {}
-  health_check:
-    port: 42
-    interval: 2000
-    unhealthy_threshold: 3
-    strategy: recreate
-    response_timeout: 2000
-    healthy_threshold: 2
-database:
-  scale: 1
+version: '2'
+services:
+  database:
+    scale: 1
+    start_on_create: true
+  endpoint:
+    start_on_create: true
+  coredatastore-api:
+    scale: 3
+    start_on_create: true
+  node-ui:
+    scale: 1
+    start_on_create: true
+  coredatastore-reporting-api:
+    scale: 1
+    start_on_create: true
+  reporting:
+    start_on_create: true
+  coredatastore-internal-tools:
+    scale: 1
+    start_on_create: true
+  coredatastore-location-api:
+    scale: 3
+    start_on_create: true
