@@ -39,7 +39,7 @@ services:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
   node-ui:
-    image: stuartshay/coredatastore:node7-357
+    image: stuartshay/coredatastore:node7-359
     environment:
       LANDMARK: https://qa-api.coredatastore.com/api/
       LOCATIONAPI: https://qa-api-location.coredatastore.com/api/

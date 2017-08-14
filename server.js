@@ -1,8 +1,9 @@
 // export NG_ENVIRONMENT=Dev
 
-const LANDMARK = process.env.LANDMARK || 'https://api.coredatastore.com/api/';
-const REPORTSAPI = process.env.REPORTSAPI || 'https://report.coredatastore.com/';
-const MAPSAPI = process.env.MAPSAPI || 'https://api-maps.navigatorglass.com/api/';
+const LANDMARK = process.env.LANDMARK || '';
+const REPORTSAPI = process.env.REPORTSAPI || '';
+const MAPSAPI = process.env.MAPSAPI || '';
+const LOCATIONAPI = process.env.LOCATIONAPI || '';
 const NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || '';
 
 var path = require('path');
@@ -13,7 +14,7 @@ global.base = __dirname;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'wwwroot'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 app.use(express.static(path.join(__dirname, 'wwwroot')));
 
@@ -23,6 +24,7 @@ app.get('/', function(req, res, next) {
     'LANDMARK': LANDMARK,
     'MAPSAPI': MAPSAPI,
     'REPORTSAPI': REPORTSAPI,
+    'LOCATIONAPI': LOCATIONAPI,
     'ng2ENV': NG_ENVIRONMENT
   });
 });

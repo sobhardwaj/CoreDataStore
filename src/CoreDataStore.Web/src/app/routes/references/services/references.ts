@@ -34,7 +34,6 @@ export class ReferencesService {
     return this.http.get(`${AppSettings.ApiMaps}Neighborhoods`)
       .map((res: Response) => res.json());
   };
-
   getParentStyle() {
     return this.http.get(`${AppSettings.ApiEndpoint}Reference/parentStyle`)
       .map((res: Response) => res.json());

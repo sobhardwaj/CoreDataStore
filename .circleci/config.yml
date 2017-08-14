@@ -11,6 +11,13 @@ jobs:
       - MAPSAPI : "https://api-maps.navigatorglass.com/"
       - REPORTSAPI: "https://reports.coredatastore.com/api/"
       - LOCATIONAPI: "https://api-location.coredatastore.com/api/"
+
+      - RANCHER_COMPOSE_VERSION: '0.12.5'
+      - STACK_NAME: 'CoreDataStore-QA'
+      - DOCKER_COMPOSE: 'docker/rancher-qa-stack/docker-compose.yml'
+      - RANCHER_COMPOSE: 'docker/rancher-qa-stack/rancher-compose.yml'
+      - UPGRADE_SERVICES: 'coredatastore-api'
+      - NODE_UI_TAG: 'node-ui-build'
     steps:
       - checkout
       - run: 
@@ -70,9 +77,45 @@ jobs:
             docker push stuartshay/coredatastore:2.0-runtime
           # docker build -f docker/runtime.dockerfile -t stuartshay/coredatastore:$TAG .
           # docker push stuartshay/coredatastore:$TAG
+
+      - run:
+          name: Install Rancher Compose
+          command: |
+            curl -sSL https://github.com/rancher/rancher-compose/releases/download/v${RANCHER_COMPOSE_VERSION}/rancher-compose-linux-amd64-v${RANCHER_COMPOSE_VERSION}.tar.gz \
+              | tar -zxf - --strip-components=2 -C /usr/local/bin
+
+      - run:
+          name: Create all services but do not start
+          command: |
+            rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} create
+
+      - run:
+          name: Bring all services up
+          command: |
+            rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} up -d
+
+      - run:
+          name: Perform services upgrade (coredatastore-api)
+          command: |
+            rancher-compose \
+              -f ${DOCKER_COMPOSE} \
+              -r ${RANCHER_COMPOSE} \
+              -p ${STACK_NAME} \
+              --verbose up --upgrade --force-upgrade --pull -d ${UPGRADE_SERVICES}
+
+      - run:
+          name: Finish services upgrade (coredatastore-api)
+          command: |
+            rancher-compose \
+              -f ${DOCKER_COMPOSE} \
+              -r ${RANCHER_COMPOSE} \
+              -p ${STACK_NAME} \
+              --verbose up -d --confirm-upgrade ${UPGRADE_SERVICES}
+
       - save_cache:
           key: v1-coredatastore-{{ checksum ".circleci/config.yml" }}
           paths:
             - ~/.caches
             - ~/.nuget
             - ~/.npm
+

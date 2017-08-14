@@ -22,3 +22,4 @@ services:
   coredatastore-location-api:
     scale: 3
     start_on_create: true
+

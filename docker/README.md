@@ -12,7 +12,7 @@ npm run build
 ```
 ### Linux
 
-#### Publish Build Artifacts 
+#### API .NET Core Runtime Build 
 
 ```
 cd  CoreDataStore/
@@ -24,7 +24,7 @@ dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj \
 docker build -f docker/runtime.dockerfile -t coredatastore-runtime  .
 ```
 
-#### Build in Container
+#### SDK Build 
 ```
 cd  CoreDataStore/
 docker build -f docker/aspnetcore.dockerfile -t coredatastore_web  .
@@ -38,7 +38,7 @@ docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
 
 ### Windows - Nano Server 
 
-````
+```
 cd  CoreDataStore/
 dotnet restore
 
@@ -46,32 +46,40 @@ dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj \
 -c Release -f netcoreapp2.0 -r win10-x64
 
 docker build -f docker/runtime-nanoserver.dockerfile -t coredatastore-runtime  .
-````
+```
 
 #### Run
-````
+```
 docker run -it --rm --name coredatastore_web:nanoserver -p 5000:5000 coredatastore_web:nanoserver
 
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <CONTAINERID> 
-````
+```
+
+### NodeJS Website Image
+
+```
+cd  CoreDataStore/
+docker build -f docker/node.dockerfile -t coredatastore_nodeweb  .
+```
+
 
 ### Docker Compose
 
 ##### Local 
 
-````
+```
  docker-compose --file docker-compose-local.yml  up
-````
+```
 
 ##### Development - (Lattest Tag)
-````
+```
  docker-compose --file docker-compose-development.yml  up
-````
+```
 
 ##### Staging - (Stable Tag)
-````
+```
  docker-compose --file docker-compose-staging.yml  up
-````
+```
 
 ## Usefull Commands 
 
@@ -98,9 +106,7 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <CO
 ### Tag & Publish
 
 ```bash 
-docker tag <imageid> coredatastore_web:stable
-docker tag coredatastore_web:stable  stuartshay/coredatastore:stable
-
+docker tag <imageid> stuartshay/coredatastore:stable
 docker push stuartshay/coredatastore:stable
 ```
 
