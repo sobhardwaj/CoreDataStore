@@ -63,6 +63,8 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
     this.architect = this.form.controls['architect'];
     this.style = this.form.controls['style'];
     this.dateDesignated = this.form.controls['dateDesignated'];
+    console.log(this.dateDesignated);
+    // this.form.controls['dateDesignated'].setValue(this.dateDesignated);
     this.street = this.form.controls['street'];
     this.borough = this.form.controls['borough'];
 

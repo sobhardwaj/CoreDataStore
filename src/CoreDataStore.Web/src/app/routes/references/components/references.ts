@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 declare var $: any;
 
 import { SessionService } from '../../../shared/services/session';
@@ -35,6 +35,7 @@ export class ReferencesComponent implements OnInit {
   filteredReference: any[] = [];
   scrollPosition: number = 0;
   isMobile: boolean = false;
+  disableNeighbor: boolean = true;
 
   // displayMode: DisplayModeEnum;
   // displayModeEnum = DisplayModeEnum;
@@ -42,7 +43,8 @@ export class ReferencesComponent implements OnInit {
   constructor(
     private session: SessionService,
     private referenceService: ReferencesService,
-    private lpcReportService: LPCReportService) {
+    private lpcReportService: LPCReportService,
+    private changRef: ChangeDetectorRef) {
     let page = this.session.get('page');
     this.page = (parseInt(page, 10) > 0) ? page : 1;
   }
@@ -99,7 +101,7 @@ export class ReferencesComponent implements OnInit {
 
   getBoroughs() {
     this.referenceService.getBoroughs().subscribe(
-      data => { this.boroughs = data; },
+      data => { this.boroughs = data; console.log(data)},
       err => console.error(err)
     );
   }
@@ -107,10 +109,11 @@ export class ReferencesComponent implements OnInit {
   getNeighborhoods() {
     this.referenceService.getNeighborhoods().subscribe(
       data => { 
-        this.tempNeighbors = data; 
+        this.tempNeighbors = data;
         this.tempNeighbors.map(temp => {
           this.neighborhoods.push(temp.name);
         });
+        console.log(this.neighborhoods);
       },
       err => console.error(err)
     );
@@ -127,8 +130,17 @@ export class ReferencesComponent implements OnInit {
     this.tempNeighbors.map(temp => {
       if(temp.location == this.borough) {
         this.neighborhoods.push(temp.name);
+        this.neighborhood = "";
       }
     });
+    this.disableNeighbor = false;
+    if(data == "") {
+      this.neighborhoods = [];
+      this.neighborhood = "";
+      this.disableNeighbor = true;
+    }
+    this.changRef.detectChanges();
+
     this.session.set('borough', data);
     this.page = 1;
     this.session.set('page', this.page);
@@ -145,12 +157,13 @@ export class ReferencesComponent implements OnInit {
   }
 
   neighborhoodChanged(data: string) {
+    // console.log(data);
     this.neighborhood = data;
     this.session.set('neighborhood', data);
     this.page = 1;
     this.session.set('page', this.page);
     this.getLPCReports(this.page, this.limit, this.borough, this.objectType, this.neighborhood);
-  }
+  }  
 
   public pageChanged(event: any) {
     if (!this.ignorePageChangedEvent) {

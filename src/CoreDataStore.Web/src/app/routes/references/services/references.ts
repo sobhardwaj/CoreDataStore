@@ -33,7 +33,7 @@ export class ReferencesService {
   getNeighborhoods() {
     return this.http.get(`${AppSettings.ApiMaps}Neighborhoods`)
       .map((res: Response) => res.json());
-  }
+  };
 
   getParentStyle() {
     return this.http.get(`${AppSettings.ApiEndpoint}Reference/parentStyle`)
