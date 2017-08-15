@@ -35,6 +35,7 @@ var MAPSAPI = process.env.MAPSAPI || '';
 var REPORTSAPI = process.env.REPORTSAPI || '';
 var LOCATIONAPI = process.env.LOCATIONAPI || '';
 
+
 var build = false;
 process.argv.forEach(function(val, index, array) {
   if ('build' === val) {
@@ -159,7 +160,7 @@ gulp.task('compile', ['tsc'], () => {
  * Copy all resources that are not TypeScript files into build directory.
  */
 gulp.task("resources", () => {
-  return gulp.src(["!src/index.html", "!src/index.jade", "!src/less", "!src/less/**/*", "!**/*.ts", "src/**/*"])
+  return gulp.src(["!src/index.html", "!src/index.pug", "!src/less", "!src/less/**/*", "!**/*.ts", "src/**/*"])
     .pipe(gulp.dest(buildDir));
 });
 
