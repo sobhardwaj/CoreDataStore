@@ -18,7 +18,6 @@ export class DiagnosticsComponent implements OnInit {
   ApiAttraction: string = AppSettings.ApiAttraction;
   ApiMaps: string = AppSettings.ApiMaps;
   ApiReports: string = AppSettings.ApiReports;
-  ApiLocation: string = AppSettings.ApiLocation;
   ng2ENV: string = AppSettings.ng2ENV;
   browserEnabled: boolean = false;
   lat: number = 0;
