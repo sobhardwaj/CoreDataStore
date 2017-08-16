@@ -5,7 +5,7 @@
         <a href="#/"><i class="icon-home"></i> Home</a>
       </li>
       <li><a [routerLink]="['/references']" asp-controller="References">LPC Reports</a></li>
-      <li class="active">{{title}}</li>
+      <li class="active" *ngIf="!isMobile">{{title}}</li>
     </ol>
     <div class="panel-body">
       <div class="row">
