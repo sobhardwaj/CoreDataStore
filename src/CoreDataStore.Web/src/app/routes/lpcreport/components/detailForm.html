@@ -82,7 +82,7 @@
         </form>
         <div class="row lpc-mobile-form" *ngIf="isMobile">
           <div class="col-xs-12">
-            <input class="no-editable form-control name text-center" [formControl]="name" disabled/>
+            <textarea class="no-editable form-control name text-center" [formControl]="name" disabled></textarea>
           </div>
           <div class="col-xs-12">
             <img class="img-thumbnail img-responsive" src="{{ details.photoURL }}"/>
