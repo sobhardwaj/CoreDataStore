@@ -5,7 +5,7 @@ Build Instructions for Docker Images
 ### Web Assets 
 
 ```
-cd CoreDataStore.Web
+cd src/CoreDataStore.Web
 npm i
 npm run clean  
 npm run build
