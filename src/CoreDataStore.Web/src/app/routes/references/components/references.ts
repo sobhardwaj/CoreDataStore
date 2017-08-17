@@ -132,6 +132,10 @@ export class ReferencesComponent implements OnInit {
         this.neighborhoods.push(temp.name);
         this.neighborhood = "";
       }
+      if(this.borough == "Manhattan" && temp.location.indexOf("Manhattan") >= 0) {
+        this.neighborhoods.push(temp.name);
+        this.neighborhood = "";
+      }
     });
     this.disableNeighbor = false;
     if(data == "") {
