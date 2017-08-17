@@ -5,6 +5,7 @@ set -ex
 npm run clean
 npm run build
 
+cat wwwroot/index.pug
 rm -f wwwroot/index.html
 cd ../..
 docker build -f docker/node.dockerfile -t stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER .
