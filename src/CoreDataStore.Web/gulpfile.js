@@ -34,6 +34,7 @@ var ATTRACTION = process.env.ATTRACTION || '/api/attraction';
 var MAPSAPI = process.env.MAPSAPI || '/api/maps';
 var REPORTSAPI = process.env.REPORTSAPI || '/api/reports';
 
+
 var build = false;
 process.argv.forEach(function(val, index, array) {
   if ('build' === val) {
@@ -158,7 +159,7 @@ gulp.task('compile', ['tsc'], () => {
  * Copy all resources that are not TypeScript files into build directory.
  */
 gulp.task("resources", () => {
-  return gulp.src(["!src/index.html", "!src/index.jade", "!src/less", "!src/less/**/*", "!**/*.ts", "src/**/*"])
+  return gulp.src(["!src/index.html", "!src/index.pug", "!src/less", "!src/less/**/*", "!**/*.ts", "src/**/*"])
     .pipe(gulp.dest(buildDir));
 });
 
