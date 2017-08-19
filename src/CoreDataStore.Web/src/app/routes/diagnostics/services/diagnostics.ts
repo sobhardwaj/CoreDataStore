@@ -13,11 +13,11 @@ export class DiagnosticsService {
   }
 
   getUserRange(lat, lng) {
-  	return this.http.post(`${AppSettings.ApiLocation}Location/api/Location/validate`,  {coords:{"latitude": lat, "longitude": lng}}).map((res: Response) => res.json());
+  	return this.http.post(`${AppSettings.ApiEndpoint}Location/api/Location/validate`,  {coords:{"latitude": lat, "longitude": lng}}).map((res: Response) => res.json());
   }
 
   getUserLocation(lat, lng) {
-  	return this.http.post(`${AppSettings.ApiLocation}Location`, {coords:{"latitude": lat, "longitude": lng}}).map((res: Response) => res.json());
+  	return this.http.post(`${AppSettings.ApiEndpoint}Location`, {coords:{"latitude": lat, "longitude": lng}}).map((res: Response) => res.json());
   }
 
 }

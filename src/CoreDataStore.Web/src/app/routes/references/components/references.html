@@ -9,10 +9,13 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+          <filter-selectbox class="navbar-left" [items]="objectTypes" [active]="objectType" label="Type" (changed)="objectTypeChanged($event)"></filter-selectbox>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
           <filter-selectbox class="navbar-left" [items]="boroughs" [active]="borough" label="Borough" (changed)="boroughChanged($event)"></filter-selectbox>
         </div>
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-          <filter-selectbox class="navbar-left" [items]="objectTypes" [active]="objectType" label="Type" (changed)="objectTypeChanged($event)"></filter-selectbox>
+          <filter-selectbox class="navbar-left" [items]="neighborhoods" [active]="neighborhood" label="Neighborhood" (changed)="neighborhoodChanged($event)" [disabled]="disableNeighbor"></filter-selectbox>
         </div>
       </div>
       <div class="row">
@@ -21,10 +24,10 @@
         </div>
       </div>
        <div class="table-footer" *ngIf="isMobile == false">
-        <div class="row">
+        <div class="row" *ngIf="totalItems > 0">
           <div class="col-md-6 col-sm-6 page-num-info">
             <div class="inline">
-              {{fromItem}}-{{toItem}} of {{ totalItems }} items
+              {{fromItem}}-{{toItem}} of {{totalItems}} items
               <select [ngModel]="limit" (ngModelChange)="perPageChanged($event)">
                 <option [value]="p" *ngFor="let p of perPage">{{p}}</option>
               </select>

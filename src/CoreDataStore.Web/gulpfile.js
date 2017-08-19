@@ -29,11 +29,10 @@ var NG_ENVIRONMENT = process.env.NG_ENVIRONMENT || '';
 var BUILD = process.env.BUILD || 'local';
 var TRAVIS_BUILD_NUMBER = process.env.TRAVIS_BUILD_NUMBER || '';
 var CIRCLE_BUILD_NUM = process.env.CIRCLE_BUILD_NUM || '';
-var LANDMARK = process.env.LANDMARK || '';
-var ATTRACTION = process.env.ATTRACTION || '';
-var MAPSAPI = process.env.MAPSAPI || '';
-var REPORTSAPI = process.env.REPORTSAPI || '';
-var LOCATIONAPI = process.env.LOCATIONAPI || '';
+var LANDMARK = process.env.LANDMARK || '/api/';
+var ATTRACTION = process.env.ATTRACTION || '/api/attraction';
+var MAPSAPI = process.env.MAPSAPI || '/api/maps';
+var REPORTSAPI = process.env.REPORTSAPI || '/api/reports';
 
 
 var build = false;
@@ -236,7 +235,6 @@ gulp.task('bundle', function() {
     .pipe(replace('<--bundleTpl-->', bundleTpl))
     .pipe(replace('#{ApiEndpoint}', LANDMARK))
     .pipe(replace('#{ApiReport}', REPORTSAPI))
-    .pipe(replace('#{ApiLocation}', LOCATIONAPI))
     .pipe(replace('#{ApiMaps}', MAPSAPI))
     .pipe(replace('#{ng2ENV}', NG_ENVIRONMENT))
     .pipe(gulp.dest(buildDir));

@@ -19,13 +19,16 @@ export class LPCReportService {
       .map((res: Response) => res);
   };
 
-  getLPCReports(page = 1, limit = 10, borough: string, objectType: string) {
+  getLPCReports(page = 1, limit = 10, borough: string, objectType: string, neighborhood: string) {
     let params = new URLSearchParams();
     if (borough && borough !== '') {
       params.set('Borough', borough);
     }
     if (objectType && objectType !== '') {
       params.set('ObjectType', objectType);
+    }
+    if (neighborhood && neighborhood !== '') {
+      params.set('Neighborhood', neighborhood);
     }
     return this.http.get(`${AppSettings.ApiEndpoint}LPCReport/${limit}/${page}`, { search: params })
       .map((res: Response) => {
