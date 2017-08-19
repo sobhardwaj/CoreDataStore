@@ -1,5 +1,5 @@
-// import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-// declare var $: any;
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+declare var $: any;
 
 // import { SessionService } from '../../../shared/services/session';
 
