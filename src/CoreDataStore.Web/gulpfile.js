@@ -236,6 +236,7 @@ gulp.task('bundle', function() {
     .pipe(replace('#{ApiEndpoint}', LANDMARK))
     .pipe(replace('#{ApiReport}', REPORTSAPI))
     .pipe(replace('#{ApiMaps}', MAPSAPI))
+    .pipe(replace('#{ApiMaps}', LOCATIONAPI))
     .pipe(replace('#{ng2ENV}', NG_ENVIRONMENT))
     .pipe(gulp.dest(buildDir));
 });
