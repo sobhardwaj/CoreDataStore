@@ -14,6 +14,9 @@ export class AppSettings {
   }
   public static get ApiMaps(): string {
     return localStorage.getItem("ApiMaps") || "";
+  } 
+  public static get ApiLocation(): string {
+    return localStorage.getItem("ApiLocation") || "";
   }
   public static get ApiReports(): string {
     return localStorage.getItem("ApiReport") || "";
