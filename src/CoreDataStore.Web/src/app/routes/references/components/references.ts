@@ -70,8 +70,6 @@ export class ReferencesComponent implements OnInit {
     let neighborhood = this.session.get('neighborhood');
     this.neighborhood = (neighborhood) ? neighborhood : '';
 
-    this.disableNeighbor = (borough) ? false : true;
-
     this.getLPCReports(this.page, this.limit, this.borough, this.objectType, this.neighborhood);
   }
 
@@ -115,10 +113,6 @@ export class ReferencesComponent implements OnInit {
         this.tempNeighbors.map(temp => {
           this.neighborhoods.push(temp.name);
         });
-
-        if(this.borough) {
-          this.boroughChanged(this.borough);
-        }
         console.log(this.neighborhoods);
       },
       err => console.error(err)
