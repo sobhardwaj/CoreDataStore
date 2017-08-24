@@ -6,7 +6,7 @@
     <AssemblyName>CoreDataStore.Data.Postgre</AssemblyName>
     <PackageId>CoreDataStore.Data.Postgre</PackageId>
     <Version>1.0.19</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Stuart Shay</Authors>
     <Description>CoreDataStore Postgres  Entity Framework Provider</Description>
     <RepositoryUrl>https://github.com/stuartshay/CoreDataStore</RepositoryUrl>
@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0-preview2-final" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.0.0-preview2-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.0.0" />
     <PackageReference Include="System.Runtime" Version="4.3.0" />
   </ItemGroup>
 
