@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2-runtime-nanoserver
+FROM microsoft/aspnetcore:2.0.0
 MAINTAINER Stuart Shay
 
 # Set environment variables
@@ -10,7 +10,6 @@ EXPOSE 5000
 
 WORKDIR /app
 COPY src/CoreDataStore.Web/bin/Release/netcoreapp2.0/win10-x64/publish .
-COPY src/CoreDataStore.Web/bin/Release/netcoreapp2.0/win10-x64/CoreDataStore.Web.xml .
 COPY src/CoreDataStore.Web/wwwroot ./wwwroot
 
 ENTRYPOINT ["dotnet", "CoreDataStore.Web.dll"]

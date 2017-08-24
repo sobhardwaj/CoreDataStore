@@ -1,4 +1,4 @@
-FROM microsoft/aspnetcore:2.0.0-preview2
+FROM microsoft/aspnetcore:2.0.0
 MAINTAINER Stuart Shay
 
 # Set environment variables
