@@ -23,72 +23,22 @@ New York City Landmarks Reference Data
 ## Prerequisites:
 
 ### .NET Core 
-.NET Core Runtime 2.0.0-preview2-25407-01 - June 27, 2017            
-.NET Core SDK 2.0.0-preview2-006497  - June 28, 2017              
-https://www.microsoft.com/net/core/preview     
+.NET Core Runtime 2.0.0 - August 14, 2017            
+.NET Core SDK 2.0.0 - August 14, 2017              
+https://www.microsoft.com/net/core/   
 
 ### Visual Studio MSBuild
 
 Visual Studio 2017 Preview version 15.3            
 https://www.visualstudio.com/vs/preview/    
 
-### Web Application
+## Web Application Build Instructions
+[Angular/NodeJS Web Client](https://github.com/stuartshay/CoreDataStore/tree/master/src/CoreDataStore.Web)
 
-```bash
-nodejs version: >= 4.x
-npm version: >= 3
-```
-
-## Build Web Application
-
-Step 1: .NET Core Restore
-```bash
-cd  CoreDataStore/
-dotnet restore
-```
-
-Step 2: Build Web Site
-
-```bash
-cd src/CoreDataStore.Web/
-dotnet build
-
-npm install
-npm run clean
-npm run build
-
-dotnet run
-```
-
-#### Development Mode
-
-Windows   
-```bash
-set NG_ENVIRONMENT=Dev
-```
-
-Linux   
-```bash
-export NG_ENVIRONMENT Dev
-```
-
-### Live reload Typescript ClientSide 
-> npm start
-
-Deploy clientside
-> npm run build
 
 ## Docker   
 
-[Docker Hub](https://hub.docker.com/r/stuartshay/coredatastore/ )       
 [Docker Commands](docker/README.md)      
-
-
-### Run from Docker Hub
-```bash
-docker pull stuartshay/coredatastore
-docker run --rm --name coredatastore  -p 5000:5000  stuartshay/coredatastore
-```
 
 ## Postgres Db
 
