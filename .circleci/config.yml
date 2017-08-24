@@ -6,6 +6,7 @@ jobs:
     working_directory: ~/src/CoreDataStore.Web
     environment:
       - NG_ENVIRONMENT: "Stage"
+      - DOCKER: '17.05.0-ce'
       - RANCHER_COMPOSE_VERSION: '0.12.5'
       - STACK_NAME: 'CoreDataStore-QA'
       - DOCKER_COMPOSE: 'docker/rancher-qa-stack/docker-compose.yml'
@@ -25,10 +26,9 @@ jobs:
       - run:
           name: Install Docker client
           command: |
-            set -x
-            VER="17.03.0-ce"
-            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
-            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            set -x          
+            curl -L -o /tmp/docker-$DOCKER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$DOCKER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$DOCKER.tgz
             mv /tmp/docker/* /usr/bin
       - run:
           name: Install NodeJS v6
