@@ -36,7 +36,6 @@ export class ReferencesComponent implements OnInit {
   scrollPosition: number = 0;
   isMobile: boolean = false;
   disableNeighbor: boolean = true;
-  currentScrollTop: number = 0;
 
   // displayMode: DisplayModeEnum;
   // displayModeEnum = DisplayModeEnum;
@@ -70,12 +69,6 @@ export class ReferencesComponent implements OnInit {
 
     let neighborhood = this.session.get('neighborhood');
     this.neighborhood = (neighborhood) ? neighborhood : '';
-
-    let scrollPosition = this.session.get('scrollposition');
-    this.scrollPosition = (scrollPosition > 0) ? scrollPosition : 0;
-    
-    $(window).scrollTop(this.scrollPosition);
-    this.session.set("scrollposition", null);
 
     this.getLPCReports(this.page, this.limit, this.borough, this.objectType, this.neighborhood);
   }
@@ -120,11 +113,7 @@ export class ReferencesComponent implements OnInit {
         this.tempNeighbors.map(temp => {
           this.neighborhoods.push(temp.name);
         });
-        if(this.borough != '') {
-          this.disableNeighbor = false;
-          this.boroughChanged(this.borough);
-          this.changRef.detectChanges();
-        }
+        console.log(this.neighborhoods);
       },
       err => console.error(err)
     );
@@ -211,7 +200,6 @@ export class ReferencesComponent implements OnInit {
   }
 
   private onScroll(event) {
-    this.session.set('scrollposition', $(window).scrollTop());
     if(this.isMobile == true && $(window).scrollTop() + $(window).height() == $(document).height()) {
       this.session.set('page', this.page);
       this.limit += 20;
