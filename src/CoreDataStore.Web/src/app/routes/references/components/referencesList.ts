@@ -19,13 +19,13 @@ export class ReferencesListComponent {
   private mobileFlag:boolean = false;
 
   constructor() {
-    if(window.innerWidth < 768) {
+    if(window.innerWidth < 440) {
       this.mobileFlag = true;
     }
   }
   
   onResize(event) {
-    if(window.innerWidth < 768) {
+    if(window.innerWidth < 440) {
       this.mobileFlag = true;
     } else {
       this.mobileFlag = false;
