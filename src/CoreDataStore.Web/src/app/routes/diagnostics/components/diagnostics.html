@@ -195,7 +195,7 @@
           <ul><li>Location:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li *ngIf="userLocation.coords?.latitude && userLocation.coords?.longitude">Lat: {{userLocation.coords?.latitude}}, Lon:{{userLocation.coords?.longitude}}</li></ul>
+          <ul><li>Lat: {{userLocation.coords?.latitude}}, Lon:{{userLocation.coords?.longitude}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -203,7 +203,7 @@
           <ul><li>Accuracy:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li *ngIf="userLocation.coords?.accuracy">{{userLocation.coords.accuracy}}</li></ul>
+          <ul><li>{{userLocation.coords.accuracy}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -211,7 +211,7 @@
           <ul><li>Altitude:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li *ngIf="userLocation.coords?.altitude">{{userLocation.coords.altitude}}</li></ul>
+          <ul><li>{{userLocation.coords.altitude}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -219,7 +219,7 @@
           <ul><li>Altitude Accuracy:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li *ngIf="userLocation.coords?.altitudeAccuracy">{{userLocation.coords.altitudeAccuracy}}</li></ul>
+          <ul><li>{{userLocation.coords.altitudeAccuracy}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -227,7 +227,7 @@
           <ul><li>Heading:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li *ngIf="userLocation.coords?.heading">{{userLocation.coords.heading}}</li></ul>
+          <ul><li>{{userLocation.coords.heading}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -235,7 +235,55 @@
           <ul><li>Speed:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li *ngIf="userLocation.coords?.speed">{{userLocation.coords.speed}}</li></ul>
+          <ul><li>{{userLocation.coords.speed}}</li></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul><li>Street:</li></ul>
+        </div>
+        <div class="col-md-9">
+          <ul><li>{{userLocation.location.street}}</li></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul><li>Address:</li></ul>
+        </div>
+        <div class="col-md-9">
+          <ul><li>{{userLocation.location.address}}</li></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul><li>Borough:</li></ul>
+        </div>
+        <div class="col-md-9">
+          <ul><li>{{userLocation.location.borough}}</li></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul><li>Neighborhood:</li></ul>
+        </div>
+        <div class="col-md-9">
+          <ul><li>{{userLocation.location.neighborhood}}</li></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul><li>PostalCode:</li></ul>
+        </div>
+        <div class="col-md-9">
+          <ul><li>{{userLocation.location.postalCode}}</li></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul><li>State:</li></ul>
+        </div>
+        <div class="col-md-9">
+          <ul><li>{{userLocation.location.state}}</li></ul>
         </div>
       </div>
     </div>
