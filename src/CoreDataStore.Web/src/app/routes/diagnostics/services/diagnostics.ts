@@ -6,18 +6,28 @@ import { AppSettings } from '../../../appsettings';
 
 @Injectable()
 export class DiagnosticsService {
+  location: any = {};
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+    this.location = {
+      street: "string",
+      address: "string",
+      borough: "string",
+      neighborhood: "string",
+      postalCode: "string",
+      state: "string"
+    }
+  }
   getDiagnostics() {
     return this.http.get(`${AppSettings.ApiEndpoint}Diagnostics`).map((res: Response) => res.json());
   }
 
-  getUserRange(lat, lng) {
-  	return this.http.post(`${AppSettings.ApiLocation}Location/api/Location/validate`,  {coords:{"latitude": lat, "longitude": lng}}).map((res: Response) => res.json());
+  getUserRange(coords) {
+  	return this.http.post(`${AppSettings.ApiLocation}Location/api/Location/validate`,  {coords:coords, location:this.location}).map((res: Response) => res.json());
   }
 
-  getUserLocation(lat, lng) {
-  	return this.http.post(`${AppSettings.ApiLocation}Location`, {coords:{"latitude": lat, "longitude": lng}}).map((res: Response) => res.json());
+  getUserLocation(coords) {
+  	return this.http.post(`${AppSettings.ApiLocation}Location`, {coords:coords, location:this.location}).map((res: Response) => res.json());
   }
 
 }
