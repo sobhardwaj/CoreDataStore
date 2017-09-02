@@ -225,7 +225,7 @@
           <ul><li>Location:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>Lat: {{userLocation.coords?.latitude}}, Lon:{{userLocation.coords?.longitude}}</li></ul>
+          <ul><li *ngIf="userLocation.coords?.latitude && userLocation.coords?.longitude">Lat: {{userLocation.coords?.latitude}}, Lon:{{userLocation.coords?.longitude}}</li></ul>
         </div>
       </div>
       <div class="row">
