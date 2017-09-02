@@ -203,7 +203,7 @@
           <ul><li>Accuracy:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.coords.accuracy}}</li></ul>
+          <ul><li>{{userLocation.coords?.accuracy}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -211,7 +211,7 @@
           <ul><li>Altitude:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.coords.altitude}}</li></ul>
+          <ul><li>{{userLocation.coords?.altitude}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -219,7 +219,7 @@
           <ul><li>Altitude Accuracy:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.coords.altitudeAccuracy}}</li></ul>
+          <ul><li>{{userLocation.coords?.altitudeAccuracy}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -227,7 +227,7 @@
           <ul><li>Heading:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.coords.heading}}</li></ul>
+          <ul><li>{{userLocation.coords?.heading}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -235,7 +235,7 @@
           <ul><li>Speed:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.coords.speed}}</li></ul>
+          <ul><li>{{userLocation.coords?.speed}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -243,7 +243,7 @@
           <ul><li>Street:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.location.street}}</li></ul>
+          <ul><li>{{userLocation.location?.street}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -251,7 +251,7 @@
           <ul><li>Address:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.location.address}}</li></ul>
+          <ul><li>{{userLocation.location?.address}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -259,7 +259,7 @@
           <ul><li>Borough:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.location.borough}}</li></ul>
+          <ul><li>{{userLocation.location?.borough}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -267,7 +267,7 @@
           <ul><li>Neighborhood:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.location.neighborhood}}</li></ul>
+          <ul><li>{{userLocation.location?.neighborhood}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -275,7 +275,7 @@
           <ul><li>PostalCode:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.location.postalCode}}</li></ul>
+          <ul><li>{{userLocation.location?.postalCode}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -283,7 +283,15 @@
           <ul><li>State:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.location.state}}</li></ul>
+          <ul><li>{{userLocation.location?.state}}</li></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul><li>TimeStamp:</li></ul>
+        </div>
+        <div class="col-md-9">
+          <ul><li>{{userLocation.timeStamp}}</li></ul>
         </div>
       </div>
     </div>
