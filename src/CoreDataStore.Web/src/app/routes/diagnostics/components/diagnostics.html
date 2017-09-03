@@ -225,7 +225,7 @@
           <ul><li>Location:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>Lat: {{userLocation.coords?.latitude}}, Lon:{{userLocation.coords?.longitude}}</li></ul>
+          <ul><li *ngIf="userLocation.coords?.latitude && userLocation.coords?.longitude">Lat: {{userLocation.coords?.latitude}}, Lon:{{userLocation.coords?.longitude}}</li></ul>
         </div>
       </div>
       <div class="row">
@@ -233,40 +233,35 @@
           <ul><li>Accuracy:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.coords?.accuracy}}</li></ul>
-        </div>
+          <ul><li>{{userLocation.coords?.accuracy}}</li></ul>        </div>
       </div>
       <div class="row">
         <div class="col-md-3">
           <ul><li>Altitude:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.coords?.altitude}}</li></ul>
-        </div>
+          <ul><li>{{userLocation.coords?.altitude}}</li></ul>        </div>
       </div>
       <div class="row">
         <div class="col-md-3">
           <ul><li>Altitude Accuracy:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.coords?.altitudeAccuracy}}</li></ul>
-        </div>
+          <ul><li>{{userLocation.coords?.altitudeAccuracy}}</li></ul>        </div>
       </div>
       <div class="row">
         <div class="col-md-3">
           <ul><li>Heading:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.coords?.heading}}</li></ul>
-        </div>
+          <ul><li>{{userLocation.coords?.heading}}</li></ul>        </div>
       </div>
       <div class="row">
         <div class="col-md-3">
           <ul><li>Speed:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li>{{userLocation.coords?.speed}}</li></ul>
-        </div>
+          <ul><li>{{userLocation.coords?.speed}}</li></ul>        </div>
       </div>
       <div class="row">
         <div class="col-md-3">
@@ -315,8 +310,7 @@
         <div class="col-md-9">
           <ul><li>{{userLocation.location?.state}}</li></ul>
         </div>
-      </div>
-      <div class="row">
+      </div>      <div class="row">
         <div class="col-md-3">
           <ul><li>TimeStamp:</li></ul>
         </div>
