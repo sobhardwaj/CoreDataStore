@@ -56,15 +56,32 @@ export class DiagnosticsComponent implements OnInit {
     this.browserEnabled = true;
     this.lat = position.coords.latitude;
     this.lng = position.coords.longitude;
-    this.userLocation = position;
+    let accuracy = position.coords.accuracy;
+    let altitude = position.coords.altitude ? position.coords.altitude : 0;
+    let altitudeAccuracy = position.coords.altitudeAccuracy ? position.coords.altitudeAccuracy : 0;
+    let heading = position.coords.heading ? position.coords.heading : 0;
+    let speed = position.coords.speed ? position.coords.speed : 0;
+    let coords = {
+      latitude: this.lat,
+      longitude: this.lng,
+      accuracy: accuracy,
+      altitude: altitude,
+      altitudeAccuracy: altitudeAccuracy,
+      heading: heading,
+      speed: speed
+    };
     
-    this.diagnosticsService.getUserRange(this.lat, this.lng).subscribe(
-      data => { this.userRange = data; },
+    this.diagnosticsService.getUserRange(coords).subscribe(
+      data => {
+        this.userRange = data;
+        console.log(data);
+      },
       // err => console.error(err),
     );
-    this.diagnosticsService.getUserLocation(this.lat, this.lng).subscribe(
+    this.diagnosticsService.getUserLocation(coords).subscribe(
       data => {
-        // this.userLocation = data; 
+        this.userLocation = data;
+        console.log(data)
       },
       // err => console.error(err),
     );
