@@ -232,14 +232,22 @@
     </small></h3>
     </div>
     <div class="panel-body">
+      <div class="row heading">
+        <div class="col-md-3">
+          <p>Heading</p>
+        </div>
+        <div class="col-md-9">
+          <select class="form-control">
+            <option *ngFor="let head of heading">{{head.description}}</option>
+          </select>
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-3">
           <ul><li>Browser Location Enabled:</li></ul>
         </div>
         <div class="col-md-9">
-    <ul><li>{{browserEnabled}}</li></ul>  
-
-
+          <ul><li>{{browserEnabled}}</li></ul>
         </div>
       </div>
       <div class="row">

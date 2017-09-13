@@ -54,6 +54,7 @@ export class ReferencesComponent implements OnInit {
     this.getObjectTypes();
     this.getBoroughs();
     this.getNeighborhoods();
+    this.getHeading();
 
     if(window.innerWidth < 768) {
       this.isMobile = true;
@@ -117,6 +118,13 @@ export class ReferencesComponent implements OnInit {
       },
       err => console.error(err)
     );
+  }
+
+  getHeading() {
+    this.referenceService.getHeading().subscribe(
+      data => {
+        localStorage.setItem("heading", JSON.stringify(data));
+      });
   }
 
   /*changeDisplayMode(mode: DisplayModeEnum) {

@@ -25,9 +25,12 @@ export class DiagnosticsComponent implements OnInit {
   lng: number = 0;
   userRange: boolean = false;
   userLocation: any = {};
+  heading: any = [];
   @Input() diagnostics: any[] = [];
 
-  constructor(private diagnosticsService: DiagnosticsService) {}
+  constructor(private diagnosticsService: DiagnosticsService) {
+    this.getHeading();
+  }
 
   getDiagnostics() {
     this.getLocation();
@@ -52,6 +55,10 @@ export class DiagnosticsComponent implements OnInit {
     }
   }
 
+  getHeading() {
+    this.heading = JSON.parse(localStorage.getItem("heading"));
+  }
+
   showPosition(position) {
     this.browserEnabled = true;
     this.lat = position.coords.latitude;
@@ -74,14 +81,17 @@ export class DiagnosticsComponent implements OnInit {
     this.diagnosticsService.getUserRange(coords).subscribe(
       data => {
         this.userRange = data;
-        console.log(data);
       },
       // err => console.error(err),
     );
     this.diagnosticsService.getUserLocation(coords).subscribe(
       data => {
         this.userLocation = data;
-        console.log(data)
+        this.heading.map(head => {
+          if(head.value == data.coords.heading) {
+            this.userLocation.coords.heading = head.description;
+          }
+        });
       },
       // err => console.error(err),
     );
