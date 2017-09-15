@@ -304,7 +304,7 @@ ORDER BY lpc."Id";
 
 SELECT "Id", "LPNumber", "Name", "BBL", "ObjectType", "Street", "Address", "Neighborhood", "Borough", "ZipCode", "Block", "Lot", "Latitude", "Longitude", "BIN"
 FROM public."LPCLocation"
-ORDER BY "Id" DESC;
+ORDER BY "Neighborhood";
 
 
 select "Address","LPNumber",* from "LPCLocation"
