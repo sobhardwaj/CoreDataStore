@@ -16,16 +16,46 @@
         <div class="col-md-3">
           <ul>
             <li>Machine Name:</li>
-            <li>Machine Date Time:</li>
-            <li>Platform:</li>
-            <li>IP Addresses:</li>
           </ul>
         </div>
         <div class="col-md-9">
           <ul>
             <li>{{diagnostics.machineName}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul>
+            <li>Machine Date Time:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
             <li>{{diagnostics.machineDate}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul>
+            <li>Platform:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
             <li>{{diagnostics.platform}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul>
+            <li>IP Addresses:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
             <li>{{diagnostics.ipAddressList}}</li>
           </ul>
         </div>
@@ -35,33 +65,63 @@
         <div class="col-md-3">
           <ul>
             <li>App Name:</li>
-            <li>App Version:</li>
-            <li>Environment:</li>
           </ul>
         </div>
         <div class="col-md-9">
           <ul>
             <li>{{diagnostics.applicationName}}</li>
-            <li>{{diagnostics.applicationVersionNumber}}</li>
-            <li>{{diagnostics.environmentName}}</li>
           </ul>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul>
+            <li>App Version:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{diagnostics.applicationVersionNumber}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul>
+            <li>Environment:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{diagnostics.environmentName}}</li>
+          </ul>
+        </div>
+      </div>      
       <h5>Culture Diagnostics</h5>
       <div class="row">
         <div class="col-md-3">
           <ul>
             <li>Culture:</li>
-            <li>Time Zone:</li>
           </ul>
         </div>
         <div class="col-md-9">
           <ul>
             <li>{{diagnostics.machineCulture}}</li>
-            <li>{{diagnostics.machineTimeZone}}</li>
           </ul>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul>
+            <li>Time Zone:</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <ul>
+            <li>{{diagnostics.machineTimeZone}}</li>
+          </ul>
+        </div>
+      </div>      
     </div>
   </div>
   <div class="panel panel-green">
@@ -203,39 +263,89 @@
           <ul><li>Accuracy:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li *ngIf="userLocation.coords?.accuracy">{{userLocation.coords.accuracy}}</li></ul>
-        </div>
+          <ul><li>{{userLocation.coords?.accuracy}}</li></ul>        </div>
       </div>
       <div class="row">
         <div class="col-md-3">
           <ul><li>Altitude:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li *ngIf="userLocation.coords?.altitude">{{userLocation.coords.altitude}}</li></ul>
-        </div>
+          <ul><li>{{userLocation.coords?.altitude}}</li></ul>        </div>
       </div>
       <div class="row">
         <div class="col-md-3">
           <ul><li>Altitude Accuracy:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li *ngIf="userLocation.coords?.altitudeAccuracy">{{userLocation.coords.altitudeAccuracy}}</li></ul>
-        </div>
+          <ul><li>{{userLocation.coords?.altitudeAccuracy}}</li></ul>        </div>
       </div>
       <div class="row">
         <div class="col-md-3">
           <ul><li>Heading:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li *ngIf="userLocation.coords?.heading">{{userLocation.coords.heading}}</li></ul>
-        </div>
+          <ul><li>{{userLocation.coords?.heading}}</li></ul>        </div>
       </div>
       <div class="row">
         <div class="col-md-3">
           <ul><li>Speed:</li></ul>
         </div>
         <div class="col-md-9">
-          <ul><li *ngIf="userLocation.coords?.speed">{{userLocation.coords.speed}}</li></ul>
+          <ul><li>{{userLocation.coords?.speed}}</li></ul>        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul><li>Street:</li></ul>
+        </div>
+        <div class="col-md-9">
+          <ul><li>{{userLocation.location?.street}}</li></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul><li>Address:</li></ul>
+        </div>
+        <div class="col-md-9">
+          <ul><li>{{userLocation.location?.address}}</li></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul><li>Borough:</li></ul>
+        </div>
+        <div class="col-md-9">
+          <ul><li>{{userLocation.location?.borough}}</li></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul><li>Neighborhood:</li></ul>
+        </div>
+        <div class="col-md-9">
+          <ul><li>{{userLocation.location?.neighborhood}}</li></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul><li>PostalCode:</li></ul>
+        </div>
+        <div class="col-md-9">
+          <ul><li>{{userLocation.location?.postalCode}}</li></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <ul><li>State:</li></ul>
+        </div>
+        <div class="col-md-9">
+          <ul><li>{{userLocation.location?.state}}</li></ul>
+        </div>
+      </div>      <div class="row">
+        <div class="col-md-3">
+          <ul><li>TimeStamp:</li></ul>
+        </div>
+        <div class="col-md-9">
+          <ul><li>{{userLocation.timeStamp}}</li></ul>
         </div>
       </div>
     </div>

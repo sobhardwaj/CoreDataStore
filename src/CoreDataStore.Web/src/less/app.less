@@ -554,7 +554,7 @@ body > .ui-select-bootstrap.open {
 }
 
 .details-form {
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
 
 .lpc-mobile-form {
@@ -596,5 +596,10 @@ body > .ui-select-bootstrap.open {
   .topnavbar a {
     padding-left: 7px !important;
     padding-right: 7px !important;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .page-diagnostics .col-md-9 li {
+    list-style: none;
   }
 }
