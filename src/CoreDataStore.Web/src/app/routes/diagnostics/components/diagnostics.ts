@@ -26,10 +26,12 @@ export class DiagnosticsComponent implements OnInit {
   userRange: boolean = false;
   userLocation: any = {};
   heading: any = [];
+  localHeading: string = '';
   @Input() diagnostics: any[] = [];
 
   constructor(private diagnosticsService: DiagnosticsService) {
     this.getHeading();
+    localStorage.setItem('heading', 'North');
   }
 
   getDiagnostics() {
@@ -56,7 +58,13 @@ export class DiagnosticsComponent implements OnInit {
   }
 
   getHeading() {
-    this.heading = JSON.parse(localStorage.getItem("heading"));
+    this.diagnosticsService.getHeading().subscribe(data => {
+      this.heading = data;
+    });
+  }
+
+  setLocalHeading() {
+    localStorage.setItem('heading', this.localHeading);
   }
 
   showPosition(position) {

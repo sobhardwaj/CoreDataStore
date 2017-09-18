@@ -39,9 +39,4 @@ export class ReferencesService {
     return this.http.get(`${AppSettings.ApiEndpoint}Reference/parentStyle`)
       .map((res: Response) => res.json());
   };
-
-  getHeading() {
-    return this.http.get(`${AppSettings.ApiMaps}Navigation/heading`)
-      .map((res: Response) => res.json());
-  }
 }

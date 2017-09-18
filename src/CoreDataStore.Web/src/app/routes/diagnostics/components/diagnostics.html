@@ -237,7 +237,7 @@
           <p>Heading</p>
         </div>
         <div class="col-md-9">
-          <select class="form-control">
+          <select class="form-control" (change)="setLocalHeading()" [(ngModel)]="localHeading">
             <option *ngFor="let head of heading">{{head.description}}</option>
           </select>
         </div>
