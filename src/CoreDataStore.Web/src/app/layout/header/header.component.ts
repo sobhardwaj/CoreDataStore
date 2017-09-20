@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { SettingsService } from '../../core/settings/settings.service';
+import { AppSettings } from '../../appsettings';
 
 import * as screenfull from 'screenfull';
 import * as browser from 'jquery.browser';
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnInit {
   isNavSearchVisible: boolean;
   isMobile: boolean = false;
   locationEnabled: boolean = false;
+  swaggerURL: string = AppSettings.ApiEndpoint.replace('/api/', '');
   @ViewChild('fsbutton') fsbutton; // the fullscreen button
 
   constructor(private settings: SettingsService) {}
@@ -23,14 +25,14 @@ export class HeaderComponent implements OnInit {
     if (browser.msie) { // Not supported under IE
       this.fsbutton.nativeElement.style.display = 'none';
     }
-    
-    if(navigator.geolocation) {
+
+    if (navigator.geolocation) {
       this.locationEnabled = true;
     } else {
       this.locationEnabled = false;
     }
 
-    if(window.innerWidth < 768) {
+    if (window.innerWidth < 768) {
       this.isMobile = true;
     }
   }
@@ -81,10 +83,11 @@ export class HeaderComponent implements OnInit {
   }
 
   onResize(event) {
-    if(window.innerWidth < 768) {
+    if (window.innerWidth < 768) {
       this.isMobile = true;
     } else {
       this.isMobile = false;
     }
-  }  
+  }
+
 }
