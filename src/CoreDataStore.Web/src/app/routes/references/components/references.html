@@ -21,6 +21,7 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" (window:scroll)="onScroll($event)">
           <references-list [properties]="filteredReference"></references-list>
+          <div *ngIf="limit < totalItems" class="text-center"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i></div>
         </div>
       </div>
        <div class="table-footer" *ngIf="isMobile == false">
