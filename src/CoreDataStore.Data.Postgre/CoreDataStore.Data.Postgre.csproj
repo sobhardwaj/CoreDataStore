@@ -6,7 +6,7 @@
     <AssemblyName>CoreDataStore.Data.Postgre</AssemblyName>
     <PackageId>CoreDataStore.Data.Postgre</PackageId>
     <Version>1.0.20</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Stuart Shay</Authors>
     <Description>CoreDataStore Postgres  Entity Framework Provider</Description>
     <RepositoryUrl>https://github.com/stuartshay/CoreDataStore</RepositoryUrl>

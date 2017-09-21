@@ -6,7 +6,7 @@
     <AssemblyName>CoreDataStore.Domain</AssemblyName>
     <PackageId>CoreDataStore.Domain</PackageId>
     <Version>1.0.20</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Stuart Shay</Authors>
     <RepositoryUrl>https://github.com/stuartshay/CoreDataStore</RepositoryUrl>
     <Description>CoreDataStore Domain Objects</Description>
