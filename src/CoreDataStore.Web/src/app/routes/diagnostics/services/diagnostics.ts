@@ -30,4 +30,8 @@ export class DiagnosticsService {
   	return this.http.post(`${AppSettings.ApiLocation}Location`, {coords:coords, location:this.location}).map((res: Response) => res.json());
   }
 
+  getHeading() {
+    return this.http.get(`${AppSettings.ApiMaps}Navigation/heading`)
+      .map((res: Response) => res.json());
+  }
 }
