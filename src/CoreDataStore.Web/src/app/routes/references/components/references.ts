@@ -36,6 +36,7 @@ export class ReferencesComponent implements OnInit {
   scrollPosition: number = 0;
   isMobile: boolean = false;
   disableNeighbor: boolean = true;
+  showLoading = false;
 
   // displayMode: DisplayModeEnum;
   // displayModeEnum = DisplayModeEnum;
@@ -87,6 +88,8 @@ export class ReferencesComponent implements OnInit {
         this.page = page;
         this.fromItem = ((page - 1) * limit) + 1;
         this.toItem = (this.totalItems < (page * limit)) ? this.totalItems : (page * limit);
+
+        this.showLoading = false;
       },
       () => console.log('done loading getLPCReports')
     );
@@ -202,6 +205,7 @@ export class ReferencesComponent implements OnInit {
   private onScroll(event) {
     if(this.isMobile == true && $(window).scrollTop() + $(window).height() == $(document).height()) {
       this.session.set('page', this.page);
+      this.showLoading = true;
       this.limit += 20;
       this.scrollPosition = $(document).height();
       this.getLPCReports(this.page, this.limit, this.borough, this.objectType, this.neighborhood);

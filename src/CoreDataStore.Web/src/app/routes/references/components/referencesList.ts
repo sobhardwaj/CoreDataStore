@@ -1,4 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
+
+declare var $: any;
 
 @Component({
   selector: 'references-list',
@@ -16,11 +19,18 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 })
 export class ReferencesListComponent {
   @Input() properties: Object;
+  @Input() showLoading = false;
   private mobileFlag:boolean = false;
 
-  constructor() {
+  constructor(private router: Router) {
     if(window.innerWidth < 440) {
       this.mobileFlag = true;
+    }
+
+    if (localStorage.getItem('scrollTop')) {
+      setTimeout(() => {
+        $('body').scrollTop(localStorage.getItem('scrollTop'));
+      }, 500);
     }
   }
   
@@ -34,5 +44,11 @@ export class ReferencesListComponent {
 
   onScroll() {
     console.log("scroll");
+  }
+
+  goDetails(id, index) {
+    let top = $('.property_wrapper:nth-of-type(' + (index + 1) + ')').position().top;
+    localStorage.setItem('scrollTop', top);
+    this.router.navigate(['/details/' + id]);
   }
 }

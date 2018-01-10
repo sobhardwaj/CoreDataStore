@@ -1,4 +1,4 @@
-<div *ngFor="let property of properties" class="property_wrapper" (window:resize)="onResize($event)">
+<div *ngFor="let property of properties;let i = index" class="property_wrapper" (window:resize)="onResize($event)">
   <table class="table table-striped table-hover property-details" *ngIf="!mobileFlag">
     <tr>
       <td><a href="{{ property.pdfURL || '#/references' }}" target="_blank">Designation Report:</a></td>
@@ -34,7 +34,7 @@
   <div class="panel panel-default" *ngIf="mobileFlag">
     <div class="col-xs-12">
       <h4>{{ property.name | capitalize }}</h4>    
-      <a [routerLink]="['/details', property.id]"><img class="img-thumbnail img-responsive" src="{{property.photoURL}}"/></a>
+      <a (click)="goDetails(property.id, i)"><img class="img-thumbnail img-responsive" src="{{property.photoURL}}"/></a>
       <hr>
       <p>
         <b>{{ property.street }}</b><br/>
@@ -50,4 +50,8 @@
 </div>
 <div *ngIf="!properties.length">
   No Records Found
+</div>
+
+<div class="loader-div" *ngIf="mobileFlag && showLoading">
+  <div class="loader"></div>
 </div>
