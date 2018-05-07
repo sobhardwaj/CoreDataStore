@@ -1,18 +1,75 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  
   <PropertyGroup>
-    <VersionPrefix>1.0.1</VersionPrefix>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RuntimeFrameworkVersion>2.1.0-preview2-26406-04</RuntimeFrameworkVersion>
+    <RuntimeIdentifiers>win10-x64;debian.9-x64;ubuntu.16.04-x64;osx.10.12-x64</RuntimeIdentifiers>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>CoreDataStore.Web</AssemblyName>
-    <OutputType>Exe</OutputType>
     <PackageId>CoreDataStore.Web</PackageId>
-    <RuntimeIdentifiers>debian.8-x64;ubuntu.16.04-x64;osx.10.12-x64;win10-x64</RuntimeIdentifiers>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
-    <Version>1.0.20</Version>
-    <AssemblyVersion>1.0.19.2</AssemblyVersion>
-    <FileVersion>1.0.19.3</FileVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+    <PackageReference Include="dotnet-setversion" Version="1.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Swashbuckle" Version="6.0.0-beta902" />
+    <PackageReference Include="Navigator.Common" Version="1.1.0.4" />
+    <PackageReference Include="Navigator.Middleware" Version="1.1.0.5" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Remove="src\app\app.component.ts" />
+    <None Remove="src\app\app.module.ts" />
+    <None Remove="src\app\appsettings.ts" />
+    <None Remove="src\app\core\core.module.ts" />
+    <None Remove="src\app\core\menu\menu.service.ts" />
+    <None Remove="src\app\core\module-import-guard.ts" />
+    <None Remove="src\app\core\settings\settings.service.ts" />
+    <None Remove="src\app\core\themes\themes.service.ts" />
+    <None Remove="src\app\index.ts" />
+    <None Remove="src\app\layout\footer\footer.component.ts" />
+    <None Remove="src\app\layout\header\header.component.ts" />
+    <None Remove="src\app\layout\header\navsearch\navsearch.component.ts" />
+    <None Remove="src\app\layout\layout.component.ts" />
+    <None Remove="src\app\layout\layout.module.ts" />
+    <None Remove="src\app\layout\sidebar\sidebar.component.ts" />
+    <None Remove="src\app\layout\sidebar\userblock\userblock.component.ts" />
+    <None Remove="src\app\layout\sidebar\userblock\userblock.service.ts" />
+    <None Remove="src\app\main.ts" />
+    <None Remove="src\app\routes\appsettings.ts" />
+    <None Remove="src\app\routes\diagnostics\components\diagnostics.ts" />
+    <None Remove="src\app\routes\diagnostics\services\diagnostics.ts" />
+    <None Remove="src\app\routes\home\home.component.ts" />
+    <None Remove="src\app\routes\lpcreport\components\detailForm.ts" />
+    <None Remove="src\app\routes\lpcreport\components\details.ts" />
+    <None Remove="src\app\routes\lpcreport\models\lpcreport.ts" />
+    <None Remove="src\app\routes\lpcreport\services\lpcreport.ts" />
+    <None Remove="src\app\routes\lpcreport\services\pluto.ts" />
+    <None Remove="src\app\routes\maps\components\maps.ts" />
+    <None Remove="src\app\routes\maps\services\maps.ts" />
+    <None Remove="src\app\routes\menu.ts" />
+    <None Remove="src\app\routes\references\components\filterSelectbox.ts" />
+    <None Remove="src\app\routes\references\components\references.ts" />
+    <None Remove="src\app\routes\references\components\referencesList.ts" />
+    <None Remove="src\app\routes\references\services\references.ts" />
+    <None Remove="src\app\routes\routes.module.ts" />
+    <None Remove="src\app\routes\routes.ts" />
+    <None Remove="src\app\shared\colors\colors.service.ts" />
+    <None Remove="src\app\shared\directives\checkall.ts" />
+    <None Remove="src\app\shared\directives\now.ts" />
+    <None Remove="src\app\shared\directives\scrollable.ts" />
+    <None Remove="src\app\shared\pipes\capitalize.ts" />
+    <None Remove="src\app\shared\pipes\trim.ts" />
+    <None Remove="src\app\shared\services\session.ts" />
+    <None Remove="src\app\shared\shared.module.ts" />
+    <None Remove="typings\globals\core-js\index.d.ts" />
+    <None Remove="typings\globals\node\index.d.ts" />
+    <None Remove="typings\index.d.ts" />
+  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\CoreDataStore.Data.Postgre\CoreDataStore.Data.Postgre.csproj" />
     <ProjectReference Include="..\CoreDataStore.Data.Sqlite\CoreDataStore.Data.Sqlite.csproj" />
@@ -20,33 +77,59 @@
     <ProjectReference Include="..\CoreDataStore.Domain\CoreDataStore.Domain.csproj" />
     <ProjectReference Include="..\CoreDataStore.Service\CoreDataStore.Service.csproj" />
   </ItemGroup>
+  
   <ItemGroup>
     <DotNetCliToolReference Include="dotnet-setversion" Version="*" />
   </ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="dotnet-setversion" Version="1.0.2" />
-    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
-    <PackageReference Include="Swashbuckle" Version="6.0.0-beta902" />
-    <PackageReference Include="System.Globalization" Version="4.3.0" />
-    <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
-    <PackageReference Include="System.Net.Http" Version="4.3.3" />
-    <PackageReference Include="Navigator.Common" Version="1.1.0.4" />
-    <PackageReference Include="Navigator.Middleware" Version="1.1.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
-    <PackageReference Include="System.Runtime" Version="4.3.0" />
+    <TypeScriptCompile Include="src\app\app.component.ts" />
+    <TypeScriptCompile Include="src\app\app.module.ts" />
+    <TypeScriptCompile Include="src\app\appsettings.ts" />
+    <TypeScriptCompile Include="src\app\core\core.module.ts" />
+    <TypeScriptCompile Include="src\app\core\menu\menu.service.ts" />
+    <TypeScriptCompile Include="src\app\core\module-import-guard.ts" />
+    <TypeScriptCompile Include="src\app\core\settings\settings.service.ts" />
+    <TypeScriptCompile Include="src\app\core\themes\themes.service.ts" />
+    <TypeScriptCompile Include="src\app\index.ts" />
+    <TypeScriptCompile Include="src\app\layout\footer\footer.component.ts" />
+    <TypeScriptCompile Include="src\app\layout\header\header.component.ts" />
+    <TypeScriptCompile Include="src\app\layout\header\navsearch\navsearch.component.ts" />
+    <TypeScriptCompile Include="src\app\layout\layout.component.ts" />
+    <TypeScriptCompile Include="src\app\layout\layout.module.ts" />
+    <TypeScriptCompile Include="src\app\layout\sidebar\sidebar.component.ts" />
+    <TypeScriptCompile Include="src\app\layout\sidebar\userblock\userblock.component.ts" />
+    <TypeScriptCompile Include="src\app\layout\sidebar\userblock\userblock.service.ts" />
+    <TypeScriptCompile Include="src\app\main.ts" />
+    <TypeScriptCompile Include="src\app\routes\appsettings.ts" />
+    <TypeScriptCompile Include="src\app\routes\diagnostics\components\diagnostics.ts" />
+    <TypeScriptCompile Include="src\app\routes\diagnostics\services\diagnostics.ts" />
+    <TypeScriptCompile Include="src\app\routes\home\home.component.ts" />
+    <TypeScriptCompile Include="src\app\routes\lpcreport\components\detailForm.ts" />
+    <TypeScriptCompile Include="src\app\routes\lpcreport\components\details.ts" />
+    <TypeScriptCompile Include="src\app\routes\lpcreport\models\lpcreport.ts" />
+    <TypeScriptCompile Include="src\app\routes\lpcreport\services\lpcreport.ts" />
+    <TypeScriptCompile Include="src\app\routes\lpcreport\services\pluto.ts" />
+    <TypeScriptCompile Include="src\app\routes\maps\components\maps.ts" />
+    <TypeScriptCompile Include="src\app\routes\maps\services\maps.ts" />
+    <TypeScriptCompile Include="src\app\routes\menu.ts" />
+    <TypeScriptCompile Include="src\app\routes\references\components\filterSelectbox.ts" />
+    <TypeScriptCompile Include="src\app\routes\references\components\references.ts" />
+    <TypeScriptCompile Include="src\app\routes\references\components\referencesList.ts" />
+    <TypeScriptCompile Include="src\app\routes\references\services\references.ts" />
+    <TypeScriptCompile Include="src\app\routes\routes.module.ts" />
+    <TypeScriptCompile Include="src\app\routes\routes.ts" />
+    <TypeScriptCompile Include="src\app\shared\colors\colors.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\directives\checkall.ts" />
+    <TypeScriptCompile Include="src\app\shared\directives\now.ts" />
+    <TypeScriptCompile Include="src\app\shared\directives\scrollable.ts" />
+    <TypeScriptCompile Include="src\app\shared\pipes\capitalize.ts" />
+    <TypeScriptCompile Include="src\app\shared\pipes\trim.ts" />
+    <TypeScriptCompile Include="src\app\shared\services\session.ts" />
+    <TypeScriptCompile Include="src\app\shared\shared.module.ts" />
+    <TypeScriptCompile Include="typings\globals\core-js\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
+    <TypeScriptCompile Include="typings\index.d.ts" />
   </ItemGroup>
+  
 </Project>
