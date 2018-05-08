@@ -33,7 +33,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        [SkippableFact, Trait("Category", "Intergration")]
+        //[SkippableFact, Trait("Category", "Intergration")]
         public void Can_Update_LPC_Report()
         {
             var lpcReport = _lpcReportRepository.GetSingle(1);
@@ -44,7 +44,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        [SkippableFact, Trait("Category", "Intergration")]
+        //[SkippableFact, Trait("Category", "Intergration")]
         public void Can_Get_LPCReport()
         {
             var lpNumber = "LP-00871";
@@ -54,7 +54,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        [SkippableFact, Trait("Category", "Intergration")]
+        //[SkippableFact, Trait("Category", "Intergration")]
         public void Can_Get_LPCReport_Location()
         {
             var lpNumber = "LP-00871";
@@ -64,7 +64,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        [SkippableFact, Trait("Category", "Intergration")]
+        //[SkippableFact, Trait("Category", "Intergration")]
         public void Can_Get_Included_Fields()
         {
             var lpNumber = "LP-00871";
@@ -76,7 +76,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.Equal(landmarkCount, landmark.Landmarks.Count);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        //[Fact, Trait("Category", "Intergration")]
         public void Can_Get_Paging_List()
         {
             //int count = 0;
@@ -100,7 +100,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
         }
 
-        [SkippableFact, Trait("Category", "Intergration")]
+        //[SkippableFact, Trait("Category", "Intergration")]
         public void Can_Get_Lamppost_List()
         {
             var results = _dbContext.LPCLamppost.ToList();

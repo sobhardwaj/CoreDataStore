@@ -33,7 +33,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.NotNull(result);
         }
 
-        [SkippableFact, Trait("Category", "Intergration")]
+       // [SkippableFact, Trait("Category", "Intergration")]
         public void Can_Get_Included_Fields()
         {
             //var lpNumber = "LP-02039";
@@ -44,7 +44,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        [SkippableFact, Trait("Category", "Intergration")]
+       // [SkippableFact, Trait("Category", "Intergration")]
         public void Can_Get_Included_Pluto_Fields()
         {
             //var lpNumber = "LP-02039";
