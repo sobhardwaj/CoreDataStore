@@ -22,16 +22,20 @@ New York City Landmarks Reference Data
 
 ## Prerequisites:
 
-### .NET Core 
-.NET Core Runtime 2.0.0 - August 14, 2017            
-.NET Core SDK 2.0.0 - August 14, 2017              
-https://www.microsoft.com/net/core/   
+### .NET Core
+
+.NET Core 2.1 RC1 SDK 
+```
+https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-rc1
+
+```
 
 ### Visual Studio MSBuild
 
-Visual Studio 2017 Preview version 15.3            
-https://www.visualstudio.com/vs/preview/    
+Visual Studio 2017 Preview version 15.7
+https://www.visualstudio.com/vs/preview/
 
+  
 ## Web Application Build Instructions
 [Angular/NodeJS Web Client](https://github.com/stuartshay/CoreDataStore/tree/master/src/CoreDataStore.Web)
 
