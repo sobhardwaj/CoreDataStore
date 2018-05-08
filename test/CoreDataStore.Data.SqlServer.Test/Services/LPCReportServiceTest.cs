@@ -1,42 +1,21 @@
-﻿using System.IO;
-using CoreDataStore.Data.Filters;
-using CoreDataStore.Data.Interfaces;
-using CoreDataStore.Data.SqlServer.Repositories;
+﻿using CoreDataStore.Data.Filters;
+using CoreDataStore.Data.SqlServer.Test.Fixtures;
 using CoreDataStore.Service.Interfaces;
-using CoreDataStore.Service.Mappings;
-using CoreDataStore.Service.Services;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace CoreDataStore.Data.SqlServer.Test.Services
 {
-    public class LPCReportServiceTest
+    public class LpcReportServiceTest : IClassFixture<CoreDataStoreDbFixture>
     {
         private readonly ILPCReportService _lpcReportService;
 
-        public LPCReportServiceTest()
+        private readonly ITestOutputHelper _output;
+
+        public LpcReportServiceTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            var dbonnection = builder.GetConnectionString("SqlServer");
-
-            var serviceProvider = new ServiceCollection()
-                .AddDbContext<NYCLandmarkContext>(options => options.UseSqlServer(dbonnection))
-                .AddScoped<ILpcReportRepository, LPCReportRepository>()
-                .AddScoped<ILPCReportService, LPCReportService>()
-                .BuildServiceProvider();
-
-            serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            serviceProvider.GetRequiredService<ILpcReportRepository>();
-
-            _lpcReportService = serviceProvider.GetRequiredService<ILPCReportService>();
-
-            AutoMapperConfiguration.Configure();
+            _lpcReportService = fixture.LPCReportService;
+            _output = output;
         }
 
 

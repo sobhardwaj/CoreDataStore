@@ -2,6 +2,9 @@
 using System.IO;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Repositories;
+using CoreDataStore.Service.Interfaces;
+using CoreDataStore.Service.Mappings;
+using CoreDataStore.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +34,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
                 .AddScoped<ILpcLocationRepository, LPCLocationRepository>()
                 .AddScoped<ILpcReportRepository, LPCReportRepository>()
                 .AddScoped<IPlutoRepository, PlutoRepository>()
+                .AddScoped<ILPCReportService, LPCReportService>()
+                .AddScoped<ILandmarkService, LandmarkService>()
                 .BuildServiceProvider();
 
             DbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
@@ -40,6 +45,14 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
             LpcLocationRepository = serviceProvider.GetRequiredService<ILpcLocationRepository>();
             LpcReportRepository = serviceProvider.GetRequiredService<ILpcReportRepository>();
             PlutoRepository = serviceProvider.GetRequiredService<IPlutoRepository>();
+
+            LPCReportService = serviceProvider.GetRequiredService<ILPCReportService>();
+            LandmarkService = serviceProvider.GetRequiredService<ILandmarkService>();
+
+            if (AutoMapperConfiguration._isMappinginitialized)
+            {
+                AutoMapperConfiguration.Configure();
+            } 
         }
 
         public string DbConnection { get; private set; }
@@ -56,6 +69,9 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
 
         public IPlutoRepository PlutoRepository { get; private set; }
 
+        public ILPCReportService LPCReportService { get; private set; }
+
+        public ILandmarkService LandmarkService { get; private set; }
         public void Dispose()
         {
             LandmarkRepository.Dispose();

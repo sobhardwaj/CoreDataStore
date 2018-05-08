@@ -4,14 +4,21 @@ namespace CoreDataStore.Service.Mappings
 {
     public class AutoMapperConfiguration
     {
+        public static bool _isMappinginitialized;
+
         public static void Configure()
         {
-            Mapper.Initialize(x =>
+            if (_isMappinginitialized == false)
             {
-                x.AddProfile<LPCReportMapping>();
-                x.AddProfile<LandmarkMapping>();
-                x.AddProfile<PlutoMapping>();
-            });
+                Mapper.Initialize(x =>
+                {
+                    x.AddProfile<LPCReportMapping>();
+                    x.AddProfile<LandmarkMapping>();
+                    x.AddProfile<PlutoMapping>();
+                });  
+            }
+
+            _isMappinginitialized = true;
         }
     }
 }
