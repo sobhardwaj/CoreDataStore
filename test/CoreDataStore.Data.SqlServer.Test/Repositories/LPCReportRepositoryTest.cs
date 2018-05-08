@@ -5,6 +5,7 @@ using Xunit;
 using CoreDataStore.Data.Filters;
 using System.Collections.Generic;
 using CoreDataStore.Data.SqlServer.Test.Fixtures;
+using Microsoft.EntityFrameworkCore;
 using Xunit.Abstractions;
 
 namespace CoreDataStore.Data.SqlServer.Test.Repositories
@@ -32,48 +33,48 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        //[Fact, Trait("Category", "Intergration")]
-        //public void Can_Update_LPC_Report()
-        //{
-        //    var lpcReport = _lpcReportRepository.GetSingle(1);
-        //    lpcReport.Name = "Pieter Claesen Wyckoff House X";
+        [SkippableFact, Trait("Category", "Intergration")]
+        public void Can_Update_LPC_Report()
+        {
+            var lpcReport = _lpcReportRepository.GetSingle(1);
+            lpcReport.Name = "Pieter Claesen Wyckoff House X";
 
-        //    var result = _dbContext.SaveChanges();
-        //    Assert.NotNull(result);
-        //}
-
-
-        //[Fact, Trait("Category", "Intergration")]
-        //public void Can_Get_LPCReport()
-        //{
-        //    var lpNumber = "LP-00871";
-        //    var lpcReportNumber = _dbContext.LPCReports.Where(x => x.LPNumber == lpNumber).Select(x => x.LPNumber).First();
-
-        //    Assert.Equal(lpNumber, lpcReportNumber);
-        //}
+            var result = _dbContext.SaveChanges();
+            Assert.NotNull(result);
+        }
 
 
-        //[Fact, Trait("Category", "Intergration")]
-        //public void Can_Get_LPCReport_Location()
-        //{
-        //    var lpNumber = "LP-00871";
-        //    var lpcReportNumber = _dbContext.LPCReports.Where(x => x.LPNumber == lpNumber).Select(x => x.LPCLocation).First();
+        [SkippableFact, Trait("Category", "Intergration")]
+        public void Can_Get_LPCReport()
+        {
+            var lpNumber = "LP-00871";
+            var lpcReportNumber = _dbContext.LPCReports.Where(x => x.LPNumber == lpNumber).Select(x => x.LPNumber).First();
 
-        //    Assert.Equal(lpNumber, lpcReportNumber.LPNumber);
-        //}
+            Assert.Equal(lpNumber, lpcReportNumber);
+        }
 
 
-        //[Fact, Trait("Category", "Intergration")]
-        //public void Can_Get_Included_Fields()
-        //{
-        //    var lpNumber = "LP-00871";
-        //    var landmarkCount = 4;
+        [SkippableFact, Trait("Category", "Intergration")]
+        public void Can_Get_LPCReport_Location()
+        {
+            var lpNumber = "LP-00871";
+            var lpcReportNumber = _dbContext.LPCReports.Where(x => x.LPNumber == lpNumber).Select(x => x.LPCLocation).First();
 
-        //    var landmark = _dbContext.LPCReports.Include(x => x.Landmarks).Where(x => x.LPNumber == lpNumber).Select(x => x).First();
+            Assert.Equal(lpNumber, lpcReportNumber.LPNumber);
+        }
 
-        //    Assert.Equal(lpNumber, landmark.LPNumber);
-        //    Assert.Equal(landmarkCount, landmark.Landmarks.Count);
-        //}
+
+        [SkippableFact, Trait("Category", "Intergration")]
+        public void Can_Get_Included_Fields()
+        {
+            var lpNumber = "LP-00871";
+            var landmarkCount = 4;
+
+            var landmark = _dbContext.LPCReports.Include(x => x.Landmarks).Where(x => x.LPNumber == lpNumber).Select(x => x).First();
+
+            Assert.Equal(lpNumber, landmark.LPNumber);
+            Assert.Equal(landmarkCount, landmark.Landmarks.Count);
+        }
 
         [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Paging_List()
@@ -99,11 +100,11 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
         }
 
-        //[Fact, Trait("Category", "Intergration")]
-        //public void Can_Get_Lamppost_List()
-        //{
-        //    var results = _dbContext.LPCLamppost.ToList();
-        //    Assert.NotNull(results);
-        //}
+        [SkippableFact, Trait("Category", "Intergration")]
+        public void Can_Get_Lamppost_List()
+        {
+            var results = _dbContext.LPCLamppost.ToList();
+            Assert.NotNull(results);
+        }
     }
 }

@@ -1,34 +1,20 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using CoreDataStore.Data.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using CoreDataStore.Data.SqlServer.Repositories;
+using CoreDataStore.Data.SqlServer.Test.Fixtures;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace CoreDataStore.Data.SqlServer.Test.Repositories
 {
-    public class PlutoRepositoryTest
+    public class PlutoRepositoryTest : IClassFixture<CoreDataStoreDbFixture>
     {
         private readonly IPlutoRepository _plutoRepository;
 
-        public PlutoRepositoryTest()
+        private readonly ITestOutputHelper _output;
+        public PlutoRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            var dbonnection = builder.GetConnectionString("SqlServer");
-
-            var serviceProvider = new ServiceCollection()
-                .AddDbContext<NYCLandmarkContext>(options => options.UseSqlServer(dbonnection))
-                .AddScoped<IPlutoRepository, PlutoRepository>()
-                .BuildServiceProvider();
-
-            serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            _plutoRepository = serviceProvider.GetRequiredService<IPlutoRepository>();
+            _plutoRepository = fixture.PlutoRepository;
+            _output = output;
         }
 
         [Fact, Trait("Category", "Intergration")]
@@ -40,7 +26,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.NotNull(results);
             Assert.NotEqual(0, results.Count);
         }
-
 
         [Fact, Trait("Category", "Intergration")]
         public void Get_Landmarks_Pluto_Count()
@@ -64,7 +49,5 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             var results = _plutoRepository.FindBy(x => x.BBL == 5080500013).ToList();
             Assert.NotNull(results);
         }
-
-
     }
 }

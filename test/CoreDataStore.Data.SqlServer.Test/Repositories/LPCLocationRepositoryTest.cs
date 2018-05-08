@@ -17,6 +17,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         public LpcLocationRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
             _lpcLocationRepository = fixture.LpcLocationRepository;
+            _dbContext = fixture.DbContext;
             _output = output;
         }
 
@@ -27,13 +28,13 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.NotNull(results);
         }
 
-        //[Fact, Trait("Category", "Intergration")]
-        //public void Can_Get_LPCReport()
-        //{
-        //    var lpNumber = "LP-00871";
-        //    var landmark = _dbContext.LPCReports.Where(x => x.LPNumber == lpNumber).Select(x => x.LPNumber).First();
+        [Fact, Trait("Category", "Intergration")]
+        public void Can_Get_LPCReport()
+        {
+            var lpNumber = "LP-00871";
+            var landmark = _dbContext.LPCReports.Where(x => x.LPNumber == lpNumber).Select(x => x.LPNumber).First();
 
-        //    Assert.Equal(lpNumber, landmark);
-        //}
+            Assert.Equal(lpNumber, landmark);
+        }
     }
 }

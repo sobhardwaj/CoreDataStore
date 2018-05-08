@@ -33,6 +33,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
                 .AddScoped<IPlutoRepository, PlutoRepository>()
                 .BuildServiceProvider();
 
+            DbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
+
             LandmarkRepository = serviceProvider.GetRequiredService<ILandmarkRepository>();
             LpcLamppostRepository = serviceProvider.GetRequiredService<ILpcLamppostRepository>();
             LpcLocationRepository = serviceProvider.GetRequiredService<ILpcLocationRepository>();
@@ -41,6 +43,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
         }
 
         public string DbConnection { get; private set; }
+
+        public NYCLandmarkContext DbContext { get; private set; }
 
         public ILandmarkRepository LandmarkRepository { get; private set; }
 
@@ -59,6 +63,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
             LpcLocationRepository.Dispose();
             LpcReportRepository.Dispose();
             PlutoRepository.Dispose();
+            DbContext.Dispose();
         }
     }
 }
