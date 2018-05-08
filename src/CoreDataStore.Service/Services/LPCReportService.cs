@@ -14,9 +14,9 @@ namespace CoreDataStore.Service.Services
 {
     public class LPCReportService : ILPCReportService
     {
-        private readonly ILPCReportRepository _lpcReportRepository;
+        private readonly ILpcReportRepository _lpcReportRepository;
 
-        public LPCReportService(ILPCReportRepository lpcReportRepository)
+        public LPCReportService(ILpcReportRepository lpcReportRepository)
         {
             this._lpcReportRepository = lpcReportRepository;
         }

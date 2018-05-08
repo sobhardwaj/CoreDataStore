@@ -1,39 +1,24 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using CoreDataStore.Data.Interfaces;
-using CoreDataStore.Data.SqlServer.Repositories;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using CoreDataStore.Data.SqlServer.Test.Fixtures;
 using Xunit;
-using Microsoft.Extensions.Configuration;
+using Xunit.Abstractions;
 
 namespace CoreDataStore.Data.SqlServer.Test.Repositories
 {
-    public class LPCLocationRepositoryTest
+    public class LpcLocationRepositoryTest : IClassFixture<CoreDataStoreDbFixture>
     {
-        private readonly ILPCLocationRepository _lpcLocationRepository;
+        private readonly ILpcLocationRepository _lpcLocationRepository;
+
         private readonly NYCLandmarkContext _dbContext;
 
-        public LPCLocationRepositoryTest()
+        private readonly ITestOutputHelper _output;
+
+        public LpcLocationRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            var dbonnection = builder.GetConnectionString("SqlServer");
-
-            var serviceProvider = new ServiceCollection()
-                .AddDbContext<NYCLandmarkContext>(options => options.UseSqlServer(dbonnection))
-                .AddScoped<ILPCLocationRepository, LPCLocationRepository>()
-                .BuildServiceProvider();
-
-            serviceProvider.GetRequiredService<NYCLandmarkContext>();
-
-            _dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            _lpcLocationRepository = serviceProvider.GetRequiredService<ILPCLocationRepository>();
+            _lpcLocationRepository = fixture.LpcLocationRepository;
+            _output = output;
         }
-
 
         [Fact, Trait("Category", "Intergration")]
         public void Get_LPC_Locations_List()
@@ -41,10 +26,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             var results = _lpcLocationRepository.GetAll().ToList();
             Assert.NotNull(results);
         }
-
-
-
-
 
         //[Fact, Trait("Category", "Intergration")]
         //public void Can_Get_LPCReport()
@@ -54,15 +35,5 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
         //    Assert.Equal(lpNumber, landmark);
         //}
-
-
-
-
-
-
-
-
-
-
     }
 }

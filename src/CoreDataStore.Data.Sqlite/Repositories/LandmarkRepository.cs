@@ -10,5 +10,9 @@ namespace CoreDataStore.Data.Sqlite.Repositories
             : base(context)
         {
         }
+
+        public void Dispose()
+        {
+        }
     }
 }

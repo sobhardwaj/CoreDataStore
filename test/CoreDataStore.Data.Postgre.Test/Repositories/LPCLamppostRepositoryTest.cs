@@ -11,7 +11,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
 {
     public class LPCLamppostRepositoryTest
     {
-        private readonly ILPCLamppostRepository _lamppostRepository;
+        private readonly ILpcLamppostRepository _lamppostRepository;
         private readonly NYCLandmarkContext _dbContext;
 
         public LPCLamppostRepositoryTest()
@@ -25,13 +25,13 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
 
             var serviceProvider = new ServiceCollection()
                 .AddDbContext<NYCLandmarkContext>(options => options.UseNpgsql(dbonnection))
-                .AddScoped<ILPCLamppostRepository, LPCLamppostRepository>()
+                .AddScoped<ILpcLamppostRepository, LPCLamppostRepository>()
                 .BuildServiceProvider();
 
             serviceProvider.GetRequiredService<NYCLandmarkContext>();
 
             _dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            _lamppostRepository = serviceProvider.GetRequiredService<ILPCLamppostRepository>(); 
+            _lamppostRepository = serviceProvider.GetRequiredService<ILpcLamppostRepository>(); 
         }
 
 

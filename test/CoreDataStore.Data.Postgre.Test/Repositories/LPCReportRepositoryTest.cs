@@ -18,7 +18,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
 {
     public class LPCReportRepositoryTest
     {
-        private readonly ILPCReportRepository _lpcReportRepository;
+        private readonly ILpcReportRepository _lpcReportRepository;
 
         private readonly NYCLandmarkContext _dbContext;
         public LPCReportRepositoryTest()
@@ -32,13 +32,13 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
 
             var serviceProvider = new ServiceCollection()
                 .AddDbContext<NYCLandmarkContext>(options => options.UseNpgsql(dbonnection))
-                .AddScoped<ILPCReportRepository, LPCReportRepository>()
+                .AddScoped<ILpcReportRepository, LPCReportRepository>()
                 .BuildServiceProvider();
 
             serviceProvider.GetRequiredService<NYCLandmarkContext>();
 
             _dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            _lpcReportRepository = serviceProvider.GetRequiredService<ILPCReportRepository>();
+            _lpcReportRepository = serviceProvider.GetRequiredService<ILpcReportRepository>();
         }
 
 

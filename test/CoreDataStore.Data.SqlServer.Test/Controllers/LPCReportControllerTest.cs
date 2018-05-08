@@ -33,7 +33,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             services.AddDbContext<NYCLandmarkContext>(options => options.UseInMemoryDatabase());
 
             //Repositories
-            services.AddScoped<ILPCReportRepository, LPCReportRepository>();
+            services.AddScoped<ILpcReportRepository, LPCReportRepository>();
             services.AddScoped<ILandmarkRepository, LandmarkRepository>();
 
             //Services

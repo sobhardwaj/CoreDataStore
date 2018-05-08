@@ -1,45 +1,27 @@
 ﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
-using CoreDataStore.Data.SqlServer.Repositories;
+using CoreDataStore.Data.SqlServer.Test.Fixtures;
 using CoreDataStore.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Xunit;
-
+using Xunit.Abstractions;
 
 namespace CoreDataStore.Data.SqlServer.Test.Repositories
 {
-    public class LandmarkRepositoryTest
+    public class LandmarkRepositoryTest : IClassFixture<CoreDataStoreDbFixture>
     {
         private readonly ILandmarkRepository _landmarkRepository;
+
         private readonly NYCLandmarkContext _dbContext;
 
-        public LandmarkRepositoryTest()
+        private readonly ITestOutputHelper _output;
+        public LandmarkRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            var dbonnection = builder.GetConnectionString("SqlServer");
-
-            var serviceProvider = new ServiceCollection()
-                .AddDbContext<NYCLandmarkContext>(options => options.UseSqlServer(dbonnection))
-                .AddScoped<ILandmarkRepository, LandmarkRepository>()
-                .BuildServiceProvider();
-
-            serviceProvider.GetRequiredService<SqlServer.NYCLandmarkContext>();
-
-            _dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            _landmarkRepository = serviceProvider.GetRequiredService<ILandmarkRepository>();
+            _landmarkRepository = fixture.LandmarkRepository;
+            _output = output;
         }
-
 
         [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Landmark()
@@ -48,7 +30,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             var result = _landmarkRepository.GetSingle(id);
             Assert.NotNull(result);
         }
-
 
         //[Fact, Trait("Category", "Intergration")]
         //public void Can_Get_Included_Fields()
@@ -71,7 +52,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         //    Assert.IsType<Pluto>(pluto);
 
         //}
-
 
         [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Filtered_Paging_List()
@@ -97,6 +77,5 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.NotNull(results);
 
         }
-
     }
 }

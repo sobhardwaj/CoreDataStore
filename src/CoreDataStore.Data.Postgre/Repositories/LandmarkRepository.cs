@@ -10,5 +10,9 @@ namespace CoreDataStore.Data.Postgre.Repositories
             : base(context)
         {
         }
+
+        public void Dispose()
+        {
+        }
     }
 }

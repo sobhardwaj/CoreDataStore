@@ -27,12 +27,12 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
 
             var serviceProvider = new ServiceCollection()
                 .AddDbContext<NYCLandmarkContext>(options => options.UseSqlServer(dbonnection))
-                .AddScoped<ILPCReportRepository, LPCReportRepository>()
+                .AddScoped<ILpcReportRepository, LPCReportRepository>()
                 .AddScoped<ILPCReportService, LPCReportService>()
                 .BuildServiceProvider();
 
             serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            serviceProvider.GetRequiredService<ILPCReportRepository>();
+            serviceProvider.GetRequiredService<ILpcReportRepository>();
 
             _lpcReportService = serviceProvider.GetRequiredService<ILPCReportService>();
 

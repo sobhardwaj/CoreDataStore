@@ -44,5 +44,9 @@ namespace CoreDataStore.Data.Postgre.Repositories
         }
 
 
+        public void Dispose()
+        {
+            _context?.Dispose();
+        }
     }
 }

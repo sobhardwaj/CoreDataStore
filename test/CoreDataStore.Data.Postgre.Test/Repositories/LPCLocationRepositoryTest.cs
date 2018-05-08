@@ -11,7 +11,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
 {
     public class LPCLocationRepositoryTest
     {
-        private readonly ILPCLocationRepository _lpcLocationRepository;
+        private readonly ILpcLocationRepository _lpcLocationRepository;
         private readonly NYCLandmarkContext _dbContext;
 
         public LPCLocationRepositoryTest()
@@ -25,13 +25,13 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
 
             var serviceProvider = new ServiceCollection()
                 .AddDbContext<NYCLandmarkContext>(options => options.UseNpgsql(dbonnection))
-                .AddScoped<ILPCLocationRepository, LPCLocationRepository>()
+                .AddScoped<ILpcLocationRepository, LPCLocationRepository>()
                 .BuildServiceProvider();
 
             serviceProvider.GetRequiredService<NYCLandmarkContext>();
 
             _dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            _lpcLocationRepository = serviceProvider.GetRequiredService<ILPCLocationRepository>(); 
+            _lpcLocationRepository = serviceProvider.GetRequiredService<ILpcLocationRepository>(); 
         }
 
 

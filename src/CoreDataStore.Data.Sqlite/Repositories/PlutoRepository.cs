@@ -42,5 +42,9 @@ namespace CoreDataStore.Data.Sqlite.Repositories
             return results;
         }
 
+        public void Dispose()
+        {
+            _context?.Dispose();
+        }
     }
 }
