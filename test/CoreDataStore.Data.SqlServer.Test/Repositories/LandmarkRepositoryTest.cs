@@ -33,11 +33,11 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.NotNull(result);
         }
 
-       // [SkippableFact, Trait("Category", "Intergration")]
+       // [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Included_Fields()
         {
-            //var lpNumber = "LP-02039";
-            //var landmarks = _dbContext.Landmarks.Include(x => x.Pluto).Where(x => x.LP_NUMBER == lpNumber).Select(x => x).ToList();
+            var lpNumber = "LP-02039";
+            //var landmarks = _dbContext.Landmarks.Where(x => x.LP_NUMBER == lpNumber).Select(x => x).ToList();
 
             //var landmark = landmarks.First();
             //Assert.Equal(lpNumber, landmark.LP_NUMBER);

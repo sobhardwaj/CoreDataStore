@@ -21,6 +21,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         public LpcReportRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
             _lpcReportRepository = fixture.LpcReportRepository;
+            _dbContext = fixture.DbContext;
             _output = output;
         }
 
@@ -33,7 +34,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        //[SkippableFact, Trait("Category", "Intergration")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Update_LPC_Report()
         {
             var lpcReport = _lpcReportRepository.GetSingle(1);
@@ -44,7 +45,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        //[SkippableFact, Trait("Category", "Intergration")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_LPCReport()
         {
             var lpNumber = "LP-00871";
@@ -54,7 +55,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        //[SkippableFact, Trait("Category", "Intergration")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_LPCReport_Location()
         {
             var lpNumber = "LP-00871";
@@ -64,7 +65,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        //[SkippableFact, Trait("Category", "Intergration")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Included_Fields()
         {
             var lpNumber = "LP-00871";
@@ -100,7 +101,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
         }
 
-        //[SkippableFact, Trait("Category", "Intergration")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Lamppost_List()
         {
             var results = _dbContext.LPCLamppost.ToList();
