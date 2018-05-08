@@ -1,5 +1,5 @@
 FROM microsoft/dotnet:2.0.02-sdk-nanoserver
-MAINTAINER Stuart Shay
+LABEL Stuart Shay
 LABEL version="1.1.2"
 
 ## Install NodeJS
