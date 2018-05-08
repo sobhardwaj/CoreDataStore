@@ -19,7 +19,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             _output = output;
         }
 
-        //[SkippableFact, Trait("Category", "Intergration")]
+        [Fact, Trait("Category", "Intergration")]
         public void Get_LPC_Lamppost_List()
         {
             var results = _lamppostRepository.GetAll().ToList();
@@ -29,7 +29,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.NotEqual(0, count);
         }
 
-        //[SkippableFact, Trait("Category", "Intergration")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Lamppost()
         {
             var postId = 10;
@@ -38,7 +38,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.Equal(postId, result);
         }
 
-        //[SkippableFact, Trait("Category", "Intergration")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Update_Lamppost_Properties()
         {
             var postId = 10;

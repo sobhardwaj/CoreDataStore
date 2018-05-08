@@ -25,14 +25,12 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             _output = output;
         }
 
-
         [Fact, Trait("Category", "Intergration")]
         public void LPC_Reports_Exist()
         {
             var results = _lpcReportRepository.GetAll().ToList();
             Assert.NotNull(results);
         }
-
 
         [Fact, Trait("Category", "Intergration")]
         public void Can_Update_LPC_Report()
@@ -44,7 +42,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.NotNull(result);
         }
 
-
         [Fact, Trait("Category", "Intergration")]
         public void Can_Get_LPCReport()
         {
@@ -53,8 +50,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
             Assert.Equal(lpNumber, lpcReportNumber);
         }
-
-
         [Fact, Trait("Category", "Intergration")]
         public void Can_Get_LPCReport_Location()
         {
@@ -63,7 +58,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
             Assert.Equal(lpNumber, lpcReportNumber.LPNumber);
         }
-
 
         [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Included_Fields()
@@ -77,10 +71,9 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.Equal(landmarkCount, landmark.Landmarks.Count);
         }
 
-        //[Fact, Trait("Category", "Intergration")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Paging_List()
         {
-            //int count = 0;
             var request = new LPCReportRequest
             {
                 PageSize = 20,
@@ -98,7 +91,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
             var results = _lpcReportRepository.GetPage(request.Page, request.PageSize, sortingList).ToList();
             Assert.Equal(request.PageSize, results.Count);
-
         }
 
         [Fact, Trait("Category", "Intergration")]

@@ -30,7 +30,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
             var serviceProvider = new ServiceCollection()
                 .AddDbContext<NYCLandmarkContext>(options => options.UseSqlServer(DbConnection))
                 .AddScoped<ILandmarkRepository, LandmarkRepository>()
-                .AddScoped<ILpcLamppostRepository, LPCLamppostRepository>()
+                .AddScoped<ILpcLamppostRepository, LpcLamppostRepository>()
                 .AddScoped<ILpcLocationRepository, LPCLocationRepository>()
                 .AddScoped<ILpcReportRepository, LPCReportRepository>()
                 .AddScoped<IPlutoRepository, PlutoRepository>()

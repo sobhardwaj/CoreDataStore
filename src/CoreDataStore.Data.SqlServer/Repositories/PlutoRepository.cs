@@ -44,7 +44,7 @@ namespace CoreDataStore.Data.SqlServer.Repositories
 
         public void Dispose()
         {
-            _context?.Dispose();
+           // _context?.Dispose();
         }
     }
 }
