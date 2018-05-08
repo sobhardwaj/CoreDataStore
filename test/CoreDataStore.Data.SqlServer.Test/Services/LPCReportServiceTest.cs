@@ -40,19 +40,19 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
         }
 
 
-        [Fact, Trait("Category", "Intergration")]
-        public void Can_Get_Filtered_Paging_List()
-        {
-            var request = new LPCReportRequest
-            {
-                PageSize = 20,
-                Page = 1,
-                Borough = "Manhattan"
-            };
+        //[Fact, Trait("Category", "Intergration")]
+        //public void Can_Get_Filtered_Paging_List()
+        //{
+        //    var request = new LPCReportRequest
+        //    {
+        //        PageSize = 20,
+        //        Page = 1,
+        //        Borough = "Manhattan"
+        //    };
 
-            var results = _lpcReportService.GetLPCReports(request).Results;
-            Assert.Equal(request.PageSize, results.Count);
-        }
+        //    var results = _lpcReportService.GetLPCReports(request).Results;
+        //    Assert.Equal(request.PageSize, results.Count);
+        //}
 
     }
 }

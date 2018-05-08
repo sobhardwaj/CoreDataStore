@@ -40,14 +40,14 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
         }
 
 
-        [Fact, Trait("Category", "Intergration")]
-        public void Can_Get_Street_List()
-        {
-            string lpNumber = "LP-02039";
+        //[Fact, Trait("Category", "Intergration")]
+        //public void Can_Get_Street_List()
+        //{
+        //    string lpNumber = "LP-02039";
 
-            var results = _landmarkService.GetLandmarkStreets(lpNumber);
-            Assert.NotNull(results);
-        }
+        //    var results = _landmarkService.GetLandmarkStreets(lpNumber);
+        //    Assert.NotNull(results);
+        //}
 
     }
 }

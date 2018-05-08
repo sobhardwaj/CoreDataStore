@@ -80,39 +80,39 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
         }
 
 
-        [Fact, Trait("Category", "InMemoryDatabase")]
-        public void DbContext_Should_Have_Records()
-        {
-            var controller = PrepareController();
-            var dbContext = _serviceProvider.GetRequiredService<NYCLandmarkContext>();
+        //[Fact, Trait("Category", "InMemoryDatabase")]
+        //public void DbContext_Should_Have_Records()
+        //{
+        //    var controller = PrepareController();
+        //    var dbContext = _serviceProvider.GetRequiredService<NYCLandmarkContext>();
 
-            Assert.Equal(20, dbContext.LPCReports.ToList().Count());
-        }
-
-
-        [Fact, Trait("Category", "InMemoryDatabase")]
-        public void Get_Should_Have_Record()
-        {
-            var controller = PrepareController();
-
-            var id = 10;
-            var actionResult = controller.Get(id);
-
-            // Assert
-            actionResult.Should().BeOfType<ObjectResult>();
-        }
+        //    Assert.Equal(20, dbContext.LPCReports.ToList().Count());
+        //}
 
 
-        [Fact, Trait("Category", "InMemoryDatabase")]
-        public void Get_Should_Return_BadRequest()
-        {
-            var controller = PrepareController();
+        //[Fact, Trait("Category", "InMemoryDatabase")]
+        //public void Get_Should_Have_Record()
+        //{
+        //    var controller = PrepareController();
 
-            var actionResult = controller.Get(0);
+        //    var id = 10;
+        //    var actionResult = controller.Get(id);
 
-            // Assert
-            actionResult.Should().BeOfType<BadRequestResult>();
-        }
+        //    // Assert
+        //    actionResult.Should().BeOfType<ObjectResult>();
+        //}
+
+
+        //[Fact, Trait("Category", "InMemoryDatabase")]
+        //public void Get_Should_Return_BadRequest()
+        //{
+        //    var controller = PrepareController();
+
+        //    var actionResult = controller.Get(0);
+
+        //    // Assert
+        //    actionResult.Should().BeOfType<BadRequestResult>();
+        //}
 
 
         //[Fact, Trait("Category", "InMemoryDatabase")]
