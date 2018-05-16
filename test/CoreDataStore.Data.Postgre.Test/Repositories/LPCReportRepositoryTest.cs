@@ -1,46 +1,32 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 using CoreDataStore.Data.Interfaces;
-using CoreDataStore.Data.Postgre.Repositories;
 using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
+using CoreDataStore.Data.Postgre.Test.Fixtures;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Domain.Enum;
-using Microsoft.Extensions.Configuration;
 using Navigator.Common.Helpers;
+using Xunit.Abstractions;
 
 namespace CoreDataStore.Data.Postgre.Test.Repositories
 {
-    public class LPCReportRepositoryTest
+    public class LpcReportRepositoryTest : IClassFixture<CoreDataStoreDbFixture>
     {
         private readonly ILpcReportRepository _lpcReportRepository;
 
         private readonly NYCLandmarkContext _dbContext;
-        public LPCReportRepositoryTest()
+
+        private readonly ITestOutputHelper _output;
+
+        public LpcReportRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            var dbonnection = builder.GetConnectionString("PostgreSQL");
-
-            var serviceProvider = new ServiceCollection()
-                .AddDbContext<NYCLandmarkContext>(options => options.UseNpgsql(dbonnection))
-                .AddScoped<ILpcReportRepository, LPCReportRepository>()
-                .BuildServiceProvider();
-
-            serviceProvider.GetRequiredService<NYCLandmarkContext>();
-
-            _dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            _lpcReportRepository = serviceProvider.GetRequiredService<ILpcReportRepository>();
+            _dbContext = fixture.DbContext;
+            _lpcReportRepository = fixture.LpcReportRepository;
+            _output = output;
         }
-
 
         [Fact, Trait("Category", "Intergration")]
         public void LPC_Reports_Exist()
@@ -52,14 +38,12 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             Assert.NotEqual(0, count);
         }
 
-
         [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Borough_List()
         {
             var results = EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription()).ToList();
             Assert.NotNull(results);
         }
-
 
         [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Filtered_Paging_List()
@@ -96,7 +80,5 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             Assert.NotNull(results);
             Assert.NotEqual(0, count);
         }
-
-
     }
 }

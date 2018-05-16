@@ -126,7 +126,6 @@ namespace CoreDataStore.Data.Postgre
 
             #endregion
 
-
             builder.Entity<AuditLog>().ToTable("AuditLog");
             builder.Entity<AuditLog>().HasKey(m => m.Id);
             builder.Entity<AuditLog>().Property(t => t.UserName).HasColumnType("varchar").HasMaxLength(50);
@@ -134,7 +133,6 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<AuditLog>().Property(t => t.EventType).HasColumnType("varchar").HasMaxLength(50).IsRequired();
             builder.Entity<AuditLog>().Property(t => t.TableName).HasColumnType("varchar").HasMaxLength(50).IsRequired();
             builder.Entity<AuditLog>().Property(t => t.ColumnName).HasColumnType("varchar").HasMaxLength(50).IsRequired();
-
 
             base.OnModelCreating(builder);
         }
@@ -150,7 +148,5 @@ namespace CoreDataStore.Data.Postgre
         public DbSet<Pluto> Pluto { get; set; }
 
         public DbSet<AuditLog> AuditLog { get; set; }
-
-
     }
 }

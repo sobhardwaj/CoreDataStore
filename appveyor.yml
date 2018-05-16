@@ -48,7 +48,7 @@ test_script:
 deploy_script:  
  - cd C:\projects\coredatastore
  - dir
- - ps: docker build -f docker/runtime-nanoserver.dockerfile -t "stuartshay/coredatastore:nanoserver-2-1-build" .
+ - ps: docker build -f docker/coredatastore-nanoserver-web.dockerfile/runtime-nanoserver.dockerfile -t "stuartshay/coredatastore:nanoserver-2-1-build" .
  - ps: docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
  - ps: docker push "stuartshay/coredatastore:nanoserver-2-1-build"
 

@@ -1,39 +1,25 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using CoreDataStore.Data.Interfaces;
-using CoreDataStore.Data.Postgre.Repositories;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using CoreDataStore.Data.Postgre.Test.Fixtures;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace CoreDataStore.Data.Postgre.Test.Repositories
 {
-    public class LPCLamppostRepositoryTest
+    public class LpcLamppostRepositoryTest : IClassFixture<CoreDataStoreDbFixture>
     {
         private readonly ILpcLamppostRepository _lamppostRepository;
+
         private readonly NYCLandmarkContext _dbContext;
 
-        public LPCLamppostRepositoryTest()
+        private readonly ITestOutputHelper _output;
+
+        public LpcLamppostRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            var dbonnection = builder.GetConnectionString("PostgreSQL");
-
-            var serviceProvider = new ServiceCollection()
-                .AddDbContext<NYCLandmarkContext>(options => options.UseNpgsql(dbonnection))
-                .AddScoped<ILpcLamppostRepository, LPCLamppostRepository>()
-                .BuildServiceProvider();
-
-            serviceProvider.GetRequiredService<NYCLandmarkContext>();
-
-            _dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            _lamppostRepository = serviceProvider.GetRequiredService<ILpcLamppostRepository>(); 
+            _dbContext = fixture.DbContext;
+            _lamppostRepository = fixture.LpcLamppostRepository;
+            _output = output;
         }
-
 
         [Fact, Trait("Category", "Intergration")]
         public void Get_LPC_Lamppost_List()
@@ -45,7 +31,6 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             Assert.NotEqual(0, count);
         }
 
-
         [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Lamppost()
         {
@@ -54,7 +39,5 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
 
             Assert.Equal(postId, result);
         }
-
-
     }
 }

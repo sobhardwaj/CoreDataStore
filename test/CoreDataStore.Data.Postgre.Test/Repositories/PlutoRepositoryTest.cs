@@ -1,35 +1,20 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using CoreDataStore.Data.Interfaces;
-using CoreDataStore.Data.Postgre.Repositories;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using CoreDataStore.Data.Postgre.Test.Fixtures;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace CoreDataStore.Data.Postgre.Test.Repositories
 {
-    public class PlutoRepositoryTest
+    public class PlutoRepositoryTest : IClassFixture<CoreDataStoreDbFixture>
     {
         private readonly IPlutoRepository _plutoRepository;
 
-        public PlutoRepositoryTest()
-       {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            var dbonnection = builder.GetConnectionString("PostgreSQL");
-
-            var serviceProvider = new ServiceCollection()
-                .AddDbContext<NYCLandmarkContext>(options => options.UseNpgsql(dbonnection))
-                .AddScoped<IPlutoRepository, PlutoRepository>()
-                .BuildServiceProvider();
-
-             serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            _plutoRepository = serviceProvider.GetRequiredService<IPlutoRepository>();
-
+        private readonly ITestOutputHelper _output;
+        public PlutoRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
+        {
+            _plutoRepository = fixture.PlutoRepository;
+            _output = output;
         }
 
         [Fact, Trait("Category", "Intergration")]
@@ -45,7 +30,6 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             Assert.Equal(lot, result.Lot);
         }
 
-
         [Fact, Trait("Category", "Intergration")]
         public void Pluto_BBL_Exist()
         {
@@ -56,6 +40,5 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             Assert.Equal("10307", result.ZipCode);
             Assert.Equal(bbl, bbl);
         }
-
     }
 }

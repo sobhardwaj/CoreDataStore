@@ -1,41 +1,27 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
-using CoreDataStore.Data.Postgre.Repositories;
+using CoreDataStore.Data.Postgre.Test.Fixtures;
 using CoreDataStore.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace CoreDataStore.Data.Postgre.Test.Repositories
 {
-    public class LandmarkRepositoryTest
+    public class LandmarkRepositoryTest : IClassFixture<CoreDataStoreDbFixture>
     {
         private readonly ILandmarkRepository _landmarkRepository;
+
         private readonly NYCLandmarkContext _dbContext;
 
-        public LandmarkRepositoryTest()
+        private readonly ITestOutputHelper _output;
+
+        public LandmarkRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            var dbonnection = builder.GetConnectionString("PostgreSQL");
-
-            var serviceProvider = new ServiceCollection()
-                .AddDbContext<NYCLandmarkContext>(options => options.UseNpgsql(dbonnection))
-                .AddScoped<ILandmarkRepository, LandmarkRepository>()
-                .BuildServiceProvider();
-
-            serviceProvider.GetRequiredService<NYCLandmarkContext>();
-
-            _dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            _landmarkRepository = serviceProvider.GetRequiredService<ILandmarkRepository>();
+            _landmarkRepository = fixture.LandmarkRepository;
+            _output = output;
         }
 
         [Fact, Trait("Category", "Intergration")]
@@ -71,8 +57,5 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             Assert.NotNull(results);
 
         }
-
-
-
     }
 }
