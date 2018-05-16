@@ -25,14 +25,14 @@ New York City Landmarks Reference Data
 ### .NET Core
 
 .NET Core 2.1 RC1 SDK 
+
 ```
 https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-rc1
-
 ```
 
 ### Visual Studio MSBuild
 
-Visual Studio 2017 Preview version 15.7
+Visual Studio 2017 Preview version 15.7     
 https://www.visualstudio.com/vs/preview/
 
   
