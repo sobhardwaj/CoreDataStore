@@ -40,9 +40,9 @@ jobs:
           name: Install .NET Core
           command: |
            wget -q packages-microsoft-prod.deb https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
-           dpkg -i packages-microsoft-prod.deb
-           apt update
-           apt install -y dotnet-sdk-2.1.300-rc1-008673
+           sudo dpkg -i packages-microsoft-prod.deb
+           sudo apt update
+           sudo apt install -y dotnet-sdk-2.1.300-rc1-008673
             
 
             #sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
