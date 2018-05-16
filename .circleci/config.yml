@@ -18,8 +18,8 @@ jobs:
       - run: 
           name: Install Ubuntu Build Packages
           command: |
-            apt install -y curl git apt-transport-https unzip wget libunwind8 gettext libicu-dev liblttng-ust-dev libcurl4-openssl-dev libssl-dev uuid-dev
             apt update
+            apt install -y curl git apt-transport-https unzip wget libunwind8 gettext libicu-dev liblttng-ust-dev libcurl4-openssl-dev libssl-dev uuid-dev
       - setup_remote_docker
       # use a primary image that already has Docker (recommended)
       # or install it during a build like we do here
