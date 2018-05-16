@@ -6,7 +6,7 @@ services:
   endpoint:
     start_on_create: true
   coredatastore-api:
-    scale: 3
+    scale: 2
     start_on_create: true
   node-ui:
     scale: 1
