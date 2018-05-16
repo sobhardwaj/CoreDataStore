@@ -30,7 +30,7 @@ services:
     links:
     - coredatastore-api:coredatastore-api
   coredatastore-api:
-    image: stuartshay/coredatastore:2.0-runtime
+    image: stuartshay/coredatastore:2.1-runtime
     stdin_open: true
     tty: true
     links:
