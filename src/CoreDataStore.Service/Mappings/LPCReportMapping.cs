@@ -10,7 +10,7 @@ namespace CoreDataStore.Service.Mappings
             : base("LPCReportMapping")
         {
             CreateMap<LPCReport, LPCReportModel>()
-                .ForMember(dest => dest.Neighborhood, opt => opt.MapFrom(src => src.LPCLocation.Neighborhood))                
+                .ForMember(dest => dest.Neighborhood, opt => opt.MapFrom(src => src.LPCLocation.Neighborhood))
                 ;
 
             CreateMap<LPCReportModel, LPCReport>()

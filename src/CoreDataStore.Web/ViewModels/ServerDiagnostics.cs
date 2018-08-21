@@ -82,6 +82,5 @@ namespace CoreDataStore.Web.ViewModels
         /// 
         /// </summary>
         public IEnumerable<DiagnosticCheckCollection> Checks { get; set; }
-
     }
 }

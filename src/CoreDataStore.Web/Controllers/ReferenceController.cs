@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using CoreDataStore.Data.Data;
 using CoreDataStore.Domain.Enum;
 using CoreDataStore.Domain.Interfaces;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using CoreDataStore.Data.Data;
 using Navigator.Common.Helpers;
 
 namespace CoreDataStore.Web.Controllers
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     [Route("api/[controller]")]
     [EnableCors("AllowAll")]
@@ -19,7 +19,7 @@ namespace CoreDataStore.Web.Controllers
         private readonly IReferenceRepository _referenceRepository;
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="ReferenceController"/> class.
         /// </summary>
         /// <param name="referenceRepository"></param>
         public ReferenceController(IReferenceRepository referenceRepository)
@@ -53,7 +53,6 @@ namespace CoreDataStore.Web.Controllers
             return EnumHelper.EnumToList<ObjectType>().Select(e => e.GetDescription());
         }
 
-
         /// <summary>
         ///  Get Parent Styles
         /// </summary>
@@ -66,6 +65,5 @@ namespace CoreDataStore.Web.Controllers
         {
             return StylesData.GetParentStyles();
         }
-
     }
 }

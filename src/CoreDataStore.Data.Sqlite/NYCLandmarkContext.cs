@@ -1,23 +1,28 @@
-﻿using CoreDataStore.Data.Conventions;
-using CoreDataStore.Domain.Entities;
+﻿using CoreDataStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreDataStore.Data.Sqlite
 {
     public class NYCLandmarkContext : DbContext
     {
-        public NYCLandmarkContext(DbContextOptions<NYCLandmarkContext> options) : base(options)
-        { }
+        public NYCLandmarkContext(DbContextOptions<NYCLandmarkContext> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<LPCReport> LPCReports { get; set; }
+
+        public DbSet<Landmark> Landmarks { get; set; }
+
+        public DbSet<Pluto> Pluto { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.RemovePluralizingTableNameConvention();
-
+            builder.Entity<LPCReport>().ToTable("LPCReport");
             builder.Entity<LPCReport>().HasKey(m => m.Id);
             builder.Entity<LPCReport>().Property(t => t.Name).HasMaxLength(200).IsRequired();
             builder.Entity<LPCReport>().Property(t => t.Architect).HasMaxLength(200);
@@ -39,7 +44,7 @@ namespace CoreDataStore.Data.Sqlite
                 .HasPrincipalKey<LPCLocation>(t => t.LPNumber)
                 .HasForeignKey<LPCLocation>(t => t.LPNumber);
 
-
+            builder.Entity<Landmark>().ToTable("Landmark");
             builder.Entity<Landmark>().HasKey(m => m.Id);
             builder.Entity<Landmark>().Property(t => t.BoroughID).HasMaxLength(2).IsRequired();
             builder.Entity<Landmark>().Property(t => t.BOUNDARIES).HasMaxLength(50).IsRequired();
@@ -68,20 +73,15 @@ namespace CoreDataStore.Data.Sqlite
             //    .HasForeignKey<Pluto>(p => p.BBL)
             //    .HasPrincipalKey<Landmark>(l => l.BBL);
 
+            builder.Entity<Pluto>().ToTable("PLUTO");
             builder.Entity<Pluto>().HasKey(m => m.Id);
             builder.Entity<Pluto>().Property(t => t.BBL).IsRequired();
             builder.Entity<Pluto>().Property(t => t.LandmarkName).HasColumnName("Landmark").HasMaxLength(100);
-            builder.Entity<Pluto>().Property(t => t.Latitude).HasPrecision(9, 6).IsRequired();
-            builder.Entity<Pluto>().Property(t => t.Longitude).HasPrecision(9, 6).IsRequired();
+            builder.Entity<Pluto>().Property(t => t.Latitude);  //.HasPrecision(9, 6).IsRequired();
+            builder.Entity<Pluto>().Property(t => t.Longitude);  //.HasPrecision(9, 6).IsRequired();
             builder.Entity<Pluto>().Property(t => t.ZipCode).HasMaxLength(5);
 
             base.OnModelCreating(builder);
         }
-
-        public DbSet<LPCReport> LPCReports { get; set; }
-
-        public DbSet<Landmark> Landmarks { get; set; }
-
-        public DbSet<Pluto> Pluto { get; set; }
     }
 }

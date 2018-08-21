@@ -1,23 +1,23 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
+using CoreDataStore.Data.Interfaces;
+using CoreDataStore.Domain.Interfaces;
+using CoreDataStore.Service.Interfaces;
+using CoreDataStore.Service.Mappings;
+using CoreDataStore.Service.Services;
+using CoreDataStore.Web.Extensions;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using CoreDataStore.Domain.Interfaces;
-using CoreDataStore.Data.Interfaces;
-using CoreDataStore.Service.Interfaces;
-using CoreDataStore.Service.Mappings;
-using CoreDataStore.Service.Services;
-using CoreDataStore.Web.Extensions;
-using Microsoft.AspNetCore.Diagnostics;
-using Swashbuckle.Swagger.Model;
-using Microsoft.AspNetCore.Http;
-using System.IO;
 using Microsoft.Extensions.PlatformAbstractions;
 using Navigator.Middleware.HttpHeaders;
+using Swashbuckle.Swagger.Model;
 
 namespace CoreDataStore.Web
 {

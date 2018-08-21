@@ -14,8 +14,8 @@ namespace CoreDataStore.Data.SqlServer.Mappings
             builder.Property(t => t.Borough).HasMaxLength(13);
             builder.Property(t => t.ZipCode).HasMaxLength(5);
             builder.Property(t => t.ObjectType).HasMaxLength(50);
-            builder.Property(t => t.Latitude).HasPrecision(9, 6);
-            builder.Property(t => t.Longitude).HasPrecision(9, 6);
+            builder.Property(t => t.Latitude);  //.HasPrecision(9, 6);
+            builder.Property(t => t.Longitude); //.HasPrecision(9, 6);
         }
     }
 }

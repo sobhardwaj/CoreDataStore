@@ -25,7 +25,6 @@ namespace CoreDataStore.Web.Controllers
             this._plutoService = plutoService;
         }
 
-
         /// <summary>
         ///  Get Pluto for LPC Landmark
         /// </summary>
@@ -37,6 +36,5 @@ namespace CoreDataStore.Web.Controllers
         {
             return _plutoService.GetPluto(lpcNumber);
         }
-
     }
 }

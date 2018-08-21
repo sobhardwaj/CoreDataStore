@@ -14,6 +14,5 @@
         ///  Sort Order Direction
         /// </summary>
         public string Order { get; set; }
-
     }
 }

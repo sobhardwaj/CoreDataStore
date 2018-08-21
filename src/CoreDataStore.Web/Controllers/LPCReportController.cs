@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
 using CoreDataStore.Service.ValidationRules;
 using CoreDataStore.Web.Filters;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
-using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDataStore.Web.Controllers
 {
@@ -23,7 +23,7 @@ namespace CoreDataStore.Web.Controllers
         private readonly ILandmarkService _landmarkService;
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="LPCReportController"/> class.
         /// </summary>
         /// <param name="lpcReportService"></param>
         /// <param name="landmarkService"></param>
@@ -32,7 +32,6 @@ namespace CoreDataStore.Web.Controllers
             _lpcReportService = lpcReportService;
             _landmarkService = landmarkService;
         }
-
 
         /// <summary>
         /// Get LPC Report
@@ -50,7 +49,6 @@ namespace CoreDataStore.Web.Controllers
 
             return new ObjectResult(result);
         }
-
 
         /// <summary>
         ///  Put Update LPC Report 
@@ -76,9 +74,8 @@ namespace CoreDataStore.Web.Controllers
             return new NoContentResult();
         }
 
-
         /// <summary>
-        /// Get LPC Reports Filtered Results
+        /// Get LPC Reports Filtered Results.
         /// </summary>
         /// <param name="query">Query String Parms</param>
         /// <param name="limit">Records per Page</param>
@@ -110,7 +107,6 @@ namespace CoreDataStore.Web.Controllers
             return records.Results;
         }
 
-
         /// <summary>
         /// Get Landmark Filtered Results
         /// </summary>
@@ -130,7 +126,7 @@ namespace CoreDataStore.Web.Controllers
                 Page = page,
                 SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "LP_NUMBER",
                 SortOrder = !string.IsNullOrEmpty(query.Order) ? query.Order : "asc",
-                LPCNumber = query.LpcNumber
+                LPCNumber = query.LpcNumber,
             };
 
             var records = _landmarkService.GetLandmarks(request);
@@ -140,7 +136,6 @@ namespace CoreDataStore.Web.Controllers
 
             return records.Results.OrderBy(x => x.Street).ThenBy(x => x.Number);
         }
-
 
         /// <summary>
         /// Get Landmark Street List
@@ -162,7 +157,5 @@ namespace CoreDataStore.Web.Controllers
 
             return new ObjectResult(results);
         }
-
-
     }
 }

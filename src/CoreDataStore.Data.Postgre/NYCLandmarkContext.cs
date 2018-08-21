@@ -1,33 +1,42 @@
-using Microsoft.EntityFrameworkCore;
 using CoreDataStore.Domain.Entities;
-using CoreDataStore.Data.Conventions;
 using CoreDataStore.Domain.Entities.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreDataStore.Data.Postgre
 {
     public class NYCLandmarkContext : DbContext
     {
-        public NYCLandmarkContext(DbContextOptions<NYCLandmarkContext> options) : base(options)
+        public NYCLandmarkContext(DbContextOptions<NYCLandmarkContext> options)
+            : base(options)
         { }
 
         public NYCLandmarkContext()
         {
-            
         }
+
+        public DbSet<LPCReport> LPCReports { get; set; }
+
+        public DbSet<LPCLocation> LPCLocation { get; set; }
+
+        public DbSet<LPCLamppost> LPCLamppost { get; set; }
+
+        public DbSet<Landmark> Landmarks { get; set; }
+
+        public DbSet<Pluto> Pluto { get; set; }
+
+        public DbSet<AuditLog> AuditLog { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.RemovePluralizingTableNameConvention();
-
             #region LPC Report
 
+            builder.Entity<LPCReport>().ToTable("LPCReport");
             builder.Entity<LPCReport>().HasKey(m => m.Id);
-            builder.Entity<LPCReport>().Property(t => t.Architect).HasColumnType("varchar").HasMaxLength(200);  
+            builder.Entity<LPCReport>().Property(t => t.Architect).HasColumnType("varchar").HasMaxLength(200);
             builder.Entity<LPCReport>().Property(t => t.Borough).HasColumnType("varchar").HasMaxLength(20);
             builder.Entity<LPCReport>().Property(t => t.ObjectType).HasColumnType("varchar").HasMaxLength(50);
             builder.Entity<LPCReport>().Property(t => t.LPNumber).HasColumnType("varchar").IsRequired().HasMaxLength(10);
@@ -48,6 +57,7 @@ namespace CoreDataStore.Data.Postgre
 
             #region LPC Location
 
+            builder.Entity<LPCLocation>().ToTable("LPCLocation");
             builder.Entity<LPCLocation>().HasKey(m => m.Id);
             builder.Entity<LPCLocation>().Property(t => t.Name).HasColumnType("varchar").HasMaxLength(200).IsRequired();
             builder.Entity<LPCLocation>().Property(t => t.LPNumber).HasColumnType("varchar").HasMaxLength(10).IsRequired();
@@ -58,8 +68,8 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<LPCLocation>().Property(t => t.Neighborhood).HasColumnType("varchar").HasMaxLength(200);
             builder.Entity<LPCLocation>().Property(t => t.Street).HasColumnType("varchar").HasMaxLength(200);
             builder.Entity<LPCLocation>().Property(t => t.Address).HasColumnType("varchar").HasMaxLength(200);
-            builder.Entity<LPCLocation>().Property(t => t.Latitude).HasPrecision(9, 6);
-            builder.Entity<LPCLocation>().Property(t => t.Longitude).HasPrecision(9, 6);
+            builder.Entity<LPCLocation>().Property(t => t.Latitude).HasColumnType("decimal(9, 6)");
+            builder.Entity<LPCLocation>().Property(t => t.Longitude).HasColumnType("decimal(9, 6)");
 
             //builder.Entity<LPCLocation>()
             //    .HasOne(t => t.LPCReport)
@@ -71,6 +81,7 @@ namespace CoreDataStore.Data.Postgre
 
             #region Landmark
 
+            builder.Entity<Landmark>().ToTable("Landmark");
             builder.Entity<Landmark>().HasKey(m => m.Id);
             builder.Entity<Landmark>().Property(t => t.BoroughID).HasColumnType("varchar").HasMaxLength(2).IsRequired();
             builder.Entity<Landmark>().Property(t => t.OBJECTID).IsRequired();
@@ -89,8 +100,8 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<Landmark>().Property(t => t.STATUS_NOT).HasColumnType("varchar").HasMaxLength(200);
             builder.Entity<Landmark>().Property(t => t.CALEN_DATE).HasColumnType("date");
             builder.Entity<Landmark>().Property(t => t.DESIG_DATE).HasColumnType("date");
-            builder.Entity<Landmark>().Property(t => t.Latitude).HasPrecision(9, 6).IsRequired();
-            builder.Entity<Landmark>().Property(t => t.Longitude).HasPrecision(9, 6).IsRequired();
+            builder.Entity<Landmark>().Property(t => t.Latitude).HasColumnType("decimal(9, 6)").IsRequired();
+            builder.Entity<Landmark>().Property(t => t.Longitude).HasColumnType("decimal(9, 6)").IsRequired();
 
             //LPC Report(One) =>  Landmark(Many) 
             builder.Entity<Landmark>()
@@ -110,19 +121,20 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<Pluto>().Property(t => t.BBL).IsRequired();
             builder.Entity<Pluto>().Property(t => t.Address).HasMaxLength(28);
             builder.Entity<Pluto>().Property(t => t.ZipCode).HasMaxLength(5);
-            builder.Entity<Pluto>().Property(t => t.Latitude).HasPrecision(9, 6).IsRequired();
-            builder.Entity<Pluto>().Property(t => t.Longitude).HasPrecision(9, 6).IsRequired();
+            builder.Entity<Pluto>().Property(t => t.Latitude).HasColumnType("decimal(9, 6)").IsRequired();
+            builder.Entity<Pluto>().Property(t => t.Longitude).HasColumnType("decimal(9, 6)").IsRequired();
 
             #endregion
 
             #region Lamppost
 
+            builder.Entity<LPCLamppost>().ToTable("LPCLamppost");
             builder.Entity<LPCLamppost>().HasKey(m => m.Id);
             builder.Entity<LPCLamppost>().Property(t => t.Type).HasColumnType("varchar").HasMaxLength(50);
             builder.Entity<LPCLamppost>().Property(t => t.SubType).HasColumnType("varchar").HasMaxLength(50);
             builder.Entity<LPCLamppost>().Property(t => t.Borough).HasColumnType("varchar").HasMaxLength(20);
-            builder.Entity<LPCLamppost>().Property(t => t.Latitude).HasPrecision(9, 6);
-            builder.Entity<LPCLamppost>().Property(t => t.Longitude).HasPrecision(9, 6);
+            builder.Entity<LPCLamppost>().Property(t => t.Latitude).HasColumnType("decimal(9, 6)");
+            builder.Entity<LPCLamppost>().Property(t => t.Longitude).HasColumnType("decimal(9, 6)");
 
             #endregion
 
@@ -136,17 +148,5 @@ namespace CoreDataStore.Data.Postgre
 
             base.OnModelCreating(builder);
         }
-
-        public DbSet<LPCReport> LPCReports { get; set; }
-
-        public DbSet<LPCLocation> LPCLocation { get; set; }
-
-        public DbSet<LPCLamppost> LPCLamppost { get; set; }
-
-        public DbSet<Landmark> Landmarks { get; set; }
-
-        public DbSet<Pluto> Pluto { get; set; }
-
-        public DbSet<AuditLog> AuditLog { get; set; }
     }
 }

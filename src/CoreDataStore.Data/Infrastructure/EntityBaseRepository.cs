@@ -14,21 +14,16 @@ namespace CoreDataStore.Data.Infrastructure
     public class EntityBaseRepository<T> : IEntityBaseRepository<T>
                 where T : class, IEntityBase, new()
     {
+        private readonly OrderBy<T> defaultOrderBy = new OrderBy<T>(qry => qry.OrderBy(e => e.Id));
 
-        private DbContext _context;
+        private readonly DbContext _context;
 
-        private readonly OrderBy<T> DefaultOrderBy = new OrderBy<T>(qry => qry.OrderBy(e => e.Id));
-
-        public string UserId { get; set; }
-
-
-        #region Properties
         public EntityBaseRepository(DbContext context)
         {
             _context = context;
         }
 
-        #endregion
+        public string UserId { get; set; }
 
         public virtual IEnumerable<T> GetAll()
         {
@@ -47,6 +42,7 @@ namespace CoreDataStore.Data.Infrastructure
             {
                 query = query.Include(includeProperty);
             }
+
             return query.AsEnumerable();
         }
 
@@ -127,17 +123,17 @@ namespace CoreDataStore.Data.Infrastructure
             dbEntityEntry.State = EntityState.Deleted;
         }
 
-        public virtual async Task<bool> UpdateDbEntryAsync(T entity, params Expression<Func<T, object>>[] properties) 
+        public virtual async Task<bool> UpdateDbEntryAsync(T entity, params Expression<Func<T, object>>[] properties)
         {
             var entry = _context.Entry<T>(entity);
             _context.Set<T>().Attach(entity);
 
-                foreach (var property in properties)
-                    entry.Property(property).IsModified = true;
+            foreach (var property in properties)
+                entry.Property(property).IsModified = true;
 
-             var userId = this.UserId;
-             await _context.SaveChangesAsync();
-             return true;
+            var userId = this.UserId;
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public virtual void Commit()
