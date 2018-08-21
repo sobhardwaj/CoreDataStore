@@ -13,7 +13,6 @@ Dependencies
 
 #### Demo
 https://coredatastore.com         
-http://stuartshay.github.io/CoreDataStore/
 
 New York City Landmarks Reference Data     
 
@@ -21,21 +20,13 @@ New York City Landmarks Reference Data
 - [NYC OpenData](http://opendata.cityofnewyork.us/)   
 
 ## Prerequisites:
-
-### .NET Core
-
-.NET Core 2.1 RC1 SDK 
-
 ```
-https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-rc1
+Node v9.3.0
+NET Core 2.1
+VS Code 1.19.1 or VS 2017 15.8.0
 ```
 
-### Visual Studio MSBuild
 
-Visual Studio 2017 Preview version 15.7     
-https://www.visualstudio.com/vs/preview/
-
-  
 ## Web Application Build Instructions
 [Angular/NodeJS Web Client](https://github.com/stuartshay/CoreDataStore/tree/master/src/CoreDataStore.Web)
 
