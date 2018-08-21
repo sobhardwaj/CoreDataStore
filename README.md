@@ -7,10 +7,10 @@
 [![Code Climate](https://codeclimate.com/github/stuartshay/CoreDataStore/badges/gpa.svg)](https://codeclimate.com/github/stuartshay/CoreDataStore)
 
 
-[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=ImageGalleryClient&metric=alert_status)](http://sonar.navigatorglass.com:9000/dashboard?id=ImageGalleryClient)
-[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=ImageGalleryClient&metric=reliability_rating)](http://sonar.navigatorglass.com:9000/dashboard?id=ImageGalleryClient)
-[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=ImageGalleryClient&metric=security_rating)](http://sonar.navigatorglass.com:9000/dashboard?id=ImageGalleryClient)
-[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=ImageGalleryClient&metric=sqale_rating)](http://sonar.navigatorglass.com:9000/dashboard?id=ImageGalleryClient)
+[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=CoreDataStore&metric=alert_status)](http://sonar.navigatorglass.com:9000/dashboard?id=CoreDataStore)
+[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=CoreDataStore&metric=reliability_rating)](http://sonar.navigatorglass.com:9000/dashboard?id=CoreDataStore)
+[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=CoreDataStore&metric=security_rating)](http://sonar.navigatorglass.com:9000/dashboard?id=CoreDataStore)
+[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=CoreDataStore&metric=sqale_rating)](http://sonar.navigatorglass.com:9000/dashboard?id=CoreDataStore)
 
 
  Build | Status  
