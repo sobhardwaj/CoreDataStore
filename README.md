@@ -26,8 +26,39 @@ NET Core 2.1
 VS Code 1.19.1 or VS 2017 15.8.0
 ```
 
+### Build & Run
 
-## Web Application Build Instructions
+```
+cd CoreDataStore
+setup-env.bat
+
+dotnet restore
+
+cd src\CoreDataStore.Web
+
+npm install
+
+npm run clean
+npm run build
+
+dotnet run
+
+http://localhost:5000/
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 [Angular/NodeJS Web Client](https://github.com/stuartshay/CoreDataStore/tree/master/src/CoreDataStore.Web)
 
 
