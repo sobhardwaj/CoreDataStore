@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Domain.Interfaces;
@@ -16,36 +17,38 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
+using Navigator.Common.Helpers;
 using Navigator.Middleware.HttpHeaders;
 using Swashbuckle.Swagger.Model;
 
 namespace CoreDataStore.Web
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class Startup
     {
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="Startup"/> class.
         /// </summary>
+        /// <param name="configuration"></param>
         /// <param name="env"></param>
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-
-            builder.AddEnvironmentVariables();
-
-            Configuration = builder.Build();
+            Configuration = configuration;
+            using (ConsoleColorContext.Create())
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("ASPNETCORE_URLS:{0}", Configuration["ASPNETCORE_URLS"]);
+                Console.WriteLine("ASPNETCORE_ENVIRONMENT:{0}", Configuration["ASPNETCORE_ENVIRONMENT"]);
+                Console.WriteLine("CONNECTION_PostgreSQL:{0}", Configuration["CONNECTION_PostgreSQL"]);
+            }
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         private void ConfigService(IServiceCollection services)
         {
@@ -60,7 +63,7 @@ namespace CoreDataStore.Web
                     Version = "v1",
                     Title = "Core DataStore API",
                     Description = "Core DataStore API",
-                    TermsOfService = "None"
+                    TermsOfService = "None",
                 });
 
                 options.DescribeAllEnumsAsStrings();
@@ -76,7 +79,7 @@ namespace CoreDataStore.Web
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureDevelopmentServices(IServiceCollection services)
@@ -97,9 +100,8 @@ namespace CoreDataStore.Web
             ConfigService(services);
         }
 
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureStagingServices(IServiceCollection services)
@@ -109,12 +111,12 @@ namespace CoreDataStore.Web
                                                                 .AllowAnyHeader()));
 
             var builder = new ConfigurationBuilder();
-            builder.AddEnvironmentVariables("");
+            builder.AddEnvironmentVariables(string.Empty);
             var config = builder.Build();
 
             var stageConnection = Configuration["ConnectionStrings:PostgreSQL"];
 
-            //EnvironmentVariable Exist Overide
+            // EnvironmentVariable Exist Overide
             if (!string.IsNullOrWhiteSpace(config["CONNECTION_PostgreSQL"]))
                 stageConnection = config["CONNECTION_PostgreSQL"];
 
@@ -130,7 +132,7 @@ namespace CoreDataStore.Web
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureProductionServices(IServiceCollection services)
@@ -151,23 +153,22 @@ namespace CoreDataStore.Web
             ConfigService(services);
         }
 
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="app"></param>
         /// <param name="loggerFactory"></param>
         public void ConfigureDevelopment(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseDeveloperExceptionPage();
-            //app.UseBrowserLink();
-            //app.UseDatabaseErrorPage();
+            // app.UseBrowserLink();
+            // app.UseDatabaseErrorPage();
 
             AppConfig(app, loggerFactory);
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="app"></param>
         /// <param name="loggerFactory"></param>
@@ -196,17 +197,16 @@ namespace CoreDataStore.Web
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="app"></param>
         /// <param name="loggerFactory"></param>
         public void ConfigureProduction(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseExceptionHandler("/Home/Error");
-            //loggerFactory.AddProvider(new SqlLoggerProvider());
+            // loggerFactory.AddProvider(new SqlLoggerProvider());
 
             AppConfig(app, loggerFactory);
-
         }
 
         private void AppConfig(IApplicationBuilder app, ILoggerFactory loggerFactory)
@@ -224,7 +224,6 @@ namespace CoreDataStore.Web
 
             app.UseSwagger();
             app.UseSwaggerUi();
-
         }
 
         private void ConfigureRoutes(IRouteBuilder routeBuilder)
@@ -239,6 +238,5 @@ namespace CoreDataStore.Web
             var documentationFile = appEnvironment.ApplicationName + ".xml";
             return Path.Combine(appEnvironment.ApplicationBasePath, documentationFile);
         }
-
     }
 }

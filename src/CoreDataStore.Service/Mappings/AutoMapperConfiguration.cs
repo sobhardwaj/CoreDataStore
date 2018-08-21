@@ -15,7 +15,7 @@ namespace CoreDataStore.Service.Mappings
                     x.AddProfile<LPCReportMapping>();
                     x.AddProfile<LandmarkMapping>();
                     x.AddProfile<PlutoMapping>();
-                });  
+                });
             }
 
             _isMappinginitialized = true;

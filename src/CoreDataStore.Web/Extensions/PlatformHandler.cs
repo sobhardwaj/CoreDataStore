@@ -3,7 +3,7 @@
 namespace CoreDataStore.Web.Extensions
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class PlatformHandler
     {
@@ -19,18 +19,18 @@ namespace CoreDataStore.Web.Extensions
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static Platform Platform { get; set; }
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class Platform
     {
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="Platform"/> class.
         /// </summary>
         /// <param name="platform"></param>
         public Platform(OSPlatform platform)
@@ -39,23 +39,23 @@ namespace CoreDataStore.Web.Extensions
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public OSPlatform OSPlatform { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        public bool IsLinux { get { return OSPlatform == OSPlatform.Linux; } }
+        public bool IsLinux => OSPlatform == OSPlatform.Linux;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        public bool IsMac { get { return OSPlatform == OSPlatform.OSX; } }
+        public bool IsMac => OSPlatform == OSPlatform.OSX;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        public bool IsWindows { get { return OSPlatform == OSPlatform.Windows; } }
+        public bool IsWindows => OSPlatform == OSPlatform.Windows;
     }
 }

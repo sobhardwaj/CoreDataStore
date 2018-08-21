@@ -41,7 +41,7 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<LPCReport>().Property(t => t.ObjectType).HasColumnType("varchar").HasMaxLength(50);
             builder.Entity<LPCReport>().Property(t => t.LPNumber).HasColumnType("varchar").IsRequired().HasMaxLength(10);
             builder.Entity<LPCReport>().Property(t => t.LPCId).HasColumnType("varchar").IsRequired().HasMaxLength(10);
-            builder.Entity<LPCReport>().Property(t => t.Name).HasColumnType("varchar").IsRequired(); ;
+            builder.Entity<LPCReport>().Property(t => t.Name).HasColumnType("varchar").IsRequired();
             builder.Entity<LPCReport>().Property(t => t.PhotoURL).HasColumnType("varchar").HasMaxLength(500);
             builder.Entity<LPCReport>().Property(t => t.Style).HasColumnType("varchar").HasMaxLength(100);
             builder.Entity<LPCReport>().Property(t => t.DateDesignated); //.HasColumnType("NpgsqlDate");
@@ -103,7 +103,7 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<Landmark>().Property(t => t.Latitude).HasColumnType("decimal(9, 6)").IsRequired();
             builder.Entity<Landmark>().Property(t => t.Longitude).HasColumnType("decimal(9, 6)").IsRequired();
 
-            //LPC Report(One) =>  Landmark(Many) 
+            //LPC Report(One) =>  Landmark(Many)
             builder.Entity<Landmark>()
                 .HasOne(l => l.LPCReport)
                 .WithMany(r => r.Landmarks)

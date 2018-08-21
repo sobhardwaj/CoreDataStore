@@ -18,7 +18,7 @@ namespace CoreDataStore.Web.Controllers
     /// <summary>
     /// Server Status API Controller
     /// </summary>
-    /// 
+    ///
     [EnableCors("AllowAll")]
     [Route("api/[controller]")]
     public class DiagnosticsController : Controller
@@ -27,7 +27,7 @@ namespace CoreDataStore.Web.Controllers
         private readonly IConfiguration _configuration;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="env"></param>
         /// <param name="configuration"></param>

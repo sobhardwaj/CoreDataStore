@@ -11,7 +11,7 @@ namespace CoreDataStore.Service.Services
     public class PlutoService : IPlutoService
     {
         private readonly IPlutoRepository _plutoRepository;
-      
+
 
         public PlutoService(IPlutoRepository plutoRepository)
         {

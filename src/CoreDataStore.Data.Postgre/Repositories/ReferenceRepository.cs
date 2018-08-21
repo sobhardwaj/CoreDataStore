@@ -20,7 +20,7 @@ namespace CoreDataStore.Data.Postgre.Repositories
             //list.Add("Interior Landmark");
 
             return list;
-   
+
         }
     }
 

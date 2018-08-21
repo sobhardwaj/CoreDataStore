@@ -41,8 +41,8 @@ namespace CoreDataStore.Domain.Entities
 
         public string BOUNDARIES { get; set; }
 
-        public bool MOST_CURRE { get; set; } 
-      
+        public bool MOST_CURRE { get; set; }
+
         public string STATUS { get; set; }
 
         public string LAST_ACTIO { get; set; }

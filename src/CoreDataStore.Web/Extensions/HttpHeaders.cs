@@ -3,12 +3,12 @@
 namespace CoreDataStore.Web.Extensions
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public static class HttpHeaders
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="response"></param>
         /// <param name="message"></param>

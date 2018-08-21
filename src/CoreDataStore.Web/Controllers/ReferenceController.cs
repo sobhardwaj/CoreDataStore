@@ -41,7 +41,7 @@ namespace CoreDataStore.Web.Controllers
         }
 
         /// <summary>
-        ///  Get Reference Types
+        ///  Get Reference Types.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -54,7 +54,7 @@ namespace CoreDataStore.Web.Controllers
         }
 
         /// <summary>
-        ///  Get Parent Styles
+        ///  Get Parent Styles.
         /// </summary>
         /// <returns></returns>
         [HttpGet]

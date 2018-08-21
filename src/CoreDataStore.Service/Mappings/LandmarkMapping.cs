@@ -60,7 +60,7 @@ namespace CoreDataStore.Service.Mappings
                 .ForMember(dest => dest.SECND_BLDG, opt => opt.MapFrom(src => src.IsSecondaryBuilding))
                 .ForMember(dest => dest.MOST_CURRE, opt => opt.MapFrom(src => src.IsCurrent))
                 .ForMember(dest => dest.VACANT_LOT, opt => opt.MapFrom(src => src.IsVacantLot))
-                
+
                 .ForMember(dest => dest.LPCReport, opt => opt.Ignore())
             ;
         }

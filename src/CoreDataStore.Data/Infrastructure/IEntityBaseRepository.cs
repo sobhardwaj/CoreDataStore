@@ -45,6 +45,6 @@ namespace CoreDataStore.Data.Infrastructure
         Task<bool> UpdateDbEntryAsync(T entity, params Expression<Func<T, object>>[] properties);
 
         void Commit();
-    
+
     }
 }

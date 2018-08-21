@@ -51,7 +51,7 @@ namespace CoreDataStore.Web.Controllers
         }
 
         /// <summary>
-        ///  Put Update LPC Report 
+        ///  Put Update LPC Report
         /// </summary>
         /// <param name="id"></param>
         /// <param name="model"></param>
@@ -97,7 +97,6 @@ namespace CoreDataStore.Web.Controllers
                 Neighborhood = !string.IsNullOrWhiteSpace(query.Neighborhood) ? query.Neighborhood.Trim() : null,
                 Borough = !string.IsNullOrWhiteSpace(query.Borough) ? query.Borough.Trim() : null,
                 ObjectType = !string.IsNullOrWhiteSpace(query.ObjectType) ? query.ObjectType.Trim() : null,
-
             };
 
             var records = _lpcReportService.GetLPCReports(request);
@@ -108,7 +107,7 @@ namespace CoreDataStore.Web.Controllers
         }
 
         /// <summary>
-        /// Get Landmark Filtered Results
+        /// Get Landmark Filtered Results.
         /// </summary>
         /// <param name="query">Query String Parms</param>
         /// <param name="limit">Records per Page</param>
@@ -138,7 +137,7 @@ namespace CoreDataStore.Web.Controllers
         }
 
         /// <summary>
-        /// Get Landmark Street List
+        /// Get Landmark Street List.
         /// </summary>
         /// <param name="lpcNumber"></param>
         /// <returns></returns>

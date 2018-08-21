@@ -34,8 +34,8 @@ namespace CoreDataStore.Data.Sqlite
             builder.Entity<LPCReport>().Property(t => t.Street).HasMaxLength(500);
             builder.Entity<LPCReport>().Property(t => t.Style).HasMaxLength(100);
 
-            //Shadow Properties
-            //builder.Entity<LPCReport>().Property<DateTime>("Modified");
+            // Shadow Properties
+            // builder.Entity<LPCReport>().Property<DateTime>("Modified");
 
             // One to One LPCReport => LPCLocation
             builder.Entity<LPCReport>()

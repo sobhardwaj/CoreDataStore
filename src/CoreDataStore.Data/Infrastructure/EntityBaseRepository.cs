@@ -53,6 +53,7 @@ namespace CoreDataStore.Data.Infrastructure
             {
                 query = query.Include(includeProperty);
             }
+
             return await query.ToListAsync();
         }
 

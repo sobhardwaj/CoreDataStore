@@ -23,9 +23,10 @@ namespace CoreDataStore.Data.Extensions
                 var method = string.Equals(item.SortOrder, "desc", StringComparison.OrdinalIgnoreCase) ?
                     (count == 0 ? "OrderByDescending" : "ThenByDescending") :
                     (count == 0 ? "OrderBy" : "ThenBy");
-                expression = Expression.Call(typeof(Queryable), method,
-                    new Type[] { source.ElementType, selector.Type },
-                    expression, Expression.Quote(Expression.Lambda(selector, parameter)));
+
+                expression =
+                    Expression.Call(typeof(Queryable), method, new[] { source.ElementType, selector.Type }, expression, Expression.Quote(Expression.Lambda(selector, parameter)));
+
                 count++;
             }
 
@@ -39,5 +40,4 @@ namespace CoreDataStore.Data.Extensions
 
         public string SortOrder { get; set; }
     }
-
 }

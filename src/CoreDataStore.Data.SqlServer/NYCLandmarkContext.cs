@@ -36,7 +36,7 @@ namespace CoreDataStore.Data.SqlServer
         {
             //builder.RemovePluralizingTableNameConvention();
 
-            #region LPC Report 
+            #region LPC Report
 
             builder.Entity<LPCReport>().HasKey(m => m.Id);
             builder.Entity<LPCReport>().Property(t => t.Name).HasMaxLength(200).IsRequired();
@@ -182,7 +182,7 @@ namespace CoreDataStore.Data.SqlServer
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            //Set Audiable Entries 
+            //Set Audiable Entries
             var userId = UserName;
             return await base.SaveChangesAsync(cancellationToken);
         }

@@ -18,5 +18,4 @@ namespace CoreDataStore.Data.Conventions
             }
         }
     }
-
 }
