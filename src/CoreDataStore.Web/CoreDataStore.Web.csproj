@@ -15,10 +15,6 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.2" />
     <PackageReference Include="dotnet-setversion" Version="1.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta008">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Swashbuckle" Version="6.0.0-beta902" />
     <PackageReference Include="Navigator.Common" Version="1.1.0.4" />
     <PackageReference Include="Navigator.Middleware" Version="1.1.0.5" />
