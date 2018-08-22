@@ -6,7 +6,7 @@ node('master') {
 
 
     stage('Sonar Scanning') {
-       sh 'docker run -e PROJECT_KEY=CoreDataStore --tty --rm --volume $(pwd):/project stuartshay/sonarqube:dotnet-2.1-sdk'
+       sh 'docker run -e PROJECT_KEY=CoreDataStore --tty --rm --volume $(pwd):/project stuartshay/sonarqube:dotnet-node-2.1-sdk'
     }
   
    stage('Mail') {
