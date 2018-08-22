@@ -83,6 +83,12 @@ docker build -f docker/node.dockerfile -t coredatastore_nodeweb  .
 
 ## Usefull Commands 
 
+### Cleanup
+
+```bash 
+    docker system prune
+```
+
 ### Images 
 
 ```bash 
@@ -122,6 +128,8 @@ docker push stuartshay/coredatastore:stable
 ```bash 
    docker volume ls
    docker volume rm <VOLUMENAME>
+
+   docker prune volume
 ```
 
 ## Examine Containers

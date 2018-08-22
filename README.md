@@ -30,7 +30,7 @@ New York City Landmarks Reference Data
 
 ### Prerequisites:
 ```
-Node v9.3.0
+Node v6.10.2
 NET Core 2.1
 VS Code 1.19.1 or VS 2017 15.8.0
 ```
