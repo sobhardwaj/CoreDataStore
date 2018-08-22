@@ -44,7 +44,7 @@ jobs:
             wget https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
             dpkg -i packages-microsoft-prod.deb
             apt update
-            apt install -y dotnet-sdk-2.1.300-rc1-008673           
+            apt install -y dotnet-sdk-2.1       
       - run: 
           name: Restore and publish .NET
           command: |
