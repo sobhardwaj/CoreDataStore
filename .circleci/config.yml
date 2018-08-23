@@ -8,7 +8,7 @@ jobs:
     working_directory: ~/src/CoreDataStore.Web
     environment:
       - NG_ENVIRONMENT: "Stage"
-      - DOCKER: '17.05.0-ce'
+      - DOCKER: '18.03.1-ce'
       - RANCHER_COMPOSE_VERSION: '0.12.5'
       - STACK_NAME: 'CoreDataStore-QA'
       - DOCKER_COMPOSE: 'docker/rancher-qa-stack/docker-compose.yml'
@@ -39,7 +39,7 @@ jobs:
             apt update
             apt install -y nodejs
       - run:
-          name: Install .NET Core
+          name: Install .NET Core sdk-2.1 
           command: |
             wget https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
             dpkg -i packages-microsoft-prod.deb

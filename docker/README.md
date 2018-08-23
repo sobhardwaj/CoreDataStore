@@ -14,24 +14,24 @@ npm run build
 
 #### API .NET Core Runtime Build 
 
-```
+```bash
 cd  CoreDataStore/
 dotnet restore
 
 dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj \
 -c Release -f netcoreapp2.0 -r debian.8-x64
 
-docker build -f docker/runtime.dockerfile -t coredatastore-runtime  .
+docker build -f docker/coredatastore-circleci-runtime.dockerfile/runtime.dockerfile -t coredatastore-runtime  .
 ```
 
 #### SDK Build 
-```
+```bash
 cd  CoreDataStore/
 docker build -f docker/aspnetcore.dockerfile -t coredatastore_web  .
 ```
 
 #### Run
-```
+```bash
 docker run -it --rm --name coredatastore_web -p 5000:5000 coredatastore_web
 ```
 
@@ -45,7 +45,7 @@ dotnet restore
 dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj \
 -c Release -f netcoreapp2.0 -r win10-x64
 
-docker build -f docker/runtime-nanoserver.dockerfile -t coredatastore-runtime  .
+docker build -f docker/coredatastore-nanoserver-web.dockerfile/runtime-nanoserver.dockerfile -t coredatastore-runtime  .
 ```
 
 #### Run
@@ -129,7 +129,7 @@ docker push stuartshay/coredatastore:stable
    docker volume ls
    docker volume rm <VOLUMENAME>
 
-   docker prune volume
+   docker volume prune 
 ```
 
 ## Examine Containers

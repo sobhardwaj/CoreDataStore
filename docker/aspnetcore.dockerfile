@@ -1,5 +1,5 @@
-FROM microsoft/dotnet:2.0.0-sdk
-MAINTAINER Stuart Shay
+FROM microsoft/dotnet:2.2-sdk
+
 
 # Set environment variables
 ENV NG_ENVIRONMENT="Dev"
