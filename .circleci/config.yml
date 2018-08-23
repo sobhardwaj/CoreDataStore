@@ -8,7 +8,7 @@ jobs:
     working_directory: ~/src/CoreDataStore.Web
     environment:
       - NG_ENVIRONMENT: "Stage"
-      - DOCKER: '18.03.1-ce'
+      - DOCKER: '17.05.0-ce'
       - RANCHER_COMPOSE_VERSION: '0.12.5'
       - STACK_NAME: 'CoreDataStore-QA'
       - DOCKER_COMPOSE: 'docker/rancher-qa-stack/docker-compose.yml'
