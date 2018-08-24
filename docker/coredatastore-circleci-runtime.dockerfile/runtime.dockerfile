@@ -1,4 +1,4 @@
-FROM microsoft/aspnetcore:2.1.0-preview1
+FROM microsoft/dotnet:2.1-aspnetcore-runtime
 
 # Set environment variables
 ENV NG_ENVIRONMENT ${NG_ENVIRONMENT}

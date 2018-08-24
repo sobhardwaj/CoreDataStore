@@ -39,12 +39,12 @@ jobs:
             apt update
             apt install -y nodejs
       - run:
-          name: Install .NET Core
+          name: Install .NET Core sdk-2.1 
           command: |
             wget https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
             dpkg -i packages-microsoft-prod.deb
             apt update
-            apt install -y dotnet-sdk-2.1.300-rc1-008673           
+            apt install -y dotnet-sdk-2.1       
       - run: 
           name: Restore and publish .NET
           command: |
@@ -68,7 +68,7 @@ jobs:
           name: Build and push Docker image
           command: |
             TAG=0.1.$CIRCLE_BUILD_NUM
-            docker build -f docker/runtime.dockerfile -t stuartshay/coredatastore:2.1-runtime .
+            docker build -f docker/coredatastore-circleci-runtime.dockerfile/runtime.dockerfile -t stuartshay/coredatastore:2.1-runtime .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push stuartshay/coredatastore:2.1-runtime
           # docker build -f docker/runtime.dockerfile -t stuartshay/coredatastore:$TAG .

@@ -47,7 +47,7 @@ namespace CoreDataStore.Service.Models
             get
             {
                 var street = !string.IsNullOrWhiteSpace(this.PlutoAddress) && this.PlutoAddress.Any(char.IsDigit)
-                    ? Regex.Replace(this.PlutoAddress.Trim(), @"^[\d-]*\s*", "", RegexOptions.Multiline)
+                    ? Regex.Replace(this.PlutoAddress.Trim(), @"^[\d-]*\s*", string.Empty, RegexOptions.Multiline)
                     : this.PlutoAddress;
 
                 return street;
@@ -87,6 +87,5 @@ namespace CoreDataStore.Service.Models
         public decimal Longitude { get; set; }
 
         public LPCReportModel LPCReport { get; set; }
-
     }
 }

@@ -1,0 +1,16 @@
+node('master') {
+
+    stage('Git checkout') {
+        git branch: 'Core21', credentialsId: 'gihub-key', url: 'git@github.com:stuartshay/CoreDataStore'
+    }
+
+
+    stage('Sonar Scanning') {
+       sh 'docker run -e PROJECT_KEY=CoreDataStore --tty --rm --volume $(pwd):/project stuartshay/sonarqube:dotnet-node-2.1-sdk'
+    }
+  
+   stage('Mail') {
+        emailext attachLog: true, body: '', subject: "Jenkins build status - ${currentBuild.fullDisplayName}", to: 'sshay@yahoo.com'
+    }
+
+}

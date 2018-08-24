@@ -10,8 +10,8 @@ namespace CoreDataStore.Data.SqlServer.Mappings
         {
             builder.HasKey(m => m.Id);
             builder.Property(t => t.BBL).IsRequired();
-            builder.Property(t => t.Latitude).HasPrecision(9, 6).IsRequired();
-            builder.Property(t => t.Longitude).HasPrecision(9, 6).IsRequired();
+            builder.Property(t => t.Latitude); //.HasPrecision(9, 6).IsRequired();
+            builder.Property(t => t.Longitude);   //.HasPrecision(9, 6).IsRequired();
             builder.Property(t => t.ZipCode).HasMaxLength(5);
         }
     }

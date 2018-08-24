@@ -1,42 +1,73 @@
 # CoreDataStore
 
-Build   
-[![This image on DockerHub](https://img.shields.io/docker/pulls/stuartshay/coredatastore.svg)](https://hub.docker.com/r/stuartshay/coredatastore/) [![Build status](https://ci.appveyor.com/api/projects/status/4j2ebt69uw0e0wmg/branch/master?svg=true)](https://ci.appveyor.com/project/StuartShay/coredatastore/branch/master)
-[![CircleCI](https://circleci.com/gh/stuartshay/CoreDataStore.svg?style=shield)](https://circleci.com/gh/stuartshay/CoreDataStore)
-[![Build Status](https://travis-ci.org/stuartshay/CoreDataStore.svg?branch=master)](https://travis-ci.org/stuartshay/CoreDataStore)
+[![This image on DockerHub](https://img.shields.io/docker/pulls/stuartshay/coredatastore.svg)](https://hub.docker.com/r/stuartshay/coredatastore/) [![coredatastore MyGet Build Status](https://www.myget.org/BuildSource/Badge/coredatastore?identifier=4b1235df-8bc8-4768-916c-e3178342ebcb)](https://www.myget.org/feed/Packages/coredatastore)
 
-Dependencies      
 [![dependencies Status](https://david-dm.org/stuartshay/CoreDataStore/status.svg)](https://david-dm.org/stuartshay/CoreDataStore)
 [![devDependencies Status](https://david-dm.org/stuartshay/CoreDataStore/dev-status.svg)](https://david-dm.org/stuartshay/CoreDataStore?type=dev) 
 [![Dependency Status](https://dependencyci.com/github/stuartshay/CoreDataStore/badge)](https://dependencyci.com/github/stuartshay/CoreDataStore) 
+
+[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=CoreDataStore&metric=alert_status)](http://sonar.navigatorglass.com:9000/dashboard?id=CoreDataStore)
+[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=CoreDataStore&metric=reliability_rating)](http://sonar.navigatorglass.com:9000/dashboard?id=CoreDataStore)
+[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=CoreDataStore&metric=security_rating)](http://sonar.navigatorglass.com:9000/dashboard?id=CoreDataStore)
+[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=CoreDataStore&metric=sqale_rating)](http://sonar.navigatorglass.com:9000/dashboard?id=CoreDataStore)
 [![Code Climate](https://codeclimate.com/github/stuartshay/CoreDataStore/badges/gpa.svg)](https://codeclimate.com/github/stuartshay/CoreDataStore)
 
+ Build | Status  
+------------ | -------------
+Linux Docker WebAPI | [![CircleCI](https://circleci.com/gh/stuartshay/CoreDataStore.svg?style=shield)](https://circleci.com/gh/stuartshay/CoreDataStore)
+Linux Docker Web | [![Build Status](https://travis-ci.org/stuartshay/CoreDataStore.svg?branch=master)](https://travis-ci.org/stuartshay/CoreDataStore)
+Windows Docker | [![Build status](https://ci.appveyor.com/api/projects/status/4j2ebt69uw0e0wmg/branch/master?svg=true)](https://ci.appveyor.com/project/StuartShay/coredatastore/branch/master)
+Jenkins SonarQube | [![Build Status](https://jenkins.navigatorglass.com/buildStatus/icon?job=CoreDataStore/CoreDataStore-sonarqube)](https://jenkins.navigatorglass.com/job/CoreDataStore/job/CoreDataStore-sonarqube/)
+
 #### Demo
+
 https://coredatastore.com         
-http://stuartshay.github.io/CoreDataStore/
 
 New York City Landmarks Reference Data     
 
 - [Landmarks Preservation Commission - NYC.gov](http://www1.nyc.gov/site/lpc/index.page)
 - [NYC OpenData](http://opendata.cityofnewyork.us/)   
 
-## Prerequisites:
-
-### .NET Core
-
-.NET Core 2.1 RC1 SDK 
-
+### Prerequisites:
 ```
-https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-rc1
+Node v6.10.2
+NET Core 2.1
+VS Code 1.19.1 or VS 2017 15.8.0
 ```
 
-### Visual Studio MSBuild
+### Build & Run
 
-Visual Studio 2017 Preview version 15.7     
-https://www.visualstudio.com/vs/preview/
+```
+cd CoreDataStore
+setup-env.bat
 
-  
-## Web Application Build Instructions
+dotnet restore
+
+cd src\CoreDataStore.Web
+
+npm install
+
+npm run clean
+npm run build
+
+dotnet run
+
+http://localhost:5000/
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 [Angular/NodeJS Web Client](https://github.com/stuartshay/CoreDataStore/tree/master/src/CoreDataStore.Web)
 
 

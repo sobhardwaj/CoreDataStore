@@ -8,6 +8,5 @@ namespace CoreDataStore.Data.Filters
         /// LPC Number
         /// </summary>
         public string LPCNumber { get; set; }
-
     }
 }

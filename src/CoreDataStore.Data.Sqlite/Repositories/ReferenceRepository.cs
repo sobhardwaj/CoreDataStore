@@ -14,7 +14,7 @@ namespace CoreDataStore.Data.Sqlite.Repositories
             list.Add(new ReferenceType { Name = "", Value = "" });
             list.Add(new ReferenceType { Name = "", Value = "" });
 
-            return list;   
+            return list;
         }
     }
 

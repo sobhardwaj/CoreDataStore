@@ -3,7 +3,7 @@
 namespace CoreDataStore.Web.Filters
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class LPCReportRequestModel : RequestModel
     {
@@ -12,12 +12,10 @@ namespace CoreDataStore.Web.Filters
         /// </summary>
         public string ObjectType { get; set; }
 
-
         /// <summary>
         /// Neighborhood
         /// </summary>
         public string Neighborhood { get; set; }
-
 
         /// <summary>
         /// NYC Borough
@@ -25,9 +23,8 @@ namespace CoreDataStore.Web.Filters
         public string Borough { get; set; }
 
         /// <summary>
-        /// Parent Styles List Comma Separated 
+        /// Parent Styles List Comma Separated
         /// </summary>
         public string ParentStyles { get; set; }
-
     }
 }

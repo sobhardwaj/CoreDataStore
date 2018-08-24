@@ -6,7 +6,7 @@ namespace CoreDataStore.Data.Sqlite.Repositories
 {
     public class LandmarkRepository : EntityBaseRepository<Landmark>, ILandmarkRepository
     {
-        public LandmarkRepository(NYCLandmarkContext context) 
+        public LandmarkRepository(NYCLandmarkContext context)
             : base(context)
         {
         }

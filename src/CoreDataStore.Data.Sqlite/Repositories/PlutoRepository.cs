@@ -10,7 +10,7 @@ namespace CoreDataStore.Data.Sqlite.Repositories
     {
         private readonly NYCLandmarkContext _context;
 
-        public PlutoRepository(NYCLandmarkContext context) 
+        public PlutoRepository(NYCLandmarkContext context)
             : base(context)
         {
             this._context = context;

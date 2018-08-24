@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Reflection;
 using CoreDataStore.Web.Extensions;
 using CoreDataStore.Web.ViewModels;
@@ -9,8 +11,6 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System.Linq;
-using System.Net.Sockets;
 
 namespace CoreDataStore.Web.Controllers
 {
@@ -18,7 +18,7 @@ namespace CoreDataStore.Web.Controllers
     /// <summary>
     /// Server Status API Controller
     /// </summary>
-    /// 
+    ///
     [EnableCors("AllowAll")]
     [Route("api/[controller]")]
     public class DiagnosticsController : Controller
@@ -27,7 +27,7 @@ namespace CoreDataStore.Web.Controllers
         private readonly IConfiguration _configuration;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="env"></param>
         /// <param name="configuration"></param>

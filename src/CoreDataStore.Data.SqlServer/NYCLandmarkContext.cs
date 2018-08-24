@@ -34,9 +34,9 @@ namespace CoreDataStore.Data.SqlServer
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.RemovePluralizingTableNameConvention();
+            //builder.RemovePluralizingTableNameConvention();
 
-            #region LPC Report 
+            #region LPC Report
 
             builder.Entity<LPCReport>().HasKey(m => m.Id);
             builder.Entity<LPCReport>().Property(t => t.Name).HasMaxLength(200).IsRequired();
@@ -76,8 +76,8 @@ namespace CoreDataStore.Data.SqlServer
             builder.Entity<LPCLocation>().Property(t => t.ZipCode).HasMaxLength(5);
             builder.Entity<LPCLocation>().Property(t => t.Block);
             builder.Entity<LPCLocation>().Property(t => t.Lot);
-            builder.Entity<LPCLocation>().Property(t => t.Latitude).HasPrecision(9, 6);
-            builder.Entity<LPCLocation>().Property(t => t.Longitude).HasPrecision(9, 6);
+            builder.Entity<LPCLocation>().Property(t => t.Latitude); //.HasPrecision(9, 6);
+            builder.Entity<LPCLocation>().Property(t => t.Longitude); //.HasPrecision(9, 6);
 
 
             //builder.Entity<LPCLocation>()
@@ -131,8 +131,8 @@ namespace CoreDataStore.Data.SqlServer
             builder.Entity<LPCLamppost>().Property(t => t.Lot);
             builder.Entity<LPCLamppost>().Property(t => t.Borough).HasMaxLength(20);
             builder.Entity<LPCLamppost>().Property(t => t.Located).HasMaxLength(100);
-            builder.Entity<LPCLamppost>().Property(t => t.Latitude).HasPrecision(9, 6);
-            builder.Entity<LPCLamppost>().Property(t => t.Longitude).HasPrecision(9, 6);
+            builder.Entity<LPCLamppost>().Property(t => t.Latitude);  //.HasPrecision(9, 6);
+            builder.Entity<LPCLamppost>().Property(t => t.Longitude);  //.HasPrecision(9, 6);
 
             #endregion
 
@@ -144,8 +144,8 @@ namespace CoreDataStore.Data.SqlServer
             builder.Entity<Pluto>().Property(t => t.LandmarkName).HasColumnName("Landmark").HasMaxLength(100);
             builder.Entity<Pluto>().Property(t => t.Lot).IsRequired();
             builder.Entity<Pluto>().Property(t => t.BBL).IsRequired();
-            builder.Entity<Pluto>().Property(t => t.Latitude).HasPrecision(9, 6).IsRequired();
-            builder.Entity<Pluto>().Property(t => t.Longitude).HasPrecision(9, 6).IsRequired();
+            builder.Entity<Pluto>().Property(t => t.Latitude); //.HasPrecision(9, 6).IsRequired();
+            builder.Entity<Pluto>().Property(t => t.Longitude); //.HasPrecision(9, 6).IsRequired();
             builder.Entity<Pluto>().Property(t => t.OwnerName).HasMaxLength(21);
             builder.Entity<Pluto>().Property(t => t.ZipCode).HasMaxLength(5);
 
@@ -182,7 +182,7 @@ namespace CoreDataStore.Data.SqlServer
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            //Set Audiable Entries 
+            //Set Audiable Entries
             var userId = UserName;
             return await base.SaveChangesAsync(cancellationToken);
         }
@@ -239,7 +239,7 @@ namespace CoreDataStore.Data.SqlServer
                     TableName = tableName.Split('_')[0],
                     RecordId = (int)dbEntry.OriginalValues.GetValue<object>("Id"),
                     ColumnName = "*ALL",
-                   // OriginalValue = (dbEntry.OriginalValues.ToObject() is IAuditableEntity) ? (dbEntry.OriginalValues.ToObject() as IAuditableEntity).Describe(property) : dbEntry.OriginalValues.ToObject().ToString()
+                    // OriginalValue = (dbEntry.OriginalValues.ToObject() is IAuditableEntity) ? (dbEntry.OriginalValues.ToObject() as IAuditableEntity).Describe(property) : dbEntry.OriginalValues.ToObject().ToString()
                 });
             }
             else if (dbEntry.State == EntityState.Modified)
@@ -264,7 +264,7 @@ namespace CoreDataStore.Data.SqlServer
                     EventType = "M",
                     TableName = tableName.Split('_')[0],
                     RecordId = (int)dbEntry.CurrentValues.GetValue<object>("Id"),
-                   // ColumnName = changedColumns.Aggregate((working, next) => working + "|" + next),
+                    // ColumnName = changedColumns.Aggregate((working, next) => working + "|" + next),
                     //OriginalValue = (dbEntry.OriginalValues.ToObject() is IAuditableEntity) ? (dbEntry.OriginalValues.ToObject() as IAuditableEntity).Describe(property) : dbEntry.OriginalValues.ToObject().ToString(),
                     //NewValue = (dbEntry.CurrentValues.ToObject() is IAuditableEntity) ? (dbEntry.CurrentValues.ToObject() as IAuditableEntity).Describe(property) : dbEntry.CurrentValues.ToObject().ToString(),
                 });
@@ -282,7 +282,7 @@ namespace CoreDataStore.Data.SqlServer
                     TableName = tableName.Split('_')[0],
                     RecordId = (int)dbEntry.OriginalValues.GetValue<object>("Id"),
                     ColumnName = "*ALL",
-                   // NewValue = (dbEntry.OriginalValues.ToObject() is IAuditableEntity) ? (dbEntry.OriginalValues.ToObject() as IAuditableEntity).Describe(property) : dbEntry.OriginalValues.ToObject().ToString()
+                    // NewValue = (dbEntry.OriginalValues.ToObject() is IAuditableEntity) ? (dbEntry.OriginalValues.ToObject() as IAuditableEntity).Describe(property) : dbEntry.OriginalValues.ToObject().ToString()
                 });
             }
 

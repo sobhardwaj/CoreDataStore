@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
 using CoreDataStore.Service.ValidationRules;
 using CoreDataStore.Web.Filters;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
-using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDataStore.Web.Controllers
 {
@@ -23,7 +23,7 @@ namespace CoreDataStore.Web.Controllers
         private readonly ILandmarkService _landmarkService;
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="LPCReportController"/> class.
         /// </summary>
         /// <param name="lpcReportService"></param>
         /// <param name="landmarkService"></param>
@@ -32,7 +32,6 @@ namespace CoreDataStore.Web.Controllers
             _lpcReportService = lpcReportService;
             _landmarkService = landmarkService;
         }
-
 
         /// <summary>
         /// Get LPC Report
@@ -51,9 +50,8 @@ namespace CoreDataStore.Web.Controllers
             return new ObjectResult(result);
         }
 
-
         /// <summary>
-        ///  Put Update LPC Report 
+        ///  Put Update LPC Report
         /// </summary>
         /// <param name="id"></param>
         /// <param name="model"></param>
@@ -76,9 +74,8 @@ namespace CoreDataStore.Web.Controllers
             return new NoContentResult();
         }
 
-
         /// <summary>
-        /// Get LPC Reports Filtered Results
+        /// Get LPC Reports Filtered Results.
         /// </summary>
         /// <param name="query">Query String Parms</param>
         /// <param name="limit">Records per Page</param>
@@ -100,7 +97,6 @@ namespace CoreDataStore.Web.Controllers
                 Neighborhood = !string.IsNullOrWhiteSpace(query.Neighborhood) ? query.Neighborhood.Trim() : null,
                 Borough = !string.IsNullOrWhiteSpace(query.Borough) ? query.Borough.Trim() : null,
                 ObjectType = !string.IsNullOrWhiteSpace(query.ObjectType) ? query.ObjectType.Trim() : null,
-
             };
 
             var records = _lpcReportService.GetLPCReports(request);
@@ -110,9 +106,8 @@ namespace CoreDataStore.Web.Controllers
             return records.Results;
         }
 
-
         /// <summary>
-        /// Get Landmark Filtered Results
+        /// Get Landmark Filtered Results.
         /// </summary>
         /// <param name="query">Query String Parms</param>
         /// <param name="limit">Records per Page</param>
@@ -130,7 +125,7 @@ namespace CoreDataStore.Web.Controllers
                 Page = page,
                 SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "LP_NUMBER",
                 SortOrder = !string.IsNullOrEmpty(query.Order) ? query.Order : "asc",
-                LPCNumber = query.LpcNumber
+                LPCNumber = query.LpcNumber,
             };
 
             var records = _landmarkService.GetLandmarks(request);
@@ -141,9 +136,8 @@ namespace CoreDataStore.Web.Controllers
             return records.Results.OrderBy(x => x.Street).ThenBy(x => x.Number);
         }
 
-
         /// <summary>
-        /// Get Landmark Street List
+        /// Get Landmark Street List.
         /// </summary>
         /// <param name="lpcNumber"></param>
         /// <returns></returns>
@@ -162,7 +156,5 @@ namespace CoreDataStore.Web.Controllers
 
             return new ObjectResult(results);
         }
-
-
     }
 }

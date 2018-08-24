@@ -3,7 +3,7 @@
 namespace CoreDataStore.Web.Filters
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class LandmarkRequestModel : RequestModel
     {
