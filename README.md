@@ -56,18 +56,6 @@ http://localhost:5000/
 
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
 [Angular/NodeJS Web Client](https://github.com/stuartshay/CoreDataStore/tree/master/src/CoreDataStore.Web)
 
 
