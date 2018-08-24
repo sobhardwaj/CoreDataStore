@@ -14,6 +14,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
         public LandmarkServiceTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
             _landmarkService = fixture.LandmarkService;
+            _output = output;
             //AutoMapperConfiguration.Configure();
         }
 

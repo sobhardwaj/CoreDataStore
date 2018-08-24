@@ -30,25 +30,25 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.NotEqual(0, count);
         }
 
-        [Fact, Trait("Category", "Intergration")]
-        public void Can_Get_Lamppost()
-        {
-            var postId = 10;
-            var result = _lamppostRepository.GetSingle(x => x.PostId == postId).PostId;
+        //[Fact, Trait("Category", "Intergration")]
+        //public void Can_Get_Lamppost()
+        //{
+        //    var postId = 10;
+        //    var result = _lamppostRepository.GetSingle(x => x.PostId == postId).PostId;
 
-            Assert.Equal(postId, result);
-        }
+        //    Assert.Equal(postId, result);
+        //}
 
-        [Fact, Trait("Category", "Intergration")]
-        public void Can_Update_Lamppost_Properties()
-        {
-            var postId = 10;
-            var result = _lamppostRepository.GetSingle(x => x.PostId == postId);
-            result.Borough = "Manhattan";
+        //[Fact, Trait("Category", "Intergration")]
+        //public void Can_Update_Lamppost_Properties()
+        //{
+        //    var postId = 10;
+        //    var result = _lamppostRepository.GetSingle(x => x.PostId == postId);
+        //    result.Borough = "Manhattan";
 
-            _lamppostRepository.UserId = "Unit Test";
-            _lamppostRepository.UpdateDbEntryAsync(result, d => d.Borough);
-        }
+        //    _lamppostRepository.UserId = "Unit Test";
+        //    _lamppostRepository.UpdateDbEntryAsync(result, d => d.Borough);
+        //}
     }
 
 }
