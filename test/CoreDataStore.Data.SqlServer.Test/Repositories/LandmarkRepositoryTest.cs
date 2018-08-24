@@ -25,7 +25,9 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             _output = output;
         }
 
-        [Fact, Trait("Category", "Intergration")]
+
+ [SkippableFact]
+       // [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Landmark()
         {
             var id = 100;
@@ -54,7 +56,9 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             //Assert.IsType<Pluto>(pluto);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+
+ [SkippableFact]
+      //  [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Filtered_Paging_List()
         {
             var predicate = PredicateBuilder.True<Landmark>();
