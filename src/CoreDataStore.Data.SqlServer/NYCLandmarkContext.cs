@@ -38,6 +38,7 @@ namespace CoreDataStore.Data.SqlServer
 
             #region LPC Report
 
+            builder.Entity<LPCReport>().ToTable("LPCReport");
             builder.Entity<LPCReport>().HasKey(m => m.Id);
             builder.Entity<LPCReport>().Property(t => t.Name).HasMaxLength(200).IsRequired();
             builder.Entity<LPCReport>().Property(t => t.Architect).HasMaxLength(200);
@@ -63,6 +64,7 @@ namespace CoreDataStore.Data.SqlServer
 
             #region LPC Location
 
+            builder.Entity<LPCLocation>().ToTable("LPCLocation");
             builder.Entity<LPCLocation>().HasKey(m => m.Id);
             builder.Entity<LPCLocation>().Property(t => t.LPNumber).HasMaxLength(10).IsRequired();
             builder.Entity<LPCLocation>().Property(t => t.Name).HasMaxLength(200).IsRequired();
@@ -90,6 +92,7 @@ namespace CoreDataStore.Data.SqlServer
 
             #region Landmark
 
+            builder.Entity<Landmark>().ToTable("Landmark");
             builder.Entity<Landmark>().HasKey(m => m.Id);
             builder.Entity<Landmark>().Property(t => t.BoroughID).HasMaxLength(2).IsRequired();
             builder.Entity<Landmark>().Property(t => t.BOUNDARIES).HasMaxLength(50).IsRequired();
@@ -123,6 +126,7 @@ namespace CoreDataStore.Data.SqlServer
 
             #region Lamppost
 
+            builder.Entity<LPCLamppost>().ToTable("LPCLamppost");
             builder.Entity<LPCLamppost>().HasKey(m => m.Id);
             builder.Entity<LPCLamppost>().Property(t => t.PostId).IsRequired();
             builder.Entity<LPCLamppost>().Property(t => t.Type).HasMaxLength(50);
@@ -138,6 +142,7 @@ namespace CoreDataStore.Data.SqlServer
 
             #region Pluto
 
+            builder.Entity<Pluto>().ToTable("PLUTO");
             builder.Entity<Pluto>().HasKey(m => m.Id);
             builder.Entity<Pluto>().Property(t => t.Borough).HasMaxLength(2).IsRequired();
             builder.Entity<Pluto>().Property(t => t.Block).IsRequired();
