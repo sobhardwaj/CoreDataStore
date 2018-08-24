@@ -102,8 +102,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.Equal(request.PageSize, results.Count);
         }
 
- [SkippableFact]
-       // [Fact, Trait("Category", "Intergration")]
+
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Lamppost_List()
         {
             var results = _dbContext.LPCLamppost.ToList();

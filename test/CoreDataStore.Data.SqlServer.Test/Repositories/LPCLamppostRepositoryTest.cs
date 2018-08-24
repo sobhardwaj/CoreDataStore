@@ -12,7 +12,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
         private readonly NYCLandmarkContext _dbContext;
 
-        /* 
+
                 private readonly ITestOutputHelper _output;
                 public LpcLamppostRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
                 {
@@ -20,6 +20,9 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
                     _output = output;
                 }
 
+
+        /* 
+ [SkippableFact]
                 [Fact, Trait("Category", "Intergration")]
                 public void Get_LPC_Lamppost_List()
                 {
