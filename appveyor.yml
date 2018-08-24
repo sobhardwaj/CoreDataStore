@@ -1,5 +1,5 @@
 version: '2.1.{build}'
-image: Visual Studio 2017 Preview 
+image: Visual Studio 2017
 
 init:
 - dotnet --info
@@ -43,7 +43,7 @@ test_script:
   - node --version
   - npm --version
   - docker version
-  - dotnet test C:\projects\coredatastore\test\CoreDataStore.Data.SqlServer.Test\CoreDataStore.Data.SqlServer.Test.csproj
+#  - dotnet test C:\projects\coredatastore\test\CoreDataStore.Data.SqlServer.Test\CoreDataStore.Data.SqlServer.Test.csproj
 
 deploy_script:  
  - cd C:\projects\coredatastore
