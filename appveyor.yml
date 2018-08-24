@@ -23,17 +23,17 @@ services:
 
 install:
   - dir
-  - dotnet restore
-  - dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp2.1 -r win10-x64
-  - ps: Install-Product node $env:nodejs_version
-  - npm install -g npm@3
+ # - dotnet restore
+ # - dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp2.1 -r win10-x64
+ # - ps: Install-Product node $env:nodejs_version
+ # - npm install -g npm@3
   
 build_script:  
   - cd src/CoreDataStore.Web
-  - npm i
-  - npm run clean
-  - npm run build
-  - cd ../..
+#  - npm i
+#  - npm run clean
+#  - npm run build
+#  - cd ../..
 
 before_test:
   - cd C:\Program Files (x86)\Microsoft SQL Server\140\DAC\bin
@@ -47,10 +47,10 @@ test_script:
 
 deploy_script:  
  - cd C:\projects\coredatastore
- - dir
- - ps: docker build -f docker/coredatastore-nanoserver-web.dockerfile/runtime-nanoserver.dockerfile -t "stuartshay/coredatastore:nanoserver-2-1-build" .
- - ps: docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
- - ps: docker push "stuartshay/coredatastore:nanoserver-2-1-build"
+ #- dir
+ #- ps: docker build -f docker/coredatastore-nanoserver-web.dockerfile/runtime-nanoserver.dockerfile -t "stuartshay/coredatastore:nanoserver-2-1-build" .
+ #- ps: docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
+ #- ps: docker push "stuartshay/coredatastore:nanoserver-2-1-build"
 
-#on_finish:
-# - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+on_finish:
+ - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
