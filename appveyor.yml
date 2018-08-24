@@ -23,7 +23,7 @@ services:
 
 install:
   - dir
- # - dotnet restore
+  - dotnet restore
  # - dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp2.1 -r win10-x64
  # - ps: Install-Product node $env:nodejs_version
  # - npm install -g npm@3
@@ -43,7 +43,7 @@ test_script:
   - node --version
   - npm --version
   - docker version
-#  - dotnet test C:\projects\coredatastore\test\CoreDataStore.Data.SqlServer.Test\CoreDataStore.Data.SqlServer.Test.csproj
+  - dotnet test C:\projects\coredatastore\test\CoreDataStore.Data.SqlServer.Test\CoreDataStore.Data.SqlServer.Test.csproj
 
 deploy_script:  
  - cd C:\projects\coredatastore
