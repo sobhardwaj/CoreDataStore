@@ -24,7 +24,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             var results = _plutoRepository.GetPluto(lpcNumber).ToList();
 
             Assert.NotNull(results);
-            Assert.NotEqual(0, results.Count);
+            Assert.NotEmpty(results);
         }
 
         [Fact, Trait("Category", "Intergration")]

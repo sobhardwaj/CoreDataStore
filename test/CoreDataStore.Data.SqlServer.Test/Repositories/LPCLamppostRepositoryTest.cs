@@ -12,7 +12,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
         private readonly NYCLandmarkContext _dbContext;
 
-
         private readonly ITestOutputHelper _output;
         public LpcLamppostRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
@@ -26,29 +25,31 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             var results = _lamppostRepository.GetAll().ToList();
             var count = results.Count();
 
-            Assert.NotNull(results); 
+            Assert.NotNull(results);
             Assert.NotEqual(0, count);
         }
 
-        //[Fact, Trait("Category", "Intergration")]
-        //public void Can_Get_Lamppost()
-        //{
-        //    var postId = 10;
-        //    var result = _lamppostRepository.GetSingle(x => x.PostId == postId).PostId;
+        [Fact(Skip = "TODO")]
+        [Trait("Category", "Intergration")]
+        public void Can_Get_Lamppost()
+        {
+            var postId = 10;
+            var result = _lamppostRepository.GetSingle(x => x.PostId == postId).PostId;
 
-        //    Assert.Equal(postId, result);
-        //}
+            Assert.Equal(postId, result);
+        }
 
-        //[Fact, Trait("Category", "Intergration")]
-        //public void Can_Update_Lamppost_Properties()
-        //{
-        //    var postId = 10;
-        //    var result = _lamppostRepository.GetSingle(x => x.PostId == postId);
-        //    result.Borough = "Manhattan";
+        [Fact(Skip = "TODO")]
+        [Trait("Category", "Intergration")]
+        public void Can_Update_Lamppost_Properties()
+        {
+            var postId = 10;
+            var result = _lamppostRepository.GetSingle(x => x.PostId == postId);
+            result.Borough = "Manhattan";
 
-        //    _lamppostRepository.UserId = "Unit Test";
-        //    _lamppostRepository.UpdateDbEntryAsync(result, d => d.Borough);
-        //}
+            _lamppostRepository.UserId = "Unit Test";
+            _lamppostRepository.UpdateDbEntryAsync(result, d => d.Borough);
+        }
     }
 
 }

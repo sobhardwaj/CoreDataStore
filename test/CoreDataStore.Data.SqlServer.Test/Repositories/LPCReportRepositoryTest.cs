@@ -25,7 +25,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             _output = output;
         }
 
-
         [Fact, Trait("Category", "Intergration")]
         public void LPC_Reports_Exist()
         {
@@ -33,7 +32,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.NotNull(results);
         }
 
- 
         [Fact, Trait("Category", "Intergration")]
         public void Can_Update_LPC_Report()
         {
@@ -41,10 +39,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             lpcReport.Name = "Pieter Claesen Wyckoff House X";
 
             var result = _dbContext.SaveChanges();
-            Assert.NotNull(result);
+            Assert.Equal(0, result);
         }
-
-
 
         [Fact, Trait("Category", "Intergration")]
         public void Can_Get_LPCReport()
@@ -54,8 +50,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
             Assert.Equal(lpNumber, lpcReportNumber);
         }
-        
-        
+
         [Fact, Trait("Category", "Intergration")]
         public void Can_Get_LPCReport_Location()
         {
@@ -65,8 +60,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.Equal(lpNumber, lpcReportNumber.LPNumber);
         }
 
-
-       [Fact, Trait("Category", "Intergration")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Included_Fields()
         {
             var lpNumber = "LP-00871";
@@ -77,8 +71,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.Equal(lpNumber, landmark.LPNumber);
             Assert.Equal(landmarkCount, landmark.Landmarks.Count);
         }
-
-        
 
         [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Paging_List()
@@ -101,7 +93,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             var results = _lpcReportRepository.GetPage(request.Page, request.PageSize, sortingList).ToList();
             Assert.Equal(request.PageSize, results.Count);
         }
-
 
         [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Lamppost_List()

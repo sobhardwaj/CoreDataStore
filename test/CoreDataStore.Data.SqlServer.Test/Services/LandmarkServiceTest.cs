@@ -15,7 +15,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
         {
             _landmarkService = fixture.LandmarkService;
             _output = output;
-            //AutoMapperConfiguration.Configure();
         }
 
         [Fact, Trait("Category", "Intergration")]

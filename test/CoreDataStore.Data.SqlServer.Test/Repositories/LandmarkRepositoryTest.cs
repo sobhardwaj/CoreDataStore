@@ -6,7 +6,6 @@ using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Test.Fixtures;
 using CoreDataStore.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -26,7 +25,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Intergration")]
         public void Can_Get_Landmark()
         {
             var id = 100;
@@ -34,29 +34,16 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.NotNull(result);
         }
 
-
-[SkippableFact]
-       // [Fact, Trait("Category", "Intergration")]
+        [Fact(Skip = "TODO")]
+        [Trait("Category", "Intergration")]
         public void Can_Get_Included_Fields()
         {
             var lpNumber = "LP-02039";
-            //var landmarks = _dbContext.Landmarks.Where(x => x.LP_NUMBER == lpNumber).Select(x => x).ToList();
+            var landmarks = _dbContext.Landmarks.Where(x => x.LP_NUMBER == lpNumber).Select(x => x).ToList();
 
-            //var landmark = landmarks.Single();
-            //Assert.Equal(lpNumber, landmark.LP_NUMBER);
+            var landmark = landmarks.Single();
+            Assert.Equal(lpNumber, landmark.LP_NUMBER);
         }
-
-
-        [SkippableFact, Trait("Category", "Intergration")]
-        public void Can_Get_Included_Pluto_Fields()
-        {
-            //var lpNumber = "LP-02039";
-            //var landmarks = _dbContext.Landmarks.Where(x => x.LP_NUMBER == lpNumber).Select(x => x.Pluto).ToList();
-
-            //var pluto = landmarks.First();
-            //Assert.IsType<Pluto>(pluto);
-        }
-
 
 
         [Fact, Trait("Category", "Intergration")]
@@ -75,13 +62,12 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
                 SortOrder = !string.IsNullOrEmpty(request.SortOrder) ? request.SortOrder : null
             };
 
-            var sortingList = new List<SortModel>{sortModel};
+            var sortingList = new List<SortModel> { sortModel };
 
             var results = _landmarkRepository
                 .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList);
 
             Assert.NotNull(results);
-
         }
     }
 }
