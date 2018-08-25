@@ -26,7 +26,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             var results = _lamppostRepository.GetAll().ToList();
             var count = results.Count();
 
-            Assert.NotNull(results);
+            Assert.NotNull(results); 
             Assert.NotEqual(0, count);
         }
 
