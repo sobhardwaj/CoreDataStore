@@ -3,13 +3,10 @@
 [![This image on DockerHub](https://img.shields.io/docker/pulls/stuartshay/coredatastore.svg)](https://hub.docker.com/r/stuartshay/coredatastore/) [![coredatastore MyGet Build Status](https://www.myget.org/BuildSource/Badge/coredatastore?identifier=4b1235df-8bc8-4768-916c-e3178342ebcb)](https://www.myget.org/feed/Packages/coredatastore)
 
 [![dependencies Status](https://david-dm.org/stuartshay/CoreDataStore/status.svg)](https://david-dm.org/stuartshay/CoreDataStore)
-[![devDependencies Status](https://david-dm.org/stuartshay/CoreDataStore/dev-status.svg)](https://david-dm.org/stuartshay/CoreDataStore?type=dev) 
+[![devDependencies Status](https://david-dm.org/stuartshay/CoreDataStore/dev-status.svg)](https://david-dm.org/stuartshay/CoreDataStore?type=dev)
 [![Dependency Status](https://dependencyci.com/github/stuartshay/CoreDataStore/badge)](https://dependencyci.com/github/stuartshay/CoreDataStore) 
 
 [![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=CoreDataStore&metric=alert_status)](http://sonar.navigatorglass.com:9000/dashboard?id=CoreDataStore)
-[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=CoreDataStore&metric=reliability_rating)](http://sonar.navigatorglass.com:9000/dashboard?id=CoreDataStore)
-[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=CoreDataStore&metric=security_rating)](http://sonar.navigatorglass.com:9000/dashboard?id=CoreDataStore)
-[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=CoreDataStore&metric=sqale_rating)](http://sonar.navigatorglass.com:9000/dashboard?id=CoreDataStore)
 [![Code Climate](https://codeclimate.com/github/stuartshay/CoreDataStore/badges/gpa.svg)](https://codeclimate.com/github/stuartshay/CoreDataStore)
 
  Build | Status  
