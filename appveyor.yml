@@ -49,9 +49,9 @@ deploy_script:
  - cd C:\projects\coredatastore
  - dir
  - docker build -f docker/coredatastore-nanoserver-web.dockerfile/runtime-nanoserver.dockerfile -t "stuartshay/coredatastore:nanoserver-2-2-build" .
- # Fix Login
- #- docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
- #- docker push "stuartshay/coredatastore:nanoserver-2-2-build"
+ - ps: |
+     docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
+     docker push "stuartshay/coredatastore:nanoserver-2-2-build"
 
 ##on_finish:
 ## - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
