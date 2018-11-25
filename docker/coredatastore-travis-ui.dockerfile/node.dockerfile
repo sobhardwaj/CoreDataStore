@@ -1,5 +1,4 @@
 FROM node:6.10.2
-MAINTAINER Stuart Shay
 
 # Set Default environment variables (Temp Placeholder)
 ENV LANDMARK="https://api.coredatastore.com/api/"
