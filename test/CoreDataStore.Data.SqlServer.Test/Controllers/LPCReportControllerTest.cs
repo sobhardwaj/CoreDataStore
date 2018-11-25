@@ -26,7 +26,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
 
         private IEnumerable<LPCReport> _lpcReports = new List<LPCReport>();
         private IEnumerable<Landmark> _landmarks = new List<Landmark>();
-        
+
         public LPCReportControllerTest()
         {
             var services = new ServiceCollection();
@@ -64,7 +64,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             dbContext.SaveChanges();
         }
 
-        private LPCReportController PrepareController()
+        private LpcReportController PrepareController()
         {
             var dbContext = _serviceProvider.GetRequiredService<NYCLandmarkContext>();
             dbContext.Database.EnsureDeleted();
@@ -74,7 +74,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             var lpcReportSvc = _serviceProvider.GetRequiredService<ILPCReportService>();
             var landmarkSvc = _serviceProvider.GetRequiredService<ILandmarkService>();
 
-            var controller = new LPCReportController(lpcReportSvc, landmarkSvc);
+            var controller = new LpcReportController(lpcReportSvc, landmarkSvc);
 
             return controller;
         }

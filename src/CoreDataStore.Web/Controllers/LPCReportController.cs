@@ -11,23 +11,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDataStore.Web.Controllers
 {
-
     /// <summary>
     /// LPC Reports API Controller.
     /// </summary>
     [Route("api/[controller]")]
     [EnableCors("AllowAll")]
-    public class LPCReportController : Controller
+    public class LpcReportController : Controller
     {
         private readonly ILPCReportService _lpcReportService;
         private readonly ILandmarkService _landmarkService;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LPCReportController"/> class.
+        /// Initializes a new instance of the <see cref="LpcReportController"/> class.
         /// </summary>
         /// <param name="lpcReportService"></param>
         /// <param name="landmarkService"></param>
-        public LPCReportController(ILPCReportService lpcReportService, ILandmarkService landmarkService)
+        public LpcReportController(ILPCReportService lpcReportService, ILandmarkService landmarkService)
         {
             _lpcReportService = lpcReportService;
             _landmarkService = landmarkService;

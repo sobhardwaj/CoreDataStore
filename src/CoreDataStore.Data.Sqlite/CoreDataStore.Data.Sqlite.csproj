@@ -25,10 +25,6 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0-preview1-35029" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <CodeAnalysisRuleSet>$(SolutionDir)/_stylecop/StyleCopeRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
   <ItemGroup>
     <AdditionalFiles Include="$(SolutionDir)\_stylecop\stylecop.json" Link="stylecop.json" />
   </ItemGroup>

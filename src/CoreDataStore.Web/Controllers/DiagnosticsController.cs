@@ -10,33 +10,26 @@ using CoreDataStore.Web.ViewModels;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 
 namespace CoreDataStore.Web.Controllers
 {
-
     /// <summary>
     /// Server Status API Controller
     /// </summary>
-    ///
     [EnableCors("AllowAll")]
     [Route("api/[controller]")]
     public class DiagnosticsController : Controller
     {
         private readonly IHostingEnvironment _env;
-        private readonly IConfiguration _configuration;
 
         /// <summary>
-        ///
+        /// Initializes a new instance of the <see cref="DiagnosticsController"/> class.
         /// </summary>
         /// <param name="env"></param>
-        /// <param name="configuration"></param>
-        public DiagnosticsController(IHostingEnvironment env, IConfiguration configuration)
+        public DiagnosticsController(IHostingEnvironment env)
         {
             this._env = env;
-            this._configuration = configuration;
         }
-
 
         /// <summary>
         ///  Heartbeat
@@ -44,7 +37,6 @@ namespace CoreDataStore.Web.Controllers
         /// <returns></returns>
         [HttpGet("status")]
         public IActionResult Status() => Ok();
-
 
         /// <summary>
         ///  Get Server Diagnostics
@@ -73,9 +65,8 @@ namespace CoreDataStore.Web.Controllers
 
             diagnostics.MachineTimeZone = TimeZoneInfo.Local.IsDaylightSavingTime(diagnostics.MachineDate) ? TimeZoneInfo.Local.DaylightName : TimeZoneInfo.Local.StandardName;
             diagnostics.ApplicationVersionNumber = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
-                //GetType().GetTypeInfo().Assembly.GetName().Version.ToString();
 
-            var ipAddresses = Dns.GetHostAddressesAsync(diagnostics.DnsHostName).Result.Where(x => x.AddressFamily == AddressFamily.InterNetwork).ToList().Distinct();
+            var ipAddresses = Dns.GetHostAddressesAsync(diagnostics.DnsHostName).Result.Where(x => x.AddressFamily == AddressFamily.InterNetwork).AsEnumerable().Distinct();
 
             var enumerable = ipAddresses as IPAddress[] ?? ipAddresses.ToArray();
             var ipList = new List<string>(enumerable.Count());
