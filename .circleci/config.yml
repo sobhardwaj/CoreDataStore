@@ -52,7 +52,7 @@ jobs:
             dotnet restore  
             dotnet tool install -g dotnet-setversion
             dotnet tool list -g
-            ( cd src/CoreDataStore.Web ; dotnet setversion 2.1.0.$CIRCLE_BUILD_NUM; )
+            (cd src/CoreDataStore.Web ; #dotnet setversion 2.1.0.$CIRCLE_BUILD_NUM; )
             dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp2.1 -r debian.9-x64
       - run:
           name: Pull and Test coredatastore-postgres
