@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="$(SolutionDir)\_stylecop\stylecop.json" Link="stylecop.json" />
+    <AdditionalFiles Include="$(SolutionDir)_stylecop\stylecop.json" Link="stylecop.json" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,1 @@
+{"version":3,"file":"trim.js","sourceRoot":"","sources":["../../../src/app/shared/pipes/trim.ts"],"names":[],"mappings":";;;;;;;;AAAA,sCAAoD;AAGpD;IAAA;IAIA,CAAC;IAHG,4BAAS,GAAT,UAAU,KAAa;QACnB,OAAO,KAAK,CAAC,IAAI,EAAE,CAAC;IACxB,CAAC;IAHQ,QAAQ;QADpB,WAAI,CAAC,EAAE,IAAI,EAAE,MAAM,EAAE,CAAC;OACV,QAAQ,CAIpB;IAAD,eAAC;CAAA,AAJD,IAIC;AAJY,4BAAQ"}

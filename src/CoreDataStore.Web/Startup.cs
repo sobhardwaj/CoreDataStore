@@ -1,11 +1,11 @@
 ﻿using System;
-using System.IO;
 using System.Net;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Domain.Interfaces;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;
+using CoreDataStore.Web.Configuation;
 using CoreDataStore.Web.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -16,10 +16,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.PlatformAbstractions;
 using Navigator.Common.Helpers;
 using Navigator.Middleware.HttpHeaders;
-using Swashbuckle.Swagger.Model;
 
 namespace CoreDataStore.Web
 {
@@ -50,33 +48,29 @@ namespace CoreDataStore.Web
         /// </summary>
         public IConfiguration Configuration { get; }
 
-        private void ConfigService(IServiceCollection services)
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="services"></param>
+        private void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
-            services.AddMvc();
+            // Configuration
+            services.AddOptions();
+            services.Configure<ApplicationOptions>(Configuration);
+            services.AddSingleton(Configuration);
 
-            services.AddSwaggerGen();
-            services.ConfigureSwaggerGen(options =>
-            {
-                options.SingleApiVersion(new Info
-                {
-                    Version = "v1",
-                    Title = "Core DataStore API",
-                    Description = "Core DataStore API",
-                    TermsOfService = "None",
-                });
-
-                options.DescribeAllEnumsAsStrings();
-                options.IncludeXmlComments(GetXmlCommentsPath(PlatformServices.Default.Application));
-
-            });
-
-            // Services
-            services.AddSingleton<IConfiguration>(Configuration);
             services.AddScoped<ILPCReportService, LPCReportService>();
             services.AddScoped<ILandmarkService, LandmarkService>();
             services.AddScoped<IPlutoService, PlutoService>();
+
+            services.AddCustomSwagger(Configuration);
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()));
+
+            services.AddMvc();
         }
+
 
         /// <summary>
         ///
@@ -84,10 +78,6 @@ namespace CoreDataStore.Web
         /// <param name="services"></param>
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
-            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
-                                                                .AllowAnyMethod()
-                                                                .AllowAnyHeader()));
-
             var connection = Configuration["ConnectionStrings:Sqlite"];
             services.AddDbContext<Data.Sqlite.NYCLandmarkContext>(options => options.UseSqlite(connection));
 
@@ -97,7 +87,7 @@ namespace CoreDataStore.Web
             services.AddScoped<IPlutoRepository, Data.Sqlite.Repositories.PlutoRepository>();
             services.AddScoped<IReferenceRepository, Data.Sqlite.Repositories.ReferenceRepository>();
 
-            ConfigService(services);
+            ConfigureServices(services);
         }
 
         /// <summary>
@@ -106,10 +96,6 @@ namespace CoreDataStore.Web
         /// <param name="services"></param>
         public void ConfigureStagingServices(IServiceCollection services)
         {
-            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
-                                                                .AllowAnyMethod()
-                                                                .AllowAnyHeader()));
-
             var builder = new ConfigurationBuilder();
             builder.AddEnvironmentVariables(string.Empty);
             var config = builder.Build();
@@ -128,7 +114,7 @@ namespace CoreDataStore.Web
             services.AddScoped<IPlutoRepository, Data.Postgre.Repositories.PlutoRepository>();
             services.AddScoped<IReferenceRepository, Data.Postgre.Repositories.ReferenceRepository>();
 
-            ConfigService(services);
+            ConfigureServices(services);
         }
 
         /// <summary>
@@ -137,10 +123,6 @@ namespace CoreDataStore.Web
         /// <param name="services"></param>
         public void ConfigureProductionServices(IServiceCollection services)
         {
-            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
-                                                    .AllowAnyMethod()
-                                                    .AllowAnyHeader()));
-
             var devConnection = Configuration["ConnectionStrings:SqlServer"];
             services.AddDbContext<Data.SqlServer.NYCLandmarkContext>(options => options.UseSqlServer(devConnection));
 
@@ -150,7 +132,7 @@ namespace CoreDataStore.Web
             services.AddScoped<IPlutoRepository, Data.SqlServer.Repositories.PlutoRepository>();
             services.AddScoped<IReferenceRepository, Data.SqlServer.Repositories.ReferenceRepository>();
 
-            ConfigService(services);
+            ConfigureServices(services);
         }
 
         /// <summary>
@@ -223,8 +205,13 @@ namespace CoreDataStore.Web
             app.UseMvc(ConfigureRoutes);
 
             app.UseSwagger();
-            app.UseSwaggerUi();
+            app.UseSwaggerUI(options =>
+            {
+                var swaggerDocument = "/swagger/v1/swagger.json";
+                options.SwaggerEndpoint(swaggerDocument, "CoreDataStore.Web");
+            });
         }
+
 
         private void ConfigureRoutes(IRouteBuilder routeBuilder)
         {
@@ -233,10 +220,6 @@ namespace CoreDataStore.Web
                 template: "{controller=Home}/{action=Index}/{id?}");
         }
 
-        private string GetXmlCommentsPath(ApplicationEnvironment appEnvironment)
-        {
-            var documentationFile = appEnvironment.ApplicationName + ".xml";
-            return Path.Combine(appEnvironment.ApplicationBasePath, documentationFile);
-        }
+
     }
 }
