@@ -52,7 +52,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
             if (AutoMapperConfiguration._isMappinginitialized)
             {
                 AutoMapperConfiguration.Configure();
-            } 
+            }
         }
 
         public string DbConnection { get; private set; }
@@ -72,14 +72,28 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
         public ILPCReportService LPCReportService { get; private set; }
 
         public ILandmarkService LandmarkService { get; private set; }
+
+
+        /// <summary>
+        ///
+        /// </summary>
         public void Dispose()
         {
-            LandmarkRepository.Dispose();
-            LpcLamppostRepository.Dispose();
-            LpcLocationRepository.Dispose();
-            LpcReportRepository.Dispose();
-            PlutoRepository.Dispose();
-            DbContext.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                LandmarkRepository.Dispose();
+                LpcLamppostRepository.Dispose();
+                LpcLocationRepository.Dispose();
+                LpcReportRepository.Dispose();
+                PlutoRepository.Dispose();
+                DbContext.Dispose();
+            }
         }
     }
 }

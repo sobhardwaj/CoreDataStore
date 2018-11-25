@@ -55,14 +55,26 @@ namespace CoreDataStore.Data.Postgre.Test.Fixtures
 
         public IPlutoRepository PlutoRepository { get; private set; }
 
+        /// <summary>
+        ///
+        /// </summary>
         public void Dispose()
         {
-            LandmarkRepository.Dispose();
-            LpcLamppostRepository.Dispose();
-            LpcLocationRepository.Dispose();
-            LpcReportRepository.Dispose();
-            PlutoRepository.Dispose();
-            DbContext.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                LandmarkRepository.Dispose();
+                LpcLamppostRepository.Dispose();
+                LpcLocationRepository.Dispose();
+                LpcReportRepository.Dispose();
+                PlutoRepository.Dispose();
+                DbContext.Dispose();
+            }
         }
     }
 }
