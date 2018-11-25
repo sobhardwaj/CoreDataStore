@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Domain.Interfaces;
@@ -39,7 +40,6 @@ namespace CoreDataStore.Web
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("ASPNETCORE_URLS:{0}", Configuration["ASPNETCORE_URLS"]);
                 Console.WriteLine("ASPNETCORE_ENVIRONMENT:{0}", Configuration["ASPNETCORE_ENVIRONMENT"]);
-                Console.WriteLine("CONNECTION_PostgreSQL:{0}", Configuration["CONNECTION_PostgreSQL"]);
             }
         }
 
@@ -49,40 +49,18 @@ namespace CoreDataStore.Web
         public IConfiguration Configuration { get; }
 
         /// <summary>
-        ///
-        /// </summary>
-        /// <param name="services"></param>
-        private void ConfigureServices(IServiceCollection services)
-        {
-            // Configuration
-            services.AddOptions();
-            services.Configure<ApplicationOptions>(Configuration);
-            services.AddSingleton(Configuration);
-
-            services.AddScoped<ILPCReportService, LPCReportService>();
-            services.AddScoped<ILandmarkService, LandmarkService>();
-            services.AddScoped<IPlutoService, PlutoService>();
-
-            services.AddCustomSwagger(Configuration);
-            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader()));
-
-            services.AddMvc();
-        }
-
-
-        /// <summary>
-        ///
+        /// ConfigureServices Development - Sqlite.
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
             var connection = Configuration["ConnectionStrings:Sqlite"];
-            services.AddDbContext<Data.Sqlite.NYCLandmarkContext>(options => options.UseSqlite(connection));
+            var connectionString = $"Filename={Path.GetFullPath(connection)}";
+
+            services.AddDbContext<Data.Sqlite.NycLandmarkContext>(options => options.UseSqlite(connectionString));
 
             // Repositories
-            services.AddScoped<ILpcReportRepository, Data.Sqlite.Repositories.LPCReportRepository>();
+            services.AddScoped<ILpcReportRepository, Data.Sqlite.Repositories.LpcReportRepository>();
             services.AddScoped<ILandmarkRepository, Data.Sqlite.Repositories.LandmarkRepository>();
             services.AddScoped<IPlutoRepository, Data.Sqlite.Repositories.PlutoRepository>();
             services.AddScoped<IReferenceRepository, Data.Sqlite.Repositories.ReferenceRepository>();
@@ -91,7 +69,7 @@ namespace CoreDataStore.Web
         }
 
         /// <summary>
-        ///
+        /// ConfigureServices Staging - PostgreSQL.
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureStagingServices(IServiceCollection services)
@@ -100,7 +78,7 @@ namespace CoreDataStore.Web
             builder.AddEnvironmentVariables(string.Empty);
             var config = builder.Build();
 
-            var stageConnection = Configuration["ConnectionStrings:PostgreSQL"];
+            var stageConnection = Configuration["ConnectionStrings:PostgreSql"];
 
             // EnvironmentVariable Exist Overide
             if (!string.IsNullOrWhiteSpace(config["CONNECTION_PostgreSQL"]))
@@ -118,7 +96,7 @@ namespace CoreDataStore.Web
         }
 
         /// <summary>
-        ///
+        /// ConfigureServices Staging - SqlServer.
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureProductionServices(IServiceCollection services)
@@ -136,6 +114,33 @@ namespace CoreDataStore.Web
         }
 
         /// <summary>
+        /// ConfigureServices - All Configurations
+        /// </summary>
+        /// <param name="services"></param>
+        private void ConfigureServices(IServiceCollection services)
+        {
+            // Configuration
+            services.AddOptions();
+            services.Configure<ApplicationOptions>(Configuration);
+            services.AddSingleton(Configuration);
+
+            services.AddScoped<ILPCReportService, LpcReportService>();
+            services.AddScoped<ILandmarkService, LandmarkService>();
+            services.AddScoped<IPlutoService, PlutoService>();
+
+            services.AddCustomSwagger(Configuration);
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()));
+
+            services.AddMvc();
+        }
+
+
+
+
+
+        /// <summary>
         ///
         /// </summary>
         /// <param name="app"></param>
@@ -143,9 +148,6 @@ namespace CoreDataStore.Web
         public void ConfigureDevelopment(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseDeveloperExceptionPage();
-            // app.UseBrowserLink();
-            // app.UseDatabaseErrorPage();
-
             AppConfig(app, loggerFactory);
         }
 
@@ -212,14 +214,11 @@ namespace CoreDataStore.Web
             });
         }
 
-
         private void ConfigureRoutes(IRouteBuilder routeBuilder)
         {
             routeBuilder.MapRoute(
                 name: "default",
                 template: "{controller=Home}/{action=Index}/{id?}");
         }
-
-
     }
 }

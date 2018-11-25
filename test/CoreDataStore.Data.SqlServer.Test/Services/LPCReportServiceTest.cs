@@ -22,7 +22,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
         [Trait("Category", "Intergration")]
         public void Can_Get_Filtered_Paging_List()
         {
-            var request = new LPCReportRequest
+            var request = new LpcReportRequest
             {
                 PageSize = 20,
                 Page = 1,

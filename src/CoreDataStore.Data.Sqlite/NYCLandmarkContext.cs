@@ -3,14 +3,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoreDataStore.Data.Sqlite
 {
-    public class NYCLandmarkContext : DbContext
+    public class NycLandmarkContext : DbContext
     {
-        public NYCLandmarkContext(DbContextOptions<NYCLandmarkContext> options)
+        public NycLandmarkContext(DbContextOptions<NycLandmarkContext> options)
             : base(options)
         {
         }
 
         public DbSet<LPCReport> LPCReports { get; set; }
+
+        public DbSet<LPCLocation> LPCLocation { get; set; }
 
         public DbSet<Landmark> Landmarks { get; set; }
 
@@ -22,6 +24,8 @@ namespace CoreDataStore.Data.Sqlite
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            #region LPC Report
+
             builder.Entity<LPCReport>().ToTable("LPCReport");
             builder.Entity<LPCReport>().HasKey(m => m.Id);
             builder.Entity<LPCReport>().Property(t => t.Name).HasMaxLength(200).IsRequired();
@@ -34,15 +38,33 @@ namespace CoreDataStore.Data.Sqlite
             builder.Entity<LPCReport>().Property(t => t.Street).HasMaxLength(500);
             builder.Entity<LPCReport>().Property(t => t.Style).HasMaxLength(100);
 
-            // Shadow Properties
-            // builder.Entity<LPCReport>().Property<DateTime>("Modified");
+            #endregion
 
-            // One to One LPCReport => LPCLocation
-            builder.Entity<LPCReport>()
-                .HasOne(t => t.LPCLocation)
-                .WithOne(t => t.LPCReport)
+            #region LPC Location
+
+            builder.Entity<LPCLocation>().ToTable("LPCLocation");
+            builder.Entity<LPCLocation>().HasKey(m => m.Id);
+            builder.Entity<LPCLocation>().Property(t => t.Name);
+            builder.Entity<LPCLocation>().Property(t => t.LPNumber);
+            builder.Entity<LPCLocation>().Property(t => t.Borough);
+            builder.Entity<LPCLocation>().Property(t => t.ZipCode);
+            builder.Entity<LPCLocation>().Property(t => t.ObjectType);
+            builder.Entity<LPCLocation>().Property(t => t.LocationType);
+            builder.Entity<LPCLocation>().Property(t => t.Neighborhood);
+            builder.Entity<LPCLocation>().Property(t => t.Street);
+            builder.Entity<LPCLocation>().Property(t => t.Address);
+            builder.Entity<LPCLocation>().Property(t => t.Latitude);
+            builder.Entity<LPCLocation>().Property(t => t.Longitude);
+
+            builder.Entity<LPCLocation>()
+                .HasOne(t => t.LPCReport)
+                .WithOne(t => t.LPCLocation)
                 .HasPrincipalKey<LPCLocation>(t => t.LPNumber)
-                .HasForeignKey<LPCLocation>(t => t.LPNumber);
+                .HasForeignKey<LPCReport>(t => t.LPNumber);
+
+            #endregion
+
+            #region Landmark
 
             builder.Entity<Landmark>().ToTable("Landmark");
             builder.Entity<Landmark>().HasKey(m => m.Id);
@@ -67,11 +89,9 @@ namespace CoreDataStore.Data.Sqlite
                 .HasForeignKey(l => l.LP_NUMBER)
                 .HasPrincipalKey(r => r.LPNumber);
 
-            //builder.Entity<Landmark>()
-            //    .HasOne(p => p.Pluto)
-            //    .WithOne(l => l.Landmark)
-            //    .HasForeignKey<Pluto>(p => p.BBL)
-            //    .HasPrincipalKey<Landmark>(l => l.BBL);
+            #endregion
+
+            #region Pluto
 
             builder.Entity<Pluto>().ToTable("PLUTO");
             builder.Entity<Pluto>().HasKey(m => m.Id);
@@ -80,6 +100,8 @@ namespace CoreDataStore.Data.Sqlite
             builder.Entity<Pluto>().Property(t => t.Latitude);  //.HasPrecision(9, 6).IsRequired();
             builder.Entity<Pluto>().Property(t => t.Longitude);  //.HasPrecision(9, 6).IsRequired();
             builder.Entity<Pluto>().Property(t => t.ZipCode).HasMaxLength(5);
+
+            #endregion
 
             base.OnModelCreating(builder);
         }

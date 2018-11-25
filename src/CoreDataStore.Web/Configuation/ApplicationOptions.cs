@@ -8,20 +8,27 @@
         /// <summary>
         ///
         /// </summary>
-        public HttpLogging HttpLogging { get; set; }
+        public ConnectionStrings ConnectionStrings { get; set; }
     }
 
     /// <summary>
     ///
     /// </summary>
-    public class HttpLogging
+    public class ConnectionStrings
     {
-        public bool Enabled { get; set; }
+        /// <summary>
+        /// Sqlite ConnectionString.
+        /// </summary>
+        public string Sqlite { get; set; }
 
-        public string ConnectionString { get; set; }
+        /// <summary>
+        /// SqlServer ConnectionString.
+        /// </summary>
+        public string SqlServer { get; set; }
 
-        public string CollectionName { get; set; }
-
-        public string Path { get; set; }
+        /// <summary>
+        /// Postgres SQL ConnectionString.
+        /// </summary>
+        public string PostgreSql { get; set; }
     }
 }

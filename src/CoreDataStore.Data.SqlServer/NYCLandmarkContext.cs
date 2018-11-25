@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using CoreDataStore.Data.Conventions;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Domain.Entities.Base;
 using Microsoft.EntityFrameworkCore;
@@ -34,8 +33,6 @@ namespace CoreDataStore.Data.SqlServer
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.RemovePluralizingTableNameConvention();
-
             #region LPC Report
 
             builder.Entity<LPCReport>().ToTable("LPCReport");
@@ -155,7 +152,6 @@ namespace CoreDataStore.Data.SqlServer
             builder.Entity<Pluto>().Property(t => t.ZipCode).HasMaxLength(5);
 
             #endregion
-
 
             builder.Entity<AuditLog>().ToTable("AuditLog");
             builder.Entity<AuditLog>().HasKey(m => m.Id);

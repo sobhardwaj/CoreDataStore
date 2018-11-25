@@ -235,3 +235,4 @@ src/CoreDataStore\.Web/src/app/routes/appsettings\.ts
 src/CoreDataStore\.Web/\.publish
 
 .history/
+.sonarqube

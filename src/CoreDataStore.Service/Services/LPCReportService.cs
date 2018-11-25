@@ -12,11 +12,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoreDataStore.Service.Services
 {
-    public class LPCReportService : ILPCReportService
+    public class LpcReportService : ILPCReportService
     {
         private readonly ILpcReportRepository _lpcReportRepository;
 
-        public LPCReportService(ILpcReportRepository lpcReportRepository)
+        public LpcReportService(ILpcReportRepository lpcReportRepository)
         {
             this._lpcReportRepository = lpcReportRepository;
         }
@@ -34,7 +34,6 @@ namespace CoreDataStore.Service.Services
             return Mapper.Map<IEnumerable<LPCReport>, IEnumerable<LPCReportModel>>(results).ToList();
         }
 
-
         public LPCReportModel UpdateLPCReport(LPCReportModel model)
         {
             var report = _lpcReportRepository.GetSingle(model.Id);
@@ -47,7 +46,7 @@ namespace CoreDataStore.Service.Services
             return Mapper.Map<LPCReport, LPCReportModel>(results);
         }
 
-        public PagedResultModel<LPCReportModel> GetLPCReports(LPCReportRequest request)
+        public PagedResultModel<LPCReportModel> GetLPCReports(LpcReportRequest request)
         {
             var predicate = PredicateBuilder.True<LPCReport>();
 
@@ -66,7 +65,7 @@ namespace CoreDataStore.Service.Services
                 SortOrder = !string.IsNullOrEmpty(request.SortOrder) ? request.SortOrder : null
             };
 
-            var sortingList = new List<SortModel>{sortModel};
+            var sortingList = new List<SortModel> { sortModel };
 
             int totalCount = _lpcReportRepository.FindBy(predicate).Count();
 
@@ -84,6 +83,5 @@ namespace CoreDataStore.Service.Services
 
             return pagedResult;
         }
-
     }
 }

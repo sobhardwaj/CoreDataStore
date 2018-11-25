@@ -34,7 +34,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
                 .AddScoped<ILpcLocationRepository, LPCLocationRepository>()
                 .AddScoped<ILpcReportRepository, LPCReportRepository>()
                 .AddScoped<IPlutoRepository, PlutoRepository>()
-                .AddScoped<ILPCReportService, LPCReportService>()
+                .AddScoped<ILPCReportService, LpcReportService>()
                 .AddScoped<ILandmarkService, LandmarkService>()
                 .BuildServiceProvider();
 

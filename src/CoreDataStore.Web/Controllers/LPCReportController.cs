@@ -85,8 +85,7 @@ namespace CoreDataStore.Web.Controllers
         [ProducesResponseType(typeof(IEnumerable<LPCReportModel>), 200)]
         public IEnumerable<LPCReportModel> Get([FromQuery]LPCReportRequestModel query, int limit, int page)
         {
-            long totalRecords = 0;
-            var request = new LPCReportRequest
+            var request = new LpcReportRequest
             {
                 PageSize = limit,
                 Page = page,
@@ -99,7 +98,7 @@ namespace CoreDataStore.Web.Controllers
             };
 
             var records = _lpcReportService.GetLPCReports(request);
-            totalRecords = records.Total;
+            var totalRecords = records.Total;
             HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", "X-InlineCount");
             HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
             return records.Results;
@@ -124,7 +123,7 @@ namespace CoreDataStore.Web.Controllers
                 Page = page,
                 SortColumn = !string.IsNullOrEmpty(query.Sort) ? query.Sort : "LP_NUMBER",
                 SortOrder = !string.IsNullOrEmpty(query.Order) ? query.Order : "asc",
-                LPCNumber = query.LpcNumber,
+                LpcNumber = query.LpcNumber,
             };
 
             var records = _landmarkService.GetLandmarks(request);

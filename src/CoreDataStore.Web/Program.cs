@@ -9,7 +9,7 @@ namespace CoreDataStore.Web
     /// <summary>
     ///
     /// </summary>
-    public class Program
+    public static class Program
     {
         /// <summary>
         ///

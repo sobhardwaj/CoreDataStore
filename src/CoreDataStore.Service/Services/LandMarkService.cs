@@ -49,8 +49,8 @@ namespace CoreDataStore.Service.Services
         {
             var predicate = PredicateBuilder.True<Landmark>();
 
-            if (!string.IsNullOrEmpty(request.LPCNumber))
-                predicate = predicate.And(x => x.LP_NUMBER == request.LPCNumber);
+            if (!string.IsNullOrEmpty(request.LpcNumber))
+                predicate = predicate.And(x => x.LP_NUMBER == request.LpcNumber);
 
             var sortModel = new SortModel
             {

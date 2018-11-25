@@ -37,7 +37,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             services.AddScoped<ILandmarkRepository, LandmarkRepository>();
 
             //Services
-            services.AddScoped<ILPCReportService, LPCReportService>();
+            services.AddScoped<ILPCReportService, LpcReportService>();
             services.AddScoped<ILandmarkService, LandmarkService>();
 
             AutoMapperConfiguration.Configure();

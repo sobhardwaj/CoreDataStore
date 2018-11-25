@@ -3,7 +3,7 @@ using CoreDataStore.Data.Sqlite.Filters.Base;
 
 namespace CoreDataStore.Data.Filters
 {
-    public class LPCReportRequest : RequestBase
+    public class LpcReportRequest : RequestBase
     {
         /// <summary>
         /// Object Type

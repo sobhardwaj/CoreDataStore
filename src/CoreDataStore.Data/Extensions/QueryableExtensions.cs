@@ -21,8 +21,8 @@ namespace CoreDataStore.Data.Extensions
                 var parameter = Expression.Parameter(typeof(T), "x");
                 var selector = Expression.PropertyOrField(parameter, item.SortColumn);
                 var method = string.Equals(item.SortOrder, "desc", StringComparison.OrdinalIgnoreCase) ?
-                    (count == 0 ? "OrderByDescending" : "ThenByDescending") :
-                    (count == 0 ? "OrderBy" : "ThenBy");
+                    (count == 0 ? "OrderByDescending" : $"ThenByDescending") :
+                    (count == 0 ? $"OrderBy" : "ThenBy");
 
                 expression =
                     Expression.Call(typeof(Queryable), method, new[] { source.ElementType, selector.Type }, expression, Expression.Quote(Expression.Lambda(selector, parameter)));

@@ -7,16 +7,15 @@ namespace CoreDataStore.Data.Sqlite.Repositories
     {
         public List<ReferenceType> GetObjectTypes()
         {
-            var list = new List<ReferenceType>();
-
-            list.Add(new ReferenceType {Name = "", Value = ""});  //"Individual Landmark");
-            list.Add(new ReferenceType { Name = "", Value = "" });
-            list.Add(new ReferenceType { Name = "", Value = "" });
-            list.Add(new ReferenceType { Name = "", Value = "" });
+            var list = new List<ReferenceType>
+            {
+                new ReferenceType {Name = "", Value = ""},
+                new ReferenceType {Name = "", Value = ""},
+                new ReferenceType {Name = "", Value = ""},
+                new ReferenceType {Name = "", Value = ""}
+            };
 
             return list;
         }
     }
-
-
 }
