@@ -3,7 +3,7 @@ using CoreDataStore.Domain.Entities.Base;
 
 namespace CoreDataStore.Domain.Entities
 {
-    public class Landmark  : IEntityBase
+    public class Landmark : IEntityBase
     {
         public long Id { get; set; }
 
@@ -60,8 +60,6 @@ namespace CoreDataStore.Domain.Entities
         public decimal? Latitude { get; set; }
 
         public decimal? Longitude { get; set; }
-
-        //public Pluto Pluto { get; set; }
 
         public LPCReport LPCReport { get; set; }
     }

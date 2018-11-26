@@ -25,7 +25,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
                 .AddEnvironmentVariables()
                 .Build();
 
-            DbConnection = builder.GetConnectionString("SqlServer");
+            //DbConnection = builder.GetConnectionString("SqlServer");
+            DbConnection = "Data Source=.;Initial Catalog=NycLandmarks_EF;Integrated Security=True";
 
             var serviceProvider = new ServiceCollection()
                 .AddDbContext<NYCLandmarkContext>(options => options.UseSqlServer(DbConnection))

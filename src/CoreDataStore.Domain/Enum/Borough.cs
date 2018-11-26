@@ -28,7 +28,7 @@ namespace CoreDataStore.Domain.Enum
 
     public class BoroughId : System.Attribute
     {
-        private string _value;
+        private readonly string _value;
         public BoroughId(string value)
         {
             _value = value;
