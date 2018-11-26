@@ -32,6 +32,5 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
             var results = _lpcReportService.GetLPCReports(request).Results;
             Assert.Equal(request.PageSize, results.Count);
         }
-
     }
 }

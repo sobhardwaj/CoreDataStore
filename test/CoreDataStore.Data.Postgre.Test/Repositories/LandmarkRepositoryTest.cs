@@ -14,8 +14,6 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
     {
         private readonly ILandmarkRepository _landmarkRepository;
 
-        private readonly NYCLandmarkContext _dbContext;
-
         private readonly ITestOutputHelper _output;
 
         public LandmarkRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
@@ -55,7 +53,6 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
                 .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList);
 
             Assert.NotNull(results);
-
         }
     }
 }

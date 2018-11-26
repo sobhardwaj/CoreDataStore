@@ -10,8 +10,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
     {
         private readonly ILpcLamppostRepository _lamppostRepository;
 
-        private readonly NYCLandmarkContext _dbContext;
-
         private readonly ITestOutputHelper _output;
         public LpcLamppostRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
@@ -51,5 +49,4 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             _lamppostRepository.UpdateDbEntryAsync(result, d => d.Borough);
         }
     }
-
 }
