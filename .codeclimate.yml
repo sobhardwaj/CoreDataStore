@@ -3,6 +3,7 @@ engines:
     enabled: false
   duplication:
     enabled: false
-  exclude_patterns:
+
+exclude_patterns:
   - "tools/"
   - "test/"
