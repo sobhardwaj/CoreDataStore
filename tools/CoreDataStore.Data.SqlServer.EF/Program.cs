@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace CoreDataStore.Data.SqlServer.EF
 {
-    class Program
+    public static class Program
     {
         /// <summary>
         ///
@@ -29,8 +29,11 @@ namespace CoreDataStore.Data.SqlServer.EF
 
         public class NycLandmarkContextMock : NYCLandmarkContext
         {
+            private readonly string _connectionString;
+
             public NycLandmarkContextMock()
             {
+                _connectionString = Configuration.GetConnectionString("SqlServer");
             }
 
             protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -38,7 +41,7 @@ namespace CoreDataStore.Data.SqlServer.EF
                 if (!optionsBuilder.IsConfigured)
                 {
                     optionsBuilder
-                        .UseSqlServer("Data Source=.;Initial Catalog=NycLandmarks_EFA;Integrated Security=True");
+                        .UseSqlServer(_connectionString);
                 }
             }
         }

@@ -1,9 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.IO;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace CoreDataStore.Data.Postgre.EF
 {
-    class Program
+    public static class Program
     {
+        /// <summary>
+        ///
+        /// </summary>
+        public static IConfiguration Configuration { get; } = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+            .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development"}.json", optional: true)
+            .Build();
+
         static void Main(string[] args)
         {
             using (var db = new NycLandmarkContextMock())
@@ -12,13 +24,19 @@ namespace CoreDataStore.Data.Postgre.EF
             }
         }
 
-
         public class NycLandmarkContextMock : NYCLandmarkContext
         {
+            private readonly string _connectionString;
+
+            public NycLandmarkContextMock()
+            {
+                _connectionString = Configuration.GetConnectionString("PostgreSql");
+            }
+
             protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             {
                 optionsBuilder
-                    .UseNpgsql(@"User ID=postgres; Password=password;Server=192.168.99.100;Port=5432;Database=nyclandmarks_ef;Integrated Security=true;Pooling=true;");
+                    .UseNpgsql(_connectionString);
             }
         }
     }
