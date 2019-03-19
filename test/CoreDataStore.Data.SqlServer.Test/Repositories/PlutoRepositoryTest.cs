@@ -17,7 +17,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             _output = output;
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Get_Landmarks_Pluto()
         {
             var lpcNumber = "LP-02039";
@@ -27,7 +28,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.NotEmpty(results);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Get_Landmarks_Pluto_Count()
         {
             var lpcNumber = "LP-02039";
@@ -36,14 +38,16 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.NotEqual(0, result);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Pluto_Block_Lot_Exist()
         {
             var results = _plutoRepository.FindBy(x => x.Block == 1 && x.Lot == 10).ToList();
             Assert.NotNull(results);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Pluto_BBL_Exist()
         {
             var results = _plutoRepository.FindBy(x => x.BBL == 5080500013).ToList();

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Xunit;
-using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
+using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.Postgre.Test.Fixtures;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Domain.Enum;
 using Navigator.Common.Helpers;
+using Xunit;
 using Xunit.Abstractions;
 
 namespace CoreDataStore.Data.Postgre.Test.Repositories
@@ -28,24 +28,27 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             _output = output;
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void LPC_Reports_Exist()
         {
             var results = _lpcReportRepository.GetAll().ToList();
-            var count = results.Count();
+            var count = results.Count;
 
             Assert.NotNull(results);
             Assert.NotEqual(0, count);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Can_Get_Borough_List()
         {
             var results = EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription()).ToList();
             Assert.NotNull(results);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Can_Get_Filtered_Paging_List()
         {
             var predicate = PredicateBuilder.True<LPCReport>();
@@ -58,7 +61,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             var sortModel = new SortModel
             {
                 SortColumn = !string.IsNullOrEmpty(request.SortColumn) ? request.SortColumn : null,
-                SortOrder = !string.IsNullOrEmpty(request.SortOrder) ? request.SortOrder : null
+                SortOrder = !string.IsNullOrEmpty(request.SortOrder) ? request.SortOrder : null,
             };
 
             var sortingList = new List<SortModel>();
@@ -71,11 +74,12 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
 
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Can_Get_Lamppost_List()
         {
             var results = _dbContext.LPCLamppost.ToList();
-            var count = results.Count();
+            var count = results.Count;
 
             Assert.NotNull(results);
             Assert.NotEqual(0, count);

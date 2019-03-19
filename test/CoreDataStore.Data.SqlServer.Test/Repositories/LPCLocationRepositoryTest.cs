@@ -21,14 +21,16 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             _output = output;
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Get_LPC_Locations_List()
         {
             var results = _lpcLocationRepository.GetAll().ToList();
             Assert.NotNull(results);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Can_Get_LPCReport()
         {
             var lpNumber = "LP-00871";

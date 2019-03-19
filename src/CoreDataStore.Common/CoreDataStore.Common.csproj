@@ -2,17 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>CoreDataStore.Common</AssemblyName>
-    <PackageId>CoreDataStore.Common</PackageId>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Description>CoreDataStore Common Library</Description>
     <RepositoryUrl>https://github.com/stuartshay/CoreDataStore</RepositoryUrl>
-    <AssemblyVersion>1.0.19.0</AssemblyVersion>
-    <FileVersion>1.0.19.2</FileVersion>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn),1701;1702;1705</NoWarn>
+    <CodeAnalysisRuleSet>StyleCopRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="$(SolutionDir)_stylecop\stylecop.json" Link="stylecop.json" />
-  </ItemGroup>
 
 </Project>

@@ -26,7 +26,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
         [Fact]
-        [Trait("Category", "Intergration")]
+        [Trait("Category", "Integration")]
         public void Can_Get_Landmark()
         {
             var id = 100;
@@ -35,7 +35,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
         [Fact(Skip = "TODO")]
-        [Trait("Category", "Intergration")]
+        [Trait("Category", "Integration")]
         public void Can_Get_Included_Fields()
         {
             var lpNumber = "LP-02039";
@@ -45,7 +45,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.Equal(lpNumber, landmark.LP_NUMBER);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Can_Get_Filtered_Paging_List()
         {
             var predicate = PredicateBuilder.True<Landmark>();
@@ -58,7 +59,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             var sortModel = new SortModel
             {
                 SortColumn = !string.IsNullOrEmpty(request.SortColumn) ? request.SortColumn : null,
-                SortOrder = !string.IsNullOrEmpty(request.SortOrder) ? request.SortOrder : null
+                SortOrder = !string.IsNullOrEmpty(request.SortOrder) ? request.SortOrder : null,
             };
 
             var sortingList = new List<SortModel> { sortModel };

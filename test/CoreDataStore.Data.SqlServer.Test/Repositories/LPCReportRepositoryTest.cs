@@ -1,11 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using CoreDataStore.Data.Extensions;
-using CoreDataStore.Data.Interfaces;
-using Xunit;
 using CoreDataStore.Data.Filters;
-using System.Collections.Generic;
+using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Test.Fixtures;
 using Microsoft.EntityFrameworkCore;
+using Xunit;
 using Xunit.Abstractions;
 
 namespace CoreDataStore.Data.SqlServer.Test.Repositories
@@ -25,14 +25,16 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             _output = output;
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void LPC_Reports_Exist()
         {
             var results = _lpcReportRepository.GetAll().ToList();
             Assert.NotNull(results);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Can_Update_LPC_Report()
         {
             var lpcReport = _lpcReportRepository.GetSingle(1);
@@ -42,7 +44,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.Equal(0, result);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Can_Get_LPCReport()
         {
             var lpNumber = "LP-00871";
@@ -51,7 +54,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.Equal(lpNumber, lpcReportNumber);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Can_Get_LPCReport_Location()
         {
             var lpNumber = "LP-00871";
@@ -60,7 +64,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.Equal(lpNumber, lpcReportNumber.LPNumber);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Can_Get_Included_Fields()
         {
             var lpNumber = "LP-00871";
@@ -72,7 +77,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.Equal(landmarkCount, landmark.Landmarks.Count);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Can_Get_Paging_List()
         {
             var request = new LpcReportRequest
@@ -86,7 +92,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
                 new SortModel
                 {
                     SortColumn = "name",
-                    SortOrder = "asc"
+                    SortOrder = "asc",
                 }
             };
 
@@ -94,7 +100,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.Equal(request.PageSize, results.Count);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Can_Get_Lamppost_List()
         {
             var results = _dbContext.LPCLamppost.ToList();

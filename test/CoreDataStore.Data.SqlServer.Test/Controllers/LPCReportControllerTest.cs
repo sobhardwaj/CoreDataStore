@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Repositories;
 using CoreDataStore.Domain.Entities;
+using CoreDataStore.Domain.Enum;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;
 using CoreDataStore.Web.Controllers;
+using GenFu;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Xunit;
-using System.Linq;
-using CoreDataStore.Domain.Enum;
-using FluentAssertions;
-using GenFu;
-using Microsoft.AspNetCore.Mvc;
 using Navigator.Common.Helpers;
-
 
 namespace CoreDataStore.Data.SqlServer.Test.Controllers
 {
@@ -32,11 +28,11 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             var services = new ServiceCollection();
             services.AddDbContext<NYCLandmarkContext>(options => options.UseInMemoryDatabase());
 
-            //Repositories
+            // Repositories
             services.AddScoped<ILpcReportRepository, LPCReportRepository>();
             services.AddScoped<ILandmarkRepository, LandmarkRepository>();
 
-            //Services
+            // Services
             services.AddScoped<ILPCReportService, LpcReportService>();
             services.AddScoped<ILandmarkService, LandmarkService>();
 
@@ -188,6 +184,5 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
         //    // Assert
         //    actionResult.Should().BeOfType<OkResult>();
         //}
-
     }
 }

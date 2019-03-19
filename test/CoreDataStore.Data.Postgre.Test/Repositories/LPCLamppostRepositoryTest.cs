@@ -21,21 +21,23 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             _output = output;
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Get_LPC_Lamppost_List()
         {
             var results = _lamppostRepository.GetAll().ToList();
-            var count = results.Count();
+            var count = results.Count;
 
             Assert.NotNull(results);
             Assert.NotEqual(0, count);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Can_Get_Lamppost()
         {
             var postId = 10;
-            var result = _lamppostRepository.GetSingle(x => x.PostId == postId).PostId;  
+            var result = _lamppostRepository.GetSingle(x => x.PostId == postId).PostId;
 
             Assert.Equal(postId, result);
         }

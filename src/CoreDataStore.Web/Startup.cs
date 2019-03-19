@@ -136,10 +136,6 @@ namespace CoreDataStore.Web
             services.AddMvc();
         }
 
-
-
-
-
         /// <summary>
         ///
         /// </summary>
@@ -187,7 +183,7 @@ namespace CoreDataStore.Web
         /// <param name="loggerFactory"></param>
         public void ConfigureProduction(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            app.UseExceptionHandler("/Home/Error");
+            app.UseExceptionHandler($"/Home/Error");
             // loggerFactory.AddProvider(new SqlLoggerProvider());
 
             AppConfig(app, loggerFactory);
@@ -209,7 +205,7 @@ namespace CoreDataStore.Web
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                var swaggerDocument = "/swagger/v1/swagger.json";
+                var swaggerDocument = $"/swagger/v1/swagger.json";
                 options.SwaggerEndpoint(swaggerDocument, "CoreDataStore.Web");
             });
         }

@@ -19,14 +19,14 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
         }
 
         [Fact(Skip = "TODO")]
-        [Trait("Category", "Intergration")]
+        [Trait("Category", "Integration")]
         public void Can_Get_Filtered_Paging_List()
         {
             var request = new LpcReportRequest
             {
                 PageSize = 20,
                 Page = 1,
-                Borough = "Manhattan"
+                Borough = "Manhattan",
             };
 
             var results = _lpcReportService.GetLPCReports(request).Results;

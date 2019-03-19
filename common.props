@@ -1,0 +1,7 @@
+<Project>
+  
+  <PropertyGroup Label="Build">
+    <RuntimeFrameworkVersion>2.2.0</RuntimeFrameworkVersion>
+  </PropertyGroup>
+
+</Project>
