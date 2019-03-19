@@ -55,6 +55,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDataStore.Data.Postgre.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDataStore.Data.SqlServer.EF", "tools\CoreDataStore.Data.SqlServer.EF\CoreDataStore.Data.SqlServer.EF.csproj", "{B92FC774-966B-425C-81B7-60D749333B82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDataStore.Web.Test", "test\CoreDataStore.Web.Test\CoreDataStore.Web.Test.csproj", "{5C3E9733-602D-45DA-AA6B-23E4967A84F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +111,10 @@ Global
 		{B92FC774-966B-425C-81B7-60D749333B82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B92FC774-966B-425C-81B7-60D749333B82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B92FC774-966B-425C-81B7-60D749333B82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C3E9733-602D-45DA-AA6B-23E4967A84F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C3E9733-602D-45DA-AA6B-23E4967A84F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C3E9733-602D-45DA-AA6B-23E4967A84F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C3E9733-602D-45DA-AA6B-23E4967A84F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,6 +132,7 @@ Global
 		{70417AE1-918D-4D47-9028-88238093D3CE} = {16E0E7AC-0945-45F1-8D10-F27027CCC1DE}
 		{95BDC8D7-0090-4EE5-A653-B307685BD6F5} = {EB9B4D99-1CF2-4AF7-8C62-C3D1750B6766}
 		{B92FC774-966B-425C-81B7-60D749333B82} = {EB9B4D99-1CF2-4AF7-8C62-C3D1750B6766}
+		{5C3E9733-602D-45DA-AA6B-23E4967A84F8} = {03D6EAC4-7C2A-4737-9842-255C45C43CFC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5E7F98F7-A125-40A8-87FB-5FF78A9B04D0}

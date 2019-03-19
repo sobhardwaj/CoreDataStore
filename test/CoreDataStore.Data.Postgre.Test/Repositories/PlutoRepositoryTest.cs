@@ -11,13 +11,15 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         private readonly IPlutoRepository _plutoRepository;
 
         private readonly ITestOutputHelper _output;
+
         public PlutoRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
             _plutoRepository = fixture.PlutoRepository;
             _output = output;
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Pluto_Block_Lot_Exist()
         {
             int block = 1096;
@@ -30,7 +32,8 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             Assert.Equal(lot, result.Lot);
         }
 
-        [Fact, Trait("Category", "Intergration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Pluto_BBL_Exist()
         {
             long bbl = 5080500013;

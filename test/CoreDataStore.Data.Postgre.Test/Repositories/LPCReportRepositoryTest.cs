@@ -71,7 +71,6 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
                 .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList).ToList();
 
             Assert.NotNull(results);
-
         }
 
         [Fact]

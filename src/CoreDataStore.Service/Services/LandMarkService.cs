@@ -14,11 +14,11 @@ namespace CoreDataStore.Service.Services
 {
     public class LandmarkService : ILandmarkService
     {
-        private readonly ILandmarkRepository _landmarktRepository;
+        private readonly ILandmarkRepository _landmarkRepository;
 
-        public LandmarkService(ILandmarkRepository landmarktRepository)
+        public LandmarkService(ILandmarkRepository landmarkRepository)
         {
-            this._landmarktRepository = landmarktRepository;
+            _landmarkRepository = landmarkRepository;
         }
 
         public List<string> GetLandmarkStreets(string lpcNumber)
@@ -26,7 +26,7 @@ namespace CoreDataStore.Service.Services
             var predicate = PredicateBuilder.True<Landmark>();
             predicate = predicate.And(x => x.LP_NUMBER == lpcNumber);
 
-            var results = _landmarktRepository.FindBy(predicate).Select(x => x.PLUTO_ADDR).ToList()
+            var results = _landmarkRepository.FindBy(predicate).Select(x => x.PLUTO_ADDR).ToList()
                           .Select(x => new
                           {
                               x = !string.IsNullOrWhiteSpace(x) && x.Any(char.IsDigit)
@@ -44,7 +44,6 @@ namespace CoreDataStore.Service.Services
             return sortedList;
         }
 
-
         public PagedResultModel<LandmarkModel> GetLandmarks(LandmarkRequest request)
         {
             var predicate = PredicateBuilder.True<Landmark>();
@@ -61,9 +60,9 @@ namespace CoreDataStore.Service.Services
             var sortingList = new List<SortModel>();
             sortingList.Add(sortModel);
 
-            int totalCount = _landmarktRepository.FindBy(predicate).Count();
+            int totalCount = _landmarkRepository.FindBy(predicate).Count();
 
-            var results = _landmarktRepository
+            var results = _landmarkRepository
                 .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList);
 
             var modelData = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkModel>>(results).ToList();
@@ -78,6 +77,5 @@ namespace CoreDataStore.Service.Services
 
             return pagedResult;
         }
-
     }
 }

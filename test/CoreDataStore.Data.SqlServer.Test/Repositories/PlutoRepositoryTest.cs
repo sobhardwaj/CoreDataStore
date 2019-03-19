@@ -11,6 +11,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         private readonly IPlutoRepository _plutoRepository;
 
         private readonly ITestOutputHelper _output;
+
         public PlutoRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
             _plutoRepository = fixture.PlutoRepository;

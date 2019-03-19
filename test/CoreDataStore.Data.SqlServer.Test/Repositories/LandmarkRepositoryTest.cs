@@ -19,6 +19,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         private readonly NYCLandmarkContext _dbContext;
 
         private readonly ITestOutputHelper _output;
+
         public LandmarkRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
             _landmarkRepository = fixture.LandmarkRepository;

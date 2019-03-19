@@ -11,6 +11,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         private readonly ILpcLamppostRepository _lamppostRepository;
 
         private readonly ITestOutputHelper _output;
+
         public LpcLamppostRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
             _lamppostRepository = fixture.LpcLamppostRepository;
@@ -22,7 +23,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         public void Get_LPC_Lamppost_List()
         {
             var results = _lamppostRepository.GetAll().ToList();
-            var count = results.Count();
+            var count = results.Count;
 
             Assert.NotNull(results);
             Assert.NotEqual(0, count);

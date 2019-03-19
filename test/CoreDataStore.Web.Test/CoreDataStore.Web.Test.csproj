@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RuntimeIdentifiers>debian.9-x64;ubuntu.16.04-x64;osx.10.12-x64;win10-x64</RuntimeIdentifiers>
+    <IsPackable>false</IsPackable>
+    <NoWarn>$(NoWarn),1701;1702;1705</NoWarn>
+    <CodeAnalysisRuleSet>StyleCopRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" />
+
+    <PackageReference Include="GenFu" Version="1.5.6" />
+    <PackageReference Include="Moq" Version="4.10.1" />
+
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.console" Version="2.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta009">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\CoreDataStore.Service\CoreDataStore.Service.csproj" />
+    <ProjectReference Include="..\..\src\CoreDataStore.Web\CoreDataStore.Web.csproj" />
+  </ItemGroup>
+
+</Project>

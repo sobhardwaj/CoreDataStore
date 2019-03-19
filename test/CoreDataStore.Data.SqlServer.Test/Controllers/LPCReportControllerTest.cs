@@ -7,12 +7,17 @@ using CoreDataStore.Domain.Entities;
 using CoreDataStore.Domain.Enum;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Mappings;
+using CoreDataStore.Service.Models;
 using CoreDataStore.Service.Services;
 using CoreDataStore.Web.Controllers;
+using CoreDataStore.Web.Filters;
+using FluentAssertions;
 using GenFu;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Navigator.Common.Helpers;
+using Xunit;
 
 namespace CoreDataStore.Data.SqlServer.Test.Controllers
 {
@@ -21,7 +26,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
         private readonly IServiceProvider _serviceProvider;
 
         private IEnumerable<LPCReport> _lpcReports = new List<LPCReport>();
-        private IEnumerable<Landmark> _landmarks = new List<Landmark>();
+        private readonly IEnumerable<Landmark> _landmarks = new List<Landmark>();
 
         public LPCReportControllerTest()
         {
@@ -39,7 +44,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             AutoMapperConfiguration.Configure();
             _serviceProvider = services.BuildServiceProvider();
         }
-
 
         private void CreateTestData(NYCLandmarkContext dbContext)
         {
@@ -75,114 +79,114 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             return controller;
         }
 
+        [Fact]
+        [Trait("Category", "InMemoryDatabase")]
+        public void DbContext_Should_Have_Records()
+        {
+            var controller = PrepareController();
+            var dbContext = _serviceProvider.GetRequiredService<NYCLandmarkContext>();
 
-        //[Fact, Trait("Category", "InMemoryDatabase")]
-        //public void DbContext_Should_Have_Records()
-        //{
-        //    var controller = PrepareController();
-        //    var dbContext = _serviceProvider.GetRequiredService<NYCLandmarkContext>();
+            Assert.Equal(20, dbContext.LPCReports.ToList().Count);
+        }
 
-        //    Assert.Equal(20, dbContext.LPCReports.ToList().Count());
-        //}
+        [Fact]
+        [Trait("Category", "InMemoryDatabase")]
+        public void Get_Should_Have_Record()
+        {
+            var controller = PrepareController();
 
+            var id = 10;
+            var actionResult = controller.Get(id);
 
-        //[Fact, Trait("Category", "InMemoryDatabase")]
-        //public void Get_Should_Have_Record()
-        //{
-        //    var controller = PrepareController();
+            // Assert
+            actionResult.Should().BeOfType<ObjectResult>();
+        }
 
-        //    var id = 10;
-        //    var actionResult = controller.Get(id);
+        [Fact]
+        [Trait("Category", "InMemoryDatabase")]
+        public void Get_Should_Return_BadRequest()
+        {
+            var controller = PrepareController();
 
-        //    // Assert
-        //    actionResult.Should().BeOfType<ObjectResult>();
-        //}
+            var actionResult = controller.Get(0);
 
+            // Assert
+            actionResult.Should().BeOfType<BadRequestResult>();
+        }
 
-        //[Fact, Trait("Category", "InMemoryDatabase")]
-        //public void Get_Should_Return_BadRequest()
-        //{
-        //    var controller = PrepareController();
+        [Fact(Skip = "TODO")]
+        [Trait("Category", "InMemoryDatabase")]
+        public void Paging_Should_Return_Correct_Record_Count()
+        {
+            var controller = PrepareController();
 
-        //    var actionResult = controller.Get(0);
+            var model = new LPCReportRequestModel
+            {
+                ObjectType = "Individual Landmark",
+            };
 
-        //    // Assert
-        //    actionResult.Should().BeOfType<BadRequestResult>();
-        //}
+            //Response Header Null Exception
+            var actionResult = controller.Get(model, 5, 1);
 
+            // Assert
+            actionResult.Should().BeOfType<IEnumerable<ObjectResult>>()
+                               .Which.Count().Should().Be(5);
 
-        //[Fact, Trait("Category", "InMemoryDatabase")]
-        //public void Paging_Should_Return_Correct_Record_Count()
-        //{
-        //    var controller = PrepareController();
+        }
 
-        //    var model = new LPCReportRequestModel
-        //    {
-        //        ObjectType = "Individual Landmark",
-        //    };
+        [Fact(Skip = "TODO")]
+        [Trait("Category", "InMemoryDatabase")]
+        public void Paging_Should_Return_No_Record()
+        {
+            var controller = PrepareController();
 
-        //    //Response Header Null Exception
-        //    var actionResult = controller.Get(model, 5, 1);
+            var model = new LPCReportRequestModel
+            {
+                ObjectType = "ObjectType45",
+            };
 
-        //    // Assert
-        //    actionResult.Should().BeOfType<IEnumerable<ObjectResult>>()
-        //                       .Which.Count().Should().Be(5);
+            var actionResult = controller.Get(model, 5, 1);
 
-        //}
+            // Assert
+            actionResult.Should().BeOfType<IEnumerable<LPCReportModel>>()
+                .Which.Count().Should().Equals(0);
+        }
 
+        [Fact(Skip = "TODO")]
+        [Trait("Category", "InMemoryDatabase")]
+        public void Put_Exception_Return_NoContent()
+        {
+            var controller = PrepareController();
 
-        //[Fact, Trait("Category", "InMemoryDatabase")]
-        //public void Paging_Should_Return_No_Record()
-        //{
-        //    var controller = PrepareController();
+            var id = 110;
 
-        //    var model = new LPCReportRequestModel
-        //    {
-        //        ObjectType = "ObjectType45",
-        //    };
+            var dbContext = _serviceProvider.GetRequiredService<NYCLandmarkContext>();
+            var model1 = dbContext.LPCReports.Where(x => x.Id == 1);
 
-        //    var actionResult = controller.Get(model, 5, 1);
+            var model = new LPCReportModel { };
 
-        //    // Assert
-        //    actionResult.Should().BeOfType<IEnumerable<LPCReportModel>>()
-        //        .Which.Count().Should().Equals(0);
-        //}
+            var actionResult = controller.Put(id, model);
 
+            // Assert
+            actionResult.Should().BeOfType<NoContentResult>();
+        }
 
-        //[Fact, Trait("Category", "InMemoryDatabase")]
-        //public void Put_Exception_Return_NoContent()
-        //{
-        //    var controller = PrepareController();
+        [Fact(Skip = "TODO")]
+        [Trait("Category", "InMemoryDatabase")]
+        public void Put_Success_Update_Record()
+        {
+            var controller = PrepareController();
 
-        //    var id = 110;
+            var id = 11;
+            var model = new LPCReportModel
+            {
 
-        //    var dbContext = _serviceProvider.GetRequiredService<NYCLandmarkContext>();
-        //    var model1 = dbContext.LPCReports.Where(x => x.Id == 1);
+            };
 
-        //    var model = new LPCReportModel { };
+            var actionResult = controller.Put(id, model);
 
-        //    var actionResult = controller.Put(id, model);
-
-        //    // Assert
-        //    actionResult.Should().BeOfType<NoContentResult>();
-        //}
-
-
-        //[Fact, Trait("Category", "InMemoryDatabase")]
-        //public void Put_Sucess_Update_Record()
-        //{
-        //    var controller = PrepareController();
-
-        //    var id = 11;
-        //    var model = new LPCReportModel
-        //    {
-
-        //    };
-
-        //    var actionResult = controller.Put(id, model);
-
-        //    // Assert
-        //    actionResult.Should().BeOfType<OkResult>();
-        //}
+            // Assert
+            actionResult.Should().BeOfType<OkResult>();
+        }
     }
 }

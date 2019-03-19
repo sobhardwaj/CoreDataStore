@@ -38,7 +38,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         public void Can_Update_LPC_Report()
         {
             var lpcReport = _lpcReportRepository.GetSingle(1);
-            lpcReport.Name = "Pieter Claesen Wyckoff House X";
+            lpcReport.Name = $"Pieter Claesen Wyckoff House X";
 
             var result = _dbContext.SaveChanges();
             Assert.Equal(0, result);
@@ -93,7 +93,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
                 {
                     SortColumn = "name",
                     SortOrder = "asc",
-                }
+                },
             };
 
             var results = _lpcReportRepository.GetPage(request.Page, request.PageSize, sortingList).ToList();
