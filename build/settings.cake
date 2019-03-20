@@ -8,8 +8,8 @@ public static class Settings
 
     public static string SonarName => "CoreDataStore";
 
-    public static string SonarExclude => "/d:sonar.exclusions=Program.cs,**/Formatters/*.cs";
+    public static string SonarExclude => "/d:sonar.exclusions=**/wwwroot/**,*.js,Program.cs";
 
-     public static string SonarExcludeDuplications => "/d:sonar.cpd.exclusions=**/Templates/ExcelFormating.cs";
+    public static string SonarExcludeDuplications => "/d:sonar.cpd.exclusions=**/Templates/ExcelFormating.cs";
 }
 
