@@ -7,7 +7,7 @@ namespace CoreDataStore.Data.Interfaces
 {
     public interface ILandmarkRepository : IEntityBaseRepository<Landmark>, IDisposable { }
 
-    public interface ILpcReportRepository : IEntityBaseRepository<LPCReport>, IDisposable { }
+    public interface ILpcReportRepository : IEntityBaseRepository<LpcReport>, IDisposable { }
 
     public interface ILpcLocationRepository : IEntityBaseRepository<LPCLocation>, IDisposable { }
 

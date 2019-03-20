@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace CoreDataStore.Service.ValidationRules
 {
-    public class LPCReportRule : AbstractValidator<LPCReportModel>
+    public class LPCReportRule : AbstractValidator<LpcReportModel>
     {
         public LPCReportRule()
         {

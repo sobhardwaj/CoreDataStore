@@ -3,7 +3,7 @@
 namespace CoreDataStore.Web.Filters
 {
     /// <summary>
-    ///
+    /// Landmark Request Model
     /// </summary>
     public class LandmarkRequestModel : RequestModel
     {
@@ -11,6 +11,5 @@ namespace CoreDataStore.Web.Filters
         /// LPC Number
         /// </summary>
         public string LpcNumber { get; set; }
-
     }
 }

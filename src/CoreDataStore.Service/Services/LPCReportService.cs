@@ -21,20 +21,20 @@ namespace CoreDataStore.Service.Services
             this._lpcReportRepository = lpcReportRepository;
         }
 
-        public LPCReportModel GetLPCReport(int id)
+        public LpcReportModel GetLPCReport(int id)
         {
             var query = _lpcReportRepository.GetSingle(id);
 
-            return Mapper.Map<LPCReport, LPCReportModel>(query);
+            return Mapper.Map<LpcReport, LpcReportModel>(query);
         }
 
-        public List<LPCReportModel> GetLPCReports()
+        public List<LpcReportModel> GetLPCReports()
         {
             var results = _lpcReportRepository.GetAll().ToList();
-            return Mapper.Map<IEnumerable<LPCReport>, IEnumerable<LPCReportModel>>(results).ToList();
+            return Mapper.Map<IEnumerable<LpcReport>, IEnumerable<LpcReportModel>>(results).ToList();
         }
 
-        public LPCReportModel UpdateLPCReport(LPCReportModel model)
+        public LpcReportModel UpdateLPCReport(LpcReportModel model)
         {
             var report = _lpcReportRepository.GetSingle(model.Id);
             Mapper.Map(model, report);
@@ -43,12 +43,12 @@ namespace CoreDataStore.Service.Services
             _lpcReportRepository.Commit();
 
             var results = _lpcReportRepository.GetSingle(model.Id);
-            return Mapper.Map<LPCReport, LPCReportModel>(results);
+            return Mapper.Map<LpcReport, LpcReportModel>(results);
         }
 
-        public PagedResultModel<LPCReportModel> GetLPCReports(LpcReportRequest request)
+        public PagedResultModel<LpcReportModel> GetLPCReports(LpcReportRequest request)
         {
-            var predicate = PredicateBuilder.True<LPCReport>();
+            var predicate = PredicateBuilder.True<LpcReport>();
 
             if (!string.IsNullOrEmpty(request.Neighborhood))
                 predicate = predicate.And(x => x.LPCLocation.Neighborhood == request.Neighborhood);
@@ -67,21 +67,19 @@ namespace CoreDataStore.Service.Services
 
             var sortingList = new List<SortModel> { sortModel };
 
-            int totalCount = _lpcReportRepository.FindBy(predicate).Count();
+            int totalCount = _lpcReportRepository.GetCount(predicate);
 
             var results = _lpcReportRepository
                 .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList).Include(x => x.LPCLocation);
 
-            var modelData = Mapper.Map<IEnumerable<LPCReport>, IEnumerable<LPCReportModel>>(results).ToList();
-            var pagedResult = new PagedResultModel<LPCReportModel>
+            var modelData = Mapper.Map<IEnumerable<LpcReport>, IEnumerable<LpcReportModel>>(results).ToList();
+            return new PagedResultModel<LpcReportModel>
             {
                 Total = totalCount,
                 Page = request.Page,
                 Limit = request.PageSize,
                 Results = modelData,
             };
-
-            return pagedResult;
         }
     }
 }

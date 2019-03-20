@@ -25,7 +25,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
     {
         private readonly IServiceProvider _serviceProvider;
 
-        private IEnumerable<LPCReport> _lpcReports = new List<LPCReport>();
+        private IEnumerable<LpcReport> _lpcReports = new List<LpcReport>();
         private readonly IEnumerable<Landmark> _landmarks = new List<Landmark>();
 
         public LPCReportControllerTest()
@@ -52,14 +52,14 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             var objectTypes = EnumHelper.EnumToList<ObjectType>().Select(e => e.GetDescription());
 
             var i = 0;
-            GenFu.GenFu.Configure<LPCReport>()
+            GenFu.GenFu.Configure<LpcReport>()
                 .Fill(l => l.Id, () => ++i)
                 .Fill(l => l.LPNumber, () => string.Format("LP-{0,5:D5}", i))
                 .Fill(l => l.LPCId, () => string.Format("{0,5:D5}", i))
                 .Fill(l => l.Borough, () => BaseValueGenerator.GetRandomValue(boroughs))
                 .Fill(l => l.ObjectType, () => BaseValueGenerator.GetRandomValue(objectTypes))
                 .Fill(l => l.Landmarks);
-            _lpcReports = A.ListOf<LPCReport>(20);
+            _lpcReports = A.ListOf<LpcReport>(20);
             dbContext.LPCReports.AddRange(_lpcReports);
             dbContext.SaveChanges();
         }
@@ -147,7 +147,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             var actionResult = controller.Get(model, 5, 1);
 
             // Assert
-            actionResult.Should().BeOfType<IEnumerable<LPCReportModel>>()
+            actionResult.Should().BeOfType<IEnumerable<LpcReportModel>>()
                 .Which.Count().Should().Equals(0);
         }
 
@@ -162,7 +162,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             var dbContext = _serviceProvider.GetRequiredService<NYCLandmarkContext>();
             var model1 = dbContext.LPCReports.Where(x => x.Id == 1);
 
-            var model = new LPCReportModel { };
+            var model = new LpcReportModel { };
 
             var actionResult = controller.Put(id, model);
 
@@ -177,9 +177,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             var controller = PrepareController();
 
             var id = 11;
-            var model = new LPCReportModel
+            var model = new LpcReportModel
             {
-
             };
 
             var actionResult = controller.Put(id, model);

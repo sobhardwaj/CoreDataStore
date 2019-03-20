@@ -5,7 +5,7 @@ using CoreDataStore.Domain.Entities;
 
 namespace CoreDataStore.Data.Sqlite.Repositories
 {
-    public class LpcReportRepository : EntityBaseRepository<LPCReport>, ILpcReportRepository
+    public class LpcReportRepository : EntityBaseRepository<LpcReport>, ILpcReportRepository
     {
         private NycLandmarkContext _context;
 

@@ -20,6 +20,10 @@ namespace CoreDataStore.Data.Infrastructure
 
         Task<IEnumerable<T>> GetAllAsync();
 
+        int GetCount(Expression<Func<T, bool>> predicate);
+
+        Task<int> GetCountAsync(Expression<Func<T, bool>> predicate);
+
         T GetSingle(long id);
 
         T GetSingle(Expression<Func<T, bool>> predicate);

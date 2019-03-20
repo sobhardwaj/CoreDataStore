@@ -51,7 +51,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         [Trait("Category", "Integration")]
         public void Can_Get_Filtered_Paging_List()
         {
-            var predicate = PredicateBuilder.True<LPCReport>();
+            var predicate = PredicateBuilder.True<LpcReport>();
             var request = new LpcReportRequest()
             {
                 PageSize = 20,

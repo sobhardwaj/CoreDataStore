@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CoreDataStore.Data.SqlServer.Mappings
 {
-    public class LPCReportMapping : IEntityTypeConfiguration<LPCReport>
+    public class LPCReportMapping : IEntityTypeConfiguration<LpcReport>
     {
-        public void Configure(EntityTypeBuilder<LPCReport> builder)
+        public void Configure(EntityTypeBuilder<LpcReport> builder)
         {
             builder.HasKey(m => m.Id);
             builder.Property(t => t.Name).HasMaxLength(200).IsRequired();

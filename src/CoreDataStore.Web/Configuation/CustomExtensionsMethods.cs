@@ -28,7 +28,7 @@ namespace CoreDataStore.Web.Configuation
                     Title = "ImageGallery.WebAPI",
                     Description = "ImageGallery.WebAPI",
                     Version = "v1",
-                    TermsOfService = "None"
+                    TermsOfService = "None",
                 });
                 options.IncludeXmlComments(GetXmlCommentsPath());
             });

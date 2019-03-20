@@ -35,26 +35,26 @@ namespace CoreDataStore.Data.SqlServer
         {
             #region LPC Report
 
-            builder.Entity<LPCReport>().ToTable("LPCReport");
-            builder.Entity<LPCReport>().HasKey(m => m.Id);
-            builder.Entity<LPCReport>().Property(t => t.Name).HasMaxLength(200).IsRequired();
-            builder.Entity<LPCReport>().Property(t => t.Architect).HasMaxLength(200);
-            builder.Entity<LPCReport>().Property(t => t.Borough).HasMaxLength(20);
-            builder.Entity<LPCReport>().Property(t => t.ObjectType).HasMaxLength(50);
-            builder.Entity<LPCReport>().Property(t => t.LPNumber).HasMaxLength(10).IsRequired();
-            builder.Entity<LPCReport>().Property(t => t.LPCId).HasMaxLength(10).IsRequired();
-            builder.Entity<LPCReport>().Property(t => t.PhotoURL).HasMaxLength(500);
-            builder.Entity<LPCReport>().Property(t => t.Street).HasMaxLength(200);
-            builder.Entity<LPCReport>().Property(t => t.Style).HasMaxLength(100);
+            builder.Entity<LpcReport>().ToTable("LPCReport");
+            builder.Entity<LpcReport>().HasKey(m => m.Id);
+            builder.Entity<LpcReport>().Property(t => t.Name).HasMaxLength(200).IsRequired();
+            builder.Entity<LpcReport>().Property(t => t.Architect).HasMaxLength(200);
+            builder.Entity<LpcReport>().Property(t => t.Borough).HasMaxLength(20);
+            builder.Entity<LpcReport>().Property(t => t.ObjectType).HasMaxLength(50);
+            builder.Entity<LpcReport>().Property(t => t.LPNumber).HasMaxLength(10).IsRequired();
+            builder.Entity<LpcReport>().Property(t => t.LPCId).HasMaxLength(10).IsRequired();
+            builder.Entity<LpcReport>().Property(t => t.PhotoURL).HasMaxLength(500);
+            builder.Entity<LpcReport>().Property(t => t.Street).HasMaxLength(200);
+            builder.Entity<LpcReport>().Property(t => t.Style).HasMaxLength(100);
 
             //Shadow Properties
             //builder.Entity<LPCReport>().Property<DateTime>("Modified");
 
             // One to One LPCReport => LPCLocation
-            builder.Entity<LPCReport>()
+            builder.Entity<LpcReport>()
                 .HasOne(t => t.LPCLocation)
                 .WithOne(t => t.LPCReport)
-                .HasPrincipalKey<LPCReport>(t => t.LPNumber)
+                .HasPrincipalKey<LpcReport>(t => t.LPNumber)
                 .HasForeignKey<LPCLocation>(t => t.LPNumber);
 
             #endregion
@@ -189,7 +189,7 @@ namespace CoreDataStore.Data.SqlServer
         }
 
 
-        public DbSet<LPCReport> LPCReports { get; set; }
+        public DbSet<LpcReport> LPCReports { get; set; }
 
         public DbSet<LPCLocation> LPCLocation { get; set; }
 

@@ -61,6 +61,6 @@ namespace CoreDataStore.Domain.Entities
 
         public decimal? Longitude { get; set; }
 
-        public LPCReport LPCReport { get; set; }
+        public LpcReport LPCReport { get; set; }
     }
 }

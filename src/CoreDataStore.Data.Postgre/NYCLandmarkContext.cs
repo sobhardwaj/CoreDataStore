@@ -14,7 +14,7 @@ namespace CoreDataStore.Data.Postgre
         {
         }
 
-        public DbSet<LPCReport> LPCReports { get; set; }
+        public DbSet<LpcReport> LPCReports { get; set; }
 
         public DbSet<LPCLocation> LPCLocation { get; set; }
 
@@ -34,23 +34,23 @@ namespace CoreDataStore.Data.Postgre
         {
             #region LPC Report
 
-            builder.Entity<LPCReport>().ToTable("LPCReport");
-            builder.Entity<LPCReport>().HasKey(m => m.Id);
-            builder.Entity<LPCReport>().Property(t => t.Architect).HasColumnType("varchar").HasMaxLength(200);
-            builder.Entity<LPCReport>().Property(t => t.Borough).HasColumnType("varchar").HasMaxLength(20);
-            builder.Entity<LPCReport>().Property(t => t.ObjectType).HasColumnType("varchar").HasMaxLength(50);
-            builder.Entity<LPCReport>().Property(t => t.LPNumber).HasColumnType("varchar").IsRequired().HasMaxLength(10);
-            builder.Entity<LPCReport>().Property(t => t.LPCId).HasColumnType("varchar").IsRequired().HasMaxLength(10);
-            builder.Entity<LPCReport>().Property(t => t.Name).HasColumnType("varchar").IsRequired();
-            builder.Entity<LPCReport>().Property(t => t.PhotoURL).HasColumnType("varchar").HasMaxLength(500);
-            builder.Entity<LPCReport>().Property(t => t.Style).HasColumnType("varchar").HasMaxLength(100);
-            builder.Entity<LPCReport>().Property(t => t.DateDesignated); //.HasColumnType("NpgsqlDate");
+            builder.Entity<LpcReport>().ToTable("LPCReport");
+            builder.Entity<LpcReport>().HasKey(m => m.Id);
+            builder.Entity<LpcReport>().Property(t => t.Architect).HasColumnType("varchar").HasMaxLength(200);
+            builder.Entity<LpcReport>().Property(t => t.Borough).HasColumnType("varchar").HasMaxLength(20);
+            builder.Entity<LpcReport>().Property(t => t.ObjectType).HasColumnType("varchar").HasMaxLength(50);
+            builder.Entity<LpcReport>().Property(t => t.LPNumber).HasColumnType("varchar").IsRequired().HasMaxLength(10);
+            builder.Entity<LpcReport>().Property(t => t.LPCId).HasColumnType("varchar").IsRequired().HasMaxLength(10);
+            builder.Entity<LpcReport>().Property(t => t.Name).HasColumnType("varchar").IsRequired();
+            builder.Entity<LpcReport>().Property(t => t.PhotoURL).HasColumnType("varchar").HasMaxLength(500);
+            builder.Entity<LpcReport>().Property(t => t.Style).HasColumnType("varchar").HasMaxLength(100);
+            builder.Entity<LpcReport>().Property(t => t.DateDesignated); //.HasColumnType("NpgsqlDate");
 
             // One to One LPCReport => LPCLocation
-            builder.Entity<LPCReport>()
+            builder.Entity<LpcReport>()
                 .HasOne(t => t.LPCLocation)
                 .WithOne(t => t.LPCReport)
-                .HasPrincipalKey<LPCReport>(t => t.LPNumber)
+                .HasPrincipalKey<LpcReport>(t => t.LPNumber)
                 .HasForeignKey<LPCLocation>(t => t.LPNumber);
 
             #endregion

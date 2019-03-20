@@ -6,12 +6,12 @@ namespace CoreDataStore.Service.Interfaces
 {
     public interface ILPCReportService
     {
-        LPCReportModel GetLPCReport(int id);
+        LpcReportModel GetLPCReport(int id);
 
-        List<LPCReportModel> GetLPCReports();
+        List<LpcReportModel> GetLPCReports();
 
-        LPCReportModel UpdateLPCReport(LPCReportModel model);
+        LpcReportModel UpdateLPCReport(LpcReportModel model);
 
-        PagedResultModel<LPCReportModel> GetLPCReports(LpcReportRequest request);
+        PagedResultModel<LpcReportModel> GetLPCReports(LpcReportRequest request);
     }
 }

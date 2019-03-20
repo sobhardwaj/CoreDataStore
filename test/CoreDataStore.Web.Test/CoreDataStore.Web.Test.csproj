@@ -33,10 +33,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\CoreDataStore.Service\CoreDataStore.Service.csproj" />
     <ProjectReference Include="..\..\src\CoreDataStore.Web\CoreDataStore.Web.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\CoreDataStore.Service.Test\CoreDataStore.Service.Test.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

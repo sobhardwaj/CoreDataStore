@@ -9,20 +9,17 @@ namespace CoreDataStore.Data.SqlServer.Repositories
         {
             var list = new List<ReferenceType>();
 
-            list.Add(new ReferenceType {Name = "", Value = ""});  //"Individual Landmark");
+            list.Add(new ReferenceType { Name = "", Value = "" });  //"Individual Landmark");
             list.Add(new ReferenceType { Name = "", Value = "" });
             list.Add(new ReferenceType { Name = "", Value = "" });
             list.Add(new ReferenceType { Name = "", Value = "" });
 
-
-            //list.Add("Historic District");
-            //list.Add("Scenic Landmark");
-            //list.Add("Interior Landmark");
+            // list.Add("Historic District");
+            // list.Add("Scenic Landmark");
+            // list.Add("Interior Landmark");
 
             return list;
 
         }
     }
-
-
 }

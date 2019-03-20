@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using CoreDataStore.Data.Extensions;
-using CoreDataStore.Data.Query;
 using CoreDataStore.Domain.Entities.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -14,7 +13,6 @@ namespace CoreDataStore.Data.Infrastructure
     public class EntityBaseRepository<T> : IEntityBaseRepository<T>
                 where T : class, IEntityBase, new()
     {
-        private readonly OrderBy<T> defaultOrderBy = new OrderBy<T>(qry => qry.OrderBy(e => e.Id));
 
         private readonly DbContext _context;
 
@@ -33,6 +31,16 @@ namespace CoreDataStore.Data.Infrastructure
         public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
+        }
+
+        public virtual int GetCount(Expression<Func<T, bool>> predicate)
+        {
+            return _context.Set<T>().Count(predicate);
+        }
+
+        public virtual async Task<int> GetCountAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _context.Set<T>().CountAsync(predicate);
         }
 
         public virtual IEnumerable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties)

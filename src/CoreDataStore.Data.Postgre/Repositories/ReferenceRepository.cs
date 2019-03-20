@@ -9,7 +9,7 @@ namespace CoreDataStore.Data.Postgre.Repositories
         {
             var list = new List<ReferenceType>();
 
-            list.Add(new ReferenceType {Name = "", Value = ""});  //"Individual Landmark");
+            list.Add(new ReferenceType { Name = "", Value = "" });  //"Individual Landmark");
             list.Add(new ReferenceType { Name = "", Value = "" });
             list.Add(new ReferenceType { Name = "", Value = "" });
             list.Add(new ReferenceType { Name = "", Value = "" });
@@ -23,6 +23,4 @@ namespace CoreDataStore.Data.Postgre.Repositories
 
         }
     }
-
-
 }

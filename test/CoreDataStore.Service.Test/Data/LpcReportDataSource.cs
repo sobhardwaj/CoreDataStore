@@ -7,19 +7,19 @@ namespace CoreDataStore.Service.Test.Data
 {
     public class LpcReportDataSource
     {
-        public static LPCReport GetLpcReportItem()
+        public static LpcReport GetLpcReportItem()
         {
             return GetLpcReportsList(1).First();
         }
 
-        public static List<LPCReport> GetLpcReportsList(int count)
+        public static List<LpcReport> GetLpcReportsList(int count)
         {
-            GenFu.GenFu.Configure<LPCReport>()
+            GenFu.GenFu.Configure<LpcReport>()
                 .Fill(p => p.Name)
-                .Fill(p => p.Street).AsAddress()
-                .Fill(p => p.PhotoURL);
+                .Fill(p => p.PhotoStatus, true)
+                .Fill(p => p.Street).AsAddress();
 
-            return GenFu.GenFu.ListOf<LPCReport>(100);
+            return GenFu.GenFu.ListOf<LpcReport>(100);
         }
     }
 }

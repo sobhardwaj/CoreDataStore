@@ -10,7 +10,7 @@ namespace CoreDataStore.Data.Sqlite
         {
         }
 
-        public DbSet<LPCReport> LPCReports { get; set; }
+        public DbSet<LpcReport> LPCReports { get; set; }
 
         public DbSet<LPCLocation> LPCLocation { get; set; }
 
@@ -26,17 +26,17 @@ namespace CoreDataStore.Data.Sqlite
         {
             #region LPC Report
 
-            builder.Entity<LPCReport>().ToTable("LPCReport");
-            builder.Entity<LPCReport>().HasKey(m => m.Id);
-            builder.Entity<LPCReport>().Property(t => t.Name).HasMaxLength(200).IsRequired();
-            builder.Entity<LPCReport>().Property(t => t.Architect).HasMaxLength(200);
-            builder.Entity<LPCReport>().Property(t => t.Borough).HasMaxLength(20);
-            builder.Entity<LPCReport>().Property(t => t.ObjectType).HasMaxLength(50);
-            builder.Entity<LPCReport>().Property(t => t.LPNumber).HasMaxLength(10).IsRequired();
-            builder.Entity<LPCReport>().Property(t => t.LPCId).HasMaxLength(10).IsRequired();
-            builder.Entity<LPCReport>().Property(t => t.PhotoURL).HasMaxLength(500);
-            builder.Entity<LPCReport>().Property(t => t.Street).HasMaxLength(500);
-            builder.Entity<LPCReport>().Property(t => t.Style).HasMaxLength(100);
+            builder.Entity<LpcReport>().ToTable("LPCReport");
+            builder.Entity<LpcReport>().HasKey(m => m.Id);
+            builder.Entity<LpcReport>().Property(t => t.Name).HasMaxLength(200).IsRequired();
+            builder.Entity<LpcReport>().Property(t => t.Architect).HasMaxLength(200);
+            builder.Entity<LpcReport>().Property(t => t.Borough).HasMaxLength(20);
+            builder.Entity<LpcReport>().Property(t => t.ObjectType).HasMaxLength(50);
+            builder.Entity<LpcReport>().Property(t => t.LPNumber).HasMaxLength(10).IsRequired();
+            builder.Entity<LpcReport>().Property(t => t.LPCId).HasMaxLength(10).IsRequired();
+            builder.Entity<LpcReport>().Property(t => t.PhotoURL).HasMaxLength(500);
+            builder.Entity<LpcReport>().Property(t => t.Street).HasMaxLength(500);
+            builder.Entity<LpcReport>().Property(t => t.Style).HasMaxLength(100);
 
             #endregion
 
@@ -60,7 +60,7 @@ namespace CoreDataStore.Data.Sqlite
                 .HasOne(t => t.LPCReport)
                 .WithOne(t => t.LPCLocation)
                 .HasPrincipalKey<LPCLocation>(t => t.LPNumber)
-                .HasForeignKey<LPCReport>(t => t.LPNumber);
+                .HasForeignKey<LpcReport>(t => t.LPNumber);
 
             #endregion
 

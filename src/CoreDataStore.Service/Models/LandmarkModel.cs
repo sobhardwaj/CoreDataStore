@@ -86,6 +86,6 @@ namespace CoreDataStore.Service.Models
 
         public decimal Longitude { get; set; }
 
-        public LPCReportModel LPCReport { get; set; }
+        public LpcReportModel LPCReport { get; set; }
     }
 }

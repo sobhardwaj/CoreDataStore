@@ -4,16 +4,16 @@ using CoreDataStore.Service.Models;
 
 namespace CoreDataStore.Service.Mappings
 {
-    public class LPCReportMapping : Profile
+    public class LpcReportMapping : Profile
     {
-        public LPCReportMapping()
+        public LpcReportMapping()
             : base("LPCReportMapping")
         {
-            CreateMap<LPCReport, LPCReportModel>()
+            CreateMap<LpcReport, LpcReportModel>()
                 .ForMember(dest => dest.Neighborhood, opt => opt.MapFrom(src => src.LPCLocation.Neighborhood))
                 ;
 
-            CreateMap<LPCReportModel, LPCReport>()
+            CreateMap<LpcReportModel, LpcReport>()
                  .ForMember(dest => dest.LPCId, opt => opt.Ignore())
                  .ForMember(dest => dest.LPNumber, opt => opt.Ignore())
                  .ForMember(dest => dest.PhotoStatus, opt => opt.Ignore())

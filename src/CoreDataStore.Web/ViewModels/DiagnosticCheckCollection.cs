@@ -26,6 +26,5 @@ namespace CoreDataStore.Web.ViewModels
         ///
         /// </summary>
         public string Notes { get; set; }
-
     }
 }

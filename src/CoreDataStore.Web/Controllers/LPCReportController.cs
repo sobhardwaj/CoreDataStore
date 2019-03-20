@@ -38,8 +38,8 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="id">Id</param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        [Produces("application/json", Type = typeof(LPCReportModel))]
-        [ProducesResponseType(typeof(LPCReportModel), 200)]
+        [Produces("application/json", Type = typeof(LpcReportModel))]
+        [ProducesResponseType(typeof(LpcReportModel), 200)]
         public IActionResult Get(int id)
         {
             var result = _lpcReportService.GetLPCReport(id);
@@ -56,7 +56,7 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]LPCReportModel model)
+        public IActionResult Put(int id, [FromBody]LpcReportModel model)
         {
             var validator = new LPCReportRule();
             var validationResults = validator.Validate(model);
@@ -81,9 +81,9 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="page">Page Number</param>
         /// <returns></returns>
         [HttpGet("{limit:int}/{page:int}")]
-        [Produces("application/json", Type = typeof(IEnumerable<LPCReportModel>))]
-        [ProducesResponseType(typeof(IEnumerable<LPCReportModel>), 200)]
-        public IEnumerable<LPCReportModel> Get([FromQuery]LPCReportRequestModel query, int limit, int page)
+        [Produces("application/json", Type = typeof(IEnumerable<LpcReportModel>))]
+        [ProducesResponseType(typeof(IEnumerable<LpcReportModel>), 200)]
+        public IEnumerable<LpcReportModel> Get([FromQuery]LPCReportRequestModel query, int limit, int page)
         {
             var request = new LpcReportRequest
             {
