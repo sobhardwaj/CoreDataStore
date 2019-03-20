@@ -131,7 +131,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             // Assert
             actionResult.Should().BeOfType<IEnumerable<ObjectResult>>()
                                .Which.Count().Should().Be(5);
-
         }
 
         [Fact(Skip = "TODO")]

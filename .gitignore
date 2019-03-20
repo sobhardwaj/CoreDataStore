@@ -7,6 +7,7 @@
 *.userosscache
 *.sln.docstates
 
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -17,10 +18,18 @@
 [Rr]eleases/
 x64/
 x86/
-build/
 bld/
 [Bb]in/
 [Oo]bj/
+
+tools/
+.sonarqube
+.idea/
+.test-results
+coverage-html/
+
+# Coverage Test Files 
+*coverage*
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -164,7 +173,6 @@ AppPackages/
 
 # Others
 ClientBin/
-[Ss]tyle[Cc]op.*
 ~$*
 *~
 *.dbmdl
@@ -212,27 +220,7 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
-src/CoreDataStore.Web/bower_components
-src/CoreDataStore.Web/wwwroot/app/*.js
-src/CoreDataStore.Web/wwwroot/app/*.map
-src/CoreDataStore.Web/wwwroot/app/components/*.js
-src/CoreDataStore.Web/wwwroot/app/components/*.map
-src/CoreDataStore.Web/wwwroot/app/pipes/*.js
-src/CoreDataStore.Web/wwwroot/app/pipes/*.map
-src/CoreDataStore.Web/wwwroot/app/services/*.js
-src/CoreDataStore.Web/wwwroot/app/services/*.map
-src/CoreDataStore.Web/wwwroot/app/utils/*.js
-src/CoreDataStore.Web/wwwroot/app/utils/*.map
-
-/src/CoreDataStore.UI/typings
 
 # MacOS file
 .DS_Store
-data/nyclandmarks.sqlite
-.vscode/launch.json
-src/CoreDataStore\.Web/src/app/routes/appsettings\.ts
-
-src/CoreDataStore\.Web/\.publish
-
-.history/
-.sonarqube
+.vscode/

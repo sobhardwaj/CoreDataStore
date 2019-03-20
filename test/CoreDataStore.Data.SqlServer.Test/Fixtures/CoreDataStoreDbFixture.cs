@@ -73,10 +73,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
 
         public ILandmarkService LandmarkService { get; private set; }
 
-
-        /// <summary>
-        ///
-        /// </summary>
         public void Dispose()
         {
             Dispose(true);
