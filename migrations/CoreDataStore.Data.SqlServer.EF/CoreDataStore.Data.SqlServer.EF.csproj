@@ -29,4 +29,8 @@
     <SonarQubeExclude>true</SonarQubeExclude>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <ProjectGuid>{1A19103F-16F7-4668-BE54-331E7A4F7965}</ProjectGuid>
+  </PropertyGroup>
+
 </Project>

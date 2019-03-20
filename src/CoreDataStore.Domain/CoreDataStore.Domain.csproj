@@ -11,4 +11,8 @@
     <ProjectReference Include="..\CoreDataStore.Common\CoreDataStore.Common.csproj" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <ProjectGuid>{9A19103F-16F7-4668-BE54-9A1E7A4F7988}</ProjectGuid>
+  </PropertyGroup>
+
 </Project>
