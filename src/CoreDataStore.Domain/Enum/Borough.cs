@@ -26,18 +26,13 @@ namespace CoreDataStore.Domain.Enum
 
     }
 
-    public class BoroughId : System.Attribute
+    [System.AttributeUsage(System.AttributeTargets.All)]
+    public class BoroughIdAttribute : System.Attribute
     {
-        private readonly string _value;
-        public BoroughId(string value)
+        public BoroughIdAttribute(string value)
         {
-            _value = value;
+            Value = value;
         }
-        public string Value
-        {
-            get { return _value; }
-        }
+        public string Value { get; }
     }
-
-
 }

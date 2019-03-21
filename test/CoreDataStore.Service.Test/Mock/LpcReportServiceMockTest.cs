@@ -67,6 +67,10 @@ namespace CoreDataStore.Service.Test.Mock
             // Assert
             Assert.NotNull(sut);
             Assert.IsAssignableFrom<PagedResultModel<LpcReportModel>>(sut);
+
+            Assert.Equal(sut.Results.Count, sut.Results.Count);
+            Assert.Equal(1, sut.From);
+            Assert.Equal(pageSize, sut.To);
         }
 
         private LpcReportService GetLpcReportService(ILpcReportRepository lpcReportRepository = null)

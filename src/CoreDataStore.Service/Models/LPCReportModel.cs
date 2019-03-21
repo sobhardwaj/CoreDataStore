@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Constants;
 
 namespace CoreDataStore.Service.Models

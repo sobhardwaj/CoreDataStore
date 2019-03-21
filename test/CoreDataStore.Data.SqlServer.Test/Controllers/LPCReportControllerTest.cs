@@ -49,18 +49,20 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
         private void CreateTestData(NycLandmarkContext dbContext)
         {
             var boroughs = EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription());
-            var boroughCodes = EnumHelper.EnumToList<Borough>().Select(e => e.GetAttribute<BoroughId>().Value);
+            var boroughCodes = EnumHelper.EnumToList<Borough>().Select(e => e.GetAttribute<BoroughIdAttribute>().Value);
             var objectTypes = EnumHelper.EnumToList<ObjectType>().Select(e => e.GetDescription());
 
             var i = 0;
             GenFu.GenFu.Configure<LpcReport>()
                 .Fill(l => l.Id, () => ++i)
-                .Fill(l => l.LPNumber, () => string.Format("LP-{0,5:D5}", i))
-                .Fill(l => l.LPCId, () => string.Format("{0,5:D5}", i))
+                .Fill(l => l.LPNumber, () => $"LP-{i,5:D5}")
+                .Fill(l => l.LPCId, () => $"{i,5:D5}")
                 .Fill(l => l.Borough, () => BaseValueGenerator.GetRandomValue(boroughs))
                 .Fill(l => l.ObjectType, () => BaseValueGenerator.GetRandomValue(objectTypes))
                 .Fill(l => l.Landmarks);
-            _lpcReports = A.ListOf<LpcReport>(20);
+
+            _lpcReports = GenFu.GenFu.ListOf<LpcReport>(20);
+
             dbContext.LPCReports.AddRange(_lpcReports);
             dbContext.SaveChanges();
         }

@@ -17,9 +17,8 @@ namespace CoreDataStore.Service.Test.Data
 
         public static List<LandmarkModel> GetLandMarkModelList(int count)
         {
-            GenFu.GenFu.Configure<LpcReport>()
+            GenFu.GenFu.Configure<LandmarkModel>()
                 .Fill(p => p.Name)
-                .Fill(p => p.PhotoStatus, true)
                 .Fill(p => p.Street).AsAddress();
 
             return GenFu.GenFu.ListOf<LandmarkModel>(100);
