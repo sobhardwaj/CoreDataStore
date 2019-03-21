@@ -69,3 +69,9 @@ Landmarks Reference Database
 docker pull stuartshay/coredatastore-postgres:staging 
 docker run --rm --name postgresdb -p 5432:5432  stuartshay/coredatastore-postgres:staging 
 ```
+
+### SonarQube Testing
+
+```
+ .\build.ps1 -target sonar
+```
