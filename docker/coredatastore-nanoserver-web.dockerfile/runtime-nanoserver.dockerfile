@@ -1,7 +1,7 @@
-FROM microsoft/aspnetcore:2.1.0-preview1-nanoserver-sac2016
+FROM microsoft/aspnetcore:2.2.3-nanoserver-1803
 
 WORKDIR /app
-COPY src/CoreDataStore.Web/bin/Release/netcoreapp2.1/win10-x64/publish .
+COPY src/CoreDataStore.Web/bin/Release/netcoreapp2.2/win10-x64/publish .
 COPY src/CoreDataStore.Web/wwwroot ./wwwroot
 
 # Set environment variables
