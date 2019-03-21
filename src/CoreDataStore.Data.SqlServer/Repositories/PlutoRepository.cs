@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CoreDataStore.Data.Infrastructure;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Domain.Entities;
@@ -28,9 +29,19 @@ namespace CoreDataStore.Data.SqlServer.Repositories
                     select p).Distinct().ToList();
         }
 
+        public Task<List<Pluto>> GetPlutoAsync(string lpcNumber)
+        {
+            throw new NotImplementedException();
+        }
+
         public int GetPlutoCount(string lpcNumber)
         {
             return GetPluto(lpcNumber).Count;
+        }
+
+        public Task<int> GetPlutoCountAsync(string lpcNumber)
+        {
+            throw new NotImplementedException();
         }
 
         public void Dispose()

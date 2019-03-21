@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CoreDataStore.Data.Infrastructure;
 using CoreDataStore.Domain.Entities;
 
@@ -16,6 +17,11 @@ namespace CoreDataStore.Data.Interfaces
     public interface IPlutoRepository : IEntityBaseRepository<Pluto>, IDisposable
     {
         List<Pluto> GetPluto(string lpcNumber);
+
+        Task<List<Pluto>> GetPlutoAsync(string lpcNumber);
+
         int GetPlutoCount(string lpcNumber);
+
+        Task<int> GetPlutoCountAsync(string lpcNumber);
     }
 }

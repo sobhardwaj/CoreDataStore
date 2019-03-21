@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.Postgre.Test.Fixtures;
 using CoreDataStore.Domain.Entities;
@@ -52,6 +53,17 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         {
             var lpcNumber = "LP-02039";
             var result = _plutoRepository.GetPluto(lpcNumber);
+
+            Assert.NotNull(result);
+            Assert.IsType<List<Pluto>>(result);
+        }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public async Task Get_Pluto_Item_By_LpcNumber_Async()
+        {
+            var lpcNumber = "LP-02039";
+            var result = await _plutoRepository.GetPlutoAsync(lpcNumber);
 
             Assert.NotNull(result);
             Assert.IsType<List<Pluto>>(result);
