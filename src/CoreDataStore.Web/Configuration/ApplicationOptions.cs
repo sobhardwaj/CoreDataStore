@@ -1,4 +1,4 @@
-﻿namespace CoreDataStore.Web.Configuation
+﻿namespace CoreDataStore.Web.Configuration
 {
     /// <summary>
     /// Application configuration Options.
@@ -6,13 +6,13 @@
     public class ApplicationOptions
     {
         /// <summary>
-        ///
+        /// Db ConnectionStrings.
         /// </summary>
         public ConnectionStrings ConnectionStrings { get; set; }
     }
 
     /// <summary>
-    ///
+    /// ConnectionStrings
     /// </summary>
     public class ConnectionStrings
     {

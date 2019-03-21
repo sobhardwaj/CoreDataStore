@@ -1,17 +1,34 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using CoreDataStore.Web.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace CoreDataStore.Web.Configuation
+namespace CoreDataStore.Web.Extensions
 {
     /// <summary>
-    ///
+    /// Add ConfigurationOptions.
     /// </summary>
     public static class CustomExtensionsMethods
     {
+        /// <summary>
+        /// Configuration Options.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddConfigurationOptions(this IServiceCollection services, IConfiguration configuration)
+        {
+            // Configuration
+            services.AddOptions();
+            services.Configure<ApplicationOptions>(configuration);
+            services.AddSingleton(configuration);
+
+            return services;
+        }
+
         /// <summary>
         /// Swagger Configuration.
         /// </summary>
@@ -25,8 +42,8 @@ namespace CoreDataStore.Web.Configuation
             {
                 options.SwaggerDoc("v1", new Info
                 {
-                    Title = "ImageGallery.WebAPI",
-                    Description = "ImageGallery.WebAPI",
+                    Title = "CoreDataStore.Web",
+                    Description = "CoreDataStore.Web",
                     Version = "v1",
                     TermsOfService = "None",
                 });

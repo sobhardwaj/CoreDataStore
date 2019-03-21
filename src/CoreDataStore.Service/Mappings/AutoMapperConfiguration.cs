@@ -23,9 +23,7 @@ namespace CoreDataStore.Service.Mappings
                 }
 
                 _isMappingInitialized = true;
-
-#warning "Fix This" 
-                // Mapper.AssertConfigurationIsValid();
+                Mapper.AssertConfigurationIsValid();
             }
         }
     }

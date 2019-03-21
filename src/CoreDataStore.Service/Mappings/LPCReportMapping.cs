@@ -19,6 +19,7 @@ namespace CoreDataStore.Service.Mappings
                  .ForMember(dest => dest.PhotoStatus, opt => opt.Ignore())
                  .ForMember(dest => dest.PhotoURL, opt => opt.Ignore())
                  .ForMember(dest => dest.Landmarks, opt => opt.Ignore())
+                 .ForMember(dest => dest.LPCLocation, opt => opt.Ignore())
                  ;
         }
     }

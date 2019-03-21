@@ -1,10 +1,34 @@
-﻿using CoreDataStore.Domain.Entities;
+﻿using System;
+using System.Collections.Generic;
+using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Constants;
 
 namespace CoreDataStore.Service.Models
 {
-    public class LpcReportModel : LpcReport
+    public class LpcReportModel
     {
+        public long Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string LPCId { get; set; }
+
+        public string LPNumber { get; set; }
+
+        public string ObjectType { get; set; }
+
+        public string Architect { get; set; }
+
+        public string Style { get; set; }
+
+        public string Street { get; set; }
+
+        public string Borough { get; set; }
+
+        public DateTime DateDesignated { get; set; }
+
+        public bool PhotoStatus { get; set; }
+
         public bool MapStatus
         {
             get
@@ -22,7 +46,7 @@ namespace CoreDataStore.Service.Models
         /// <summary>
         /// LPC Web Site Photo Url
         /// </summary>
-        public override string PhotoURL
+        public string PhotoURL
         {
             get
             {

@@ -64,7 +64,7 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<LpcLocation>().Property(t => t.Borough).HasColumnType("varchar").HasMaxLength(13);
             builder.Entity<LpcLocation>().Property(t => t.ZipCode).HasColumnType("varchar").HasMaxLength(5);
             builder.Entity<LpcLocation>().Property(t => t.ObjectType).HasColumnType("varchar").HasMaxLength(50);
-            builder.Entity<LpcLocation>().Property(t => t.LocationType).HasColumnType("varchar").HasMaxLength(50);
+            //  builder.Entity<LpcLocation>().Property(t => t.LocationType).HasColumnType("varchar").HasMaxLength(50);
             builder.Entity<LpcLocation>().Property(t => t.Neighborhood).HasColumnType("varchar").HasMaxLength(200);
             builder.Entity<LpcLocation>().Property(t => t.Street).HasColumnType("varchar").HasMaxLength(200);
             builder.Entity<LpcLocation>().Property(t => t.Address).HasColumnType("varchar").HasMaxLength(200);

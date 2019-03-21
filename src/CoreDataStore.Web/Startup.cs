@@ -6,7 +6,7 @@ using CoreDataStore.Domain.Interfaces;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;
-using CoreDataStore.Web.Configuation;
+using CoreDataStore.Web.Configuration;
 using CoreDataStore.Web.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -54,7 +54,10 @@ namespace CoreDataStore.Web
         /// <param name="services"></param>
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
-            var connection = Configuration["ConnectionStrings:Sqlite"];
+            services.AddConfigurationOptions(Configuration);
+            var config = Configuration.Get<ApplicationOptions>();
+
+            var connection = config.ConnectionStrings.Sqlite;
             var connectionString = $"Filename={Path.GetFullPath(connection)}";
 
             services.AddDbContext<Data.Sqlite.NycLandmarkContext>(options => options.UseSqlite(connectionString));
@@ -74,17 +77,13 @@ namespace CoreDataStore.Web
         /// <param name="services"></param>
         public void ConfigureStagingServices(IServiceCollection services)
         {
-            var builder = new ConfigurationBuilder();
-            builder.AddEnvironmentVariables(string.Empty);
-            var config = builder.Build();
-
-            var stageConnection = Configuration["ConnectionStrings:PostgreSql"];
+            services.AddConfigurationOptions(Configuration);
+            var config = Configuration.Get<ApplicationOptions>();
 
             // EnvironmentVariable Exist Override
-            if (!string.IsNullOrWhiteSpace(config["CONNECTION_PostgreSQL"]))
-                stageConnection = config["CONNECTION_PostgreSQL"];
+            var connection = !string.IsNullOrWhiteSpace(Configuration["CONNECTION_PostgreSQL"]) ? Configuration["CONNECTION_PostgreSQL"] : config.ConnectionStrings.PostgreSql;
 
-            services.AddDbContext<Data.Postgre.NycLandmarkContext>(options => options.UseNpgsql(stageConnection));
+            services.AddDbContext<Data.Postgre.NycLandmarkContext>(options => options.UseNpgsql(connection));
 
             // Repositories
             services.AddScoped<ILpcReportRepository, Data.Postgre.Repositories.LpcReportRepository>();
@@ -101,8 +100,10 @@ namespace CoreDataStore.Web
         /// <param name="services"></param>
         public void ConfigureProductionServices(IServiceCollection services)
         {
-            var devConnection = Configuration["ConnectionStrings:SqlServer"];
-            services.AddDbContext<Data.SqlServer.NycLandmarkContext>(options => options.UseSqlServer(devConnection));
+            services.AddConfigurationOptions(Configuration);
+            var config = Configuration.Get<ApplicationOptions>();
+
+            services.AddDbContext<Data.SqlServer.NycLandmarkContext>(options => options.UseSqlServer(config.ConnectionStrings.SqlServer));
 
             // Repositories
             services.AddScoped<ILpcReportRepository, Data.SqlServer.Repositories.LpcReportRepository>();
@@ -119,10 +120,7 @@ namespace CoreDataStore.Web
         /// <param name="services"></param>
         private void ConfigureServices(IServiceCollection services)
         {
-            // Configuration
-            services.AddOptions();
-            services.Configure<ApplicationOptions>(Configuration);
-            services.AddSingleton(Configuration);
+
 
             services.AddScoped<ILpcReportService, LpcReportService>();
             services.AddScoped<ILandmarkService, LandmarkService>();
@@ -135,6 +133,10 @@ namespace CoreDataStore.Web
 
             services.AddMvc();
         }
+
+
+
+
 
         /// <summary>
         /// Configure Development
@@ -183,17 +185,11 @@ namespace CoreDataStore.Web
         public void ConfigureProduction(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseExceptionHandler($"/Home/Error");
-
-            // loggerFactory.AddProvider(new SqlLoggerProvider());
-
             AppConfig(app, loggerFactory);
         }
 
         private void AppConfig(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             AutoMapperConfiguration.Configure();
 
             app.UseDefaultFiles();

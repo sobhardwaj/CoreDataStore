@@ -25,12 +25,6 @@ namespace CoreDataStore.Data.SqlServer
         {
         }
 
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-
-        }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             #region LPC Report
@@ -111,13 +105,6 @@ namespace CoreDataStore.Data.SqlServer
                 .WithMany(r => r.Landmarks)
                 .HasForeignKey(l => l.LP_NUMBER)
                 .HasPrincipalKey(r => r.LPNumber);
-
-
-            //builder.Entity<Landmark>()
-            //    .HasOne(p => p.Pluto)
-            //    .WithOne(l => l.Landmark)
-            //    .HasForeignKey<Pluto>(p => p.BBL)
-            //    .HasPrincipalKey<Landmark>(l => l.BBL);
 
             #endregion
 
