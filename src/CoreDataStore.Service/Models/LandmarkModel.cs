@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using CoreDataStore.Domain.Entities;
 
 namespace CoreDataStore.Service.Models
 {
-    public class LandmarkModel
+    public class LandmarkModel : Landmark
     {
-        public long Id { get; set; }
-
         public string Name { get; set; }
 
         public string LPNumber { get; set; }
-
-        public long BBL { get; set; }
 
         public long BinNumber { get; set; }
 
@@ -81,10 +78,6 @@ namespace CoreDataStore.Service.Models
         public bool IsVacantLot { get; set; }
 
         public bool IsSecondaryBuilding { get; set; }
-
-        public decimal Latitude { get; set; }
-
-        public decimal Longitude { get; set; }
 
         public LpcReportModel LPCReport { get; set; }
     }

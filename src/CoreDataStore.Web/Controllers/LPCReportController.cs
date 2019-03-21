@@ -58,7 +58,7 @@ namespace CoreDataStore.Web.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]LpcReportModel model)
         {
-            var validator = new LPCReportRule();
+            var validator = new LpcReportRule();
             var validationResults = validator.Validate(model);
 
             if (!validationResults.IsValid)

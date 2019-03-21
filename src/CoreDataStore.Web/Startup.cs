@@ -23,7 +23,7 @@ using Navigator.Middleware.HttpHeaders;
 namespace CoreDataStore.Web
 {
     /// <summary>
-    ///
+    /// Startup.
     /// </summary>
     public class Startup
     {
@@ -44,7 +44,7 @@ namespace CoreDataStore.Web
         }
 
         /// <summary>
-        ///
+        ///  Configuration
         /// </summary>
         public IConfiguration Configuration { get; }
 
@@ -80,7 +80,7 @@ namespace CoreDataStore.Web
 
             var stageConnection = Configuration["ConnectionStrings:PostgreSql"];
 
-            // EnvironmentVariable Exist Overide
+            // EnvironmentVariable Exist Override
             if (!string.IsNullOrWhiteSpace(config["CONNECTION_PostgreSQL"]))
                 stageConnection = config["CONNECTION_PostgreSQL"];
 
@@ -137,7 +137,7 @@ namespace CoreDataStore.Web
         }
 
         /// <summary>
-        ///
+        /// Configure Development
         /// </summary>
         /// <param name="app"></param>
         /// <param name="loggerFactory"></param>
@@ -148,13 +148,12 @@ namespace CoreDataStore.Web
         }
 
         /// <summary>
-        ///
+        /// Configure Staging
         /// </summary>
         /// <param name="app"></param>
         /// <param name="loggerFactory"></param>
         public void ConfigureStaging(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            //app.UseExceptionHandler("/Home/Error");
             app.UseExceptionHandler(
                           builder =>
                           {
@@ -177,13 +176,14 @@ namespace CoreDataStore.Web
         }
 
         /// <summary>
-        ///
+        /// Configure Production
         /// </summary>
         /// <param name="app"></param>
         /// <param name="loggerFactory"></param>
         public void ConfigureProduction(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseExceptionHandler($"/Home/Error");
+
             // loggerFactory.AddProvider(new SqlLoggerProvider());
 
             AppConfig(app, loggerFactory);

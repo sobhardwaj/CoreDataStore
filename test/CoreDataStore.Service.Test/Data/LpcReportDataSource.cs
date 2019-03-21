@@ -5,7 +5,7 @@ using GenFu;
 
 namespace CoreDataStore.Service.Test.Data
 {
-    public class LpcReportDataSource
+    public static class LpcReportDataSource
     {
         public static LpcReport GetLpcReportItem()
         {

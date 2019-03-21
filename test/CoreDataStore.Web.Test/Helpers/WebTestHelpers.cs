@@ -12,9 +12,6 @@ namespace CoreDataStore.Web.Test.Helpers
             var response = new Mock<HttpResponse>();
             response.Setup(x => x.Headers).Returns(new Mock<IHeaderDictionary>().Object);
 
-            // response.Headers.Add("Access-Control-Expose-Headers", "X-InlineCount");
-            // response.Headers.Add("X-InlineCount", "200");
-
             var contextMock = new Mock<HttpContext>();
             contextMock.SetupGet(x => x.Response).Returns(response.Object);
 

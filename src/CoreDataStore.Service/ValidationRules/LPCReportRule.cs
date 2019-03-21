@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace CoreDataStore.Service.ValidationRules
 {
-    public class LPCReportRule : AbstractValidator<LpcReportModel>
+    public class LpcReportRule : AbstractValidator<LpcReportModel>
     {
-        public LPCReportRule()
+        public LpcReportRule()
         {
             RuleFor(m => m.Name).Length(4, 200);
         }

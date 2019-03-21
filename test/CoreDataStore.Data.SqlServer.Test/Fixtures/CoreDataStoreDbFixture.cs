@@ -49,29 +49,26 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
             LPCReportService = serviceProvider.GetRequiredService<ILPCReportService>();
             LandmarkService = serviceProvider.GetRequiredService<ILandmarkService>();
 
-            if (AutoMapperConfiguration._isMappinginitialized)
-            {
-                AutoMapperConfiguration.Configure();
-            }
+            AutoMapperConfiguration.Configure();
         }
 
-        public string DbConnection { get; private set; }
+        public string DbConnection { get; }
 
-        public NYCLandmarkContext DbContext { get; private set; }
+        public NYCLandmarkContext DbContext { get; }
 
-        public ILandmarkRepository LandmarkRepository { get; private set; }
+        public ILandmarkRepository LandmarkRepository { get; }
 
-        public ILpcLamppostRepository LpcLamppostRepository { get; private set; }
+        public ILpcLamppostRepository LpcLamppostRepository { get; }
 
-        public ILpcLocationRepository LpcLocationRepository { get; private set; }
+        public ILpcLocationRepository LpcLocationRepository { get; }
 
-        public ILpcReportRepository LpcReportRepository { get; private set; }
+        public ILpcReportRepository LpcReportRepository { get; }
 
-        public IPlutoRepository PlutoRepository { get; private set; }
+        public IPlutoRepository PlutoRepository { get; }
 
-        public ILPCReportService LPCReportService { get; private set; }
+        public ILPCReportService LPCReportService { get; }
 
-        public ILandmarkService LandmarkService { get; private set; }
+        public ILandmarkService LandmarkService { get; }
 
         public void Dispose()
         {

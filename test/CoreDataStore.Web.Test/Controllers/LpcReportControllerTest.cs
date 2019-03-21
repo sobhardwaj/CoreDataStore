@@ -11,10 +11,6 @@ namespace CoreDataStore.Web.Test.Controllers
 {
     public class LpcReportControllerTest
     {
-
-
-
-
         [Fact(DisplayName = "LPC Streets - (Returns Data)")]
         [Trait("Category", "Unit")]
         public void Get_Lpc_Streets_Returns_Data()

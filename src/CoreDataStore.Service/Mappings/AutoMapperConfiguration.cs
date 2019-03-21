@@ -4,7 +4,7 @@ namespace CoreDataStore.Service.Mappings
 {
     public static class AutoMapperConfiguration
     {
-        public static bool _isMappinginitialized;
+        private static bool _isMappingInitialized;
 
         private static readonly object ThisLock = new object();
 
@@ -12,7 +12,7 @@ namespace CoreDataStore.Service.Mappings
         {
             lock (ThisLock)
             {
-                if (!_isMappinginitialized)
+                if (!_isMappingInitialized)
                 {
                     Mapper.Initialize(x =>
                     {
@@ -22,7 +22,10 @@ namespace CoreDataStore.Service.Mappings
                     });
                 }
 
-                _isMappinginitialized = true;
+                _isMappingInitialized = true;
+
+#warning "Fix This" 
+                // Mapper.AssertConfigurationIsValid();
             }
         }
     }

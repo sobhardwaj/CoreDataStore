@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CoreDataStore.Data.SqlServer.Mappings
 {
-    public class LPCReportMapping : IEntityTypeConfiguration<LpcReport>
+    public class LpcReportMapping : IEntityTypeConfiguration<LpcReport>
     {
         public void Configure(EntityTypeBuilder<LpcReport> builder)
         {
@@ -18,8 +18,8 @@ namespace CoreDataStore.Data.SqlServer.Mappings
             builder.Property(t => t.PhotoURL).HasMaxLength(500);
             builder.Property(t => t.Style).HasMaxLength(100);
 
-            //Shadow Properties
-            //builder.Entity<LPCReport>().Property<DateTime>("Modified");
+            // Shadow Properties
+            // builder.Entity<LPCReport>().Property<DateTime>("Modified");
         }
     }
 }
