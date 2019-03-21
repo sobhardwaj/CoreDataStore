@@ -16,9 +16,9 @@ namespace CoreDataStore.Data.Postgre
 
         public DbSet<LpcReport> LPCReports { get; set; }
 
-        public DbSet<LPCLocation> LPCLocation { get; set; }
+        public DbSet<LpcLocation> LPCLocation { get; set; }
 
-        public DbSet<LPCLamppost> LPCLamppost { get; set; }
+        public DbSet<LpcLamppost> LPCLamppost { get; set; }
 
         public DbSet<Landmark> Landmarks { get; set; }
 
@@ -51,25 +51,25 @@ namespace CoreDataStore.Data.Postgre
                 .HasOne(t => t.LPCLocation)
                 .WithOne(t => t.LPCReport)
                 .HasPrincipalKey<LpcReport>(t => t.LPNumber)
-                .HasForeignKey<LPCLocation>(t => t.LPNumber);
+                .HasForeignKey<LpcLocation>(t => t.LPNumber);
 
             #endregion
 
             #region LPC Location
 
-            builder.Entity<LPCLocation>().ToTable("LPCLocation");
-            builder.Entity<LPCLocation>().HasKey(m => m.Id);
-            builder.Entity<LPCLocation>().Property(t => t.Name).HasColumnType("varchar").HasMaxLength(200).IsRequired();
-            builder.Entity<LPCLocation>().Property(t => t.LPNumber).HasColumnType("varchar").HasMaxLength(10).IsRequired();
-            builder.Entity<LPCLocation>().Property(t => t.Borough).HasColumnType("varchar").HasMaxLength(13);
-            builder.Entity<LPCLocation>().Property(t => t.ZipCode).HasColumnType("varchar").HasMaxLength(5);
-            builder.Entity<LPCLocation>().Property(t => t.ObjectType).HasColumnType("varchar").HasMaxLength(50);
-            builder.Entity<LPCLocation>().Property(t => t.LocationType).HasColumnType("varchar").HasMaxLength(50);
-            builder.Entity<LPCLocation>().Property(t => t.Neighborhood).HasColumnType("varchar").HasMaxLength(200);
-            builder.Entity<LPCLocation>().Property(t => t.Street).HasColumnType("varchar").HasMaxLength(200);
-            builder.Entity<LPCLocation>().Property(t => t.Address).HasColumnType("varchar").HasMaxLength(200);
-            builder.Entity<LPCLocation>().Property(t => t.Latitude).HasColumnType("decimal(9, 6)");
-            builder.Entity<LPCLocation>().Property(t => t.Longitude).HasColumnType("decimal(9, 6)");
+            builder.Entity<LpcLocation>().ToTable("LPCLocation");
+            builder.Entity<LpcLocation>().HasKey(m => m.Id);
+            builder.Entity<LpcLocation>().Property(t => t.Name).HasColumnType("varchar").HasMaxLength(200).IsRequired();
+            builder.Entity<LpcLocation>().Property(t => t.LPNumber).HasColumnType("varchar").HasMaxLength(10).IsRequired();
+            builder.Entity<LpcLocation>().Property(t => t.Borough).HasColumnType("varchar").HasMaxLength(13);
+            builder.Entity<LpcLocation>().Property(t => t.ZipCode).HasColumnType("varchar").HasMaxLength(5);
+            builder.Entity<LpcLocation>().Property(t => t.ObjectType).HasColumnType("varchar").HasMaxLength(50);
+            builder.Entity<LpcLocation>().Property(t => t.LocationType).HasColumnType("varchar").HasMaxLength(50);
+            builder.Entity<LpcLocation>().Property(t => t.Neighborhood).HasColumnType("varchar").HasMaxLength(200);
+            builder.Entity<LpcLocation>().Property(t => t.Street).HasColumnType("varchar").HasMaxLength(200);
+            builder.Entity<LpcLocation>().Property(t => t.Address).HasColumnType("varchar").HasMaxLength(200);
+            builder.Entity<LpcLocation>().Property(t => t.Latitude).HasColumnType("decimal(9, 6)");
+            builder.Entity<LpcLocation>().Property(t => t.Longitude).HasColumnType("decimal(9, 6)");
 
             //builder.Entity<LPCLocation>()
             //    .HasOne(t => t.LPCReport)
@@ -128,13 +128,13 @@ namespace CoreDataStore.Data.Postgre
 
             #region Lamppost
 
-            builder.Entity<LPCLamppost>().ToTable("LPCLamppost");
-            builder.Entity<LPCLamppost>().HasKey(m => m.Id);
-            builder.Entity<LPCLamppost>().Property(t => t.Type).HasColumnType("varchar").HasMaxLength(50);
-            builder.Entity<LPCLamppost>().Property(t => t.SubType).HasColumnType("varchar").HasMaxLength(50);
-            builder.Entity<LPCLamppost>().Property(t => t.Borough).HasColumnType("varchar").HasMaxLength(20);
-            builder.Entity<LPCLamppost>().Property(t => t.Latitude).HasColumnType("decimal(9, 6)");
-            builder.Entity<LPCLamppost>().Property(t => t.Longitude).HasColumnType("decimal(9, 6)");
+            builder.Entity<LpcLamppost>().ToTable("LPCLamppost");
+            builder.Entity<LpcLamppost>().HasKey(m => m.Id);
+            builder.Entity<LpcLamppost>().Property(t => t.Type).HasColumnType("varchar").HasMaxLength(50);
+            builder.Entity<LpcLamppost>().Property(t => t.SubType).HasColumnType("varchar").HasMaxLength(50);
+            builder.Entity<LpcLamppost>().Property(t => t.Borough).HasColumnType("varchar").HasMaxLength(20);
+            builder.Entity<LpcLamppost>().Property(t => t.Latitude).HasColumnType("decimal(9, 6)");
+            builder.Entity<LpcLamppost>().Property(t => t.Longitude).HasColumnType("decimal(9, 6)");
 
             #endregion
 

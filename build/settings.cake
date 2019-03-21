@@ -8,7 +8,7 @@ public static class Settings
 
     public static string SonarName => "CoreDataStore";
 
-    public static string SonarExclude => "/d:sonar.exclusions=**/wwwroot/**,**/typings/**,**/src/app/**,*.less,*.js,*.ts,Program.cs";
+    public static string SonarExclude => "/d:sonar.exclusions=**/wwwroot/**,**/typings/**,**/src/app/**,**/src/less/**,*.less,*.js,*.ts,Program.cs";
 
     public static string SonarExcludeDuplications => "/d:sonar.cpd.exclusions=**/Templates/ExcelFormating.cs";
 }

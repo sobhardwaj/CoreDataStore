@@ -12,7 +12,7 @@ namespace CoreDataStore.Data.Sqlite
 
         public DbSet<LpcReport> LPCReports { get; set; }
 
-        public DbSet<LPCLocation> LPCLocation { get; set; }
+        public DbSet<LpcLocation> LPCLocation { get; set; }
 
         public DbSet<Landmark> Landmarks { get; set; }
 
@@ -42,24 +42,24 @@ namespace CoreDataStore.Data.Sqlite
 
             #region LPC Location
 
-            builder.Entity<LPCLocation>().ToTable("LPCLocation");
-            builder.Entity<LPCLocation>().HasKey(m => m.Id);
-            builder.Entity<LPCLocation>().Property(t => t.Name);
-            builder.Entity<LPCLocation>().Property(t => t.LPNumber);
-            builder.Entity<LPCLocation>().Property(t => t.Borough);
-            builder.Entity<LPCLocation>().Property(t => t.ZipCode);
-            builder.Entity<LPCLocation>().Property(t => t.ObjectType);
-            builder.Entity<LPCLocation>().Property(t => t.LocationType);
-            builder.Entity<LPCLocation>().Property(t => t.Neighborhood);
-            builder.Entity<LPCLocation>().Property(t => t.Street);
-            builder.Entity<LPCLocation>().Property(t => t.Address);
-            builder.Entity<LPCLocation>().Property(t => t.Latitude);
-            builder.Entity<LPCLocation>().Property(t => t.Longitude);
+            builder.Entity<LpcLocation>().ToTable("LPCLocation");
+            builder.Entity<LpcLocation>().HasKey(m => m.Id);
+            builder.Entity<LpcLocation>().Property(t => t.Name);
+            builder.Entity<LpcLocation>().Property(t => t.LPNumber);
+            builder.Entity<LpcLocation>().Property(t => t.Borough);
+            builder.Entity<LpcLocation>().Property(t => t.ZipCode);
+            builder.Entity<LpcLocation>().Property(t => t.ObjectType);
+            builder.Entity<LpcLocation>().Property(t => t.LocationType);
+            builder.Entity<LpcLocation>().Property(t => t.Neighborhood);
+            builder.Entity<LpcLocation>().Property(t => t.Street);
+            builder.Entity<LpcLocation>().Property(t => t.Address);
+            builder.Entity<LpcLocation>().Property(t => t.Latitude);
+            builder.Entity<LpcLocation>().Property(t => t.Longitude);
 
-            builder.Entity<LPCLocation>()
+            builder.Entity<LpcLocation>()
                 .HasOne(t => t.LPCReport)
                 .WithOne(t => t.LPCLocation)
-                .HasPrincipalKey<LPCLocation>(t => t.LPNumber)
+                .HasPrincipalKey<LpcLocation>(t => t.LPNumber)
                 .HasForeignKey<LpcReport>(t => t.LPNumber);
 
             #endregion

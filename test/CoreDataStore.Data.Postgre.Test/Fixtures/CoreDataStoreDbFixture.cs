@@ -27,8 +27,8 @@ namespace CoreDataStore.Data.Postgre.Test.Fixtures
                 .AddDbContext<NYCLandmarkContext>(options => options.UseNpgsql(DbConnection))
                 .AddScoped<ILandmarkRepository, LandmarkRepository>()
                 .AddScoped<ILpcLamppostRepository, LpcLamppostRepository>()
-                .AddScoped<ILpcLocationRepository, LPCLocationRepository>()
-                .AddScoped<ILpcReportRepository, LPCReportRepository>()
+                .AddScoped<ILpcLocationRepository, LpcLocationRepository>()
+                .AddScoped<ILpcReportRepository, LpcReportRepository>()
                 .AddScoped<IPlutoRepository, PlutoRepository>()
                 .BuildServiceProvider();
 

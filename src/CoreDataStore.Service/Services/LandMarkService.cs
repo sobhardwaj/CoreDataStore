@@ -26,7 +26,7 @@ namespace CoreDataStore.Service.Services
             var predicate = PredicateBuilder.True<Landmark>();
             predicate = predicate.And(x => x.LP_NUMBER == lpcNumber);
 
-            var results = _landmarkRepository.FindBy(predicate).Select(x => x.PLUTO_ADDR).ToList()
+            var results = _landmarkRepository.FindBy(predicate).Select(x => x.PLUTO_ADDR)
                           .Select(x => new
                           {
                               x = !string.IsNullOrWhiteSpace(x) && x.Any(char.IsDigit)
@@ -40,8 +40,7 @@ namespace CoreDataStore.Service.Services
                 list.Add(i.x);
             }
 
-            var sortedList = list.OrderBy(x => x).ToList();
-            return sortedList;
+            return list.OrderBy(x => x).ToList();
         }
 
         public PagedResultModel<LandmarkModel> GetLandmarks(LandmarkRequest request)

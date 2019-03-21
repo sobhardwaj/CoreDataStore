@@ -5,7 +5,7 @@ using CoreDataStore.Domain.Entities;
 
 namespace CoreDataStore.Data.Postgre.Repositories
 {
-    public class LpcLamppostRepository : EntityBaseRepository<LPCLamppost>, ILpcLamppostRepository
+    public class LpcLamppostRepository : EntityBaseRepository<LpcLamppost>, ILpcLamppostRepository
     {
         public LpcLamppostRepository(NYCLandmarkContext context)
             : base(context)

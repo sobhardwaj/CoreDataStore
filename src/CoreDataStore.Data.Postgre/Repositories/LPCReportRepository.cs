@@ -5,9 +5,9 @@ using CoreDataStore.Domain.Entities;
 
 namespace CoreDataStore.Data.Postgre.Repositories
 {
-    public class LPCReportRepository : EntityBaseRepository<LpcReport>, ILpcReportRepository
+    public class LpcReportRepository : EntityBaseRepository<LpcReport>, ILpcReportRepository
     {
-        public LPCReportRepository(NYCLandmarkContext context)
+        public LpcReportRepository(NYCLandmarkContext context)
             : base(context)
         { }
 

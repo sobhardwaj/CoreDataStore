@@ -55,28 +55,28 @@ namespace CoreDataStore.Data.SqlServer
                 .HasOne(t => t.LPCLocation)
                 .WithOne(t => t.LPCReport)
                 .HasPrincipalKey<LpcReport>(t => t.LPNumber)
-                .HasForeignKey<LPCLocation>(t => t.LPNumber);
+                .HasForeignKey<LpcLocation>(t => t.LPNumber);
 
             #endregion
 
             #region LPC Location
 
-            builder.Entity<LPCLocation>().ToTable("LPCLocation");
-            builder.Entity<LPCLocation>().HasKey(m => m.Id);
-            builder.Entity<LPCLocation>().Property(t => t.LPNumber).HasMaxLength(10).IsRequired();
-            builder.Entity<LPCLocation>().Property(t => t.Name).HasMaxLength(200).IsRequired();
-            builder.Entity<LPCLocation>().Property(t => t.BBL);
-            builder.Entity<LPCLocation>().Property(t => t.ObjectType).HasMaxLength(50).IsRequired();
-            builder.Entity<LPCLocation>().Property(t => t.LocationType).HasMaxLength(50);
-            builder.Entity<LPCLocation>().Property(t => t.Street).HasMaxLength(255);
-            builder.Entity<LPCLocation>().Property(t => t.Address).HasMaxLength(255);
-            builder.Entity<LPCLocation>().Property(t => t.Neighborhood).HasMaxLength(100);
-            builder.Entity<LPCLocation>().Property(t => t.Borough).HasMaxLength(13);
-            builder.Entity<LPCLocation>().Property(t => t.ZipCode).HasMaxLength(5);
-            builder.Entity<LPCLocation>().Property(t => t.Block);
-            builder.Entity<LPCLocation>().Property(t => t.Lot);
-            builder.Entity<LPCLocation>().Property(t => t.Latitude); //.HasPrecision(9, 6);
-            builder.Entity<LPCLocation>().Property(t => t.Longitude); //.HasPrecision(9, 6);
+            builder.Entity<LpcLocation>().ToTable("LPCLocation");
+            builder.Entity<LpcLocation>().HasKey(m => m.Id);
+            builder.Entity<LpcLocation>().Property(t => t.LPNumber).HasMaxLength(10).IsRequired();
+            builder.Entity<LpcLocation>().Property(t => t.Name).HasMaxLength(200).IsRequired();
+            builder.Entity<LpcLocation>().Property(t => t.BBL);
+            builder.Entity<LpcLocation>().Property(t => t.ObjectType).HasMaxLength(50).IsRequired();
+            builder.Entity<LpcLocation>().Property(t => t.LocationType).HasMaxLength(50);
+            builder.Entity<LpcLocation>().Property(t => t.Street).HasMaxLength(255);
+            builder.Entity<LpcLocation>().Property(t => t.Address).HasMaxLength(255);
+            builder.Entity<LpcLocation>().Property(t => t.Neighborhood).HasMaxLength(100);
+            builder.Entity<LpcLocation>().Property(t => t.Borough).HasMaxLength(13);
+            builder.Entity<LpcLocation>().Property(t => t.ZipCode).HasMaxLength(5);
+            builder.Entity<LpcLocation>().Property(t => t.Block);
+            builder.Entity<LpcLocation>().Property(t => t.Lot);
+            builder.Entity<LpcLocation>().Property(t => t.Latitude); //.HasPrecision(9, 6);
+            builder.Entity<LpcLocation>().Property(t => t.Longitude); //.HasPrecision(9, 6);
 
 
             //builder.Entity<LPCLocation>()
@@ -123,17 +123,17 @@ namespace CoreDataStore.Data.SqlServer
 
             #region Lamppost
 
-            builder.Entity<LPCLamppost>().ToTable("LPCLamppost");
-            builder.Entity<LPCLamppost>().HasKey(m => m.Id);
-            builder.Entity<LPCLamppost>().Property(t => t.PostId).IsRequired();
-            builder.Entity<LPCLamppost>().Property(t => t.Type).HasMaxLength(50);
-            builder.Entity<LPCLamppost>().Property(t => t.SubType).HasMaxLength(50);
-            builder.Entity<LPCLamppost>().Property(t => t.Block);
-            builder.Entity<LPCLamppost>().Property(t => t.Lot);
-            builder.Entity<LPCLamppost>().Property(t => t.Borough).HasMaxLength(20);
-            builder.Entity<LPCLamppost>().Property(t => t.Located).HasMaxLength(100);
-            builder.Entity<LPCLamppost>().Property(t => t.Latitude);  //.HasPrecision(9, 6);
-            builder.Entity<LPCLamppost>().Property(t => t.Longitude);  //.HasPrecision(9, 6);
+            builder.Entity<LpcLamppost>().ToTable("LPCLamppost");
+            builder.Entity<LpcLamppost>().HasKey(m => m.Id);
+            builder.Entity<LpcLamppost>().Property(t => t.PostId).IsRequired();
+            builder.Entity<LpcLamppost>().Property(t => t.Type).HasMaxLength(50);
+            builder.Entity<LpcLamppost>().Property(t => t.SubType).HasMaxLength(50);
+            builder.Entity<LpcLamppost>().Property(t => t.Block);
+            builder.Entity<LpcLamppost>().Property(t => t.Lot);
+            builder.Entity<LpcLamppost>().Property(t => t.Borough).HasMaxLength(20);
+            builder.Entity<LpcLamppost>().Property(t => t.Located).HasMaxLength(100);
+            builder.Entity<LpcLamppost>().Property(t => t.Latitude);  //.HasPrecision(9, 6);
+            builder.Entity<LpcLamppost>().Property(t => t.Longitude);  //.HasPrecision(9, 6);
 
             #endregion
 
@@ -191,9 +191,9 @@ namespace CoreDataStore.Data.SqlServer
 
         public DbSet<LpcReport> LPCReports { get; set; }
 
-        public DbSet<LPCLocation> LPCLocation { get; set; }
+        public DbSet<LpcLocation> LPCLocation { get; set; }
 
-        public DbSet<LPCLamppost> LPCLamppost { get; set; }
+        public DbSet<LpcLamppost> LPCLamppost { get; set; }
 
         public DbSet<Landmark> Landmarks { get; set; }
 

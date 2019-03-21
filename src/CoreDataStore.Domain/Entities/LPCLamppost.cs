@@ -2,7 +2,7 @@
 
 namespace CoreDataStore.Domain.Entities
 {
-    public class LPCLamppost : IEntityBase, IAuditableEntity
+    public class LpcLamppost : IEntityBase, IAuditableEntity
     {
         public long Id { get; set; }
 

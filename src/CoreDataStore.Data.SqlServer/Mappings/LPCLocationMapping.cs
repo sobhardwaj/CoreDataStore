@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CoreDataStore.Data.SqlServer.Mappings
 {
-    public class LPCLocationMapping : IEntityTypeConfiguration<LPCLocation>
+    public class LPCLocationMapping : IEntityTypeConfiguration<LpcLocation>
     {
-        public void Configure(EntityTypeBuilder<LPCLocation> builder)
+        public void Configure(EntityTypeBuilder<LpcLocation> builder)
         {
             builder.HasKey(m => m.Id);
             builder.Property(t => t.Name).HasMaxLength(200).IsRequired();

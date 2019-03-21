@@ -87,7 +87,7 @@ namespace CoreDataStore.Web
             services.AddDbContext<Data.Postgre.NYCLandmarkContext>(options => options.UseNpgsql(stageConnection));
 
             // Repositories
-            services.AddScoped<ILpcReportRepository, Data.Postgre.Repositories.LPCReportRepository>();
+            services.AddScoped<ILpcReportRepository, Data.Postgre.Repositories.LpcReportRepository>();
             services.AddScoped<ILandmarkRepository, Data.Postgre.Repositories.LandmarkRepository>();
             services.AddScoped<IPlutoRepository, Data.Postgre.Repositories.PlutoRepository>();
             services.AddScoped<IReferenceRepository, Data.Postgre.Repositories.ReferenceRepository>();
@@ -105,7 +105,7 @@ namespace CoreDataStore.Web
             services.AddDbContext<Data.SqlServer.NYCLandmarkContext>(options => options.UseSqlServer(devConnection));
 
             // Repositories
-            services.AddScoped<ILpcReportRepository, Data.SqlServer.Repositories.LPCReportRepository>();
+            services.AddScoped<ILpcReportRepository, Data.SqlServer.Repositories.LpcReportRepository>();
             services.AddScoped<ILandmarkRepository, Data.SqlServer.Repositories.LandmarkRepository>();
             services.AddScoped<IPlutoRepository, Data.SqlServer.Repositories.PlutoRepository>();
             services.AddScoped<IReferenceRepository, Data.SqlServer.Repositories.ReferenceRepository>();

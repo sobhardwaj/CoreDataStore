@@ -2,7 +2,7 @@
 
 namespace CoreDataStore.Domain.Entities
 {
-    public class LPCLocation : IEntityBase, IAuditableEntity
+    public class LpcLocation : IEntityBase, IAuditableEntity
     {
         public long Id { get; set; }
 

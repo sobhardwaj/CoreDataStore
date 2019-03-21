@@ -9,14 +9,13 @@ namespace CoreDataStore.Data.Interfaces
 
     public interface ILpcReportRepository : IEntityBaseRepository<LpcReport>, IDisposable { }
 
-    public interface ILpcLocationRepository : IEntityBaseRepository<LPCLocation>, IDisposable { }
+    public interface ILpcLocationRepository : IEntityBaseRepository<LpcLocation>, IDisposable { }
 
-    public interface ILpcLamppostRepository : IEntityBaseRepository<LPCLamppost>, IDisposable { }
+    public interface ILpcLamppostRepository : IEntityBaseRepository<LpcLamppost>, IDisposable { }
 
     public interface IPlutoRepository : IEntityBaseRepository<Pluto>, IDisposable
     {
         List<Pluto> GetPluto(string lpcNumber);
         int GetPlutoCount(string lpcNumber);
     }
-
 }

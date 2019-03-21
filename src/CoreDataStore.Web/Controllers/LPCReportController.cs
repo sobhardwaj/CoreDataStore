@@ -149,10 +149,11 @@ namespace CoreDataStore.Web.Controllers
 
             var results = _landmarkService.GetLandmarkStreets(lpcNumber.Trim());
             var totalRecords = results.Count;
+
             HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", "X-InlineCount");
             HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
 
-            return new ObjectResult(results);
+            return Ok(results);
         }
     }
 }

@@ -23,6 +23,5 @@ namespace CoreDataStore.Data.Filters
         /// BBL
         /// </summary>
         public int Bbl { get; set; }
-
     }
 }
