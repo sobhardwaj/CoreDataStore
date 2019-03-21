@@ -1,10 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="..\..\common.props" />
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>CoreDataStore SQL Server Entity Framework Provider</Description>
-    <VersionPrefix>2.2.0.1</VersionPrefix>
-    <Version>2.2.0.1</Version>
+    <Authors>$(Authors)</Authors>
+    <VersionPrefix>$(VersionPrefix)</VersionPrefix>
+    <Version>$(Version)</Version>
+    <RepositoryUrl>$(RepositoryUrl)</RepositoryUrl>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <NoWarn>$(NoWarn),1701;1702;1705</NoWarn>
     <CodeAnalysisRuleSet>StyleCopRules.ruleset</CodeAnalysisRuleSet>

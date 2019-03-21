@@ -78,9 +78,7 @@ jobs:
             docker build -f docker/coredatastore-circleci-runtime.dockerfile/runtime.dockerfile -t stuartshay/coredatastore:2.2.1-runtime .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push stuartshay/coredatastore:2.2.1-runtime
-          # docker build -f docker/runtime.dockerfile -t stuartshay/coredatastore:$TAG .
-          # docker push stuartshay/coredatastore:$TAG
-
+            
       - run:
           name: Install Rancher Compose
           command: |
