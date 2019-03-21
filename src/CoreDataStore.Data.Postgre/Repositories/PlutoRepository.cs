@@ -19,15 +19,13 @@ namespace CoreDataStore.Data.Postgre.Repositories
 
         public List<Pluto> GetPluto(string lpcNumber)
         {
-            var results = (from l in _context.Landmarks
-                           join p in _context.Pluto on
-                           new { Lot = l.LOT, Block = l.BLOCK, Borough = l.BoroughID }
-                           equals
-                           new { p.Lot, p.Block, p.Borough }
-                           where l.LP_NUMBER == lpcNumber
-                           select p).Distinct().ToList();
-
-            return results;
+            return (from l in _context.Landmarks
+                    join p in _context.Pluto on
+                    new { Lot = l.LOT, Block = l.BLOCK, Borough = l.BoroughID }
+                    equals
+                    new { p.Lot, p.Block, p.Borough }
+                    where l.LP_NUMBER == lpcNumber
+                    select p).Distinct().ToList();
         }
 
         public int GetPlutoCount(string lpcNumber)

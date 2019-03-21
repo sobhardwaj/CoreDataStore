@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.Postgre.Test.Fixtures;
+using CoreDataStore.Domain.Entities;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -42,6 +44,27 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             Assert.NotNull(result);
             Assert.Equal("10307", result.ZipCode);
             Assert.Equal(bbl, bbl);
+        }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public void Get_Pluto_Item_By_LpcNumber()
+        {
+            var lpcNumber = "LP-02039";
+            var result = _plutoRepository.GetPluto(lpcNumber);
+
+            Assert.NotNull(result);
+            Assert.IsType<List<Pluto>>(result);
+        }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public void Get_Pluto_Item_By_LpcNumber_Count()
+        {
+            var lpcNumber = "LP-02039";
+            var result = _plutoRepository.GetPlutoCount(lpcNumber);
+
+            Assert.True(result > 0);
         }
     }
 }
