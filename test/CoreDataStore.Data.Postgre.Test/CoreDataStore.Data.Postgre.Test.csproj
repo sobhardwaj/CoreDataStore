@@ -12,9 +12,6 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
 
-    <PackageReference Include="CoreDataStore.Data.Postgre" Version="1.0.20" />
-    <PackageReference Include="CoreDataStore.Data.SqlServer" Version="1.0.20" />
-
     <PackageReference Include="GenFu" Version="1.5.6" />
     <PackageReference Include="Moq" Version="4.10.1" />
     <PackageReference Include="Navigator.Common" Version="1.6.0.1" />
