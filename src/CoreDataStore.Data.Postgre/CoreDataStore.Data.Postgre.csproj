@@ -4,6 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Stuart Shay</Authors>
     <Description>CoreDataStore Postgres  Entity Framework Provider</Description>
+    <VersionPrefix>2.2.0.1</VersionPrefix>
+    <Version>2.2.0.1</Version>
     <RepositoryUrl>https://github.com/stuartshay/CoreDataStore</RepositoryUrl>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <NoWarn>$(NoWarn),1701;1702;1705</NoWarn>
