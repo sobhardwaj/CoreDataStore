@@ -10,7 +10,7 @@ using Navigator.Common.Helpers;
 namespace CoreDataStore.Web.Controllers
 {
     /// <summary>
-    ///
+    /// Reference Data Controller
     /// </summary>
     [Route("api/[controller]")]
     [EnableCors("AllowAll")]
@@ -35,9 +35,9 @@ namespace CoreDataStore.Web.Controllers
         [Route("borough")]
         [ProducesResponseType(typeof(IEnumerable<string>), 200)]
         [Produces("application/json", Type = typeof(IEnumerable<string>))]
-        public IEnumerable<string> GetBoroughs()
+        public IActionResult GetBoroughs()
         {
-            return EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription());
+            return Ok(EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription()));
         }
 
         /// <summary>
@@ -48,9 +48,9 @@ namespace CoreDataStore.Web.Controllers
         [Route("objectType")]
         [ProducesResponseType(typeof(IEnumerable<string>), 200)]
         [Produces("application/json", Type = typeof(IEnumerable<string>))]
-        public IEnumerable<string> GetReferenceTypes()
+        public IActionResult GetReferenceTypes()
         {
-            return EnumHelper.EnumToList<ObjectType>().Select(e => e.GetDescription());
+            return Ok(EnumHelper.EnumToList<ObjectType>().Select(e => e.GetDescription()));
         }
 
         /// <summary>
@@ -61,9 +61,9 @@ namespace CoreDataStore.Web.Controllers
         [Route("parentStyle")]
         [ProducesResponseType(typeof(IEnumerable<string>), 200)]
         [Produces("application/json", Type = typeof(IEnumerable<string>))]
-        public IEnumerable<string> GetParentStyles()
+        public IActionResult GetParentStyles()
         {
-            return StylesData.GetParentStyles();
+            return Ok(StylesData.GetParentStyles());
         }
     }
 }

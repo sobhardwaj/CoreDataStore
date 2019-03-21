@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Repositories;
+using CoreDataStore.Data.SqlServer.Test.Helpers;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Domain.Enum;
 using CoreDataStore.Service.Interfaces;
@@ -75,6 +76,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             var landmarkSvc = _serviceProvider.GetRequiredService<ILandmarkService>();
 
             var controller = new LpcReportController(lpcReportSvc, landmarkSvc);
+            controller.ControllerContext = WebTestHelpers.GetHttpContext();
 
             return controller;
         }
@@ -99,7 +101,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             var actionResult = controller.Get(id);
 
             // Assert
-            actionResult.Should().BeOfType<ObjectResult>();
+            actionResult.Should().BeOfType<OkObjectResult>();
         }
 
         [Fact]
@@ -114,7 +116,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             actionResult.Should().BeOfType<BadRequestResult>();
         }
 
-        [Fact(Skip = "TODO")]
+        [Fact]
         [Trait("Category", "InMemoryDatabase")]
         public void Paging_Should_Return_Correct_Record_Count()
         {
@@ -125,15 +127,14 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
                 ObjectType = "Individual Landmark",
             };
 
-            //Response Header Null Exception
+            // Act
             var actionResult = controller.Get(model, 5, 1);
 
             // Assert
-            actionResult.Should().BeOfType<IEnumerable<ObjectResult>>()
-                               .Which.Count().Should().Be(5);
+            actionResult.Should().BeOfType<OkObjectResult>();
         }
 
-        [Fact(Skip = "TODO")]
+        [Fact]
         [Trait("Category", "InMemoryDatabase")]
         public void Paging_Should_Return_No_Record()
         {
@@ -147,30 +148,25 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             var actionResult = controller.Get(model, 5, 1);
 
             // Assert
-            actionResult.Should().BeOfType<IEnumerable<LpcReportModel>>()
-                .Which.Count().Should().Equals(0);
+            actionResult.Should().BeOfType<OkObjectResult>();
         }
 
-        [Fact(Skip = "TODO")]
+        [Fact]
         [Trait("Category", "InMemoryDatabase")]
-        public void Put_Exception_Return_NoContent()
+        public void Put_Exception_Return_NotFoundResult()
         {
             var controller = PrepareController();
 
+            // Act
             var id = 110;
-
-            var dbContext = _serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            var model1 = dbContext.LPCReports.Where(x => x.Id == 1);
-
             var model = new LpcReportModel { };
-
             var actionResult = controller.Put(id, model);
 
             // Assert
-            actionResult.Should().BeOfType<NoContentResult>();
+            actionResult.Should().BeOfType<NotFoundResult>();
         }
 
-        [Fact(Skip = "TODO")]
+        [Fact]
         [Trait("Category", "InMemoryDatabase")]
         public void Put_Success_Update_Record()
         {
@@ -179,12 +175,16 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             var id = 11;
             var model = new LpcReportModel
             {
+                Id = 11,
+                Architect = "Test",
+                DateDesignated = DateTime.UtcNow,
+                Borough = "X",
             };
 
             var actionResult = controller.Put(id, model);
 
             // Assert
-            actionResult.Should().BeOfType<OkResult>();
+            actionResult.Should().BeOfType<NoContentResult>();
         }
     }
 }

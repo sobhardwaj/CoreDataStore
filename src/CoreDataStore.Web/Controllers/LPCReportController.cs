@@ -42,11 +42,14 @@ namespace CoreDataStore.Web.Controllers
         [ProducesResponseType(typeof(LpcReportModel), 200)]
         public IActionResult Get(int id)
         {
-            var result = _lpcReportService.GetLPCReport(id);
-            if (result == null)
+            if (id == 0)
                 return BadRequest();
 
-            return new ObjectResult(result);
+            var result = _lpcReportService.GetLPCReport(id);
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
         }
 
         /// <summary>
@@ -58,6 +61,9 @@ namespace CoreDataStore.Web.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]LpcReportModel model)
         {
+            if (id == 0)
+                return BadRequest();
+
             var validator = new LpcReportRule();
             var validationResults = validator.Validate(model);
 
@@ -83,7 +89,7 @@ namespace CoreDataStore.Web.Controllers
         [HttpGet("{limit:int}/{page:int}")]
         [Produces("application/json", Type = typeof(IEnumerable<LpcReportModel>))]
         [ProducesResponseType(typeof(IEnumerable<LpcReportModel>), 200)]
-        public IEnumerable<LpcReportModel> Get([FromQuery]LPCReportRequestModel query, int limit, int page)
+        public IActionResult Get([FromQuery]LPCReportRequestModel query, int limit, int page)
         {
             var request = new LpcReportRequest
             {
@@ -101,7 +107,8 @@ namespace CoreDataStore.Web.Controllers
             var totalRecords = records.Total;
             HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", "X-InlineCount");
             HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
-            return records.Results;
+
+            return Ok(records.Results);
         }
 
         /// <summary>
@@ -114,7 +121,7 @@ namespace CoreDataStore.Web.Controllers
         [Produces("application/json", Type = typeof(IEnumerable<LandmarkModel>))]
         [ProducesResponseType(typeof(IEnumerable<LandmarkModel>), 200)]
         [HttpGet("landmark/{limit:int}/{page:int}")]
-        public IEnumerable<LandmarkModel> GetLandmarks([FromQuery]LandmarkRequestModel query, int limit, int page)
+        public IActionResult GetLandmarks([FromQuery]LandmarkRequestModel query, int limit, int page)
         {
             long totalRecords = 0;
             var request = new LandmarkRequest
@@ -131,7 +138,7 @@ namespace CoreDataStore.Web.Controllers
             HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", "X-InlineCount");
             HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
 
-            return records.Results.OrderBy(x => x.Street).ThenBy(x => x.Number);
+            return Ok(records.Results.OrderBy(x => x.Street).ThenBy(x => x.Number));
         }
 
         /// <summary>

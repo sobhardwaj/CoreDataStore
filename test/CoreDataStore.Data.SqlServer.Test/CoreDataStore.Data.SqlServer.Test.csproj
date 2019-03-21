@@ -56,10 +56,6 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
-
   <PropertyGroup>
     <ProjectGuid>{9A19103F-16F7-4668-BE54-9A1E7BBF7911}</ProjectGuid>
   </PropertyGroup>

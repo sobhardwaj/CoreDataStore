@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
-namespace CoreDataStore.Web.Test.Helpers
+namespace CoreDataStore.Data.SqlServer.Test.Helpers
 {
     public static class WebTestHelpers
     {
