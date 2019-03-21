@@ -11,17 +11,17 @@ using System.Threading.Tasks;
 
 namespace CoreDataStore.Data.SqlServer
 {
-    public class NYCLandmarkContext : DbContext
+    public class NycLandmarkContext : DbContext
     {
         public string UserName { get; set; }
 
         public string ImportType { get; set; }
 
 
-        public NYCLandmarkContext(DbContextOptions<NYCLandmarkContext> options) : base(options)
+        public NycLandmarkContext(DbContextOptions<NycLandmarkContext> options) : base(options)
         { }
 
-        public NYCLandmarkContext()
+        public NycLandmarkContext()
         {
         }
 

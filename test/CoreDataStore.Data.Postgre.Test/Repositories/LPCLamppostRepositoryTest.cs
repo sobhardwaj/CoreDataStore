@@ -10,7 +10,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
     {
         private readonly ILpcLamppostRepository _lamppostRepository;
 
-        private readonly NYCLandmarkContext _dbContext;
+        private readonly NycLandmarkContext _dbContext;
 
         private readonly ITestOutputHelper _output;
 

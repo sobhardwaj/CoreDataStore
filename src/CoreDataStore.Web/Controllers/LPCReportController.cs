@@ -18,7 +18,7 @@ namespace CoreDataStore.Web.Controllers
     [EnableCors("AllowAll")]
     public class LpcReportController : Controller
     {
-        private readonly ILPCReportService _lpcReportService;
+        private readonly ILpcReportService _lpcReportService;
         private readonly ILandmarkService _landmarkService;
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace CoreDataStore.Web.Controllers
         /// </summary>
         /// <param name="lpcReportService"></param>
         /// <param name="landmarkService"></param>
-        public LpcReportController(ILPCReportService lpcReportService, ILandmarkService landmarkService)
+        public LpcReportController(ILpcReportService lpcReportService, ILandmarkService landmarkService)
         {
             _lpcReportService = lpcReportService;
             _landmarkService = landmarkService;

@@ -26,7 +26,7 @@ namespace CoreDataStore.Web.Test.Controllers
                 Limit = pageSize,
             };
 
-            var lpcReportsService = new Mock<ILPCReportService>();
+            var lpcReportsService = new Mock<ILpcReportService>();
             lpcReportsService.Setup(x => x.GetLPCReports(It.IsAny<LpcReportRequest>()))
                .Returns(dataSourceResults);
 
@@ -116,9 +116,9 @@ namespace CoreDataStore.Web.Test.Controllers
             Assert.NotNull(sut);
         }
 
-        private LpcReportController GetLpcReportController(ILPCReportService lpcReportService = null, ILandmarkService landmarkService = null)
+        private LpcReportController GetLpcReportController(ILpcReportService lpcReportService = null, ILandmarkService landmarkService = null)
         {
-            lpcReportService = lpcReportService ?? new Mock<ILPCReportService>().Object;
+            lpcReportService = lpcReportService ?? new Mock<ILpcReportService>().Object;
             landmarkService = landmarkService ?? new Mock<ILandmarkService>().Object;
 
             return new LpcReportController(lpcReportService, landmarkService);

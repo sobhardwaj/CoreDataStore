@@ -7,7 +7,7 @@ namespace CoreDataStore.Data.Postgre.Repositories
 {
     public class LpcReportRepository : EntityBaseRepository<LpcReport>, ILpcReportRepository
     {
-        public LpcReportRepository(NYCLandmarkContext context)
+        public LpcReportRepository(NycLandmarkContext context)
             : base(context)
         { }
 

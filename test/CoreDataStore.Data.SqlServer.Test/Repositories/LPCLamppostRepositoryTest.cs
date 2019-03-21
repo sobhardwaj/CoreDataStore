@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Test.Fixtures;
+using CoreDataStore.Domain.Entities;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -22,33 +25,37 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         [Trait("Category", "Integration")]
         public void Get_LPC_Lamppost_List()
         {
-            var results = _lamppostRepository.GetAll().ToList();
-            var count = results.Count;
+            var sut = _lamppostRepository.GetAll().ToList();
+            var count = sut.Count;
 
-            Assert.NotNull(results);
+            Assert.NotNull(sut);
+            Assert.IsAssignableFrom<IEnumerable<LpcLamppost>>(sut);
             Assert.NotEqual(0, count);
         }
 
-        [Fact(Skip = "TODO")]
+        [Fact]
         [Trait("Category", "Integration")]
         public void Can_Get_Lamppost()
         {
             var postId = 10;
-            var result = _lamppostRepository.GetSingle(x => x.PostId == postId).PostId;
+            var sut = _lamppostRepository.GetSingle(x => x.PostId == postId).PostId;
 
-            Assert.Equal(postId, result);
+            Assert.Equal(postId, sut);
         }
 
-        [Fact(Skip = "TODO")]
+        [Fact]
         [Trait("Category", "Integration")]
-        public void Can_Update_Lamppost_Properties()
+        public async Task Can_Update_Lamppost_Properties()
         {
             var postId = 10;
             var result = _lamppostRepository.GetSingle(x => x.PostId == postId);
             result.Borough = "Manhattan";
 
             _lamppostRepository.UserId = "Unit Test";
-            _lamppostRepository.UpdateDbEntryAsync(result, d => d.Borough);
+            var sut = await _lamppostRepository.UpdateDbEntryAsync(result, d => d.Borough);
+
+            // Assert
+            Assert.True(sut);
         }
     }
 }

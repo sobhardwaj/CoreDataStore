@@ -24,7 +24,7 @@ namespace CoreDataStore.Data.Postgre.EF
             }
         }
 
-        public class NycLandmarkContextMock : NYCLandmarkContext
+        public class NycLandmarkContextMock : NycLandmarkContext
         {
             private readonly string _connectionString;
 

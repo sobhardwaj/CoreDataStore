@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoreDataStore.Data.Postgre
 {
-    public class NYCLandmarkContext : DbContext
+    public class NycLandmarkContext : DbContext
     {
-        public NYCLandmarkContext(DbContextOptions<NYCLandmarkContext> options)
+        public NycLandmarkContext(DbContextOptions<NycLandmarkContext> options)
             : base(options)
         { }
 
-        public NYCLandmarkContext()
+        public NycLandmarkContext()
         {
         }
 
@@ -70,12 +70,6 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<LpcLocation>().Property(t => t.Address).HasColumnType("varchar").HasMaxLength(200);
             builder.Entity<LpcLocation>().Property(t => t.Latitude).HasColumnType("decimal(9, 6)");
             builder.Entity<LpcLocation>().Property(t => t.Longitude).HasColumnType("decimal(9, 6)");
-
-            //builder.Entity<LPCLocation>()
-            //    .HasOne(t => t.LPCReport)
-            //    .WithOne(t => t.LPCLocation)
-            //    .HasPrincipalKey<LPCLocation>(t => t.LPNumber)
-            //    .HasForeignKey<LPCReport>(t => t.LPNumber);
 
             #endregion
 

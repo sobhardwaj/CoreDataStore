@@ -4,7 +4,7 @@ using CoreDataStore.Service.Models;
 
 namespace CoreDataStore.Service.Interfaces
 {
-    public interface ILPCReportService
+    public interface ILpcReportService
     {
         LpcReportModel GetLPCReport(int id);
 

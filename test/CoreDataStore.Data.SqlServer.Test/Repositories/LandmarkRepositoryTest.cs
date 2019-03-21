@@ -16,7 +16,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
     {
         private readonly ILandmarkRepository _landmarkRepository;
 
-        private readonly NYCLandmarkContext _dbContext;
+        private readonly NycLandmarkContext _dbContext;
 
         private readonly ITestOutputHelper _output;
 

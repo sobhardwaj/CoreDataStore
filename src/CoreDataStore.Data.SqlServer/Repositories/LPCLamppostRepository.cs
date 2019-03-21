@@ -7,7 +7,7 @@ namespace CoreDataStore.Data.SqlServer.Repositories
 {
     public class LpcLamppostRepository : EntityBaseRepository<LpcLamppost>, ILpcLamppostRepository
     {
-        public LpcLamppostRepository(NYCLandmarkContext context)
+        public LpcLamppostRepository(NycLandmarkContext context)
             : base(context)
         {
         }

@@ -28,17 +28,17 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
             DbConnection = builder.GetConnectionString("SqlServer");
 
             var serviceProvider = new ServiceCollection()
-                .AddDbContext<NYCLandmarkContext>(options => options.UseSqlServer(DbConnection))
+                .AddDbContext<NycLandmarkContext>(options => options.UseSqlServer(DbConnection))
                 .AddScoped<ILandmarkRepository, LandmarkRepository>()
                 .AddScoped<ILpcLamppostRepository, LpcLamppostRepository>()
                 .AddScoped<ILpcLocationRepository, LpcLocationRepository>()
                 .AddScoped<ILpcReportRepository, LpcReportRepository>()
                 .AddScoped<IPlutoRepository, PlutoRepository>()
-                .AddScoped<ILPCReportService, LpcReportService>()
+                .AddScoped<ILpcReportService, LpcReportService>()
                 .AddScoped<ILandmarkService, LandmarkService>()
                 .BuildServiceProvider();
 
-            DbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
+            DbContext = serviceProvider.GetRequiredService<NycLandmarkContext>();
 
             LandmarkRepository = serviceProvider.GetRequiredService<ILandmarkRepository>();
             LpcLamppostRepository = serviceProvider.GetRequiredService<ILpcLamppostRepository>();
@@ -46,7 +46,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
             LpcReportRepository = serviceProvider.GetRequiredService<ILpcReportRepository>();
             PlutoRepository = serviceProvider.GetRequiredService<IPlutoRepository>();
 
-            LPCReportService = serviceProvider.GetRequiredService<ILPCReportService>();
+            LPCReportService = serviceProvider.GetRequiredService<ILpcReportService>();
             LandmarkService = serviceProvider.GetRequiredService<ILandmarkService>();
 
             AutoMapperConfiguration.Configure();
@@ -54,7 +54,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
 
         public string DbConnection { get; }
 
-        public NYCLandmarkContext DbContext { get; }
+        public NycLandmarkContext DbContext { get; }
 
         public ILandmarkRepository LandmarkRepository { get; }
 
@@ -66,7 +66,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Fixtures
 
         public IPlutoRepository PlutoRepository { get; }
 
-        public ILPCReportService LPCReportService { get; }
+        public ILpcReportService LPCReportService { get; }
 
         public ILandmarkService LandmarkService { get; }
 

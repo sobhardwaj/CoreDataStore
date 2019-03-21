@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoreDataStore.Service.Services
 {
-    public class LpcReportService : ILPCReportService
+    public class LpcReportService : ILpcReportService
     {
         private readonly ILpcReportRepository _lpcReportRepository;
 

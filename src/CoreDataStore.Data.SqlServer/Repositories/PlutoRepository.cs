@@ -9,9 +9,9 @@ namespace CoreDataStore.Data.SqlServer.Repositories
 {
     public class PlutoRepository : EntityBaseRepository<Pluto>, IPlutoRepository
     {
-        private readonly NYCLandmarkContext _context;
+        private readonly NycLandmarkContext _context;
 
-        public PlutoRepository(NYCLandmarkContext context)
+        public PlutoRepository(NycLandmarkContext context)
             : base(context)
         {
             _context = context;

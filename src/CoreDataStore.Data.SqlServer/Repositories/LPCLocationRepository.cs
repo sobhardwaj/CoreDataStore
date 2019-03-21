@@ -7,7 +7,7 @@ namespace CoreDataStore.Data.SqlServer.Repositories
 {
     public class LpcLocationRepository : EntityBaseRepository<LpcLocation>, ILpcLocationRepository
     {
-        public LpcLocationRepository(NYCLandmarkContext context)
+        public LpcLocationRepository(NycLandmarkContext context)
             : base(context)
         { }
 

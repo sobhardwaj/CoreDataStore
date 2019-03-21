@@ -24,7 +24,7 @@ namespace CoreDataStore.Data.Postgre.Test.Fixtures
             DbConnection = builder.GetConnectionString("PostgreSQL");
 
             var serviceProvider = new ServiceCollection()
-                .AddDbContext<NYCLandmarkContext>(options => options.UseNpgsql(DbConnection))
+                .AddDbContext<NycLandmarkContext>(options => options.UseNpgsql(DbConnection))
                 .AddScoped<ILandmarkRepository, LandmarkRepository>()
                 .AddScoped<ILpcLamppostRepository, LpcLamppostRepository>()
                 .AddScoped<ILpcLocationRepository, LpcLocationRepository>()
@@ -32,7 +32,7 @@ namespace CoreDataStore.Data.Postgre.Test.Fixtures
                 .AddScoped<IPlutoRepository, PlutoRepository>()
                 .BuildServiceProvider();
 
-            DbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
+            DbContext = serviceProvider.GetRequiredService<NycLandmarkContext>();
 
             LandmarkRepository = serviceProvider.GetRequiredService<ILandmarkRepository>();
             LpcLamppostRepository = serviceProvider.GetRequiredService<ILpcLamppostRepository>();
@@ -43,7 +43,7 @@ namespace CoreDataStore.Data.Postgre.Test.Fixtures
 
         public string DbConnection { get; private set; }
 
-        public NYCLandmarkContext DbContext { get; private set; }
+        public NycLandmarkContext DbContext { get; private set; }
 
         public ILandmarkRepository LandmarkRepository { get; private set; }
 

@@ -8,7 +8,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
 {
     public class LpcReportServiceTest : IClassFixture<CoreDataStoreDbFixture>
     {
-        private readonly ILPCReportService _lpcReportService;
+        private readonly ILpcReportService _lpcReportService;
 
         private readonly ITestOutputHelper _output;
 
@@ -18,7 +18,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
             _output = output;
         }
 
-        [Fact(Skip = "TODO")]
+        [Fact]
         [Trait("Category", "Integration")]
         public void Can_Get_Filtered_Paging_List()
         {

@@ -84,7 +84,7 @@ namespace CoreDataStore.Web
             if (!string.IsNullOrWhiteSpace(config["CONNECTION_PostgreSQL"]))
                 stageConnection = config["CONNECTION_PostgreSQL"];
 
-            services.AddDbContext<Data.Postgre.NYCLandmarkContext>(options => options.UseNpgsql(stageConnection));
+            services.AddDbContext<Data.Postgre.NycLandmarkContext>(options => options.UseNpgsql(stageConnection));
 
             // Repositories
             services.AddScoped<ILpcReportRepository, Data.Postgre.Repositories.LpcReportRepository>();
@@ -102,7 +102,7 @@ namespace CoreDataStore.Web
         public void ConfigureProductionServices(IServiceCollection services)
         {
             var devConnection = Configuration["ConnectionStrings:SqlServer"];
-            services.AddDbContext<Data.SqlServer.NYCLandmarkContext>(options => options.UseSqlServer(devConnection));
+            services.AddDbContext<Data.SqlServer.NycLandmarkContext>(options => options.UseSqlServer(devConnection));
 
             // Repositories
             services.AddScoped<ILpcReportRepository, Data.SqlServer.Repositories.LpcReportRepository>();
@@ -124,7 +124,7 @@ namespace CoreDataStore.Web
             services.Configure<ApplicationOptions>(Configuration);
             services.AddSingleton(Configuration);
 
-            services.AddScoped<ILPCReportService, LpcReportService>();
+            services.AddScoped<ILpcReportService, LpcReportService>();
             services.AddScoped<ILandmarkService, LandmarkService>();
             services.AddScoped<IPlutoService, PlutoService>();
 

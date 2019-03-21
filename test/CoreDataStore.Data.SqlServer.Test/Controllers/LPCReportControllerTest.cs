@@ -32,21 +32,21 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
         public LPCReportControllerTest()
         {
             var services = new ServiceCollection();
-            services.AddDbContext<NYCLandmarkContext>(options => options.UseInMemoryDatabase());
+            services.AddDbContext<NycLandmarkContext>(options => options.UseInMemoryDatabase());
 
             // Repositories
             services.AddScoped<ILpcReportRepository, LpcReportRepository>();
             services.AddScoped<ILandmarkRepository, LandmarkRepository>();
 
             // Services
-            services.AddScoped<ILPCReportService, LpcReportService>();
+            services.AddScoped<ILpcReportService, LpcReportService>();
             services.AddScoped<ILandmarkService, LandmarkService>();
 
             AutoMapperConfiguration.Configure();
             _serviceProvider = services.BuildServiceProvider();
         }
 
-        private void CreateTestData(NYCLandmarkContext dbContext)
+        private void CreateTestData(NycLandmarkContext dbContext)
         {
             var boroughs = EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription());
             var boroughCodes = EnumHelper.EnumToList<Borough>().Select(e => e.GetAttribute<BoroughId>().Value);
@@ -67,12 +67,12 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
 
         private LpcReportController PrepareController()
         {
-            var dbContext = _serviceProvider.GetRequiredService<NYCLandmarkContext>();
+            var dbContext = _serviceProvider.GetRequiredService<NycLandmarkContext>();
             dbContext.Database.EnsureDeleted();
 
             CreateTestData(dbContext);
 
-            var lpcReportSvc = _serviceProvider.GetRequiredService<ILPCReportService>();
+            var lpcReportSvc = _serviceProvider.GetRequiredService<ILpcReportService>();
             var landmarkSvc = _serviceProvider.GetRequiredService<ILandmarkService>();
 
             var controller = new LpcReportController(lpcReportSvc, landmarkSvc);
@@ -86,7 +86,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
         public void DbContext_Should_Have_Records()
         {
             var controller = PrepareController();
-            var dbContext = _serviceProvider.GetRequiredService<NYCLandmarkContext>();
+            var dbContext = _serviceProvider.GetRequiredService<NycLandmarkContext>();
 
             Assert.Equal(20, dbContext.LPCReports.ToList().Count);
         }

@@ -7,7 +7,7 @@ namespace CoreDataStore.Data.Postgre.Repositories
 {
     public class LandmarkRepository : EntityBaseRepository<Landmark>, ILandmarkRepository
     {
-        public LandmarkRepository(NYCLandmarkContext context)
+        public LandmarkRepository(NycLandmarkContext context)
             : base(context)
         {
         }
