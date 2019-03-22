@@ -13,6 +13,7 @@
 
  Build | Status  
 ------------ | -------------
+Docker Base Image | [![Build Status](https://jenkins.navigatorglass.com/buildStatus/icon?job=CoreDataStore-QA/CoreDataStore-base)](https://jenkins.navigatorglass.com/job/CoreDataStore-QA/job/CoreDataStore-base/)
 Linux Docker WebAPI | [![CircleCI](https://circleci.com/gh/stuartshay/CoreDataStore.svg?style=shield)](https://circleci.com/gh/stuartshay/CoreDataStore)
 Linux Docker Web | [![Build Status](https://travis-ci.org/stuartshay/CoreDataStore.svg?branch=master)](https://travis-ci.org/stuartshay/CoreDataStore)
 Windows Docker | [![Build status](https://ci.appveyor.com/api/projects/status/4j2ebt69uw0e0wmg/branch/master?svg=true)](https://ci.appveyor.com/project/StuartShay/coredatastore/branch/master)
