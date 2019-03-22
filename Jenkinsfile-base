@@ -1,7 +1,7 @@
 node('docker') {
 
     stage('Git checkout') {
-        git branch: 'Auth', credentialsId: 'gihub-key', url: 'git@github.com:stuartshay/CoreDataStore.git'
+        git credentialsId: 'gihub-key', url: 'git@github.com:stuartshay/CoreDataStore.git'
     }
 
 
