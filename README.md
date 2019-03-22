@@ -6,10 +6,7 @@
 [![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=584273597838fd75ab485e34b353101e0eeebdea&metric=alert_status)](http://sonar.navigatorglass.com:9000/dashboard?id=584273597838fd75ab485e34b353101e0eeebdea) [![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=584273597838fd75ab485e34b353101e0eeebdea&metric=reliability_rating)](http://sonar.navigatorglass.com:9000/dashboard?id=584273597838fd75ab485e34b353101e0eeebdea) [![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=584273597838fd75ab485e34b353101e0eeebdea&metric=security_rating)](http://sonar.navigatorglass.com:9000/dashboard?id=584273597838fd75ab485e34b353101e0eeebdea) [![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=584273597838fd75ab485e34b353101e0eeebdea&metric=sqale_rating)](http://sonar.navigatorglass.com:9000/dashboard?id=584273597838fd75ab485e34b353101e0eeebdea)
 
 
-[![Dependency Status](https://dependencyci.com/github/stuartshay/CoreDataStore/badge)](https://dependencyci.com/github/stuartshay/CoreDataStore) 
-
-[![SonarCloud](http://sonar.navigatorglass.com:9000/api/project_badges/measure?project=CoreDataStore&metric=alert_status)](http://sonar.navigatorglass.com:9000/dashboard?id=CoreDataStore)
-[![Code Climate](https://codeclimate.com/github/stuartshay/CoreDataStore/badges/gpa.svg)](https://codeclimate.com/github/stuartshay/CoreDataStore)
+[![Dependency Status](https://dependencyci.com/github/stuartshay/CoreDataStore/badge)](https://dependencyci.com/github/stuartshay/CoreDataStore) [![Code Climate](https://codeclimate.com/github/stuartshay/CoreDataStore/badges/gpa.svg)](https://codeclimate.com/github/stuartshay/CoreDataStore)
 
  Build | Status  
 ------------ | -------------
