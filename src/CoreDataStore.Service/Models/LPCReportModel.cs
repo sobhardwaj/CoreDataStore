@@ -5,28 +5,64 @@ namespace CoreDataStore.Service.Models
 {
     public class LpcReportModel
     {
+        /// <summary>
+        /// Id
+        /// </summary>
         public long Id { get; set; }
 
+        /// <summary>
+        ///  Landmark Name
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        ///  LPC Id
+        /// </summary>
         public string LPCId { get; set; }
 
+        /// <summary>
+        /// LP Number
+        /// </summary>
         public string LPNumber { get; set; }
 
+        /// <summary>
+        /// Object Type
+        /// </summary>
         public string ObjectType { get; set; }
 
+        /// <summary>
+        /// Architect
+        /// </summary>
         public string Architect { get; set; }
 
+        /// <summary>
+        /// Style
+        /// </summary>
         public string Style { get; set; }
 
+        /// <summary>
+        /// Street
+        /// </summary>
         public string Street { get; set; }
 
+        /// <summary>
+        /// Borough
+        /// </summary>
         public string Borough { get; set; }
 
+        /// <summary>
+        /// Date Designated
+        /// </summary>
         public DateTime DateDesignated { get; set; }
 
+        /// <summary>
+        /// Photo Status (Exists)
+        /// </summary>
         public bool PhotoStatus { get; set; }
 
+        /// <summary>
+        /// Map Status (Exists)
+        /// </summary>
         public bool MapStatus
         {
             get
@@ -39,6 +75,9 @@ namespace CoreDataStore.Service.Models
 
         }
 
+        /// <summary>
+        /// Neighborhood
+        /// </summary>
         public string Neighborhood { get; set; }
 
         /// <summary>
@@ -75,6 +114,5 @@ namespace CoreDataStore.Service.Models
                 return baseUrl;
             }
         }
-
     }
 }

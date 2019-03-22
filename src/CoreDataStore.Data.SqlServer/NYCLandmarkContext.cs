@@ -278,13 +278,4 @@ namespace CoreDataStore.Data.SqlServer
         }
 
     }
-
-
-
-
-
-
-
-
-
 }

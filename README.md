@@ -21,6 +21,9 @@ Jenkins SonarQube | [![Build Status](https://jenkins.navigatorglass.com/buildSta
 
 https://coredatastore.com         
 
+![](assets/web-coredatastore.png)
+
+
 New York City Landmarks Reference Data     
 
 - [Landmarks Preservation Commission - NYC.gov](http://www1.nyc.gov/site/lpc/index.page)

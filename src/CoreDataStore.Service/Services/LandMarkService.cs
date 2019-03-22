@@ -66,15 +66,13 @@ namespace CoreDataStore.Service.Services
 
             var modelData = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkModel>>(results).ToList();
 
-            var pagedResult = new PagedResultModel<LandmarkModel>
+            return new PagedResultModel<LandmarkModel>
             {
                 Total = totalCount,
                 Page = request.Page,
                 Limit = request.PageSize,
                 Results = modelData,
             };
-
-            return pagedResult;
         }
     }
 }

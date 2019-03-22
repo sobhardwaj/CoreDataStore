@@ -6,9 +6,15 @@
 **/Properties/**/*
 **/Properties/
 
-
+**/healthchecksdb
 **/*.md
 
 **/Jenkinsfile-base
 **/Jenkinsfile
 **/Dockerfile
+
+**/package-lock.json
+**/package.json
+**/tsconfig.json
+**/tslint.json
+**/typings.json

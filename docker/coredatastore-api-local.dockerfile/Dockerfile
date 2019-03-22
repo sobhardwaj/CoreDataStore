@@ -25,6 +25,7 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
 RUN apt-get update && apt-get install -y --no-install-recommends \
         libgdiplus \
         curl \
+        tree \
         && rm -rf /var/lib/apt/lists/* \
         && curl https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh > /wait_for_it.sh \
         && chmod +x /*.sh
