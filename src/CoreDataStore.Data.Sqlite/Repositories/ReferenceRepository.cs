@@ -9,13 +9,14 @@ namespace CoreDataStore.Data.Sqlite.Repositories
         {
             var list = new List<ReferenceType>
             {
-                new ReferenceType {Name = "", Value = ""},
-                new ReferenceType {Name = "", Value = ""},
-                new ReferenceType {Name = "", Value = ""},
-                new ReferenceType {Name = "", Value = ""}
+                new ReferenceType {Name = "Individual Landmark", Value = "Individual Landmark"},
+                new ReferenceType {Name = "Historic District", Value = "Historic District"},
+                new ReferenceType {Name = "Scenic Landmark", Value = "Scenic Landmark"},
+                new ReferenceType {Name = "Interior Landmark", Value = "Interior Landmark"}
             };
 
             return list;
+
         }
     }
 }

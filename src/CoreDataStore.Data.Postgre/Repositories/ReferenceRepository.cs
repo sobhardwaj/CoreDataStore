@@ -7,17 +7,13 @@ namespace CoreDataStore.Data.Postgre.Repositories
     {
         public List<ReferenceType> GetObjectTypes()
         {
-            var list = new List<ReferenceType>();
-
-            list.Add(new ReferenceType { Name = "", Value = "" });  //"Individual Landmark");
-            list.Add(new ReferenceType { Name = "", Value = "" });
-            list.Add(new ReferenceType { Name = "", Value = "" });
-            list.Add(new ReferenceType { Name = "", Value = "" });
-
-
-            //list.Add("Historic District");
-            //list.Add("Scenic Landmark");
-            //list.Add("Interior Landmark");
+            var list = new List<ReferenceType>
+            {
+                new ReferenceType {Name = "Individual Landmark", Value = "Individual Landmark"},
+                new ReferenceType {Name = "Historic District", Value = "Historic District"},
+                new ReferenceType {Name = "Scenic Landmark", Value = "Scenic Landmark"},
+                new ReferenceType {Name = "Interior Landmark", Value = "Interior Landmark"}
+            };
 
             return list;
 
