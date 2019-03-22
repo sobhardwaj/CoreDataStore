@@ -1,5 +1,5 @@
 # Build Stage
-FROM stuartshay/coredatastore:2.2-1-base AS build-env
+FROM stuartshay/coredatastore:2.2.1-base AS build-env
 
 ARG BUILD_NUMBER=0
 ENV BUILD_NUMBER ${BUILD_NUMBER}
