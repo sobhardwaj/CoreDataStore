@@ -123,7 +123,7 @@ namespace CoreDataStore.Web.Controllers
         [HttpGet("landmark/{limit:int}/{page:int}")]
         public IActionResult GetLandmarks([FromQuery]LandmarkRequestModel query, int limit, int page)
         {
-            long totalRecords = 0;
+            long totalRecords;
             var request = new LandmarkRequest
             {
                 PageSize = limit,

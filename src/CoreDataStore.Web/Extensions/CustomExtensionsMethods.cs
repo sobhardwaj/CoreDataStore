@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using CoreDataStore.Data.Postgre;
 using CoreDataStore.Web.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,6 +50,22 @@ namespace CoreDataStore.Web.Extensions
                 });
                 options.IncludeXmlComments(GetXmlCommentsPath());
             });
+
+            return services;
+        }
+
+        /// <summary>
+        ///   Custom Health Check.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddCustomHealthCheck(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddHealthChecks()
+                .AddDbContextCheck<NycLandmarkContext>("DbContextHealthCheck");
+
+            services.AddHealthChecksUI();
 
             return services;
         }

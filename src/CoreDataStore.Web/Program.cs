@@ -1,5 +1,8 @@
 ﻿using System;
 using System.IO;
+using App.Metrics;
+using App.Metrics.AspNetCore;
+using App.Metrics.Formatters.Prometheus;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -43,9 +46,23 @@ namespace CoreDataStore.Web
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseConfiguration(Configuration)
-                .UseStartup<Startup>();
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            return WebHost.CreateDefaultBuilder(args)
+                .ConfigureMetricsWithDefaults(
+                    builder => builder.OutputMetrics.AsPrometheusPlainText())
+                .UseMetrics(
+                    options =>
+                    {
+                        options.EndpointOptions = endpointsOptions =>
+                        {
+                            endpointsOptions.MetricsTextEndpointOutputFormatter =
+                                new MetricsPrometheusTextOutputFormatter();
+                        };
+                    })
+                .UseStartup<Startup>()
+                .CaptureStartupErrors(true)
+                .UseConfiguration(Configuration);
+        }
     }
 }

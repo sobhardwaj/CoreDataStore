@@ -27,7 +27,6 @@ namespace CoreDataStore.Service.Mappings
                 .ForMember(dest => dest.PublicHearingDate, opt => opt.MapFrom(src => src.PUBLIC_HEA))
                 .ForMember(dest => dest.OtherHearingDate, opt => opt.MapFrom(src => src.OTHER_HEAR))
                 .ForMember(dest => dest.RecordType, opt => opt.MapFrom(src => src.NON_BLDG))
-                .ForMember(dest => dest.Boundries, opt => opt.MapFrom(src => src.BOUNDARIES))
                 .ForMember(dest => dest.PriorStatus, opt => opt.MapFrom(src => src.STATUS_NOT))
                 .ForMember(dest => dest.LastAction, opt => opt.MapFrom(src => src.LAST_ACTIO))
                 .ForMember(dest => dest.IsBuilding, opt => opt.MapFrom(src => src.COUNT_BLDG))
@@ -61,7 +60,7 @@ namespace CoreDataStore.Service.Mappings
                 .ForMember(dest => dest.SECND_BLDG, opt => opt.MapFrom(src => src.IsSecondaryBuilding))
                 .ForMember(dest => dest.MOST_CURRE, opt => opt.MapFrom(src => src.IsCurrent))
                 .ForMember(dest => dest.VACANT_LOT, opt => opt.MapFrom(src => src.IsVacantLot))
-
+                .ForMember(dest => dest.BOUNDARIES, opt => opt.Ignore())
                 .ForMember(dest => dest.LPCReport, opt => opt.Ignore())
             ;
         }

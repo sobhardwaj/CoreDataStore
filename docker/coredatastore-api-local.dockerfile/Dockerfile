@@ -36,7 +36,7 @@ COPY --from=build-env /publish .
 ENV ASPNETCORE_URLS="http://*:5000"
 ENV ASPNETCORE_ENVIRONMENT="Staging"
 
-#HEALTHCHECK CMD curl --fail http://localhost:5000/health || exit 1
+HEALTHCHECK CMD curl --fail http://localhost:5000/health || exit 1
 
 # Open up port
 EXPOSE 5000

@@ -120,12 +120,11 @@ namespace CoreDataStore.Web
         /// <param name="services"></param>
         private void ConfigureServices(IServiceCollection services)
         {
-
-
             services.AddScoped<ILpcReportService, LpcReportService>();
             services.AddScoped<ILandmarkService, LandmarkService>();
             services.AddScoped<IPlutoService, PlutoService>();
 
+            services.AddCustomHealthCheck(Configuration);
             services.AddCustomSwagger(Configuration);
             services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
                 .AllowAnyMethod()
@@ -133,10 +132,6 @@ namespace CoreDataStore.Web
 
             services.AddMvc();
         }
-
-
-
-
 
         /// <summary>
         /// Configure Development
@@ -146,7 +141,7 @@ namespace CoreDataStore.Web
         public void ConfigureDevelopment(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseDeveloperExceptionPage();
-            AppConfig(app, loggerFactory);
+            AppConfig(app);
         }
 
         /// <summary>
@@ -174,7 +169,7 @@ namespace CoreDataStore.Web
                                 });
                           });
 
-            AppConfig(app, loggerFactory);
+            AppConfig(app);
         }
 
         /// <summary>
@@ -185,10 +180,10 @@ namespace CoreDataStore.Web
         public void ConfigureProduction(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseExceptionHandler($"/Home/Error");
-            AppConfig(app, loggerFactory);
+            AppConfig(app);
         }
 
-        private void AppConfig(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        private void AppConfig(IApplicationBuilder app)
         {
             AutoMapperConfiguration.Configure();
 
@@ -196,7 +191,9 @@ namespace CoreDataStore.Web
             app.UseStaticFiles();
 
             app.UseResponseHeaderMiddleware();
-            app.UseMvc(ConfigureRoutes);
+
+            app.UseHealthChecks($"/health");
+            app.UseHealthChecksUI();
 
             app.UseSwagger();
             app.UseSwaggerUI(options =>
@@ -204,6 +201,8 @@ namespace CoreDataStore.Web
                 var swaggerDocument = $"/swagger/v1/swagger.json";
                 options.SwaggerEndpoint(swaggerDocument, "CoreDataStore.Web");
             });
+
+            app.UseMvc(ConfigureRoutes);
         }
 
         private void ConfigureRoutes(IRouteBuilder routeBuilder)
