@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Extensions;
@@ -28,10 +29,23 @@ namespace CoreDataStore.Service.Services
             return Mapper.Map<LpcReport, LpcReportModel>(query);
         }
 
+        public async Task<LpcReportModel> GetLPCReportAsync(int id)
+        {
+            var query = await _lpcReportRepository.GetSingleAsync(id);
+
+            return Mapper.Map<LpcReport, LpcReportModel>(query);
+        }
+
         public List<LpcReportModel> GetLPCReports()
         {
             var results = _lpcReportRepository.GetAll().ToList();
             return Mapper.Map<IEnumerable<LpcReport>, IEnumerable<LpcReportModel>>(results).ToList();
+        }
+
+        public async Task<List<LpcReportModel>> GetLPCReportsAsync()
+        {
+            var results = await _lpcReportRepository.GetAllAsync();
+            return Mapper.Map<List<LpcReport>, List<LpcReportModel>>(results.ToList());
         }
 
         public LpcReportModel UpdateLPCReport(LpcReportModel model)

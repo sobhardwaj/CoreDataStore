@@ -18,7 +18,6 @@ namespace CoreDataStore.Service.Test.Data
         public static List<LpcReport> GetLpcReportsList(int count)
         {
             var boroughs = EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription());
-            var boroughCodes = EnumHelper.EnumToList<Borough>().Select(e => e.GetAttribute<BoroughIdAttribute>().Value);
             var objectTypes = EnumHelper.EnumToList<ObjectType>().Select(e => e.GetDescription());
 
             var i = 0;
@@ -32,17 +31,26 @@ namespace CoreDataStore.Service.Test.Data
                 .Fill(p => p.PhotoStatus, true)
                 .Fill(p => p.Street).AsAddress();
 
-            return GenFu.GenFu.ListOf<LpcReport>(100);
+            return GenFu.GenFu.ListOf<LpcReport>(count);
         }
 
         public static List<LpcReportModel> GetLpcReportModelList(int count)
         {
-            GenFu.GenFu.Configure<LpcReport>()
+            var boroughs = EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription());
+            var objectTypes = EnumHelper.EnumToList<ObjectType>().Select(e => e.GetDescription());
+
+            var i = 0;
+            GenFu.GenFu.Configure<LpcReportModel>()
+                .Fill(l => l.Id, () => ++i)
+                .Fill(l => l.LPNumber, () => $"LP-{i,5:D5}")
+                .Fill(l => l.LPCId, () => $"{i,5:D5}")
                 .Fill(p => p.Name)
+                .Fill(l => l.Borough, () => BaseValueGenerator.GetRandomValue(boroughs))
+                .Fill(l => l.ObjectType, () => BaseValueGenerator.GetRandomValue(objectTypes))
                 .Fill(p => p.PhotoStatus, true)
                 .Fill(p => p.Street).AsAddress();
 
-            return GenFu.GenFu.ListOf<LpcReportModel>(100);
+            return GenFu.GenFu.ListOf<LpcReportModel>(count);
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Test.Fixtures;
 using CoreDataStore.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -23,6 +23,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         public LandmarkRepositoryTest(CoreDataStoreDbFixture fixture, ITestOutputHelper output)
         {
             _landmarkRepository = fixture.LandmarkRepository;
+            _dbContext = fixture.DbContext;
             _output = output;
         }
 
@@ -31,19 +32,45 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         public void Can_Get_Landmark()
         {
             var id = 100;
-            var result = _landmarkRepository.GetSingle(id);
-            Assert.NotNull(result);
+
+            // Act
+            var sut = _landmarkRepository.GetSingle(id);
+
+            Assert.NotNull(sut);
         }
 
-        [Fact(Skip = "TODO")]
+        [Fact(DisplayName = "Landmarks Included_Fields", Skip = "Slow")]
         [Trait("Category", "Integration")]
         public void Can_Get_Included_Fields()
         {
             var lpNumber = "LP-02039";
-            var landmarks = _dbContext.Landmarks.Include(x => x.LPCReport).Where(x => x.LP_NUMBER == lpNumber).Select(x => x).ToList();
+            var landmarks = _landmarkRepository.AllIncluding(x => x.LPCReport)
+                              .Where(x => x.LP_NUMBER == lpNumber).Select(x => x).ToList();
 
-            var landmark = landmarks.Single();
+            var landmark = landmarks.First();
             Assert.Equal(lpNumber, landmark.LP_NUMBER);
+
+            var lpcReport = landmark.LPCReport;
+
+            Assert.NotNull(lpcReport);
+            Assert.IsType<LpcReport>(lpcReport);
+        }
+
+        [Fact(DisplayName = "Landmarks Included_Fields Async", Skip = "All Records")]
+        [Trait("Category", "Integration")]
+        public async Task Can_Get_Included_Fields_Async()
+        {
+            // Act
+            var sut = await _landmarkRepository.AllIncludingAsync(x => x.LPCReport);
+
+            // Assert
+            Assert.IsType<List<Landmark>>(sut);
+
+            var landmark = sut.First();
+            var lpcReport = landmark.LPCReport;
+
+            Assert.NotNull(lpcReport);
+            Assert.IsType<LpcReport>(lpcReport);
         }
 
         [Fact]

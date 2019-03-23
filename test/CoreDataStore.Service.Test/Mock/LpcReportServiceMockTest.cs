@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Domain.Entities;
@@ -16,9 +17,9 @@ namespace CoreDataStore.Service.Test.Mock
 {
     public class LpcReportServiceMockTest
     {
-        [Fact(DisplayName = "Get LPC Report Item List")]
+        [Fact(DisplayName = "Get LPC Report Items List")]
         [Trait("Category", "Unit")]
-        public void Get_LPC_Report_List_Item_Data()
+        public void Get_LPC_Report_List_Items_Data()
         {
             var dataSet = LpcReportDataSource.GetLpcReportsList(20);
 
@@ -35,13 +36,33 @@ namespace CoreDataStore.Service.Test.Mock
             Assert.NotNull(sut);
             Assert.IsType<List<LpcReportModel>>(sut);
 
-            var item = sut.First(x => x.PhotoStatus);
+            var item = sut.Where(x => x.LPNumber != "LP-00001").Select(x => x).First();
             Assert.NotNull(item);
             Assert.IsType<LpcReportModel>(item);
 
             Assert.NotEmpty(item.PhotoURL);
             Assert.NotEmpty(item.PdfURL);
             Assert.NotEmpty(item.MapURL);
+        }
+
+        [Fact(DisplayName = "Get LPC Report Items List (Async)")]
+        [Trait("Category", "Unit")]
+        public async Task Get_LPC_Report_List_Items_Data_Async()
+        {
+            var dataSet = LpcReportDataSource.GetLpcReportsList(20);
+
+            var lpcRepository = new Mock<ILpcReportRepository>();
+            lpcRepository.Setup(b => b.GetAllAsync())
+                .ReturnsAsync(dataSet);
+
+            var lpcReportService = GetLpcReportService(lpcRepository.Object);
+
+            // Act
+            var sut = await lpcReportService.GetLPCReportsAsync();
+
+            // Assert
+            Assert.NotNull(sut);
+            Assert.IsType<List<LpcReportModel>>(sut);
         }
 
         [Fact(DisplayName = "Get LPC Report Item List")]

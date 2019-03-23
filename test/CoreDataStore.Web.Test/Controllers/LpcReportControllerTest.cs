@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;

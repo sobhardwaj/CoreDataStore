@@ -103,9 +103,6 @@ namespace CoreDataStore.Data.Infrastructure
 
         public virtual IEnumerable<T> GetPage(int startRow, int pageLength, IEnumerable<SortModel> sortingList)
         {
-            //if (orderBy == null)
-            //  orderBy = DefaultOrderBy.Expression;
-
             return _context.Set<T>().OrderBy<T>(sortingList).Skip(startRow).Take(pageLength).ToList();
         }
 
