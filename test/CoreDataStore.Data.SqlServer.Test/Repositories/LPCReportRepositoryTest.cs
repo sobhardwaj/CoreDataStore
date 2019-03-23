@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Test.Fixtures;
-using Microsoft.EntityFrameworkCore;
+using CoreDataStore.Domain.Entities;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -49,9 +50,31 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         public void Can_Get_LPCReport()
         {
             var lpNumber = "LP-00871";
-            var lpcReportNumber = _dbContext.LPCReports.Where(x => x.LPNumber == lpNumber).Select(x => x.LPNumber).First();
+            var sut = _dbContext.LPCReports.Where(x => x.LPNumber == lpNumber).Select(x => x.LPNumber).First();
 
-            Assert.Equal(lpNumber, lpcReportNumber);
+            Assert.NotNull(sut);
+            Assert.Equal(lpNumber, sut);
+        }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public async Task Can_Get_LPCReport_Async()
+        {
+            var lpNumber = "LP-00871";
+            var sut = await _lpcReportRepository.FindByAsync(x => x.LPNumber == lpNumber);
+
+            Assert.NotNull(sut);
+            Assert.IsType<List<LpcReport>>(sut);
+        }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public async Task Can_Get_Single_LPCReport_By_Id_Async()
+        {
+            var sut = await _lpcReportRepository.GetSingleAsync(1);
+
+            Assert.NotNull(sut);
+            Assert.IsType<LpcReport>(sut);
         }
 
         [Fact]
@@ -71,7 +94,31 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             var lpNumber = "LP-00871";
             var landmarkCount = 4;
 
-            var landmark = _dbContext.LPCReports.Include(x => x.Landmarks).Where(x => x.LPNumber == lpNumber).Select(x => x).First();
+            var landmark = _lpcReportRepository.AllIncluding(x => x.Landmarks).Where(x => x.LPNumber == lpNumber).Select(x => x).First();
+
+            Assert.Equal(lpNumber, landmark.LPNumber);
+            Assert.Equal(landmarkCount, landmark.Landmarks.Count);
+        }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public async Task Can_Get_Count_Async()
+        {
+            var lpNumber = "LP-00871";
+
+            var count = await _lpcReportRepository.GetCountAsync(x => x.LPNumber == lpNumber);
+            Assert.True(1 == count);
+        }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public async Task Can_Get_Included_Fields_Async()
+        {
+            var lpNumber = "LP-00871";
+            var landmarkCount = 4;
+
+            var sut = await _lpcReportRepository.AllIncludingAsync(x => x.Landmarks);
+            var landmark = sut.Where(x => x.LPNumber == lpNumber).Select(x => x).First();
 
             Assert.Equal(lpNumber, landmark.LPNumber);
             Assert.Equal(landmarkCount, landmark.Landmarks.Count);

@@ -1,5 +1,6 @@
 ﻿using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.SqlServer.Test.Fixtures;
+using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Interfaces;
 using Xunit;
 using Xunit.Abstractions;
