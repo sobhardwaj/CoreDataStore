@@ -35,14 +35,6 @@ namespace CoreDataStore.Service.Test.Mock
             // Assert
             Assert.NotNull(sut);
             Assert.IsType<List<LpcReportModel>>(sut);
-
-            var item = sut.Where(x => x.LPNumber == "LP-00001").Select(x => x).First();
-            Assert.NotNull(item);
-            Assert.IsType<LpcReportModel>(item);
-
-            Assert.NotEmpty(item.PhotoURL);
-            Assert.NotEmpty(item.PdfURL);
-            Assert.NotEmpty(item.MapURL);
         }
 
         [Fact(DisplayName = "Get LPC Report Items List (Async)")]

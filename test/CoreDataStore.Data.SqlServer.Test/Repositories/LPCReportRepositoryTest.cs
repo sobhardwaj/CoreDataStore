@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
@@ -28,10 +29,43 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
         [Fact]
         [Trait("Category", "Integration")]
-        public void LPC_Reports_Exist()
+        public void LPC_Reports_All()
         {
             var results = _lpcReportRepository.GetAll().ToList();
             Assert.NotNull(results);
+        }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public async Task LPC_Reports_All_Async()
+        {
+            var results = await _lpcReportRepository.GetAllAsync();
+            Assert.NotNull(results);
+        }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public void LPC_Report()
+        {
+            var sut = _lpcReportRepository.GetSingle(1);
+
+            Assert.NotNull(sut);
+            Assert.IsType<LpcReport>(sut);
+        }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public void LPC_Report_By_LpcId_Include_Landmarks()
+        {
+            var lpNumber = "LP-00871";
+            var predicate = PredicateBuilder.True<LpcReport>();
+            predicate = predicate.And(x => x.LPNumber == lpNumber);
+
+            var sut = _lpcReportRepository.GetSingle(predicate, e => e.Landmarks);
+
+            Assert.NotNull(sut);
+            Assert.IsType<LpcReport>(sut);
+            Assert.IsType<List<Landmark>>(sut.Landmarks);
         }
 
         [Fact]
