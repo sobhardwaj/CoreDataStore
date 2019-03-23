@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
 using CoreDataStore.Service.Test.Data;
@@ -13,19 +15,19 @@ namespace CoreDataStore.Web.Test.Controllers
     {
         [Fact(DisplayName = "Pluto LPC Item (Data)")]
         [Trait("Category", "Unit")]
-        public void Get_Lpc_Pluto_Item_Returns_Data()
+        public async Task Get_Lpc_Pluto_Item_Returns_Data()
         {
             var dataSet = PlutoDataSource.GetPlutoModelList(20);
 
             var plutoService = new Mock<IPlutoService>();
-            plutoService.Setup(x => x.GetPluto(It.IsAny<string>()))
-                .Returns(dataSet);
+            plutoService.Setup(x => x.GetPlutoAsync(It.IsAny<string>()))
+                .ReturnsAsync(dataSet);
 
             var controller = GetPlutoController(plutoService.Object);
 
             // Act
             var lpcId = System.Guid.NewGuid().ToString();
-            var sut = controller.Get(lpcId);
+            var sut = await controller.Get(lpcId);
 
             // Assert
             Assert.NotNull(sut);
@@ -40,16 +42,36 @@ namespace CoreDataStore.Web.Test.Controllers
             Assert.NotNull(result);
         }
 
-        [Fact(DisplayName = "Pluto LPC Item - (Not Found)")]
+        [Fact(DisplayName = "Pluto LPC Item - (Bad Request)")]
         [Trait("Category", "Unit")]
-        public void Get_Lpc_Pluto_Item_Returns_Not_Found()
+        public async Task Get_Lpc_Pluto_Item_Returns_Bad_Request()
         {
             var controller = GetPlutoController();
 
-            var sut = controller.Get(null);
+            var sut = await controller.Get(null);
 
             // Assert
             Assert.NotNull(sut);
+            Assert.IsType<BadRequestResult>(sut);
+        }
+
+        [Fact(DisplayName = "Pluto LPC Item - (Not Found)")]
+        [Trait("Category", "Unit")]
+        public async Task Get_Lpc_Pluto_Item_Returns_Not_Found()
+        {
+            var plutoService = new Mock<IPlutoService>();
+            plutoService.Setup(x => x.GetPlutoAsync(It.IsAny<string>()))
+                .ReturnsAsync((List<PlutoModel>)null);
+
+            var controller = GetPlutoController(plutoService.Object);
+
+            // Act
+            var id = Guid.NewGuid().ToString();
+            var sut = await controller.Get(id);
+
+            // Assert
+            Assert.NotNull(sut);
+            Assert.IsType<NotFoundResult>(sut);
         }
 
         private PlutoController GetPlutoController(IPlutoService plutoService = null)

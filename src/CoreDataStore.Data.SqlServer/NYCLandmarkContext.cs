@@ -17,7 +17,6 @@ namespace CoreDataStore.Data.SqlServer
 
         public string ImportType { get; set; }
 
-
         public NycLandmarkContext(DbContextOptions<NycLandmarkContext> options) : base(options)
         { }
 
@@ -25,27 +24,27 @@ namespace CoreDataStore.Data.SqlServer
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region LPC Report
 
-            builder.Entity<LpcReport>().ToTable("LPCReport");
-            builder.Entity<LpcReport>().HasKey(m => m.Id);
-            builder.Entity<LpcReport>().Property(t => t.Name).HasMaxLength(200).IsRequired();
-            builder.Entity<LpcReport>().Property(t => t.Architect).HasMaxLength(200);
-            builder.Entity<LpcReport>().Property(t => t.Borough).HasMaxLength(20);
-            builder.Entity<LpcReport>().Property(t => t.ObjectType).HasMaxLength(50);
-            builder.Entity<LpcReport>().Property(t => t.LPNumber).HasMaxLength(10).IsRequired();
-            builder.Entity<LpcReport>().Property(t => t.LPCId).HasMaxLength(10).IsRequired();
-            builder.Entity<LpcReport>().Property(t => t.PhotoURL).HasMaxLength(500);
-            builder.Entity<LpcReport>().Property(t => t.Street).HasMaxLength(200);
-            builder.Entity<LpcReport>().Property(t => t.Style).HasMaxLength(100);
+            modelBuilder.Entity<LpcReport>().ToTable("LPCReport");
+            modelBuilder.Entity<LpcReport>().HasKey(m => m.Id);
+            modelBuilder.Entity<LpcReport>().Property(t => t.Name).HasMaxLength(200).IsRequired();
+            modelBuilder.Entity<LpcReport>().Property(t => t.Architect).HasMaxLength(200);
+            modelBuilder.Entity<LpcReport>().Property(t => t.Borough).HasMaxLength(20);
+            modelBuilder.Entity<LpcReport>().Property(t => t.ObjectType).HasMaxLength(50);
+            modelBuilder.Entity<LpcReport>().Property(t => t.LPNumber).HasMaxLength(10).IsRequired();
+            modelBuilder.Entity<LpcReport>().Property(t => t.LPCId).HasMaxLength(10).IsRequired();
+            modelBuilder.Entity<LpcReport>().Property(t => t.PhotoURL).HasMaxLength(500);
+            modelBuilder.Entity<LpcReport>().Property(t => t.Street).HasMaxLength(200);
+            modelBuilder.Entity<LpcReport>().Property(t => t.Style).HasMaxLength(100);
 
             //Shadow Properties
             //builder.Entity<LPCReport>().Property<DateTime>("Modified");
 
             // One to One LPCReport => LPCLocation
-            builder.Entity<LpcReport>()
+            modelBuilder.Entity<LpcReport>()
                 .HasOne(t => t.LPCLocation)
                 .WithOne(t => t.LPCReport)
                 .HasPrincipalKey<LpcReport>(t => t.LPNumber)
@@ -55,22 +54,22 @@ namespace CoreDataStore.Data.SqlServer
 
             #region LPC Location
 
-            builder.Entity<LpcLocation>().ToTable("LPCLocation");
-            builder.Entity<LpcLocation>().HasKey(m => m.Id);
-            builder.Entity<LpcLocation>().Property(t => t.LPNumber).HasMaxLength(10).IsRequired();
-            builder.Entity<LpcLocation>().Property(t => t.Name).HasMaxLength(200).IsRequired();
-            builder.Entity<LpcLocation>().Property(t => t.BBL);
-            builder.Entity<LpcLocation>().Property(t => t.ObjectType).HasMaxLength(50).IsRequired();
-            builder.Entity<LpcLocation>().Property(t => t.LocationType).HasMaxLength(50);
-            builder.Entity<LpcLocation>().Property(t => t.Street).HasMaxLength(255);
-            builder.Entity<LpcLocation>().Property(t => t.Address).HasMaxLength(255);
-            builder.Entity<LpcLocation>().Property(t => t.Neighborhood).HasMaxLength(100);
-            builder.Entity<LpcLocation>().Property(t => t.Borough).HasMaxLength(13);
-            builder.Entity<LpcLocation>().Property(t => t.ZipCode).HasMaxLength(5);
-            builder.Entity<LpcLocation>().Property(t => t.Block);
-            builder.Entity<LpcLocation>().Property(t => t.Lot);
-            builder.Entity<LpcLocation>().Property(t => t.Latitude); //.HasPrecision(9, 6);
-            builder.Entity<LpcLocation>().Property(t => t.Longitude); //.HasPrecision(9, 6);
+            modelBuilder.Entity<LpcLocation>().ToTable("LPCLocation");
+            modelBuilder.Entity<LpcLocation>().HasKey(m => m.Id);
+            modelBuilder.Entity<LpcLocation>().Property(t => t.LPNumber).HasMaxLength(10).IsRequired();
+            modelBuilder.Entity<LpcLocation>().Property(t => t.Name).HasMaxLength(200).IsRequired();
+            modelBuilder.Entity<LpcLocation>().Property(t => t.BBL);
+            modelBuilder.Entity<LpcLocation>().Property(t => t.ObjectType).HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<LpcLocation>().Property(t => t.LocationType).HasMaxLength(50);
+            modelBuilder.Entity<LpcLocation>().Property(t => t.Street).HasMaxLength(255);
+            modelBuilder.Entity<LpcLocation>().Property(t => t.Address).HasMaxLength(255);
+            modelBuilder.Entity<LpcLocation>().Property(t => t.Neighborhood).HasMaxLength(100);
+            modelBuilder.Entity<LpcLocation>().Property(t => t.Borough).HasMaxLength(13);
+            modelBuilder.Entity<LpcLocation>().Property(t => t.ZipCode).HasMaxLength(5);
+            modelBuilder.Entity<LpcLocation>().Property(t => t.Block);
+            modelBuilder.Entity<LpcLocation>().Property(t => t.Lot);
+            modelBuilder.Entity<LpcLocation>().Property(t => t.Latitude); //.HasPrecision(9, 6);
+            modelBuilder.Entity<LpcLocation>().Property(t => t.Longitude); //.HasPrecision(9, 6);
 
 
             //builder.Entity<LPCLocation>()
@@ -83,24 +82,24 @@ namespace CoreDataStore.Data.SqlServer
 
             #region Landmark
 
-            builder.Entity<Landmark>().ToTable("Landmark");
-            builder.Entity<Landmark>().HasKey(m => m.Id);
-            builder.Entity<Landmark>().Property(t => t.BoroughID).HasMaxLength(2).IsRequired();
-            builder.Entity<Landmark>().Property(t => t.BOUNDARIES).HasMaxLength(50).IsRequired();
-            builder.Entity<Landmark>().Property(t => t.DESIG_ADDR).HasMaxLength(200);
-            builder.Entity<Landmark>().Property(t => t.HIST_DISTR).HasMaxLength(200);
-            builder.Entity<Landmark>().Property(t => t.LAST_ACTIO).HasMaxLength(50);
-            builder.Entity<Landmark>().Property(t => t.LM_NAME).HasMaxLength(200);
-            builder.Entity<Landmark>().Property(t => t.LP_NUMBER).HasMaxLength(10);
-            builder.Entity<Landmark>().Property(t => t.LM_TYPE).HasMaxLength(19);
-            builder.Entity<Landmark>().Property(t => t.NON_BLDG).HasMaxLength(100);
-            builder.Entity<Landmark>().Property(t => t.OTHER_HEAR).HasMaxLength(200);
-            builder.Entity<Landmark>().Property(t => t.PLUTO_ADDR).HasMaxLength(200);
-            builder.Entity<Landmark>().Property(t => t.PUBLIC_HEA).HasMaxLength(200);
-            builder.Entity<Landmark>().Property(t => t.STATUS).HasMaxLength(50).IsRequired();
-            builder.Entity<Landmark>().Property(t => t.STATUS_NOT).HasMaxLength(200);
+            modelBuilder.Entity<Landmark>().ToTable("Landmark");
+            modelBuilder.Entity<Landmark>().HasKey(m => m.Id);
+            modelBuilder.Entity<Landmark>().Property(t => t.BoroughID).HasMaxLength(2).IsRequired();
+            modelBuilder.Entity<Landmark>().Property(t => t.BOUNDARIES).HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<Landmark>().Property(t => t.DESIG_ADDR).HasMaxLength(200);
+            modelBuilder.Entity<Landmark>().Property(t => t.HIST_DISTR).HasMaxLength(200);
+            modelBuilder.Entity<Landmark>().Property(t => t.LAST_ACTIO).HasMaxLength(50);
+            modelBuilder.Entity<Landmark>().Property(t => t.LM_NAME).HasMaxLength(200);
+            modelBuilder.Entity<Landmark>().Property(t => t.LP_NUMBER).HasMaxLength(10);
+            modelBuilder.Entity<Landmark>().Property(t => t.LM_TYPE).HasMaxLength(19);
+            modelBuilder.Entity<Landmark>().Property(t => t.NON_BLDG).HasMaxLength(100);
+            modelBuilder.Entity<Landmark>().Property(t => t.OTHER_HEAR).HasMaxLength(200);
+            modelBuilder.Entity<Landmark>().Property(t => t.PLUTO_ADDR).HasMaxLength(200);
+            modelBuilder.Entity<Landmark>().Property(t => t.PUBLIC_HEA).HasMaxLength(200);
+            modelBuilder.Entity<Landmark>().Property(t => t.STATUS).HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<Landmark>().Property(t => t.STATUS_NOT).HasMaxLength(200);
 
-            builder.Entity<Landmark>()
+            modelBuilder.Entity<Landmark>()
                 .HasOne(l => l.LPCReport)
                 .WithMany(r => r.Landmarks)
                 .HasForeignKey(l => l.LP_NUMBER)
@@ -110,45 +109,45 @@ namespace CoreDataStore.Data.SqlServer
 
             #region Lamppost
 
-            builder.Entity<LpcLamppost>().ToTable("LPCLamppost");
-            builder.Entity<LpcLamppost>().HasKey(m => m.Id);
-            builder.Entity<LpcLamppost>().Property(t => t.PostId).IsRequired();
-            builder.Entity<LpcLamppost>().Property(t => t.Type).HasMaxLength(50);
-            builder.Entity<LpcLamppost>().Property(t => t.SubType).HasMaxLength(50);
-            builder.Entity<LpcLamppost>().Property(t => t.Block);
-            builder.Entity<LpcLamppost>().Property(t => t.Lot);
-            builder.Entity<LpcLamppost>().Property(t => t.Borough).HasMaxLength(20);
-            builder.Entity<LpcLamppost>().Property(t => t.Located).HasMaxLength(100);
-            builder.Entity<LpcLamppost>().Property(t => t.Latitude);  //.HasPrecision(9, 6);
-            builder.Entity<LpcLamppost>().Property(t => t.Longitude);  //.HasPrecision(9, 6);
+            modelBuilder.Entity<LpcLamppost>().ToTable("LPCLamppost");
+            modelBuilder.Entity<LpcLamppost>().HasKey(m => m.Id);
+            modelBuilder.Entity<LpcLamppost>().Property(t => t.PostId).IsRequired();
+            modelBuilder.Entity<LpcLamppost>().Property(t => t.Type).HasMaxLength(50);
+            modelBuilder.Entity<LpcLamppost>().Property(t => t.SubType).HasMaxLength(50);
+            modelBuilder.Entity<LpcLamppost>().Property(t => t.Block);
+            modelBuilder.Entity<LpcLamppost>().Property(t => t.Lot);
+            modelBuilder.Entity<LpcLamppost>().Property(t => t.Borough).HasMaxLength(20);
+            modelBuilder.Entity<LpcLamppost>().Property(t => t.Located).HasMaxLength(100);
+            modelBuilder.Entity<LpcLamppost>().Property(t => t.Latitude);  //.HasPrecision(9, 6);
+            modelBuilder.Entity<LpcLamppost>().Property(t => t.Longitude);  //.HasPrecision(9, 6);
 
             #endregion
 
             #region Pluto
 
-            builder.Entity<Pluto>().ToTable("PLUTO");
-            builder.Entity<Pluto>().HasKey(m => m.Id);
-            builder.Entity<Pluto>().Property(t => t.Borough).HasMaxLength(2).IsRequired();
-            builder.Entity<Pluto>().Property(t => t.Block).IsRequired();
-            builder.Entity<Pluto>().Property(t => t.LandmarkName).HasColumnName("Landmark").HasMaxLength(100);
-            builder.Entity<Pluto>().Property(t => t.Lot).IsRequired();
-            builder.Entity<Pluto>().Property(t => t.BBL).IsRequired();
-            builder.Entity<Pluto>().Property(t => t.Latitude); //.HasPrecision(9, 6).IsRequired();
-            builder.Entity<Pluto>().Property(t => t.Longitude); //.HasPrecision(9, 6).IsRequired();
-            builder.Entity<Pluto>().Property(t => t.OwnerName).HasMaxLength(21);
-            builder.Entity<Pluto>().Property(t => t.ZipCode).HasMaxLength(5);
+            modelBuilder.Entity<Pluto>().ToTable("PLUTO");
+            modelBuilder.Entity<Pluto>().HasKey(m => m.Id);
+            modelBuilder.Entity<Pluto>().Property(t => t.Borough).HasMaxLength(2).IsRequired();
+            modelBuilder.Entity<Pluto>().Property(t => t.Block).IsRequired();
+            modelBuilder.Entity<Pluto>().Property(t => t.LandmarkName).HasColumnName("Landmark").HasMaxLength(100);
+            modelBuilder.Entity<Pluto>().Property(t => t.Lot).IsRequired();
+            modelBuilder.Entity<Pluto>().Property(t => t.BBL).IsRequired();
+            modelBuilder.Entity<Pluto>().Property(t => t.Latitude); //.HasPrecision(9, 6).IsRequired();
+            modelBuilder.Entity<Pluto>().Property(t => t.Longitude); //.HasPrecision(9, 6).IsRequired();
+            modelBuilder.Entity<Pluto>().Property(t => t.OwnerName).HasMaxLength(21);
+            modelBuilder.Entity<Pluto>().Property(t => t.ZipCode).HasMaxLength(5);
 
             #endregion
 
-            builder.Entity<AuditLog>().ToTable("AuditLog");
-            builder.Entity<AuditLog>().HasKey(m => m.Id);
-            builder.Entity<AuditLog>().Property(t => t.UserName).HasMaxLength(50);
-            builder.Entity<AuditLog>().Property(t => t.ImportType).HasMaxLength(50);
-            builder.Entity<AuditLog>().Property(t => t.EventType).HasMaxLength(50).IsRequired();
-            builder.Entity<AuditLog>().Property(t => t.TableName).HasMaxLength(50).IsRequired();
-            builder.Entity<AuditLog>().Property(t => t.ColumnName).HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<AuditLog>().ToTable("AuditLog");
+            modelBuilder.Entity<AuditLog>().HasKey(m => m.Id);
+            modelBuilder.Entity<AuditLog>().Property(t => t.UserName).HasMaxLength(50);
+            modelBuilder.Entity<AuditLog>().Property(t => t.ImportType).HasMaxLength(50);
+            modelBuilder.Entity<AuditLog>().Property(t => t.EventType).HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<AuditLog>().Property(t => t.TableName).HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<AuditLog>().Property(t => t.ColumnName).HasMaxLength(50).IsRequired();
 
-            base.OnModelCreating(builder);
+            base.OnModelCreating(modelBuilder);
         }
 
         public override int SaveChanges()

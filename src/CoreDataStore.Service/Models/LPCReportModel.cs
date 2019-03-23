@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using CoreDataStore.Service.Constants;
 
 namespace CoreDataStore.Service.Models
@@ -109,7 +110,7 @@ namespace CoreDataStore.Service.Models
             {
                 string baseUrl = null;
                 if (ObjectType != "Historic District" && !string.IsNullOrWhiteSpace(Street) && !string.IsNullOrWhiteSpace(this.Borough))
-                    baseUrl = $"{ReportConstants.LpcReportMapUri}?searchType=AddressSearch&street={this.Street}&borough={this.Borough}";
+                    baseUrl = $"{ReportConstants.LpcReportMapUri}?searchType=AddressSearch&street={HttpUtility.UrlEncode(this.Street)}&borough={this.Borough}";
 
                 return baseUrl;
             }

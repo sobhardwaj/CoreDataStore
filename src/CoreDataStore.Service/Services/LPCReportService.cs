@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -19,7 +20,7 @@ namespace CoreDataStore.Service.Services
 
         public LpcReportService(ILpcReportRepository lpcReportRepository)
         {
-            this._lpcReportRepository = lpcReportRepository;
+            this._lpcReportRepository = lpcReportRepository ?? throw new ArgumentNullException(nameof(lpcReportRepository));
         }
 
         public LpcReportModel GetLPCReport(int id)

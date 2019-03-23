@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
 using Microsoft.AspNetCore.Cors;
@@ -22,7 +24,7 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="plutoService"></param>
         public PlutoController(IPlutoService plutoService)
         {
-            this._plutoService = plutoService;
+            this._plutoService = plutoService ?? throw new ArgumentNullException(nameof(plutoService));
         }
 
         /// <summary>
@@ -33,12 +35,16 @@ namespace CoreDataStore.Web.Controllers
         [HttpGet("{lpcNumber}")]
         [Produces("application/json", Type = typeof(IEnumerable<PlutoModel>))]
         [ProducesResponseType(typeof(IEnumerable<PlutoModel>), 200)]
-        public IActionResult Get(string lpcNumber)
+        public async Task<IActionResult> Get(string lpcNumber)
         {
             if (lpcNumber == null)
                 return BadRequest();
 
-            return Ok(_plutoService.GetPluto(lpcNumber));
+            var result = await _plutoService.GetPlutoAsync(lpcNumber);
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
         }
     }
 }

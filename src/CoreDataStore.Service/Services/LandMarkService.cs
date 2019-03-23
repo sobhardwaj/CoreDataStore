@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using AutoMapper;
 using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Extensions;
@@ -18,7 +20,7 @@ namespace CoreDataStore.Service.Services
 
         public LandmarkService(ILandmarkRepository landmarkRepository)
         {
-            _landmarkRepository = landmarkRepository;
+            _landmarkRepository = landmarkRepository ?? throw new ArgumentNullException(nameof(landmarkRepository));
         }
 
         public List<string> GetLandmarkStreets(string lpcNumber)
@@ -36,6 +38,29 @@ namespace CoreDataStore.Service.Services
 
             var list = new List<string>();
             foreach (var i in results)
+            {
+                list.Add(i.x);
+            }
+
+            return list.OrderBy(x => x).ToList();
+        }
+
+        public async Task<List<string>> GetLandmarkStreetsAsync(string lpcNumber)
+        {
+            var predicate = PredicateBuilder.True<Landmark>();
+            predicate = predicate.And(x => x.LP_NUMBER == lpcNumber);
+
+            var results = await _landmarkRepository.FindByAsync(predicate);
+            var items = results.Select(x => x.PLUTO_ADDR)
+                .Select(x => new
+                {
+                    x = !string.IsNullOrWhiteSpace(x) && x.Any(char.IsDigit)
+                        ? Regex.Replace(x, @"^[\d-]*\s*", "", RegexOptions.Multiline)
+                        : x,
+                }).Distinct().ToList();
+
+            var list = new List<string>();
+            foreach (var i in items)
             {
                 list.Add(i.x);
             }

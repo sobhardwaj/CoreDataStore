@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
@@ -14,6 +15,73 @@ namespace CoreDataStore.Web.Test.Controllers
 {
     public class LpcReportControllerTest
     {
+        [Fact(DisplayName = "LPC Reports - (Returns Data)")]
+        [Trait("Category", "Unit")]
+        public async Task Get_Lpc_Report_Returns_Data()
+        {
+            var dataSet = LpcReportDataSource.GetLpcReportModelItem();
+
+            var lpcReportsService = new Mock<ILpcReportService>();
+            lpcReportsService.Setup(x => x.GetLPCReportAsync(1))
+                .ReturnsAsync(dataSet);
+
+            var controller = GetLpcReportController(lpcReportsService.Object);
+            controller.ControllerContext = WebTestHelpers.GetHttpContext();
+
+            // Act
+            var sut = await controller.Get(1);
+
+            // Assert
+            Assert.NotNull(sut);
+            Assert.IsType<OkObjectResult>(sut);
+
+            var objectResult = sut as OkObjectResult;
+            Assert.NotNull(objectResult);
+            Assert.True(objectResult.StatusCode == 200);
+        }
+
+        [Fact(DisplayName = "LPC Reports - (Returns Bad Request)")]
+        [Trait("Category", "Unit")]
+        public async Task Get_Lpc_Report_Returns_Bad_Request()
+        {
+            var controller = GetLpcReportController();
+            controller.ControllerContext = WebTestHelpers.GetHttpContext();
+
+            // Act
+            var sut = await controller.Get(0);
+
+            // Assert
+            Assert.NotNull(sut);
+            Assert.IsType<BadRequestResult>(sut);
+
+            var objectResult = sut as BadRequestResult;
+            Assert.NotNull(objectResult);
+            Assert.True(objectResult.StatusCode == 400);
+        }
+
+        [Fact(DisplayName = "LPC Reports - (Returns Not Found)")]
+        [Trait("Category", "Unit")]
+        public async Task Get_Lpc_Report_Returns_NotFound()
+        {
+            var lpcReportsService = new Mock<ILpcReportService>();
+            lpcReportsService.Setup(x => x.GetLPCReportAsync(1))
+               .ReturnsAsync((LpcReportModel)null);
+
+            var controller = GetLpcReportController(lpcReportsService.Object);
+            controller.ControllerContext = WebTestHelpers.GetHttpContext();
+
+            // Act
+            var sut = await controller.Get(1);
+
+            // Assert
+            Assert.NotNull(sut);
+            Assert.IsType<NotFoundResult>(sut);
+
+            var objectResult = sut as NotFoundResult;
+            Assert.NotNull(objectResult);
+            Assert.True(objectResult.StatusCode == 404);
+        }
+
         [Fact(DisplayName = "LPC Reports Paging - (Returns Data)")]
         [Trait("Category", "Unit")]
         public void Get_Lpc_Report_Paging_Returns_Data()

@@ -16,6 +16,9 @@ namespace CoreDataStore.Web.Test.Fixtures
         {
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
+            var x = WebTestHelpers.GetWebApplicationPath();
+
+
             var builder = new WebHostBuilder()
                 .UseEnvironment(environment)
                 .UseContentRoot(WebTestHelpers.GetWebApplicationPath())
@@ -31,7 +34,7 @@ namespace CoreDataStore.Web.Test.Fixtures
         public HttpClient Client { get; }
 
         public static IConfiguration Configuration { get; } = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
+            .SetBasePath(WebTestHelpers.GetWebApplicationPath())
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
             .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing"}.json", optional: true)
             .Build();

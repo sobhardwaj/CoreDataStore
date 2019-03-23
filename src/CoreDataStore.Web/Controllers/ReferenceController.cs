@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CoreDataStore.Data.Data;
 using CoreDataStore.Domain.Enum;
@@ -24,7 +25,7 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="referenceRepository"></param>
         public ReferenceController(IReferenceRepository referenceRepository)
         {
-            this._referenceRepository = referenceRepository;
+            this._referenceRepository = referenceRepository ?? throw new ArgumentNullException(nameof(referenceRepository));
         }
 
         /// <summary>

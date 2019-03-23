@@ -15,6 +15,11 @@ namespace CoreDataStore.Service.Test.Data
             return GetLpcReportsList(1).First();
         }
 
+        public static LpcReportModel GetLpcReportModelItem()
+        {
+            return GetLpcReportModelList(1).First();
+        }
+
         public static List<LpcReport> GetLpcReportsList(int count)
         {
             var boroughs = EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription());

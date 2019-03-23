@@ -78,5 +78,16 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
 
             Assert.True(result > 0);
         }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public async Task Get_Landmarks_Pluto_Async()
+        {
+            var lpcNumber = "LP-02039";
+            var results = await _plutoRepository.GetPlutoAsync(lpcNumber);
+
+            Assert.NotNull(results);
+            Assert.NotEmpty(results);
+        }
     }
 }

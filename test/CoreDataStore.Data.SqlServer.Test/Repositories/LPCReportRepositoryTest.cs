@@ -144,7 +144,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.True(1 == count);
         }
 
-        [Fact]
+        [Fact(DisplayName = "LPC Reports Include")]
         [Trait("Category", "Integration")]
         public async Task Can_Get_Included_Fields_Async()
         {

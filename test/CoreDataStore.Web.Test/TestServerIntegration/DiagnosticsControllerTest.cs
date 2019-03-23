@@ -1,14 +1,14 @@
 ﻿using System;
-using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using CoreDataStore.Web.Controllers;
 using CoreDataStore.Web.Test.Fixtures;
+using CoreDataStore.Web.Test.Helpers;
 using CoreDataStore.Web.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Newtonsoft.Json;
 using Xunit;
@@ -106,17 +106,34 @@ namespace CoreDataStore.Web.Test.TestServerIntegration
             Assert.True(objectResult.StatusCode == 200);
         }
 
+        [Fact(Skip = "FIX")]
+        [Trait("Category", "Unit")]
+        public void ConfigureServices_Development()
+        {
+            // Arrange
+            Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
+            var mockEnvironment = new Mock<IHostingEnvironment>();
+            mockEnvironment.Setup(m => m.EnvironmentName).Returns("Development");
+
+            IServiceCollection services = new ServiceCollection();
+            var target = new Startup(WebTestHelpers.Configuration, mockEnvironment.Object);
+
+            // Act
+            target.ConfigureDevelopmentServices(services);
+            services.AddTransient<DiagnosticsController>();
+
+            var serviceProvider = services.BuildServiceProvider();
+
+            // Assert
+            var controller = serviceProvider.GetService<DiagnosticsController>();
+            Assert.NotNull(controller);
+        }
+
         private DiagnosticsController GetDiagnosticsController(
             IHostingEnvironment hostingEnvironment = null)
         {
             hostingEnvironment = hostingEnvironment ?? new Mock<IHostingEnvironment>().Object;
             return new DiagnosticsController(hostingEnvironment);
         }
-
-        public static IConfiguration Configuration { get; } = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
-            .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development"}.json", optional: true)
-            .Build();
     }
 }

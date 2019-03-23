@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Test.Fixtures;
 using Xunit;
@@ -31,10 +32,31 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
         [Fact]
         [Trait("Category", "Integration")]
+        public async Task Get_Landmarks_Pluto_Async()
+        {
+            var lpcNumber = "LP-02039";
+            var results = await _plutoRepository.GetPlutoAsync(lpcNumber);
+
+            Assert.NotNull(results);
+            Assert.NotEmpty(results);
+        }
+
+        [Fact]
+        [Trait("Category", "Integration")]
         public void Get_Landmarks_Pluto_Count()
         {
             var lpcNumber = "LP-02039";
             var result = _plutoRepository.GetPlutoCount(lpcNumber);
+
+            Assert.NotEqual(0, result);
+        }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public async Task Get_Landmarks_Pluto_Count_Async()
+        {
+            var lpcNumber = "LP-02039";
+            var result = await _plutoRepository.GetPlutoCountAsync(lpcNumber);
 
             Assert.NotEqual(0, result);
         }

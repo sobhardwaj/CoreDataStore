@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CoreDataStore.Data.Infrastructure;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreDataStore.Data.SqlServer.Repositories
 {
@@ -29,9 +30,15 @@ namespace CoreDataStore.Data.SqlServer.Repositories
                     select p).Distinct().ToList();
         }
 
-        public Task<List<Pluto>> GetPlutoAsync(string lpcNumber)
+        public async Task<List<Pluto>> GetPlutoAsync(string lpcNumber)
         {
-            throw new NotImplementedException();
+            return await (from l in _context.Landmarks
+                          join p in _context.Pluto on
+                              new { Lot = l.LOT, Block = l.BLOCK, Borough = l.BoroughID }
+                              equals
+                              new { p.Lot, p.Block, p.Borough }
+                          where l.LP_NUMBER == lpcNumber
+                          select p).Distinct().ToListAsync();
         }
 
         public int GetPlutoCount(string lpcNumber)
@@ -39,9 +46,10 @@ namespace CoreDataStore.Data.SqlServer.Repositories
             return GetPluto(lpcNumber).Count;
         }
 
-        public Task<int> GetPlutoCountAsync(string lpcNumber)
+        public async Task<int> GetPlutoCountAsync(string lpcNumber)
         {
-            throw new NotImplementedException();
+            var results = await GetPlutoAsync(lpcNumber);
+            return results.Count;
         }
 
         public void Dispose()

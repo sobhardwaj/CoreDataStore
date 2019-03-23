@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Repositories;
 using CoreDataStore.Data.SqlServer.Test.Helpers;
@@ -22,14 +23,14 @@ using Xunit;
 
 namespace CoreDataStore.Data.SqlServer.Test.Controllers
 {
-    public class LPCReportControllerTest
+    public class LpcReportControllerTest
     {
         private readonly IServiceProvider _serviceProvider;
 
         private IEnumerable<LpcReport> _lpcReports = new List<LpcReport>();
         private readonly IEnumerable<Landmark> _landmarks = new List<Landmark>();
 
-        public LPCReportControllerTest()
+        public LpcReportControllerTest()
         {
             var services = new ServiceCollection();
             services.AddDbContext<NycLandmarkContext>(options => options.UseInMemoryDatabase());
@@ -49,7 +50,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
         private void CreateTestData(NycLandmarkContext dbContext)
         {
             var boroughs = EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription());
-            var boroughCodes = EnumHelper.EnumToList<Borough>().Select(e => e.GetAttribute<BoroughIdAttribute>().Value);
             var objectTypes = EnumHelper.EnumToList<ObjectType>().Select(e => e.GetDescription());
 
             var i = 0;
@@ -95,12 +95,12 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
 
         [Fact]
         [Trait("Category", "InMemoryDatabase")]
-        public void Get_Should_Have_Record()
+        public async Task Get_Should_Have_Record()
         {
             var controller = PrepareController();
 
             var id = 10;
-            var actionResult = controller.Get(id);
+            var actionResult = await controller.Get(id);
 
             // Assert
             actionResult.Should().BeOfType<OkObjectResult>();
@@ -108,11 +108,11 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
 
         [Fact]
         [Trait("Category", "InMemoryDatabase")]
-        public void Get_Should_Return_BadRequest()
+        public async Task Get_Should_Return_BadRequest()
         {
             var controller = PrepareController();
 
-            var actionResult = controller.Get(0);
+            var actionResult = await controller.Get(0);
 
             // Assert
             actionResult.Should().BeOfType<BadRequestResult>();

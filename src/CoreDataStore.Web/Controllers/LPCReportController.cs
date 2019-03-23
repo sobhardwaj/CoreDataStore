@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
@@ -28,8 +29,8 @@ namespace CoreDataStore.Web.Controllers
         /// <param name="landmarkService"></param>
         public LpcReportController(ILpcReportService lpcReportService, ILandmarkService landmarkService)
         {
-            _lpcReportService = lpcReportService;
-            _landmarkService = landmarkService;
+            _lpcReportService = lpcReportService ?? throw new ArgumentNullException(nameof(lpcReportService));
+            _landmarkService = landmarkService ?? throw new ArgumentNullException(nameof(landmarkService));
         }
 
         /// <summary>
@@ -40,12 +41,12 @@ namespace CoreDataStore.Web.Controllers
         [HttpGet("{id}")]
         [Produces("application/json", Type = typeof(LpcReportModel))]
         [ProducesResponseType(typeof(LpcReportModel), 200)]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             if (id == 0)
                 return BadRequest();
 
-            var result = _lpcReportService.GetLPCReport(id);
+            var result = await _lpcReportService.GetLPCReportAsync(id);
             if (result == null)
                 return NotFound();
 
