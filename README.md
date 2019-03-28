@@ -76,14 +76,20 @@ docker run --rm --name postgresdb -p 5432:5432  stuartshay/coredatastore-postgre
 
 Windows
 
- ```
+```
  .\build.ps1 -target sonar
 ```
 
 Linux 
-```
+
+
+```bash
 ./build.sh --target=sonar
 ```
+
+
+
+
 
 ### Myget Package Deploymnet
 
