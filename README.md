@@ -89,7 +89,7 @@ Linux
 
 Windows
 
- ```
+```
   $env:mygetApiKey = "adab4634-8ddb-4789-ae92-6461295ac69c"
   .\build.ps1 -target push-myget
 ```
