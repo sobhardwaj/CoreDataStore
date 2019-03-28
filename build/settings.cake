@@ -11,4 +11,6 @@ public static class Settings
     public static string SonarExclude => "/d:sonar.exclusions=**/wwwroot/**,**/typings/**,**/src/app/**,**/src/less/**,*.less,*.js,*.ts,Program.cs";
 
     public static string SonarExcludeDuplications => "/d:sonar.cpd.exclusions=**/Models/**,**/Repositories/**";
+
+    public static string MyGetSource => "https://www.myget.org/F/coredatastore/api/v2/package";
 }
