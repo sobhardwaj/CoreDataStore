@@ -86,7 +86,7 @@ Linux
 ./build.sh --target=sonar
 ```
 
-### Myget Package Deploymnet
+### Myget Package Deployment
 
 Windows
 

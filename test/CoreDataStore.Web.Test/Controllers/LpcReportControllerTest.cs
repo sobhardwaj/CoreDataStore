@@ -121,7 +121,7 @@ namespace CoreDataStore.Web.Test.Controllers
             var pageSize = 30;
             var dataSourceResults = new PagedResultModel<LandmarkModel>
             {
-                Results = LandmarkDataSource.GetLandMarkModelList(pageSize),
+                Results = LandmarkDataSource.GetLandmarkModelList(pageSize),
                 Page = 1,
                 Limit = pageSize,
             };

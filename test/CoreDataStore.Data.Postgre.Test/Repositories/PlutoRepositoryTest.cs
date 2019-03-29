@@ -87,7 +87,20 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             var results = await _plutoRepository.GetPlutoAsync(lpcNumber);
 
             Assert.NotNull(results);
-            Assert.NotEmpty(results);
+            Assert.IsType<List<Pluto>>(results);
+
+            var item = results.First();
+            Assert.IsType<Pluto>(item);
+        }
+
+        [Fact(DisplayName = "Pluto Count - Async")]
+        [Trait("Category", "Integration")]
+        public async Task Get_Landmarks_Pluto_Count_Async()
+        {
+            var lpcNumber = "LP-02039";
+            var sut = await _plutoRepository.GetPlutoCountAsync(lpcNumber);
+
+            Assert.NotEqual(0, sut);
         }
     }
 }

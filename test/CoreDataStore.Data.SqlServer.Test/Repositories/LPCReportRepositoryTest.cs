@@ -121,14 +121,27 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.Equal(lpNumber, lpcReportNumber.LPNumber);
         }
 
-        [Fact]
+        [Fact(DisplayName = "Lpc Report - Included Fields")]
         [Trait("Category", "Integration")]
         public void Can_Get_Included_Fields()
         {
             var lpNumber = "LP-00871";
             var landmarkCount = 4;
 
-            var landmark = _lpcReportRepository.AllIncluding(x => x.Landmarks).Where(x => x.LPNumber == lpNumber).Select(x => x).First();
+            var landmark = _lpcReportRepository.GetSingle(x => x.LPNumber == lpNumber, e => e.Landmarks);
+
+            Assert.Equal(lpNumber, landmark.LPNumber);
+            Assert.Equal(landmarkCount, landmark.Landmarks.Count);
+        }
+
+        [Fact(DisplayName = "Lpc Report - Included Fields - Async")]
+        [Trait("Category", "Integration")]
+        public async Task Can_Get_Filtered_Included_Fields_Async()
+        {
+            var lpNumber = "LP-00871";
+            var landmarkCount = 4;
+
+            var landmark = await _lpcReportRepository.GetSingleAsync(x => x.LPNumber == lpNumber, e => e.Landmarks);
 
             Assert.Equal(lpNumber, landmark.LPNumber);
             Assert.Equal(landmarkCount, landmark.Landmarks.Count);
@@ -142,20 +155,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
             var count = await _lpcReportRepository.GetCountAsync(x => x.LPNumber == lpNumber);
             Assert.True(1 == count);
-        }
-
-        [Fact(DisplayName = "LPC Reports Include")]
-        [Trait("Category", "Integration")]
-        public async Task Can_Get_Included_Fields_Async()
-        {
-            var lpNumber = "LP-00871";
-            var landmarkCount = 4;
-
-            var sut = await _lpcReportRepository.AllIncludingAsync(x => x.Landmarks);
-            var landmark = sut.Where(x => x.LPNumber == lpNumber).Select(x => x).First();
-
-            Assert.Equal(lpNumber, landmark.LPNumber);
-            Assert.Equal(landmarkCount, landmark.Landmarks.Count);
         }
 
         [Fact]

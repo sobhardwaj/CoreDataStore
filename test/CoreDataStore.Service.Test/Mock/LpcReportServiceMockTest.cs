@@ -27,10 +27,10 @@ namespace CoreDataStore.Service.Test.Mock
             lpcRepository.Setup(b => b.GetAll())
                 .Returns(dataSet);
 
-            var lpcReportService = GetLpcReportService(lpcRepository.Object);
+            var service = GetLpcReportService(lpcRepository.Object);
 
             // Act
-            var sut = lpcReportService.GetLPCReports();
+            var sut = service.GetLPCReports();
 
             // Assert
             Assert.NotNull(sut);
@@ -47,10 +47,10 @@ namespace CoreDataStore.Service.Test.Mock
             lpcRepository.Setup(b => b.GetAllAsync())
                 .ReturnsAsync(dataSet);
 
-            var lpcReportService = GetLpcReportService(lpcRepository.Object);
+            var service = GetLpcReportService(lpcRepository.Object);
 
             // Act
-            var sut = await lpcReportService.GetLPCReportsAsync();
+            var sut = await service.GetLPCReportsAsync();
 
             // Assert
             Assert.NotNull(sut);
@@ -71,11 +71,11 @@ namespace CoreDataStore.Service.Test.Mock
             lpcRepository.Setup(b => b.GetPage(It.IsAny<Expression<Func<LpcReport, bool>>>(), 1, 1, null))
                 .Returns(dataSet);
 
-            var lpcReportService = GetLpcReportService(lpcRepository.Object);
+            var service = GetLpcReportService(lpcRepository.Object);
 
             // Act
             var request = new LpcReportRequest { PageSize = pageSize, Page = 1 };
-            var sut = lpcReportService.GetLPCReports(request);
+            var sut = service.GetLPCReports(request);
 
             // Assert
             Assert.NotNull(sut);

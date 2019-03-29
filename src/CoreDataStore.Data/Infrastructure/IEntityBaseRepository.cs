@@ -32,6 +32,10 @@ namespace CoreDataStore.Data.Infrastructure
 
         Task<T> GetSingleAsync(long id);
 
+        Task<T> GetSingleAsync(Expression<Func<T, bool>> predicate);
+
+        Task<T> GetSingleAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
+
         IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate);
 
         Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate);

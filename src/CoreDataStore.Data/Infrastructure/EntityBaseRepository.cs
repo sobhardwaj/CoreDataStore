@@ -91,6 +91,22 @@ namespace CoreDataStore.Data.Infrastructure
             return await _context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);
         }
 
+        public async Task<T> GetSingleAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _context.Set<T>().FirstOrDefaultAsync(predicate);
+        }
+
+        public async Task<T> GetSingleAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)
+        {
+            var query = _context.Set<T>().AsQueryable();
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+
+            return await query.FirstOrDefaultAsync(predicate);
+        }
+
         public virtual IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)
         {
             return _context.Set<T>().Where(predicate);

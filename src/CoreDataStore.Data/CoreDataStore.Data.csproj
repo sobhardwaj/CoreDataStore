@@ -4,6 +4,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>CoreDataStore Data</Description>
     <Authors>$(Authors)</Authors>
     <VersionPrefix>$(VersionPrefix)</VersionPrefix>
     <Version>$(Version)</Version>

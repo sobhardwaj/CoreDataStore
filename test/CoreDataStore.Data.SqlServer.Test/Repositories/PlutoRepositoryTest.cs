@@ -24,10 +24,10 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         public void Get_Landmarks_Pluto()
         {
             var lpcNumber = "LP-02039";
-            var results = _plutoRepository.GetPluto(lpcNumber).ToList();
+            var sut = _plutoRepository.GetPluto(lpcNumber).ToList();
 
-            Assert.NotNull(results);
-            Assert.NotEmpty(results);
+            Assert.NotNull(sut);
+            Assert.NotEmpty(sut);
         }
 
         [Fact]
@@ -51,14 +51,15 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.NotEqual(0, result);
         }
 
-        [Fact]
+
+        [Fact(DisplayName = "Pluto Count - Async")]
         [Trait("Category", "Integration")]
         public async Task Get_Landmarks_Pluto_Count_Async()
         {
             var lpcNumber = "LP-02039";
-            var result = await _plutoRepository.GetPlutoCountAsync(lpcNumber);
+            var sut = await _plutoRepository.GetPlutoCountAsync(lpcNumber);
 
-            Assert.NotEqual(0, result);
+            Assert.NotEqual(0, sut);
         }
 
         [Fact]

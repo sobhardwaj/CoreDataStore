@@ -7,6 +7,7 @@ using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
+using Navigator.Common.Helpers;
 
 namespace CoreDataStore.Service.Services
 {
@@ -21,12 +22,16 @@ namespace CoreDataStore.Service.Services
 
         public List<PlutoModel> GetPluto(string lpcNumber)
         {
+            Guard.ThrowIfNullOrWhitespace(lpcNumber, "LPC Number");
+
             var results = _plutoRepository.GetPluto(lpcNumber);
             return Mapper.Map<IEnumerable<Pluto>, IEnumerable<PlutoModel>>(results).ToList();
         }
 
         public async Task<List<PlutoModel>> GetPlutoAsync(string lpcNumber)
         {
+            Guard.ThrowIfNullOrWhitespace(lpcNumber, "LPC Number");
+
             var results = await _plutoRepository.GetPlutoAsync(lpcNumber);
             return Mapper.Map<IEnumerable<Pluto>, IEnumerable<PlutoModel>>(results).ToList();
         }

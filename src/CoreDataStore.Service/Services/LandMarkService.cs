@@ -11,6 +11,7 @@ using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
+using Navigator.Common.Helpers;
 
 namespace CoreDataStore.Service.Services
 {
@@ -25,6 +26,8 @@ namespace CoreDataStore.Service.Services
 
         public List<string> GetLandmarkStreets(string lpcNumber)
         {
+            Guard.ThrowIfNullOrWhitespace(lpcNumber, "LPC Number");
+
             var predicate = PredicateBuilder.True<Landmark>();
             predicate = predicate.And(x => x.LP_NUMBER == lpcNumber);
 
@@ -47,6 +50,8 @@ namespace CoreDataStore.Service.Services
 
         public async Task<List<string>> GetLandmarkStreetsAsync(string lpcNumber)
         {
+            Guard.ThrowIfNullOrWhitespace(lpcNumber, "LPC Number");
+
             var predicate = PredicateBuilder.True<Landmark>();
             predicate = predicate.And(x => x.LP_NUMBER == lpcNumber);
 

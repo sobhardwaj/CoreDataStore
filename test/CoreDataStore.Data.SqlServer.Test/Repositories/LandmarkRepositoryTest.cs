@@ -29,7 +29,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
         [Fact]
         [Trait("Category", "Integration")]
-        public void Can_Get_Landmark()
+        public void Can_Get_Landmark_By_Id()
         {
             var id = 100;
 
@@ -39,18 +39,16 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
             Assert.NotNull(sut);
         }
 
-        [Fact(DisplayName = "Landmarks Included_Fields", Skip = "Slow")]
+        [Fact(DisplayName = "Landmarks Included_Fields")]
         [Trait("Category", "Integration")]
         public void Can_Get_Included_Fields()
         {
             var lpNumber = "LP-02039";
-            var landmarks = _landmarkRepository.AllIncluding(x => x.LPCReport)
-                              .Where(x => x.LP_NUMBER == lpNumber).Select(x => x).ToList();
+            var sut = _landmarkRepository.GetSingle(x => x.LP_NUMBER == lpNumber, e => e.LPCReport);
 
-            var landmark = landmarks.First();
-            Assert.Equal(lpNumber, landmark.LP_NUMBER);
+            Assert.Equal(lpNumber, sut.LP_NUMBER);
 
-            var lpcReport = landmark.LPCReport;
+            var lpcReport = sut.LPCReport;
 
             Assert.NotNull(lpcReport);
             Assert.IsType<LpcReport>(lpcReport);

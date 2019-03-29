@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Models;
@@ -22,11 +23,32 @@ namespace CoreDataStore.Service.Test.Mock
             plutoRepository.Setup(b => b.GetPluto(It.IsAny<string>()))
                 .Returns(dataSet);
 
-            var plutoService = GetPlutoService(plutoRepository.Object);
+            var service = GetPlutoService(plutoRepository.Object);
 
             // Act
             var id = Guid.NewGuid().ToString();
-            var sut = plutoService.GetPluto(id);
+            var sut = service.GetPluto(id);
+
+            // Assert
+            Assert.NotNull(sut);
+            Assert.IsType<List<PlutoModel>>(sut);
+        }
+
+        [Fact(DisplayName = "Get LPC Item Pluto List - Async")]
+        [Trait("Category", "Unit")]
+        public async Task Get_LPC_Pluto_Item_Data_Async()
+        {
+            var dataSet = PlutoDataSource.GetPlutoList(20);
+
+            var plutoRepository = new Mock<IPlutoRepository>();
+            plutoRepository.Setup(b => b.GetPluto(It.IsAny<string>()))
+                .Returns(dataSet);
+
+            var service = GetPlutoService(plutoRepository.Object);
+
+            // Act
+            var id = Guid.NewGuid().ToString();
+            var sut = await service.GetPlutoAsync(id);
 
             // Assert
             Assert.NotNull(sut);

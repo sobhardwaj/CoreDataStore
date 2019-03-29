@@ -11,6 +11,7 @@ using CoreDataStore.Domain.Entities;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
 using Microsoft.EntityFrameworkCore;
+using Navigator.Common.Helpers;
 
 namespace CoreDataStore.Service.Services
 {
@@ -20,11 +21,13 @@ namespace CoreDataStore.Service.Services
 
         public LpcReportService(ILpcReportRepository lpcReportRepository)
         {
-            this._lpcReportRepository = lpcReportRepository ?? throw new ArgumentNullException(nameof(lpcReportRepository));
+            _lpcReportRepository = lpcReportRepository ?? throw new ArgumentNullException(nameof(lpcReportRepository));
         }
 
         public LpcReportModel GetLPCReport(int id)
         {
+            Guard.ThrowIfZeroOrLess(id, "Invalid LPC Id");
+
             var query = _lpcReportRepository.GetSingle(id);
 
             return Mapper.Map<LpcReport, LpcReportModel>(query);
@@ -32,6 +35,8 @@ namespace CoreDataStore.Service.Services
 
         public async Task<LpcReportModel> GetLPCReportAsync(int id)
         {
+            Guard.ThrowIfZeroOrLess(id, "Invalid LPC Id");
+
             var query = await _lpcReportRepository.GetSingleAsync(id);
 
             return Mapper.Map<LpcReport, LpcReportModel>(query);
@@ -51,6 +56,8 @@ namespace CoreDataStore.Service.Services
 
         public LpcReportModel UpdateLPCReport(LpcReportModel model)
         {
+            Guard.ThrowIfZeroOrLess(model.Id, "Invalid LPC Id");
+
             var report = _lpcReportRepository.GetSingle(model.Id);
             Mapper.Map(model, report);
 
