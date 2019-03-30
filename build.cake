@@ -1,4 +1,5 @@
 #load build/settings.cake
+#load build/helpers.cake
 
 //////////////////////////////////////////////////////////////////////
 // TOOLS
@@ -164,11 +165,11 @@ Task("Publish")
 
 
 Task("Generate-Docs")
-    .IsDependentOn("Build")
+    .IsDependentOn("Clean")
     .Does(() => 
     {
         DocFxBuild("./docfx/docfx.json");
-       // Zip("./docfx/_site/", artifactsDirectory + "/docfx.zip");
+        Zip("./docfx/_site/", "./artifacts/docfx.zip");
      });
 
 Task("Clean-Sonarqube")
@@ -254,14 +255,3 @@ Task("Default")
 // EXECUTION
 //////////////////////////////////////////////////////////////////////
 RunTarget(target);
-
-
-//////////////////////////////////////////////////////////////////////
-// Methods
-//////////////////////////////////////////////////////////////////////
-
-private bool IsNuGetPublished(FilePath packagePath) {
-   
-    //https://cakebuild.net/api/Cake.ExtendedNuGet/ExtendedNuGetAliases/B1C7AA63
-    return false;
-}
