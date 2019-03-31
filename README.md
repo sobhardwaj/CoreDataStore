@@ -102,6 +102,12 @@ Linux
 
 ### DocFX
 
+#### Prerequisites:
+
+```
+choco install docfx
+```
+
 #### Build and Serve Website
 
 ```
@@ -109,7 +115,11 @@ docfx docfx/docfx.json
 docfx docfx/docfx.json --serve
 ```
 
-Deployment 
+```
+http://localhost:8080
+```
+
+#### Deployment 
 ```powershell
  .\build.ps1 -target Generate-Docs
 ```

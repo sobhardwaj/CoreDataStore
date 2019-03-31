@@ -12,10 +12,19 @@ namespace CoreDataStore.Domain.Entities
 
         public string SubType { get; set; }
 
+        /// <summary>
+        /// Block
+        /// </summary>
         public int? Block { get; set; }
 
+        /// <summary>
+        /// Lot
+        /// </summary>
         public int? Lot { get; set; }
 
+        /// <summary>
+        /// Borough
+        /// </summary>
         public string Borough { get; set; }
 
         public string Located { get; set; }
