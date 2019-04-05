@@ -9,6 +9,12 @@
         /// Db ConnectionStrings.
         /// </summary>
         public ConnectionStrings ConnectionStrings { get; set; }
+
+        /// <summary>
+        /// Graylog Syslog Server
+        /// </summary>
+        public Graylog Graylog { get; set; }
+
     }
 
     /// <summary>
@@ -30,5 +36,12 @@
         /// Postgres SQL ConnectionString.
         /// </summary>
         public string PostgreSql { get; set; }
+    }
+
+    public class Graylog
+    {
+        public string Host { get; set; }
+
+        public string LogSource { get; set; }
     }
 }

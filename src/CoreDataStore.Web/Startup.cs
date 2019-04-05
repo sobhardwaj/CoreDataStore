@@ -8,6 +8,7 @@ using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;
 using CoreDataStore.Web.Configuration;
 using CoreDataStore.Web.Extensions;
+using Gelf.Extensions.Logging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -120,6 +121,20 @@ namespace CoreDataStore.Web
         /// <param name="services"></param>
         private void ConfigureServices(IServiceCollection services)
         {
+            var config = Configuration.Get<ApplicationOptions>();
+
+            services.AddLogging(builder =>
+            {
+                builder.AddDebug();
+                builder.AddConsole();
+                builder.AddGelf(options =>
+                {
+                    options.CompressUdp = true;
+                    options.Host = config.Graylog.Host;
+                    options.LogSource = config.Graylog.LogSource;
+                });
+            });
+
             services.AddScoped<ILpcReportService, LpcReportService>();
             services.AddScoped<ILandmarkService, LandmarkService>();
             services.AddScoped<IPlutoService, PlutoService>();

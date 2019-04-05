@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using App.Metrics;
 using App.Metrics.AspNetCore;
 using App.Metrics.Formatters.Prometheus;
+using CoreDataStore.Web.Configuration;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Serilog;
+using Serilog.Sinks.Graylog;
 
 namespace CoreDataStore.Web
 {
@@ -15,7 +19,7 @@ namespace CoreDataStore.Web
     public static class Program
     {
         /// <summary>
-        ///
+        /// IConfiguration
         /// </summary>
         public static IConfiguration Configuration { get; } = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
@@ -24,14 +28,32 @@ namespace CoreDataStore.Web
             .Build();
 
         /// <summary>
-        ///
+        /// Main Entry Point
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
         public static int Main(string[] args)
         {
+            var config = Configuration.Get<ApplicationOptions>();
+
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                .WriteTo.Graylog(new GraylogSinkOptions
+                {
+                    HostnameOrAddress = config.Graylog.Host,
+                    Port = 12201,
+                })
+                .CreateLogger();
+
+            Serilog.Debugging.SelfLog.Enable(msg =>
+            {
+                Debug.Print(msg);
+                Debugger.Break();
+            });
+
             try
             {
+                Log.Information("Init:CoreDataStore.Web");
                 CreateWebHostBuilder(args).Build().Run();
                 return 0;
             }
@@ -42,7 +64,7 @@ namespace CoreDataStore.Web
         }
 
         /// <summary>
-        ///
+        /// Create WebHost Builder
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>

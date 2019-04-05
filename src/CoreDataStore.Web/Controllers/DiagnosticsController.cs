@@ -5,11 +5,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
-using CoreDataStore.Web.Extensions;
 using CoreDataStore.Web.ViewModels;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace CoreDataStore.Web.Controllers
 {
@@ -47,6 +47,8 @@ namespace CoreDataStore.Web.Controllers
         [Produces("application/json", Type = typeof(ServerDiagnostics))]
         public IActionResult Get()
         {
+            Log.Information($"Init:ServerDiagnostics:{DateTime.UtcNow}");
+
             var osNameAndVersion = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
             var diagnostics = new ServerDiagnostics
             {
