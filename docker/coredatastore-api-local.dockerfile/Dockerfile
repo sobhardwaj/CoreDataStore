@@ -1,5 +1,5 @@
 # Build Stage
-FROM stuartshay/coredatastore:2.2.1-base AS build-env
+FROM stuartshay/coredatastore:2.2.2-base AS build-env
 
 ARG BUILD_NUMBER=0
 ENV BUILD_NUMBER ${BUILD_NUMBER}
@@ -12,7 +12,7 @@ WORKDIR /app/src/CoreDataStore.Web
 
 RUN dotnet tool install --global dotnet-setversion --version 2.0.0 
 RUN dotnet tool install --global dotnet-dbinfo --version 1.4.0 
-RUN /root/.dotnet/tools/setversion 2.2.1.${BUILD_NUMBER};
+RUN /root/.dotnet/tools/setversion 2.2.2.${BUILD_NUMBER};
 
 RUN dotnet publish -o /publish -c Release -f netcoreapp2.2 -r debian.9-x64
 
