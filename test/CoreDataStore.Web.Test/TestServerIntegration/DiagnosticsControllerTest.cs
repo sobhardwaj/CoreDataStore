@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using App.Metrics;
 using CoreDataStore.Web.Controllers;
 using CoreDataStore.Web.Test.Fixtures;
 using CoreDataStore.Web.Test.Helpers;
@@ -133,7 +134,9 @@ namespace CoreDataStore.Web.Test.TestServerIntegration
             IHostingEnvironment hostingEnvironment = null)
         {
             hostingEnvironment = hostingEnvironment ?? new Mock<IHostingEnvironment>().Object;
-            return new DiagnosticsController(hostingEnvironment);
+            IMetrics metrics = new Mock<IMetrics>().Object;
+
+            return new DiagnosticsController(hostingEnvironment, metrics);
         }
     }
 }

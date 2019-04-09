@@ -41,6 +41,7 @@ namespace CoreDataStore.Web
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("ASPNETCORE_URLS:{0}", Configuration["ASPNETCORE_URLS"]);
                 Console.WriteLine("ASPNETCORE_ENVIRONMENT:{0}", Configuration["ASPNETCORE_ENVIRONMENT"]);
+                Console.WriteLine("CONNECTION_PostgreSQL:{0}", Configuration["CONNECTION_PostgreSQL"]);
             }
         }
 
