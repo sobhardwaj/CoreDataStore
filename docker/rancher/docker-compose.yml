@@ -1,11 +1,9 @@
 version: '2'
 volumes:
   database:
-    external: true
-    driver: 'null'
+    driver: rancher-nfs
   database-export:
-    external: true
-    driver: 'null'
+    driver: rancher-nfs
 services:
   database:
     image: stuartshay/coredatastore-postgres:development
@@ -21,7 +19,7 @@ services:
       options:
         tag: docker.coredatastore.postgres
     ports:
-    - 5434:5432/tcp
+    - 5432:5432/tcp
     labels:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
@@ -37,39 +35,38 @@ services:
     - database:database
     labels:
       io.rancher.container.pull_image: always
-      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
   node-ui:
-    image: stuartshay/coredatastore:node7-357
+    image: stuartshay/coredatastore:node-ui
     environment:
-      LANDMARK: https://qa-api.coredatastore.com/api/
+      LANDMARK: https://api.coredatastore.com/api/
       LOCATIONAPI: https://qa-api-location.coredatastore.com/api/
       MAPSAPI: https://api-maps.navigatorglass.com/api/
-      REPORTSAPI: https://qa-reports.coredatastore.com/api/
+      REPORTSAPI: https://reports.coredatastore.com/api/
     stdin_open: true
     tty: true
     labels:
       io.rancher.container.pull_image: always
-      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
   coredatastore-reporting-api:
-    image: stuartshay/coredatastore-reporting-api:2.0-runtime
+    image: stuartshay/coredatastore-reporting-api:2.0-multi
     stdin_open: true
     tty: true
     links:
     - database:database
     labels:
       io.rancher.container.pull_image: always
-      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
   reporting:
     image: rancher/dns-service
     links:
     - coredatastore-reporting-api:coredatastore-reporting-api
   coredatastore-internal-tools:
-    image: stuartshay/coredatastore-internal-tools
+    image: stuartshay/coredatastore-internal-tools:stable
+    environment:
+      TERM_PASS: Navigator2017
+      TERM_USER: Navigator
     stdin_open: true
     tty: true
     labels:
       io.rancher.container.pull_image: always
-      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
   coredatastore-location-api:
     image: stuartshay/coredatastore-location-api:2.0-runtime
     environment:
@@ -81,4 +78,4 @@ services:
     - database:database
     labels:
       io.rancher.container.pull_image: always
-      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+

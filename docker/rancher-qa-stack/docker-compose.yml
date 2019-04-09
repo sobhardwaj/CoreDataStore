@@ -28,7 +28,7 @@ services:
     links:
     - coredatastore-api:coredatastore-api
   coredatastore-api:
-    image: stuartshay/coredatastore:2.1-runtime
+    image: stuartshay/coredatastore:2.2.2-api-circleci
     stdin_open: true
     tty: true
     links:

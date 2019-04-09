@@ -12,7 +12,7 @@ services:
     scale: 1
     start_on_create: true
   coredatastore-reporting-api:
-    scale: 1
+    scale: 3
     start_on_create: true
   reporting:
     start_on_create: true
@@ -22,3 +22,4 @@ services:
   coredatastore-location-api:
     scale: 3
     start_on_create: true
+
