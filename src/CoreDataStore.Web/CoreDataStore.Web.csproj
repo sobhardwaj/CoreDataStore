@@ -21,14 +21,14 @@
     <PackageReference Include="App.Metrics.Formatters.Prometheus" Version="3.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Gelf.Extensions.Logging" Version="1.5.1" />
-    <PackageReference Include="Serilog.Sinks.Graylog" Version="2.0.7" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.2.0" />
+    <PackageReference Include="Serilog.Sinks.Graylog" Version="2.0.9" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.Examples" Version="2.9.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Navigator.Common" Version="1.6.0.1" />
+    <PackageReference Include="Navigator.Common" Version="2.0.0.2" />
     <PackageReference Include="Navigator.Middleware" Version="1.1.0.15" />
   </ItemGroup>
 
