@@ -1,4 +1,4 @@
-FROM microsoft/aspnetcore:2.2.3-nanoserver-1803
+FROM mcr.microsoft.com/dotnet/core/runtime:2.2.6-nanoserver-1809
 
 WORKDIR /app
 COPY src/CoreDataStore.Web/bin/Release/netcoreapp2.2/win10-x64/publish .
