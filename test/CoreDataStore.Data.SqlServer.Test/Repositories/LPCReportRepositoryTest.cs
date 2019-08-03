@@ -7,6 +7,7 @@ using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Test.Fixtures;
 using CoreDataStore.Domain.Entities;
+using Navigator.Common.Helpers;
 using Xunit;
 using Xunit.Abstractions;
 

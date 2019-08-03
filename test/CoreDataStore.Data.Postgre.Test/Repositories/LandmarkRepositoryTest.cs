@@ -5,6 +5,7 @@ using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.Postgre.Test.Fixtures;
 using CoreDataStore.Domain.Entities;
+using Navigator.Common.Helpers;
 using Xunit;
 using Xunit.Abstractions;
 

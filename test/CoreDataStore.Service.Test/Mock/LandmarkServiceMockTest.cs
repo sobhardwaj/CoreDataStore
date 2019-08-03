@@ -8,6 +8,7 @@ using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;
 using CoreDataStore.Service.Test.Data;
 using Moq;
+using Navigator.Common.Helpers;
 using Xunit;
 
 namespace CoreDataStore.Service.Test.Mock
