@@ -7,32 +7,27 @@
     <CodeAnalysisRuleSet>StyleCopRules.ruleset</CodeAnalysisRuleSet>
     <NoWarn>$(NoWarn),1701;1702;1705</NoWarn>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildThisFileName).xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Gelf.Extensions.Logging" Version="1.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.Redis" Version="0.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.HealthChecks" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Api.Analyzers" Version="2.2.6" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="2.2.0" />
-
-    <PackageReference Include="AspNetCore.HealthChecks.UI" Version="2.2.27" />
-
-    <PackageReference Include="App.Metrics.AspNetCore.Mvc" Version="3.0.0" />
-    <PackageReference Include="App.Metrics.Formatters.Prometheus" Version="3.0.0" />
-
+    <PackageReference Include="AspNetCore.HealthChecks.UI" Version="2.2.32" />
+    <PackageReference Include="App.Metrics.AspNetCore.Mvc" Version="3.1.0" />
+    <PackageReference Include="App.Metrics.Formatters.Prometheus" Version="3.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-
+    <PackageReference Include="Gelf.Extensions.Logging" Version="1.5.1" />
     <PackageReference Include="Serilog.Sinks.Graylog" Version="2.0.7" />
-
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Examples" Version="2.9.0" />
-
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-
     <PackageReference Include="Navigator.Common" Version="1.6.0.1" />
     <PackageReference Include="Navigator.Middleware" Version="1.1.0.15" />
   </ItemGroup>
@@ -162,14 +157,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp2.2\CoreDataStore.Web.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netcoreapp2.2\CoreDataStore.Web.xml</DocumentationFile>
-  </PropertyGroup>
 
   <PropertyGroup>
     <ProjectGuid>{9A19103F-16F7-4668-BE54-9A1E7A4F7111}</ProjectGuid>

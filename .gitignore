@@ -27,6 +27,7 @@ tools/
 .idea/
 .test-results
 coverage-html/
+.dotnet/
 
 # Coverage Test Files 
 *coverage*

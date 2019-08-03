@@ -26,11 +26,11 @@ namespace CoreDataStore.Web.Controllers
     [Route("api/[controller]")]
     public class DiagnosticsController : Controller
     {
+        private static readonly Random Rnd = new Random();
+
         private readonly IHostingEnvironment _env;
 
         private readonly IMetrics _metrics;
-
-        private static readonly Random Rnd = new Random();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DiagnosticsController"/> class.

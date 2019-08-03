@@ -38,6 +38,9 @@
         public string PostgreSql { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class Graylog
     {
         public string Host { get; set; }

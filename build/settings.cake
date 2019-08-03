@@ -2,9 +2,10 @@ public static class Settings
 {
     public static string ProjectName => "CoreDataStore";
 
-    public static string SonarUrl => "http://sonar.navigatorglass.com:9000";
+    public static string SonarUrl => "http://192.168.1.3:9000";
 
-    public static string SonarKey => "584273597838fd75ab485e34b353101e0eeebdea";
+    //public static string SonarKey => "584273597838fd75ab485e34b353101e0eeebdea";
+    public static string SonarKey => "2d9714fb99838954428a6a8b90ebddb59dea882a";
 
     public static string SonarName => "CoreDataStore";
 

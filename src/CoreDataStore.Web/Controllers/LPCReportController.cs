@@ -8,6 +8,7 @@ using CoreDataStore.Service.Models;
 using CoreDataStore.Service.ValidationRules;
 using CoreDataStore.Web.Filters;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDataStore.Web.Controllers
@@ -41,6 +42,8 @@ namespace CoreDataStore.Web.Controllers
         [HttpGet("{id}")]
         [Produces("application/json", Type = typeof(LpcReportModel))]
         [ProducesResponseType(typeof(LpcReportModel), 200)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get(int id)
         {
             if (id == 0)
