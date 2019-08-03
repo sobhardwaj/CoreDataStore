@@ -34,8 +34,8 @@ jobs:
         - cd src/CoreDataStore.Web
       script: $TRAVIS_BUILD_DIR/travis_build.sh
 
-    - stage: "Deploy"
-      script: $TRAVIS_BUILD_DIR/travis_deploy.sh
+   # - stage: "Deploy"
+   #   script: $TRAVIS_BUILD_DIR/travis_deploy.sh
 
 # - npm i selenium-webdriver assert mocha
 # - npm run selenium

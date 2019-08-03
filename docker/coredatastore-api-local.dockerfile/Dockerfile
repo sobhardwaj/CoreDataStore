@@ -5,7 +5,6 @@ ARG BUILD_NUMBER=0
 ENV BUILD_NUMBER ${BUILD_NUMBER}
 
 COPY src /app/src
-COPY _stylecop /app/_stylecop
 COPY CoreDataStore.sln /app/CoreDataStore.sln
 
 WORKDIR /app/src/CoreDataStore.Web
