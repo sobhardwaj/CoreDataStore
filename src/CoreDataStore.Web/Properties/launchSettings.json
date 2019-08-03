@@ -20,7 +20,7 @@
       "launchBrowser": true,
       "launchUrl": "swagger/",
       "environmentVariables": {
-        "CONNECTION_PostgreSQL": "User ID=postgres; Password=password;  Server=database;Port=5432;Database=nyclandmarks;Integrated Security=true;Pooling=true",
+        "CONNECTION_PostgreSQL": "User ID=nyclandmarks;Password=nyclandmarks;Server=myrdsinstance.ckm3eyorqjco.us-east-1.rds.amazonaws.com;Port=5432;Database=nyclandmarks;Integrated Security=true;Pooling=true;",
         "ASPNETCORE_ENVIRONMENT": "Staging"
       },
       "applicationUrl": "http://localhost:5000"
