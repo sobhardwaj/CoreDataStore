@@ -66,7 +66,6 @@ jobs:
             docker ps
             docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' database
             # dotnet test test/CoreDataStore.Data.Postgre.Test/CoreDataStore.Data.Postgre.Test.csproj
-     
       - run:
           name: Build and bundle from source
           command: |
@@ -79,39 +78,39 @@ jobs:
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push stuartshay/coredatastore:2.2.2-api-circleci
             
-      - run:
-          name: Install Rancher Compose
-          command: |
-            curl -sSL https://github.com/rancher/rancher-compose/releases/download/v${RANCHER_COMPOSE_VERSION}/rancher-compose-linux-amd64-v${RANCHER_COMPOSE_VERSION}.tar.gz \
-              | tar -zxf - --strip-components=2 -C /usr/local/bin
+    #  - run:
+    #      name: Install Rancher Compose
+    #      command: |
+    #        curl -sSL https://github.com/rancher/rancher-compose/releases/download/v${RANCHER_COMPOSE_VERSION}/rancher-compose-linux-amd64-v${RANCHER_COMPOSE_VERSION}.tar.gz \
+    #          | tar -zxf - --strip-components=2 -C /usr/local/bin
 
-      - run:
-          name: Create all services but do not start
-          command: |
-            rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} create
+     # - run:
+     #     name: Create all services but do not start
+     #     command: |
+     #       rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} create
 
-      - run:
-          name: Bring all services up
-          command: |
-            rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} up -d
+     # - run:
+     #     name: Bring all services up
+     #     command: |
+     #       rancher-compose -f ${DOCKER_COMPOSE} -r ${RANCHER_COMPOSE} -p ${STACK_NAME} up -d
 
-      - run:
-          name: Perform services upgrade (coredatastore-api)
-          command: |
-            rancher-compose \
-              -f ${DOCKER_COMPOSE} \
-              -r ${RANCHER_COMPOSE} \
-              -p ${STACK_NAME} \
-              --verbose up --upgrade --force-upgrade --pull -d ${UPGRADE_SERVICES}
+     # - run:
+     #     name: Perform services upgrade (coredatastore-api)
+     #     command: |
+     #       rancher-compose \
+     #         -f ${DOCKER_COMPOSE} \
+     #         -r ${RANCHER_COMPOSE} \
+     #         -p ${STACK_NAME} \
+     #         --verbose up --upgrade --force-upgrade --pull -d ${UPGRADE_SERVICES}
 
-      - run:
-          name: Finish services upgrade (coredatastore-api)
-          command: |
-            rancher-compose \
-              -f ${DOCKER_COMPOSE} \
-              -r ${RANCHER_COMPOSE} \
-              -p ${STACK_NAME} \
-              --verbose up -d --confirm-upgrade ${UPGRADE_SERVICES}
+     # - run:
+     #     name: Finish services upgrade (coredatastore-api)
+     #     command: |
+     #       rancher-compose \
+     #         -f ${DOCKER_COMPOSE} \
+     #         -r ${RANCHER_COMPOSE} \
+     #         -p ${STACK_NAME} \
+     #         --verbose up -d --confirm-upgrade ${UPGRADE_SERVICES}
 
       - save_cache:
           key: v1-coredatastore-{{ checksum ".circleci/config.yml" }}
