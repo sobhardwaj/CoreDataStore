@@ -37,7 +37,8 @@ build_script:
 
 before_test:
   - cd C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\150
-  - ps: .\SqlPackage.exe /a:import /sf:C:\projects\coredatastore\data\NycLandmarks_EF.bacpac /tdn:NycLandmarks_EF /tsn:APPVYR-WIN\SQL2016
+  - ps: .\SqlPackage.exe /a:import /sf:C:\projects\coredatastore\data\NycLandmarks_EF.bacpac /tdn:NycLandmarks_EF /tsn:"(localdb)\MSSQLLocalDB"
+
 
 test_script:
   - node --version
