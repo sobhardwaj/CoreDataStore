@@ -14,7 +14,7 @@ RUN dotnet tool install --global dotnet-setversion --version 2.0.0
 RUN dotnet tool install --global dotnet-dbinfo --version 1.4.0 
 RUN /root/.dotnet/tools/setversion 2.2.2.${BUILD_NUMBER};
 
-RUN dotnet publish -o /publish -c Release -f netcoreapp2.2 -r debian.9-x64
+RUN dotnet publish -o /publish -c Release -f netcoreapp2.2 
 
 # Runtime Image Stage
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
