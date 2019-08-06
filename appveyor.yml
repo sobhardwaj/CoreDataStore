@@ -20,6 +20,7 @@ cache:
 
 services:
   - mssql2017
+  - docker
 
 install:
   - dir
